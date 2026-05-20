@@ -42,9 +42,11 @@ python upwork_scraper_v2.py --query "ai automation" --max-age 3 --limit 5 -o .tm
 
 ## Usage
 
-### Scrape jobs
+### Eterna's standard scrape (Bubble.io / no-code / MVP, USA+Canada+Europe only)
 ```bash
-python upwork_scraper_v2.py --query "appointment setter" --max-age 2 --limit 20 -o .tmp/jobs.json
+python upwork_scraper_v2.py --query "bubble.io" --max-age 2 --limit 20 --geo-filter -o .tmp/jobs.json
+python upwork_scraper_v2.py --query "no-code MVP" --max-age 2 --limit 20 --geo-filter -o .tmp/jobs.json
+python upwork_scraper_v2.py --search-any "bubble.io no-code MVP webflow" --max-age 3 --limit 30 --geo-filter -o .tmp/jobs.json
 ```
 
 ### Generate proposals
@@ -60,6 +62,7 @@ python upwork_proposal_generator.py -i .tmp/jobs.json --workers 3 -o .tmp/propos
 
 ### Filters
 - `--max-age N` - Jobs posted in last N days
+- `--geo-filter` - Only clients from USA, Canada, and Europe
 - `--verified-payment` - Only verified payment clients
 - `--min-budget N` - Minimum budget
 - `--limit N` - Max jobs to return

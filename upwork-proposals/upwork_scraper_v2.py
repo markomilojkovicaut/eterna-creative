@@ -26,6 +26,23 @@ load_dotenv()
 
 ACTOR_ID = "flash_mage~upwork"
 
+ALLOWED_COUNTRIES = {
+    # North America
+    "United States", "Canada",
+    # Western Europe
+    "United Kingdom", "Ireland", "Germany", "France", "Netherlands", "Belgium",
+    "Switzerland", "Austria", "Luxembourg", "Denmark", "Sweden", "Norway",
+    "Finland", "Iceland",
+    # Southern Europe
+    "Spain", "Portugal", "Italy", "Greece", "Malta", "Cyprus",
+    # Central & Eastern Europe
+    "Poland", "Czech Republic", "Slovakia", "Hungary", "Romania", "Bulgaria",
+    "Croatia", "Slovenia", "Estonia", "Latvia", "Lithuania", "Serbia",
+    "Bosnia and Herzegovina", "North Macedonia", "Albania", "Kosovo",
+    # Other
+    "Ukraine", "Georgia", "Armenia", "Moldova",
+}
+
 
 def scrape_upwork_jobs(
     query: str = None,
@@ -134,6 +151,7 @@ def filter_jobs(
     verified_payment: bool = False,
     min_budget: float = None,
     limit: int = None,
+    allowed_countries: set = None,
 ) -> list[dict]:
     """Apply post-scrape filters."""
 
@@ -143,6 +161,13 @@ def filter_jobs(
         data = job.get("data", {})
         client_data = data.get("client", {})
         budget_data = data.get("budget", {})
+
+        # Location filter — skip jobs whose client country is known but not allowed
+        if allowed_countries:
+            location = client_data.get("location", {})
+            country = location.get("country", "") if isinstance(location, dict) else ""
+            if country and country not in allowed_countries:
+                continue
 
         # Payment verification filter
         if verified_payment:
@@ -267,6 +292,7 @@ def main():
     parser.add_argument("--verified-payment", "-v", action="store_true", help="Only verified payment clients")
     parser.add_argument("--min-budget", type=float, help="Minimum budget ($)")
     parser.add_argument("--limit", "-l", type=int, help="Max jobs to return after filtering")
+    parser.add_argument("--geo-filter", action="store_true", help="Only include clients from USA, Canada, and Europe")
 
     # Output
     parser.add_argument("--output", "-o", help="Output JSON file")
@@ -303,6 +329,7 @@ def main():
         verified_payment=args.verified_payment,
         min_budget=args.min_budget,
         limit=args.limit,
+        allowed_countries=ALLOWED_COUNTRIES if args.geo_filter else None,
     )
 
     # Format jobs
