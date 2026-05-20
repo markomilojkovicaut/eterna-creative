@@ -82,7 +82,8 @@ def scrape_upwork_jobs(
         print(f"  Location: {', '.join(location)}")
 
     try:
-        run = client.actor(ACTOR_ID).call(run_input=run_input, timeout_secs=120)
+        from datetime import timedelta
+        run = client.actor(ACTOR_ID).call(run_input=run_input, run_timeout=timedelta(seconds=120))
     except Exception as e:
         print(f"Error running actor: {e}", file=sys.stderr)
         return []
@@ -91,7 +92,7 @@ def scrape_upwork_jobs(
         print("Error: Actor run failed to start", file=sys.stderr)
         return []
 
-    dataset_id = run["defaultDatasetId"]
+    dataset_id = run.default_dataset_id
     print(f"Scrape finished. Fetching results from dataset {dataset_id}...")
 
     # Fetch all results
