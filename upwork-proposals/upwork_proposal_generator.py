@@ -20,9 +20,11 @@ import argparse
 import threading
 import anthropic
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import httplib2
 from google.oauth2.credentials import Credentials
 from google.auth.transport.requests import Request
 from googleapiclient.discovery import build
+from google_auth_httplib2 import AuthorizedHttp
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -659,11 +661,14 @@ def main():
     if creds.expired and creds.refresh_token:
         creds.refresh(Request())
 
-    sheets_service = build('sheets', 'v4', credentials=creds)
-    drive_service = build('drive', 'v3', credentials=creds)
+    def _http():
+        return AuthorizedHttp(creds, http=httplib2.Http(disable_ssl_certificate_validation=True))
+
+    sheets_service = build('sheets', 'v4', http=_http())
+    drive_service = build('drive', 'v3', http=_http())
 
     has_docs_scope = 'https://www.googleapis.com/auth/documents' in available_scopes
-    docs_service = build('docs', 'v1', credentials=creds) if has_docs_scope else None
+    docs_service = build('docs', 'v1', http=_http()) if has_docs_scope else None
     if not has_docs_scope:
         print("Note: documents scope not available - will skip Google Doc creation")
 
