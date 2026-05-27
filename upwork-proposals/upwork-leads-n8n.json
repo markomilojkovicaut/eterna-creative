@@ -117,7 +117,7 @@
         "url": "={{ $env.SLACK_WEBHOOK_URL }}",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={{ JSON.stringify({\n  text: '*🎯 New Upwork Lead — Score: ' + $json.score + '/10*\\n> ' + $json.reason + '\\n\\n*' + $json.title + '*\\n💰 ' + $json.budget + ($json.country !== 'Unknown' ? '  |  📍 ' + $json.country : '') + (($json.skills || []).length > 0 ? '\\n🛠 ' + $json.skills.join(', ') : '') + '\\n\\n<' + $json.url + '|→ View & Apply on Upwork>'\n}) }}"
+        "jsonBody": "={{ JSON.stringify({\n  text: '<@U097GGDRGGG> *🎯 New Upwork Lead — Score: ' + $json.score + '/10*\\n> ' + $json.reason + '\\n\\n*' + $json.title + '*\\n💰 ' + $json.budget + ($json.country !== 'Unknown' ? '  |  📍 ' + $json.country : '') + (($json.skills || []).length > 0 ? '\\n🛠 ' + $json.skills.join(', ') : '') + '\\n\\n<' + $json.url + '|→ View & Apply on Upwork>'\n}) }}"
       },
       "id": "a1b2c3d4-0001-0001-0001-000000000007",
       "name": "Notify Slack",
