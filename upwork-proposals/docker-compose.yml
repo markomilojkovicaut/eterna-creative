@@ -24,6 +24,7 @@ services:
       # Your API keys (used in workflows via $env.VAR_NAME)
       - APIFY_API_TOKEN=YOUR_APIFY_API_TOKEN
       - ANTHROPIC_API_KEY=YOUR_ANTHROPIC_API_KEY
+      - SLACK_WEBHOOK_URL=YOUR_SLACK_WEBHOOK_URL
     volumes:
       - n8n_data:/home/node/.n8n
     depends_on:

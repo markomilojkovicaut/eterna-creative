@@ -4,11 +4,11 @@
     {
       "parameters": {
         "rule": {
-          "interval": [{ "field": "hours", "hoursInterval": 1 }]
+          "interval": [{ "field": "cronExpression", "expression": "0 9-21 * * *" }]
         }
       },
       "id": "a1b2c3d4-0001-0001-0001-000000000001",
-      "name": "Every Hour",
+      "name": "09–21 Belgrade",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [240, 300]
@@ -127,7 +127,7 @@
     }
   ],
   "connections": {
-    "Every Hour": {
+    "09–21 Belgrade": {
       "main": [[{ "node": "Scrape Upwork", "type": "main", "index": 0 }]]
     },
     "Scrape Upwork": {
