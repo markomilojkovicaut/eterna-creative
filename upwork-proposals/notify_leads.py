@@ -56,6 +56,33 @@ Description: {description}
 Reply ONLY with valid JSON, no other text:
 {{"score": <number 1-10>, "reason": "<max 12 words>"}}"""
 
+SEEN_FILE = os.path.join(os.path.dirname(__file__), "config", "seen_jobs.json")
+
+
+def load_seen() -> set:
+    """Load previously notified job URLs. Entries older than 7 days are dropped."""
+    if not os.path.exists(SEEN_FILE):
+        return set()
+    with open(SEEN_FILE) as f:
+        data = json.load(f)
+    cutoff = (datetime.now() - timedelta(days=7)).isoformat()
+    return {url for url, ts in data.items() if ts > cutoff}
+
+
+def save_seen(new_urls: list):
+    """Append new URLs to the seen file, pruning entries older than 7 days."""
+    existing = {}
+    if os.path.exists(SEEN_FILE):
+        with open(SEEN_FILE) as f:
+            existing = json.load(f)
+    now = datetime.now().isoformat()
+    for url in new_urls:
+        existing[url] = now
+    cutoff = (datetime.now() - timedelta(days=7)).isoformat()
+    pruned = {u: t for u, t in existing.items() if t > cutoff}
+    with open(SEEN_FILE, "w") as f:
+        json.dump(pruned, f, indent=2)
+
 
 def scrape_jobs(max_age_days: int = 2) -> list[dict]:
     token = os.getenv("APIFY_API_TOKEN")
@@ -202,8 +229,15 @@ def main():
     jobs = scrape_jobs(max_age_days=args.max_age)
     print(f"Found {len(jobs)} jobs after geo/age filter")
 
+    seen = load_seen()
+    new_notified = []
     sent = 0
+
     for job in jobs:
+        if job["url"] in seen:
+            print(f"  ⟳ [skip] {job['title'][:60]}")
+            continue
+
         score, reason = score_job(job, ai_client)
         status = "✓" if score >= args.min_score else "✗"
         print(f"  {status} [{score}/10] {job['title'][:60]}")
@@ -211,8 +245,13 @@ def main():
         if score >= args.min_score:
             if send_slack(job, score, reason, webhook_url):
                 sent += 1
+                new_notified.append(job["url"])
 
-    print(f"\nDone — {sent} leads sent to Slack (threshold: {args.min_score}/10)")
+    if new_notified:
+        save_seen(new_notified)
+        print(f"  Saved {len(new_notified)} URLs to seen cache")
+
+    print(f"\nDone — {sent} new leads sent to Slack (threshold: {args.min_score}/10)")
 
 
 if __name__ == "__main__":
