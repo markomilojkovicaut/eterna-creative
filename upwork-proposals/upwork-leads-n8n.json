@@ -1,0 +1,157 @@
+{
+  "name": "Upwork Leads — Hourly Scout",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [{ "field": "hours", "hoursInterval": 1 }]
+        }
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000001",
+      "name": "Every Hour",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.apify.com/v2/acts/flash_mage~upwork/run-sync-get-dataset-items?token={{ $env.APIFY_API_TOKEN }}&timeout=120&format=json",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"query\": [\"bubble.io\", \"no-code MVP\", \"bubble developer\", \"no-code app\"],\n  \"maxItems\": 30\n}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000002",
+      "name": "Scrape Upwork",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const ALLOWED_COUNTRIES = new Set([\n  'United States','Canada','United Kingdom','Ireland','Germany','France',\n  'Netherlands','Belgium','Switzerland','Austria','Luxembourg','Denmark',\n  'Sweden','Norway','Finland','Iceland','Spain','Portugal','Italy','Greece',\n  'Malta','Cyprus','Poland','Czech Republic','Slovakia','Hungary','Romania',\n  'Bulgaria','Croatia','Slovenia','Estonia','Latvia','Lithuania','Serbia',\n  'Ukraine','Georgia','Armenia','Moldova'\n]);\n\nconst raw = $input.first().json;\nconst items = Array.isArray(raw) ? raw : [];\nconst cutoffMs = Date.now() - (2 * 24 * 60 * 60 * 1000); // 2 days\n\nconst jobs = [];\nfor (const item of items) {\n  if (item.type !== 'detail') continue;\n\n  const data = item.data || {};\n  const opening = data.opening || {};\n  const clientData = data.client || {};\n  const budgetData = data.budget || {};\n\n  // Age filter\n  const posted = opening.postedOn || opening.publishTime || '';\n  if (posted && new Date(posted).getTime() < cutoffMs) continue;\n\n  // Geo filter — skip known non-allowed countries\n  const loc = clientData.location || {};\n  const country = typeof loc === 'object' ? (loc.country || '') : '';\n  if (country && !ALLOWED_COUNTRIES.has(country)) continue;\n\n  // Budget\n  let budget = 'Not specified';\n  if (budgetData.fixedBudget) budget = `$${Number(budgetData.fixedBudget).toLocaleString()} fixed`;\n  else if (budgetData.hourlyRate?.min) budget = `$${budgetData.hourlyRate.min}–$${budgetData.hourlyRate.max}/hr`;\n\n  // Skills\n  const skillsRaw = data.skills || opening.skills || [];\n  const skills = skillsRaw.map(s => typeof s === 'object' ? s.name : s).filter(Boolean).slice(0, 6);\n\n  // Clean URL\n  let url = item.link || '';\n  if (url.includes('?')) url = url.split('?')[0];\n\n  const stats = clientData.stats || {};\n\n  jobs.push({\n    title: item.title || 'Untitled',\n    description: (opening.description || '').slice(0, 1500),\n    url,\n    budget,\n    skills,\n    country: country || 'Unknown',\n    client_spent: stats.totalSpent || 0,\n    client_rating: stats.rating || 0\n  });\n}\n\nif (jobs.length === 0) return [];\nreturn jobs.map(j => ({ json: j }));"
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000003",
+      "name": "Parse + Filter Jobs",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "x-api-key", "value": "={{ $env.ANTHROPIC_API_KEY }}" },
+            { "name": "anthropic-version", "value": "2023-06-01" },
+            { "name": "content-type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({\n  model: 'claude-haiku-4-5-20251001',\n  max_tokens: 120,\n  messages: [{\n    role: 'user',\n    content: 'Score this Upwork job 1-10 for a Bubble.io/no-code specialist (Eterna product studio).\\n\\nScoring rules:\\n+3 Bubble.io explicitly mentioned\\n+2 no-code or low-code preferred\\n+2 MVP or new app build (not maintenance)\\n+1 client from US, Canada, or Europe\\n+1 no React/Angular/Vue/custom coding required\\n-3 requires React, Angular, Vue, or custom dev work\\n-3 clearly not Bubble.io fit (mobile native, game, data science)\\n\\nJob Title: ' + $json.title + '\\nBudget: ' + $json.budget + '\\nDescription: ' + $json.description + '\\n\\nReply ONLY with valid JSON, no other text: {\"score\": <number 1-10>, \"reason\": \"<max 12 words>\"}'\n  }]\n}) }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000004",
+      "name": "Score with Claude",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [900, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract score from Claude response and merge with original job data\nconst claudeResp = $input.item.json;\nconst job = $('Parse + Filter Jobs').item.json;\n\nconst text = claudeResp.content?.[0]?.text || '{}';\nlet score = 0;\nlet reason = 'Could not score';\ntry {\n  const match = text.match(/\\{[\\s\\S]*?\\}/);\n  if (match) {\n    const parsed = JSON.parse(match[0]);\n    score = parseInt(parsed.score) || 0;\n    reason = parsed.reason || '';\n  }\n} catch(e) {}\n\nreturn [{ json: { ...job, score, reason } }];"
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000005",
+      "name": "Extract Score",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1120, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "cond-score-001",
+              "leftValue": "={{ $json.score }}",
+              "rightValue": 6,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000006",
+      "name": "Score ≥ 6?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [1340, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.SLACK_WEBHOOK_URL }}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({\n  text: '*🎯 New Upwork Lead — Score: ' + $json.score + '/10*\\n> ' + $json.reason + '\\n\\n*' + $json.title + '*\\n💰 ' + $json.budget + ($json.country !== 'Unknown' ? '  |  📍 ' + $json.country : '') + (($json.skills || []).length > 0 ? '\\n🛠 ' + $json.skills.join(', ') : '') + '\\n\\n<' + $json.url + '|→ View & Apply on Upwork>'\n}) }}"
+      },
+      "id": "a1b2c3d4-0001-0001-0001-000000000007",
+      "name": "Notify Slack",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1560, 220]
+    }
+  ],
+  "connections": {
+    "Every Hour": {
+      "main": [[{ "node": "Scrape Upwork", "type": "main", "index": 0 }]]
+    },
+    "Scrape Upwork": {
+      "main": [[{ "node": "Parse + Filter Jobs", "type": "main", "index": 0 }]]
+    },
+    "Parse + Filter Jobs": {
+      "main": [[{ "node": "Score with Claude", "type": "main", "index": 0 }]]
+    },
+    "Score with Claude": {
+      "main": [[{ "node": "Extract Score", "type": "main", "index": 0 }]]
+    },
+    "Extract Score": {
+      "main": [[{ "node": "Score ≥ 6?", "type": "main", "index": 0 }]]
+    },
+    "Score ≥ 6?": {
+      "main": [
+        [{ "node": "Notify Slack", "type": "main", "index": 0 }],
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1"
+}

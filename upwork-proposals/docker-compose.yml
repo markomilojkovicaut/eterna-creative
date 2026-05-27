@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:latest
+    restart: always
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_HOST=0.0.0.0
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=https
+      - N8N_EDITOR_BASE_URL=https://YOUR_DOMAIN_OR_IP:5678
+      - WEBHOOK_URL=https://YOUR_DOMAIN_OR_IP:5678/
+      - GENERIC_TIMEZONE=Europe/Belgrade
+      - N8N_ENCRYPTION_KEY=CHANGE_ME_RANDOM_32_CHAR_STRING
+      # Database
+      - DB_TYPE=postgresdb
+      - DB_POSTGRESDB_HOST=postgres
+      - DB_POSTGRESDB_PORT=5432
+      - DB_POSTGRESDB_DATABASE=n8n
+      - DB_POSTGRESDB_USER=n8n
+      - DB_POSTGRESDB_PASSWORD=CHANGE_ME_DB_PASSWORD
+      # Your API keys (used in workflows via $env.VAR_NAME)
+      - APIFY_API_TOKEN=YOUR_APIFY_API_TOKEN
+      - ANTHROPIC_API_KEY=YOUR_ANTHROPIC_API_KEY
+    volumes:
+      - n8n_data:/home/node/.n8n
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      - POSTGRES_DB=n8n
+      - POSTGRES_USER=n8n
+      - POSTGRES_PASSWORD=CHANGE_ME_DB_PASSWORD
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U n8n"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  n8n_data:
+  postgres_data:
