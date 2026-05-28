@@ -1,14 +1,14 @@
 {
-  "name": "Upwork Leads — Hourly Scout",
+  "name": "Upwork Leads — Eterna Scout",
   "nodes": [
     {
       "parameters": {
         "rule": {
-          "interval": [{ "field": "cronExpression", "expression": "0 9-21 * * *" }]
+          "interval": [{ "field": "cronExpression", "expression": "0 7,10,13,16,19 * * *" }]
         }
       },
       "id": "a1b2c3d4-0001-0001-0001-000000000001",
-      "name": "09–21 Belgrade",
+      "name": "5x Daily Belgrade",
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [240, 300]
@@ -16,10 +16,10 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://api.apify.com/v2/acts/flash_mage~upwork/run-sync-get-dataset-items?token={{ $env.APIFY_API_TOKEN }}&timeout=120&format=json",
+        "url": "=https://api.apify.com/v2/acts/flash_mage~upwork/run-sync-get-dataset-items?token={{ $env.APIFY_API_TOKEN }}&timeout=150&format=json",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "{\n  \"query\": [\"bubble.io\", \"no-code MVP\", \"bubble developer\", \"no-code app\"],\n  \"maxItems\": 30\n}",
+        "jsonBody": "{\n  \"query\": [\"bubble.io\", \"bubble developer\", \"no-code MVP\", \"no-code platform\", \"webflow developer\"],\n  \"maxItems\": 50\n}",
         "options": {
           "response": {
             "response": {
@@ -36,7 +36,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const ALLOWED_COUNTRIES = new Set([\n  'United States','Canada','United Kingdom','Ireland','Germany','France',\n  'Netherlands','Belgium','Switzerland','Austria','Luxembourg','Denmark',\n  'Sweden','Norway','Finland','Iceland','Spain','Portugal','Italy','Greece',\n  'Malta','Cyprus','Poland','Czech Republic','Slovakia','Hungary','Romania',\n  'Bulgaria','Croatia','Slovenia','Estonia','Latvia','Lithuania','Serbia',\n  'Ukraine','Georgia','Armenia','Moldova'\n]);\n\nconst raw = $input.first().json;\nconst items = Array.isArray(raw) ? raw : [];\nconst cutoffMs = Date.now() - (2 * 24 * 60 * 60 * 1000); // 2 days\n\nconst jobs = [];\nfor (const item of items) {\n  if (item.type !== 'detail') continue;\n\n  const data = item.data || {};\n  const opening = data.opening || {};\n  const clientData = data.client || {};\n  const budgetData = data.budget || {};\n\n  // Age filter\n  const posted = opening.postedOn || opening.publishTime || '';\n  if (posted && new Date(posted).getTime() < cutoffMs) continue;\n\n  // Geo filter — skip known non-allowed countries\n  const loc = clientData.location || {};\n  const country = typeof loc === 'object' ? (loc.country || '') : '';\n  if (country && !ALLOWED_COUNTRIES.has(country)) continue;\n\n  // Budget\n  let budget = 'Not specified';\n  if (budgetData.fixedBudget) budget = `$${Number(budgetData.fixedBudget).toLocaleString()} fixed`;\n  else if (budgetData.hourlyRate?.min) budget = `$${budgetData.hourlyRate.min}–$${budgetData.hourlyRate.max}/hr`;\n\n  // Skills\n  const skillsRaw = data.skills || opening.skills || [];\n  const skills = skillsRaw.map(s => typeof s === 'object' ? s.name : s).filter(Boolean).slice(0, 6);\n\n  // Clean URL\n  let url = item.link || '';\n  if (url.includes('?')) url = url.split('?')[0];\n\n  const stats = clientData.stats || {};\n\n  jobs.push({\n    title: item.title || 'Untitled',\n    description: (opening.description || '').slice(0, 1500),\n    url,\n    budget,\n    skills,\n    country: country || 'Unknown',\n    client_spent: stats.totalSpent || 0,\n    client_rating: stats.rating || 0\n  });\n}\n\nif (jobs.length === 0) return [];\nreturn jobs.map(j => ({ json: j }));"
+        "jsCode": "const ALLOWED_COUNTRIES = new Set([\n  'United States','Canada','United Kingdom','Ireland','Germany','France',\n  'Netherlands','Belgium','Switzerland','Austria','Luxembourg','Denmark',\n  'Sweden','Norway','Finland','Iceland','Spain','Portugal','Italy','Greece',\n  'Malta','Cyprus','Poland','Czech Republic','Slovakia','Hungary','Romania',\n  'Bulgaria','Croatia','Slovenia','Estonia','Latvia','Lithuania','Serbia',\n  'Ukraine','Georgia','Armenia','Moldova'\n]);\n\nconst EXCLUDE_KEYWORDS = [\n  'node.js required','python backend required','react required',\n  'angular required','vue required','custom code required',\n  'native mobile','ios app','android app','wordpress','php',\n  'contract-to-hire','equity only','revenue share only'\n];\n\nconst raw = $input.first().json;\nconst items = Array.isArray(raw) ? raw : [];\nconst cutoffMs = Date.now() - (1 * 24 * 60 * 60 * 1000);\n\nconst jobs = [];\nfor (const item of items) {\n  if (item.type !== 'detail') continue;\n\n  const data = item.data || {};\n  const opening = data.opening || {};\n  const clientData = data.client || {};\n  const budgetData = data.budget || {};\n\n  // Age filter (1 day)\n  const posted = opening.postedOn || opening.publishTime || '';\n  if (posted && new Date(posted).getTime() < cutoffMs) continue;\n\n  // Geo filter\n  const loc = clientData.location || {};\n  const country = typeof loc === 'object' ? (loc.country || '') : '';\n  if (country && !ALLOWED_COUNTRIES.has(country)) continue;\n\n  // Raw budget\n  const fixedBudget = budgetData.fixedBudget || 0;\n  const hr = budgetData.hourlyRate || {};\n  const hourlyMin = hr.min || 0;\n  const hourlyMax = hr.max || 0;\n\n  // Hard budget filter\n  if (fixedBudget && fixedBudget < 2500) continue;\n  if (hourlyMin && hourlyMin < 30) continue;\n\n  // Budget string\n  let budget = 'Not specified';\n  if (fixedBudget) budget = '$' + fixedBudget.toLocaleString() + ' fixed';\n  else if (hourlyMin) budget = '$' + hourlyMin + '\\u2013$' + hourlyMax + '/hr';\n\n  // Skills\n  const skillsRaw = data.skills || opening.skills || [];\n  const skills = skillsRaw.map(s => typeof s === 'object' ? s.name : s).filter(Boolean).slice(0, 8);\n\n  // Client data\n  const stats = clientData.stats || {};\n  const clientRating = (typeof stats === 'object' ? stats.rating : 0) || 0;\n  const clientSpent = (typeof stats === 'object' ? stats.totalSpent : 0) || 0;\n  const paymentVerified = clientData.paymentMethodVerified || false;\n  const applicants = opening.applicants || 0;\n\n  // Hard client filters (only when data is present)\n  if (clientRating && clientRating < 3.5) continue;\n  if (clientSpent && clientSpent < 1000) continue;\n  if (!paymentVerified && clientSpent > 0) continue;\n  if (applicants && applicants >= 50) continue;\n\n  // Hard keyword exclusion\n  const text = ((item.title || '') + ' ' + (opening.description || '')).toLowerCase();\n  let excluded = false;\n  for (const kw of EXCLUDE_KEYWORDS) { if (text.includes(kw)) { excluded = true; break; } }\n  if (excluded) continue;\n\n  // URL\n  let url = item.link || '';\n  if (url.includes('?')) url = url.split('?')[0];\n\n  jobs.push({\n    title: item.title || 'Untitled',\n    description: (opening.description || '').slice(0, 2000),\n    url,\n    budget,\n    fixedBudget,\n    hourlyMin,\n    skills,\n    country: country || 'Unknown',\n    clientRating,\n    clientSpent,\n    paymentVerified,\n    applicants\n  });\n}\n\nif (jobs.length === 0) return [];\nreturn jobs.map(j => ({ json: j }));"
       },
       "id": "a1b2c3d4-0001-0001-0001-000000000003",
       "name": "Parse + Filter Jobs",
@@ -58,7 +58,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={{ JSON.stringify({\n  model: 'claude-haiku-4-5-20251001',\n  max_tokens: 120,\n  messages: [{\n    role: 'user',\n    content: 'Score this Upwork job 1-10 for a Bubble.io/no-code specialist (Eterna product studio).\\n\\nScoring rules:\\n+3 Bubble.io explicitly mentioned\\n+2 no-code or low-code preferred\\n+2 MVP or new app build (not maintenance)\\n+1 client from US, Canada, or Europe\\n+1 no React/Angular/Vue/custom coding required\\n-3 requires React, Angular, Vue, or custom dev work\\n-3 clearly not Bubble.io fit (mobile native, game, data science)\\n\\nJob Title: ' + $json.title + '\\nBudget: ' + $json.budget + '\\nDescription: ' + $json.description + '\\n\\nReply ONLY with valid JSON, no other text: {\"score\": <number 1-10>, \"reason\": \"<max 12 words>\"}'\n  }]\n}) }}",
+        "jsonBody": "={{ JSON.stringify({ model: 'claude-haiku-4-5-20251001', max_tokens: 150, messages: [{ role: 'user', content: 'Score this Upwork job 1-10 for a Bubble.io/no-code specialist (Eterna product studio).\\n\\nADD points for:\\n+3 Bubble.io explicitly mentioned in title or description\\n+2 no-code or low-code explicitly preferred\\n+2 MVP, new build, or greenfield project (not bug fixes)\\n+1 mentions premium UI, design quality, or polished product\\n+1 mentions long-term, ongoing, or phase 2\\n+1 two or more user roles (admin, vendor, client, driver, etc.)\\n+1 Stripe, payment, or Stripe Connect required\\n+1 API integration required\\n+1 industry match: B2B, construction, healthcare, wellness, real estate, legal, luxury, education\\n+1 budget $3,000+ fixed or $35+/hr (if shown)\\n+1 client spent $5,000+ on Upwork (if shown)\\n+1 under 20 proposals (if shown)\\n\\nSUBTRACT points for:\\n-4 requires React, Angular, Vue, Node.js backend, or native mobile app\\n-3 red flag phrases: quick job, simple app, easy project, few hours\\n-2 clone of Airbnb/Uber/Facebook, or same as X but cheaper\\n-2 contract-to-hire, equity only, or revenue share\\n\\nIf a data field is 0 or unknown, skip that criterion.\\n\\nJob Title: ' + $json.title + '\\nBudget: ' + $json.budget + '\\nClient: rating ' + $json.clientRating + ' | $' + $json.clientSpent + ' spent | payment verified: ' + $json.paymentVerified + '\\nProposals: ' + $json.applicants + '\\nSkills: ' + ($json.skills || []).join(', ') + '\\nDescription: ' + $json.description + '\\n\\nReply ONLY with valid JSON: {\"score\": <1-10>, \"reason\": \"<max 12 words>\", \"matched\": <positive criteria count>}' }] }) }}",
         "options": {
           "response": {
             "response": {
@@ -75,7 +75,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// Extract score from Claude response and merge with original job data\nconst claudeResp = $input.item.json;\nconst job = $('Parse + Filter Jobs').item.json;\n\nconst text = claudeResp.content?.[0]?.text || '{}';\nlet score = 0;\nlet reason = 'Could not score';\ntry {\n  const match = text.match(/\\{[\\s\\S]*?\\}/);\n  if (match) {\n    const parsed = JSON.parse(match[0]);\n    score = parseInt(parsed.score) || 0;\n    reason = parsed.reason || '';\n  }\n} catch(e) {}\n\nreturn [{ json: { ...job, score, reason } }];"
+        "jsCode": "const resp = $input.item.json;\nconst job = $('Parse + Filter Jobs').item.json;\n\nconst text = resp.content?.[0]?.text || '{}';\nlet score = 0, reason = 'Could not score', matched = 0;\ntry {\n  const m = text.match(/\\{[\\s\\S]*?\\}/);\n  if (m) {\n    const p = JSON.parse(m[0]);\n    score = parseInt(p.score) || 0;\n    reason = p.reason || '';\n    matched = parseInt(p.matched) || 0;\n  }\n} catch(e) {}\n\nreturn [{ json: { ...job, score, reason, matched } }];"
       },
       "id": "a1b2c3d4-0001-0001-0001-000000000005",
       "name": "Extract Score",
@@ -86,20 +86,13 @@
     {
       "parameters": {
         "conditions": {
-          "options": {
-            "caseSensitive": false,
-            "leftValue": "",
-            "typeValidation": "loose"
-          },
+          "options": { "caseSensitive": false, "leftValue": "", "typeValidation": "loose" },
           "conditions": [
             {
               "id": "cond-score-001",
               "leftValue": "={{ $json.score }}",
               "rightValue": 6,
-              "operator": {
-                "type": "number",
-                "operation": "gte"
-              }
+              "operator": { "type": "number", "operation": "gte" }
             }
           ],
           "combinator": "and"
@@ -117,7 +110,7 @@
         "url": "={{ $env.SLACK_WEBHOOK_URL }}",
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={{ JSON.stringify({\n  text: '<@U097GGDRGGG> *🎯 New Upwork Lead — Score: ' + $json.score + '/10*\\n> ' + $json.reason + '\\n\\n*' + $json.title + '*\\n💰 ' + $json.budget + ($json.country !== 'Unknown' ? '  |  📍 ' + $json.country : '') + (($json.skills || []).length > 0 ? '\\n🛠 ' + $json.skills.join(', ') : '') + '\\n\\n<' + $json.url + '|→ View & Apply on Upwork>'\n}) }}"
+        "jsonBody": "={{ JSON.stringify({ text: '<@U097GGDRGGG> ' + ($json.score >= 8 ? '*\\ud83d\\udfe2 HIGH PRIORITY \\u2014 Score ' + $json.score + '/10* (' + $json.matched + '/12 criteria)' : '*\\ud83d\\udfe1 LEAD \\u2014 Score ' + $json.score + '/10* (' + $json.matched + '/12 criteria)') + '\\n> _' + $json.reason + '_\\n\\n*' + $json.title + '*\\n\\ud83d\\udcb0 ' + $json.budget + ($json.country !== 'Unknown' ? '  |  \\ud83d\\udccd ' + $json.country : '') + ($json.clientRating ? '  |  \\u2b50 ' + $json.clientRating : '') + ($json.clientSpent ? '  |  \\ud83d\\udcbc $' + $json.clientSpent.toLocaleString() + ' spent' : '') + ($json.applicants ? '  |  \\ud83d\\udce8 ' + $json.applicants + ' proposals' : '') + (($json.skills || []).length > 0 ? '\\n\\ud83d\\udee0 ' + $json.skills.join(', ') : '') + '\\n\\n<' + $json.url + '|\\u2192 View & Apply on Upwork>' }) }}"
       },
       "id": "a1b2c3d4-0001-0001-0001-000000000007",
       "name": "Notify Slack",
@@ -127,7 +120,7 @@
     }
   ],
   "connections": {
-    "09–21 Belgrade": {
+    "5x Daily Belgrade": {
       "main": [[{ "node": "Scrape Upwork", "type": "main", "index": 0 }]]
     },
     "Scrape Upwork": {
@@ -150,8 +143,6 @@
     }
   },
   "active": false,
-  "settings": {
-    "executionOrder": "v1"
-  },
-  "versionId": "1"
+  "settings": { "executionOrder": "v1" },
+  "versionId": "2"
 }
