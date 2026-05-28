@@ -16,7 +16,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://api.apify.com/v2/acts/flash_mage~upwork/run-sync-get-dataset-items?token={{ $env.APIFY_API_TOKEN }}&timeout=150&format=json",
+        "url": "={{ 'https://api.apify.com/v2/acts/flash_mage~upwork/run-sync-get-dataset-items?token=' + $env.APIFY_API_TOKEN + '&timeout=150&format=json' }}",
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "{\n  \"query\": [\"bubble.io\", \"bubble developer\", \"no-code MVP\", \"no-code platform\", \"webflow developer\"],\n  \"maxItems\": 50\n}",
