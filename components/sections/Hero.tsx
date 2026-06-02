@@ -1,27 +1,19 @@
-import Image from 'next/image'
-
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex flex-col overflow-hidden bg-black">
 
-      {/* Background image — purple bloom from LEFT side */}
-      <div className="absolute inset-0">
-        <Image
-          src="/images/hero-bg.webp"
-          alt=""
-          fill
-          className="object-cover object-left"
-          priority
-          quality={90}
-        />
-        {/* Darken right side to keep text readable */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background: 'linear-gradient(to right, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.75) 100%)',
-          }}
-        />
-      </div>
+      {/* CSS recreation of the purple gradient background */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: `
+            radial-gradient(ellipse 90% 60% at -5% 85%, #5B00CC 0%, #3D0099 25%, transparent 65%),
+            radial-gradient(ellipse 70% 45% at 5% 40%, rgba(72, 0, 160, 0.7) 0%, transparent 60%),
+            radial-gradient(ellipse 50% 30% at 30% 10%, rgba(55, 0, 130, 0.45) 0%, transparent 55%),
+            #000000
+          `,
+        }}
+      />
 
       {/* Content grid */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full flex-1 flex flex-col pt-28 pb-0">
@@ -147,7 +139,7 @@ export default function Hero() {
             </div>
 
             {/* Description — right-aligned */}
-            <p className="text-white/55 text-base leading-relaxed">
+            <p className="text-base leading-relaxed" style={{ color: '#CACADE' }}>
               We combine product strategy, lean engineering, and growth systems to take your applications, websites and automations from idea to revenue — and grow beyond. Your go-to digital product partner.
             </p>
 
