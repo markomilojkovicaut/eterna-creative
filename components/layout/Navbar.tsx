@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 
 const navLinks = [
   { label: 'Home', href: '/' },
@@ -28,15 +29,15 @@ export default function Navbar() {
     >
       <nav className="max-w-7xl mx-auto px-6 flex items-center justify-between py-4">
         {/* Logo */}
-        <a href="/" className="flex items-center gap-2.5">
-          <div
-            className="w-8 h-8 rounded-md flex items-center justify-center text-white font-bold text-sm"
-            style={{ background: 'linear-gradient(135deg, #3b0fa0 0%, #5b21b6 100%)' }}
-          >
-            E
-          </div>
-          <span className="text-white font-bold text-lg tracking-tight">Eterna</span>
-          <span className="text-white/35 font-light text-sm tracking-wide">creative</span>
+        <a href="/" className="flex items-center">
+          <Image
+            src="/images/eterna-logo.png"
+            alt="Eterna Creative"
+            width={120}
+            height={36}
+            className="object-contain"
+            priority
+          />
         </a>
 
         {/* Desktop Nav */}

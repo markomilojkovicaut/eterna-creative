@@ -13,12 +13,13 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantClasses: Record<ButtonVariant, string> = {
+  // Primary: white bg, black text, square with 8px radius — purple arrow icon handled by caller
   primary:
-    'bg-gradient-to-r from-primary to-accent text-white hover:shadow-glow-accent hover:-translate-y-0.5 active:translate-y-0',
+    'bg-white text-black hover:bg-white/90 active:scale-95',
   secondary:
-    'bg-transparent text-white border border-white/30 hover:bg-white/8 hover:border-white/50',
+    'bg-transparent text-white border border-white/30 hover:bg-white/5 hover:border-white/50 rounded-full',
   ghost:
-    'bg-transparent text-white/80 hover:text-white hover:bg-white/5',
+    'bg-transparent text-white/80 hover:text-white hover:bg-white/5 rounded-full',
 }
 
 const sizeClasses: Record<ButtonSize, string> = {
@@ -35,8 +36,9 @@ export default function Button({
   className = '',
   ...props
 }: ButtonProps) {
+  const radiusClass = variant === 'primary' ? 'rounded-[8px]' : ''
   const baseClasses =
-    'inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-300 cursor-pointer select-none'
+    `inline-flex items-center justify-center gap-2 font-semibold transition-all duration-300 cursor-pointer select-none ${radiusClass}`
   const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`
 
   if (href) {
