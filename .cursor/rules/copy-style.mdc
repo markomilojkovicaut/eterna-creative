@@ -1,0 +1,9 @@
+---
+description: Eterna site copy and punctuation conventions
+globs: **/*.{tsx,ts,md}
+---
+
+# Copy style
+
+- Never use the em dash character (—). Always use a hyphen (-) instead.
+- Example: "from idea to revenue - and grow beyond" not "revenue — and grow beyond".

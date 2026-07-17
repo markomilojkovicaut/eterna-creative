@@ -1,0 +1,86 @@
+---
+description: Eterna design system — tokens, patterns, performance, section recipes
+globs: components/**/*.{tsx,ts},lib/**/*.ts,tailwind.config.ts,app/**/*.{tsx,ts}
+---
+
+# Design system
+
+Full reference: `DESIGN-SYSTEM.md`. **Reuse primitives before one-offs.**
+
+## Scalability rules
+
+1. **Data in `lib/*.ts`** — sections stay thin compositions.
+2. **Server Components default** — `"use client"` only for interactivity (accordion, filters, carousel, form, header).
+3. **Shared constants** — `layout-constants`, `heading-styles`, `surface-styles`, `section-backdrops`, `cta-styles`.
+4. **Import from `@/components/ui`** barrel — extend inventory, don't duplicate.
+5. **`next/image`** for all images; `priority` only on Hero LCP assets.
+
+## Layout
+
+- `LAYOUT_OUTER_CLASS` (1280px) + `LAYOUT_INNER_CLASS` (1216px rail)
+- `py-section` / `mt-section` = 120px; partners gap after hero = `pt-10` (40px)
+- Light sections: `<Section background="surface">`
+
+## Backdrop presets (`lib/section-backdrops.ts`)
+
+| Preset | Sections |
+|--------|----------|
+| `challenges` | Founder journey, Case studies, Founder-led studio, Final CTA |
+| `investment` | Investment band, PreTRACTION newsletter, Eterna panel |
+| `services` | Services, Solutions |
+
+Investment band: `investmentTopBandClass` + `investmentTopBandFadeClass`.
+
+## Surfaces
+
+- Dark borders: `border-border-dark`
+- Light borders: `border-border-muted`
+- Guide/Blog gradient: `lightResourceGradientClasses` from `lib/surface-styles.ts`
+  - 15+ stat (`StatCard variant="gradient"`), Build process step, gradient resource tiles, select reviews
+
+## Icons
+
+**Default: `text-brand-purple-light`.** Pink only via flags: Engine 02 `highlight`, Services `iconHighlight`, process `PhaseLabel highlight`.
+
+## Typography
+
+- Dark H2: `SectionHeading` — `displayHeadingTypeClasses`, `font-black`, `tracking-[-2px]`
+- Hero / Final CTA: `text-display-lg sm:text-display-xl`, bold
+- Light editorial: `LightEditorialDisplay` + `lightEditorialLineClasses` / `lightEditorialAccentLineClasses`
+
+## CTAs (`lib/cta-styles.ts`)
+
+- Dark primary: `CallToActionLink` (white pill)
+- Dark secondary: `SecondaryCtaLink` (outlined)
+- Light: `LightCtaLink` (black pill)
+- Arrows: straight `ArrowUpRight`
+
+## Light chapter patterns
+
+- **Partners:** marquee only, no heading, `from-bg-surface` edge fades
+- **Spread columns:** left `lg:sticky max-w-[400px]`, right `max-w-[480px]`
+- **ProcessStepCard:** conditional `showTopBorder`; skip borders around `gradientBackground` step
+- **AutoAccordion:** pass `items[]`, default 9s rotation
+
+## Homepage order (14 + footer)
+
+Hero → HomeLightChapter → FounderJourney → EternaSystem → Services → HomeApproachChapter → CaseStudies → Solutions → HomeClientStoriesChapter → FounderLedStudio → HomeResourcesChapter → Investment → Faq → FinalCta → Footer
+
+## Footer
+
+- `border-t border-white/10`
+- Newsletter: `sectionBackdropPresets.investment`
+- Links: `grid-cols-3 w-full` aligned to newsletter column
+- ETERNA watermark: `absolute bottom-0`, `[clip-path:inset(0_0_40%_0)]`
+
+## Data files
+
+`founder-journey`, `eterna-engines`, `services`, `approach-callouts`, `tool-stack`, `process-steps`, `case-studies`, `solutions`, `partners`, `client-stories`, `founder-studio`, `resources`, `investment`, `faq`, `footer`
+
+## New section checklist
+
+1. `lib/<name>.ts` data + types
+2. `components/sections/<Name>.tsx` using existing ui primitives
+3. Pick backdrop preset or `Section` background
+4. Add to page route
+5. Update `DESIGN-SYSTEM.md` if new pattern
