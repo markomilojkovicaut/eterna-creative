@@ -26,8 +26,9 @@ function ProofScreenshot({
   return (
     <div
       className={cn(
-        "relative mt-1 aspect-[16/10] w-full max-w-[200px] overflow-hidden rounded-soft border border-border-dark",
-        "bg-bg-card/50 transition-transform duration-300 group-hover:scale-[1.02] group-focus-within:scale-[1.02]"
+        "relative aspect-[16/10] w-full max-w-[200px] shrink-0 overflow-hidden rounded-soft border border-border-dark",
+        "bg-bg-card/50 transition-transform duration-300 group-hover:scale-[1.02] group-focus-within:scale-[1.02]",
+        "sm:ml-auto"
       )}
     >
       {src ? (
@@ -88,40 +89,46 @@ export function Proof() {
                   href={product.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative flex h-full min-h-[280px] flex-col overflow-hidden p-6 sm:min-h-[300px] sm:p-7 lg:p-8"
+                  className="group relative flex h-full min-h-[240px] overflow-hidden p-6 sm:min-h-[260px] sm:p-7 lg:p-8"
                 >
                   <div
                     className="pointer-events-none absolute inset-0 bg-engine-hover opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100"
                     aria-hidden
                   />
 
-                  <div className="relative z-10 flex h-full flex-col gap-4 lg:gap-5">
-                    <div className="flex items-center justify-between gap-3">
-                      <h3 className="font-heading text-[13px] font-bold uppercase tracking-[0.06em] text-text-heading sm:text-sm">
-                        {product.name}
-                      </h3>
-                      <ArrowUpRight className="opacity-70 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-100 group-focus-within:translate-x-0.5 group-focus-within:opacity-100" />
+                  <div className="relative z-10 flex w-full flex-col gap-5 sm:flex-row sm:items-stretch sm:gap-6">
+                    {/* Left: heading, description, open affordance */}
+                    <div className="flex min-w-0 flex-1 flex-col gap-4">
+                      <div className="flex items-center gap-3">
+                        <h3 className="font-heading text-[13px] font-bold uppercase tracking-[0.06em] text-text-heading sm:text-sm">
+                          {product.name}
+                        </h3>
+                        <ArrowUpRight className="opacity-70 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-100 group-focus-within:translate-x-0.5 group-focus-within:opacity-100" />
+                      </div>
+
+                      <div className="relative min-h-[5.5rem] flex-1">
+                        <p
+                          className={cn(
+                            "absolute inset-x-0 top-0 text-body-md leading-relaxed text-text-body",
+                            "transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none",
+                            descHidden,
+                            descShown,
+                            "motion-reduce:group-hover:opacity-100 motion-reduce:group-focus-within:opacity-100"
+                          )}
+                        >
+                          {product.description}
+                        </p>
+                      </div>
                     </div>
 
+                    {/* Right: screenshot */}
                     <ProofScreenshot
                       src={product.screenshotSrc}
-                      alt={product.screenshotAlt ?? `${product.name} screenshot`}
+                      alt={
+                        product.screenshotAlt ?? `${product.name} screenshot`
+                      }
                       label={product.name}
                     />
-
-                    <div className="relative mt-auto min-h-[5.5rem]">
-                      <p
-                        className={cn(
-                          "absolute inset-x-0 bottom-0 text-body-md leading-relaxed text-text-body",
-                          "transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none",
-                          descHidden,
-                          descShown,
-                          "motion-reduce:group-hover:opacity-100 motion-reduce:group-focus-within:opacity-100"
-                        )}
-                      >
-                        {product.description}
-                      </p>
-                    </div>
                   </div>
                 </a>
               ))}

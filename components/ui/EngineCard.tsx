@@ -22,7 +22,7 @@ export function EngineCard({
     <article
       tabIndex={0}
       className={cn(
-        "group relative flex min-h-[240px] flex-col overflow-hidden p-4 outline-none sm:min-h-[280px] lg:p-6",
+        "group relative flex min-h-[264px] flex-col overflow-hidden p-4 outline-none sm:min-h-[304px] lg:p-6",
         "focus-visible:ring-2 focus-visible:ring-brand-purple-light/50",
         className
       )}
