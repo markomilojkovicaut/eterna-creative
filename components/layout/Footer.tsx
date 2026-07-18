@@ -75,8 +75,8 @@ export function Footer() {
                 <Image
                   src="/images/eterna-logo.png"
                   alt="Eterna Creative"
-                  width={1024}
-                  height={159}
+                  width={1800}
+                  height={280}
                   className="h-auto w-auto max-w-[120px]"
                 />
               </Link>

@@ -51,8 +51,8 @@ export function Header() {
             <Image
               src="/images/eterna-logo.png"
               alt="Eterna Creative"
-              width={1024}
-              height={159}
+              width={1800}
+              height={280}
               priority
               className="h-auto w-auto max-w-[120px]"
             />
