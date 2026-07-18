@@ -52,10 +52,10 @@ export function ServiceCard({
           </div>
         </div>
 
-        {/* 16px between phase row and title */}
+        {/* 8px between phase row and title */}
         <h3
           className={cn(
-            "mt-4 font-heading text-heading-md font-bold",
+            "mt-2 font-heading text-heading-md font-bold",
             highlight ? "text-brand-pink" : "text-text-heading"
           )}
         >
