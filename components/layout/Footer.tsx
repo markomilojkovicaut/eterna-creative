@@ -74,9 +74,9 @@ export function Footer() {
               <Link href="/" className="inline-flex h-8 w-fit items-center">
                 <Image
                   src="/images/eterna-logo.png"
-                  alt="Eterna"
-                  width={156}
-                  height={32}
+                  alt="Eterna Creative"
+                  width={1024}
+                  height={159}
                   className="h-8 w-auto"
                 />
               </Link>

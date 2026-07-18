@@ -2,21 +2,6 @@ export type ServiceFilterId = "all" | "plan" | "build" | "grow";
 
 export type ServicePhase = "plan" | "build" | "grow";
 
-export type ServiceLayout =
-  | "stack-top"
-  | "icon-end"
-  | "phase-bottom"
-  | "tags-rail"
-  | "centered"
-  | "dense-corner";
-
-export type ServiceReveal =
-  | "rise"
-  | "fade-blur"
-  | "clip-up"
-  | "slide-left"
-  | "scale-soft";
-
 export type ServiceIconId =
   | "research"
   | "strategy"
@@ -34,8 +19,6 @@ export interface Service {
   tags: string[];
   icon: ServiceIconId;
   phase: ServicePhase;
-  layout: ServiceLayout;
-  reveal: ServiceReveal;
   filters: Exclude<ServiceFilterId, "all">[];
   iconHighlight?: boolean;
 }
@@ -65,8 +48,6 @@ export const services: Service[] = [
     tags: ["Interviews", "Research", "Waitlist"],
     icon: "research",
     phase: "plan",
-    layout: "stack-top",
-    reveal: "rise",
     filters: ["plan"],
   },
   {
@@ -77,8 +58,6 @@ export const services: Service[] = [
     tags: ["Vision", "Positioning", "GTM"],
     icon: "strategy",
     phase: "plan",
-    layout: "icon-end",
-    reveal: "slide-left",
     filters: ["plan"],
   },
   {
@@ -89,8 +68,6 @@ export const services: Service[] = [
     tags: ["Custom", "AI-assisted", "No-code"],
     icon: "application",
     phase: "build",
-    layout: "centered",
-    reveal: "scale-soft",
     filters: ["build"],
     iconHighlight: true,
   },
@@ -102,8 +79,6 @@ export const services: Service[] = [
     tags: ["n8n", "AI agents", "Workflows"],
     icon: "automation",
     phase: "build",
-    layout: "dense-corner",
-    reveal: "fade-blur",
     filters: ["build"],
     iconHighlight: true,
   },
@@ -115,8 +90,6 @@ export const services: Service[] = [
     tags: ["Landing", "Product site", "CMS"],
     icon: "website",
     phase: "build",
-    layout: "tags-rail",
-    reveal: "clip-up",
     filters: ["build"],
     iconHighlight: true,
   },
@@ -128,8 +101,6 @@ export const services: Service[] = [
     tags: ["Iterations", "Maintenance", "CRO"],
     icon: "growth",
     phase: "grow",
-    layout: "phase-bottom",
-    reveal: "rise",
     filters: ["grow"],
   },
   {
@@ -140,8 +111,6 @@ export const services: Service[] = [
     tags: ["Email", "SMS", "Push", "SEO"],
     icon: "in-app",
     phase: "grow",
-    layout: "icon-end",
-    reveal: "fade-blur",
     filters: ["grow"],
   },
   {
@@ -152,8 +121,6 @@ export const services: Service[] = [
     tags: ["Content", "Outreach", "Ads"],
     icon: "social",
     phase: "grow",
-    layout: "stack-top",
-    reveal: "slide-left",
     filters: ["grow"],
   },
 ];
