@@ -62,7 +62,7 @@ export function Hero() {
         >
           {/* Top left: label + heading */}
           <div className="flex flex-col items-center text-center lg:col-span-6 lg:row-start-1 lg:items-start lg:text-left">
-            <LabelPill>Eterna Creative · Product Studio</LabelPill>
+            <LabelPill>AI-native product studio</LabelPill>
 
             <h1 className={cn("mt-6 overflow-visible", displayHeadingTypeClasses)}>
               <span className={cn(heroH1LineClasses, "text-text-heading")}>
@@ -99,8 +99,7 @@ export function Hero() {
               <p className="max-w-[420px] text-body-md leading-relaxed text-text-sub">
                 We combine product strategy, design craft, and AI-native
                 engineering to take your idea from concept to a validated
-                product - built fast, built to scale. Your AI-native product
-                studio.
+                product - built fast, built to scale.
               </p>
 
               <CallToActionLink href="/book">Book a call</CallToActionLink>
