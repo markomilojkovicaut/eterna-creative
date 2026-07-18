@@ -47,14 +47,14 @@ export function Header() {
             "flex items-center justify-between py-2"
           )}
         >
-          <Link href="/" className="inline-flex h-8 shrink-0 items-center">
+          <Link href="/" className="inline-flex shrink-0 items-center">
             <Image
               src="/images/eterna-logo.png"
               alt="Eterna Creative"
               width={1024}
               height={159}
               priority
-              className="h-8 w-auto"
+              className="h-auto w-auto max-w-[120px]"
             />
           </Link>
 

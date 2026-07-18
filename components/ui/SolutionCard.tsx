@@ -20,7 +20,7 @@ export function SolutionCard({
     <article
       tabIndex={0}
       className={cn(
-        "group relative flex h-full min-h-[260px] flex-col overflow-hidden p-6 outline-none sm:min-h-[280px] sm:p-7 lg:p-8",
+        "group relative flex h-full min-h-[300px] flex-col overflow-hidden p-6 outline-none sm:min-h-[320px] sm:p-7 lg:p-8",
         "focus-visible:ring-2 focus-visible:ring-brand-purple-light/50",
         className
       )}
@@ -39,7 +39,7 @@ export function SolutionCard({
           {solution.title}
         </h3>
 
-        <div className="relative mt-auto min-h-[8.5rem]">
+        <div className="relative mt-auto min-h-[11rem]">
           <p
             className={cn(
               "absolute inset-x-0 top-0 text-body-md leading-relaxed text-text-body",

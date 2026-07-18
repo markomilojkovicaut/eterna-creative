@@ -5,7 +5,7 @@ import type { EternaEngine } from "@/lib/eterna-engines";
 import { cn } from "@/lib/utils";
 
 /** Engines section motion: rise reveal (shared by every engine card). */
-const descHidden = "translate-y-3 opacity-0 motion-reduce:translate-y-0";
+const descHidden = "translate-y-2 opacity-0 motion-reduce:translate-y-0";
 const descShown =
   "group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100";
 
@@ -46,24 +46,30 @@ export function EngineCard({
           <EngineIcon icon={engine.icon} highlight={highlight} />
         </div>
 
-        <div className="flex flex-col gap-2">
-          <h3
-            className={cn(
-              "font-heading text-heading-md font-bold",
-              highlight ? "text-brand-pink" : "text-text-heading"
-            )}
-          >
-            {engine.title}
-          </h3>
-          <p className="min-h-[2.8em] text-body-sm font-medium leading-[1.4] text-text-sub">
-            {engine.subtitle}
-          </p>
-        </div>
+        <h3
+          className={cn(
+            "font-heading text-heading-md font-bold",
+            highlight ? "text-brand-pink" : "text-text-heading"
+          )}
+        >
+          {engine.title}
+        </h3>
 
-        <div className="relative mt-auto min-h-[4.5rem]">
+        {/* Subtitle + description share one slot so they never overlap */}
+        <div className="relative mt-auto min-h-[5.5rem]">
           <p
             className={cn(
-              "absolute inset-x-0 bottom-0 text-body-sm leading-relaxed text-text-body",
+              "absolute inset-x-0 top-0 text-body-sm font-medium leading-[1.4] text-text-sub",
+              "transition-all duration-300 ease-out",
+              "group-hover:-translate-y-1 group-hover:opacity-0 group-focus-within:-translate-y-1 group-focus-within:opacity-0",
+              "motion-reduce:group-hover:translate-y-0 motion-reduce:group-focus-within:translate-y-0"
+            )}
+          >
+            {engine.subtitle}
+          </p>
+          <p
+            className={cn(
+              "absolute inset-x-0 top-0 text-body-sm leading-relaxed text-text-body",
               "transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none",
               descHidden,
               descShown,

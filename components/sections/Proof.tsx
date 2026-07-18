@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { DarkSectionBackdrop, SectionHeading } from "@/components/ui";
 import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
 import {
@@ -11,6 +13,44 @@ import { cn } from "@/lib/utils";
 const descHidden = "scale-[0.96] opacity-0 motion-reduce:scale-100";
 const descShown =
   "group-hover:scale-100 group-hover:opacity-100 group-focus-within:scale-100 group-focus-within:opacity-100";
+
+function ProofScreenshot({
+  src,
+  alt,
+  label,
+}: {
+  src?: string;
+  alt: string;
+  label: string;
+}) {
+  return (
+    <div
+      className={cn(
+        "relative mt-1 aspect-[16/10] w-full max-w-[200px] overflow-hidden rounded-soft border border-border-dark",
+        "bg-bg-card/50 transition-transform duration-300 group-hover:scale-[1.02] group-focus-within:scale-[1.02]"
+      )}
+    >
+      {src ? (
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes="200px"
+          className="object-cover object-top"
+        />
+      ) : (
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-1 bg-gradient-to-br from-brand-purple-dark/80 via-bg-base to-bg-card">
+          <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-purple-light">
+            Screenshot
+          </span>
+          <span className="px-2 text-center text-[11px] text-text-muted">
+            {label}
+          </span>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export function Proof() {
   return (
@@ -48,20 +88,26 @@ export function Proof() {
                   href={product.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative flex h-full min-h-[220px] flex-col overflow-hidden p-6 sm:min-h-[240px] sm:p-7 lg:p-8"
+                  className="group relative flex h-full min-h-[280px] flex-col overflow-hidden p-6 sm:min-h-[300px] sm:p-7 lg:p-8"
                 >
                   <div
                     className="pointer-events-none absolute inset-0 bg-engine-hover opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100"
                     aria-hidden
                   />
 
-                  <div className="relative z-10 flex h-full flex-col gap-5 lg:gap-6">
+                  <div className="relative z-10 flex h-full flex-col gap-4 lg:gap-5">
                     <div className="flex items-center justify-between gap-3">
                       <h3 className="font-heading text-[13px] font-bold uppercase tracking-[0.06em] text-text-heading sm:text-sm">
                         {product.name}
                       </h3>
                       <ArrowUpRight className="opacity-70 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-100 group-focus-within:translate-x-0.5 group-focus-within:opacity-100" />
                     </div>
+
+                    <ProofScreenshot
+                      src={product.screenshotSrc}
+                      alt={product.screenshotAlt ?? `${product.name} screenshot`}
+                      label={product.name}
+                    />
 
                     <div className="relative mt-auto min-h-[5.5rem]">
                       <p

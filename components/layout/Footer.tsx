@@ -71,13 +71,13 @@ export function Footer() {
         <div className={LAYOUT_INNER_CLASS}>
           <div className="grid gap-10 lg:grid-cols-2 lg:items-stretch lg:gap-12 xl:gap-16">
             <div className="flex flex-col">
-              <Link href="/" className="inline-flex h-8 w-fit items-center">
+              <Link href="/" className="inline-flex w-fit items-center">
                 <Image
                   src="/images/eterna-logo.png"
                   alt="Eterna Creative"
                   width={1024}
                   height={159}
-                  className="h-8 w-auto"
+                  className="h-auto w-auto max-w-[120px]"
                 />
               </Link>
               <p className="mt-5 max-w-[400px] text-body-sm leading-relaxed text-text-body sm:text-body-md">
