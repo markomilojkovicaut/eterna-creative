@@ -68,8 +68,6 @@ export function Proof() {
           </div>
         </div>
       </div>
-
-      <div className="relative z-20 h-1 w-full bg-hero-gradient" aria-hidden />
     </section>
   );
 }

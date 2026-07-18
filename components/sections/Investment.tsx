@@ -49,10 +49,21 @@ export function Investment() {
               ))}
             </div>
 
-            <div className="border-t border-border-dark px-5 py-4 sm:px-7 sm:py-5">
-              <p className="text-body-sm leading-relaxed text-text-sub">
+            <div className="flex flex-col gap-4 border-t border-border-dark px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:px-7 sm:py-6">
+              <p className="max-w-[640px] text-body-sm leading-relaxed text-text-sub sm:text-body-md">
                 {investmentAlsoAvailable}
               </p>
+              <Link
+                href="/book"
+                className={cn(
+                  "inline-flex shrink-0 items-center justify-center gap-2 rounded-soft border border-border-dark",
+                  "bg-bg-card/60 px-5 py-[10px] text-body-md font-medium text-text-heading",
+                  "no-underline transition-colors hover:border-border-strong hover:bg-bg-card/80"
+                )}
+              >
+                Book a call
+                <ArrowUpRight className="!text-brand-purple-light" />
+              </Link>
             </div>
 
             <div className="flex flex-col gap-4 border-t border-border-dark bg-bg-card/30 px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:px-7 sm:py-6">

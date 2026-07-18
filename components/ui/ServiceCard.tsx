@@ -1,7 +1,7 @@
 "use client";
 
 import { ServiceIcon } from "@/components/ui/ServiceIcon";
-import type { Service } from "@/lib/services";
+import { servicePhaseLabels, type Service } from "@/lib/services";
 import { cn } from "@/lib/utils";
 
 export function ServiceCard({
@@ -13,10 +13,12 @@ export function ServiceCard({
   highlighted: boolean;
   className?: string;
 }) {
+  const highlight = service.iconHighlight ?? false;
+
   return (
     <article
       className={cn(
-        "group relative flex flex-col gap-4 p-4 transition-opacity duration-300 sm:p-5 lg:p-6",
+        "group relative flex min-h-[240px] flex-col p-4 transition-opacity duration-300 sm:min-h-[260px] sm:p-5 lg:p-6",
         highlighted ? "opacity-100" : "opacity-[0.35]",
         className
       )}
@@ -26,30 +28,39 @@ export function ServiceCard({
         aria-hidden
       />
 
-      <div className="relative z-10 flex flex-col gap-4">
-        <ServiceIcon
-          icon={service.icon}
-          highlight={service.iconHighlight ?? false}
-        />
+      <div className="relative z-10 flex h-full flex-col gap-5">
+        <p
+          className={cn(
+            "text-[11px] font-semibold uppercase tracking-[0.12em]",
+            highlight ? "text-brand-pink" : "text-brand-purple-light"
+          )}
+        >
+          {servicePhaseLabels[service.phase]}
+        </p>
 
-        <h3 className="font-heading text-[15px] font-bold leading-snug text-text-heading sm:text-base">
-          {service.title}
-        </h3>
+        <ServiceIcon icon={service.icon} highlight={highlight} />
 
-        <ul className="flex flex-nowrap items-center gap-1">
-          {service.tags.map((tag, index) => (
-            <li key={tag} className="flex min-w-0 items-center gap-1">
-              {index > 0 && (
-                <span
-                  className="shrink-0 text-[10px] text-text-muted"
-                  aria-hidden
-                >
-                  ·
-                </span>
-              )}
-              <span className="truncate text-[10px] font-medium leading-tight text-text-body">
-                {tag}
-              </span>
+        <div className="flex flex-col gap-2">
+          <h3
+            className={cn(
+              "font-heading text-heading-md font-bold",
+              highlight ? "text-brand-pink" : "text-text-heading"
+            )}
+          >
+            {service.title}
+          </h3>
+          <p className="min-h-[4.2em] text-body-sm leading-relaxed text-text-body">
+            {service.description}
+          </p>
+        </div>
+
+        <ul className="mt-auto flex flex-wrap gap-1.5 pt-1">
+          {service.tags.map((tag) => (
+            <li
+              key={tag}
+              className="rounded-soft border border-border-dark bg-bg-card/40 px-2 py-0.5 text-[10px] font-medium tracking-wide text-text-sub"
+            >
+              {tag}
             </li>
           ))}
         </ul>

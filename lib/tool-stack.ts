@@ -9,7 +9,6 @@ export const toolStackItems: ToolStackItem[] = [
   { id: "n8n", name: "n8n", logoSrc: "/images/tools/n8n.png" },
   { id: "claude", name: "Claude", logoSrc: "/images/tools/claude.png" },
   { id: "cursor", name: "Cursor", logoSrc: "/images/tools/cursor.png" },
-  { id: "claude-code", name: "Claude Code", logoSrc: "/images/tools/claude.png" },
   { id: "figma", name: "Figma", logoSrc: "/images/tools/figma.png" },
   { id: "posthog", name: "Posthog", logoSrc: "/images/tools/posthog.png" },
   { id: "linkedin", name: "LinkedIn", logoSrc: "/images/tools/linkedin.png" },
