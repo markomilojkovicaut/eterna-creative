@@ -32,7 +32,7 @@ export const footerLinkGroups = [
     id: "contact",
     label: "Contact",
     links: [
-      { label: "Book a call", href: "/book", icon: "calendar" as const },
+      { label: "Book a strategy call", href: "/book", icon: "calendar" as const },
       { label: "Send email", href: "mailto:hello@eterna.dev", icon: "mail" as const },
       {
         label: "LinkedIn",

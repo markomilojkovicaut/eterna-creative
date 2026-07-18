@@ -11,7 +11,7 @@ export interface CallToActionLinkProps
   size?: keyof typeof ctaSizeClasses;
 }
 
-/** White CTA link - "Book a call" style sitewide (8px vertical padding). */
+/** White CTA link - primary booking CTA style sitewide (8px vertical padding). */
 export function CallToActionLink({
   children,
   className,

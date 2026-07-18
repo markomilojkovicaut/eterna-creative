@@ -102,7 +102,7 @@ export function Hero() {
                 product - built fast, built to scale.
               </p>
 
-              <CallToActionLink href="/book">Book a call</CallToActionLink>
+              <CallToActionLink href="/book">Book a strategy call</CallToActionLink>
             </div>
           </div>
 

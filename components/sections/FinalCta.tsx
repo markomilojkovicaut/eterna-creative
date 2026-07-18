@@ -33,7 +33,7 @@ export function FinalCta() {
               </p>
 
               <CallToActionLink href="/book" className="mt-8">
-                Book strategy session
+                Book a strategy call
               </CallToActionLink>
             </div>
           </div>

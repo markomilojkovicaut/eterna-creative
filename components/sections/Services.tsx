@@ -73,7 +73,7 @@ export function Services() {
               leave with a clear plan whether we work together or not.
             </p>
             <CallToActionLink href="/book" className="w-fit">
-              Let&apos;s talk
+              Book a strategy call
             </CallToActionLink>
           </div>
         </div>

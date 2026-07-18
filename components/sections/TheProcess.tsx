@@ -31,7 +31,7 @@ export function TheProcess() {
         </LightEditorialDisplay>
 
         <LightCtaLink href="/book" className="mt-8">
-          Book strategy session
+          Book a strategy call
         </LightCtaLink>
       </aside>
 
