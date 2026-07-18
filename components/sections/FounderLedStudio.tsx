@@ -10,6 +10,7 @@ import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
 import { QuoteIcon } from "@/components/ui/QuoteIcon";
 import {
   bubblePartnerHref,
+  bubblePartnerLabel,
   founderBio,
   founderPrinciples,
   studioPrincipleLabel,
@@ -57,7 +58,7 @@ export function FounderLedStudio() {
 
               <div className="mt-6 flex flex-col gap-3 rounded-soft border border-border-dark bg-bg-card/40 p-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:p-5">
                 <p className="text-body-sm text-text-sub">
-                  Check our official Bubble partner profile
+                  {bubblePartnerLabel}
                 </p>
                 <Link
                   href={bubblePartnerHref}

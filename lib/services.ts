@@ -47,7 +47,7 @@ export const services: Service[] = [
   {
     id: "application",
     title: "Application",
-    tags: ["Bubble.io", "Full-stack", "No-code"],
+    tags: ["Custom", "AI-assisted", "No-code"],
     icon: "application",
     filters: ["build"],
     iconHighlight: true,
@@ -63,7 +63,7 @@ export const services: Service[] = [
   {
     id: "website",
     title: "Website",
-    tags: ["Webflow", "Landing", "CMS"],
+    tags: ["Landing", "Product site", "CMS"],
     icon: "website",
     filters: ["build"],
     iconHighlight: true,

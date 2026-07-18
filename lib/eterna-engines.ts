@@ -21,11 +21,11 @@ export const eternaEngines: EternaEngine[] = [
   {
     id: "architecture",
     number: "02",
-    title: "Product architecture",
+    title: "Product engineering",
     subtitle: "Design for your stage, not a hypothetical future",
     highlight: true,
     description:
-      "Data model, tech stack, and scope defined before build starts. Stage-appropriate - not over-engineered, not under-built.",
+      "Data model, tech stack, design craft, and scope locked before build starts. Stage-appropriate - not over-engineered, not under-built.",
     icon: "architecture",
   },
   {

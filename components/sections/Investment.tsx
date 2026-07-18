@@ -4,6 +4,7 @@ import { DarkSectionBackdrop, SectionHeading } from "@/components/ui";
 import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
 import { PricingCard } from "@/components/ui/PricingCard";
 import {
+  investmentAlsoAvailable,
   investmentCalculatorCta,
   investmentSubheading,
   pricingTiers,
@@ -46,6 +47,12 @@ export function Investment() {
               {pricingTiers.map((tier) => (
                 <PricingCard key={tier.id} tier={tier} />
               ))}
+            </div>
+
+            <div className="border-t border-border-dark px-5 py-4 sm:px-7 sm:py-5">
+              <p className="text-body-sm leading-relaxed text-text-sub">
+                {investmentAlsoAvailable}
+              </p>
             </div>
 
             <div className="flex flex-col gap-4 border-t border-border-dark bg-bg-card/30 px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:px-7 sm:py-6">

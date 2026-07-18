@@ -1,5 +1,5 @@
 export const footerTagline =
-  "Digital product studio helping founders validate, build, and grow digital products with no-code and AI - from idea to revenue.";
+  "AI-native product studio helping you validate, build, and grow products you own - from idea to revenue.";
 
 export const footerCopyright = "© 2026 Eterna Creative. All rights reserved.";
 

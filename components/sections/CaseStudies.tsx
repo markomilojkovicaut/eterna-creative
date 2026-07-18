@@ -25,10 +25,9 @@ export function CaseStudies() {
             subheadingMaxWidth="max-w-[520px]"
             subheading={
               <>
-                Check successful stories about powerful digital products we
-                made. Across different industries, different founders, and
-                different stages. All built with the same no-code-first
-                approach.
+                Real products, real founders, real outcomes - across industries
+                and stages. Same methodology every time: validated, designed,
+                and built to scale.
               </>
             }
           />

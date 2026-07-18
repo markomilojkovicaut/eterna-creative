@@ -25,24 +25,23 @@ export const processSteps: ProcessStep[] = [
     id: "scoping",
     number: "02",
     phase: "Scoping",
-    title: "App Launch Blueprint session",
+    title: "Scope Session",
     description:
-      "If there's a clear match, we move into the Blueprint phase. We go deep with you on features, user flows, integrations, and goals. This isn't a questionnaire - it's a structured working session where we extract everything needed to scope your product accurately and strategically.",
-    tags: ["Feature mapping", "Requirements deep-dive", "Goals & metrics"],
+      "If there's a clear match, we move into a 1-hour deep dive. We go deep with you on features, user flows, integrations, and goals. This isn't a questionnaire - it's a structured working session where we extract everything needed to scope your product accurately and strategically.",
+    tags: ["Feature mapping", "App/page map", "Goals & metrics"],
     free: true,
   },
   {
     id: "blueprint",
     number: "03",
-    phase: "Blueprint",
-    title: "We build your App Launch Blueprint document",
+    phase: "Launch Plan",
+    title: "We deliver your Launch Plan",
     description:
-      "This is our signature deliverable - and it's what separates us from every other studio. Before a single line of code, you get a complete strategic and technical plan. No ambiguity. No surprises.",
+      "Before any build commitment, you get a clear plan: app/page map, hero preview, flat investment, and timeline. No ambiguity on what you're buying. No surprises.",
     tags: [
-      "Strategic document",
       "Hero screen design",
       "Full app map",
-      "€800 value - yours free",
+      "Flat price & timeline",
     ],
     free: true,
   },
@@ -53,7 +52,7 @@ export const processSteps: ProcessStep[] = [
     title: "Kickoff, design & engineering - with full visibility",
     gradientBackground: true,
     description:
-      "Once you approve the Blueprint and sign the contract, we kick off with a deep session to collect content, visuals, and brand direction. Then we build. Design and development run in parallel on smaller projects, or with a clickable prototype on larger ones. Either way, you're never left guessing.",
+      "Once you approve the Launch Plan and sign the contract, we kick off with a deep session to collect content, visuals, and brand direction. Then we build. Design and development run in parallel on smaller projects, or with a clickable prototype on larger ones. Either way, you're never left guessing.",
     tags: [
       "Notion client portal",
       "Weekly progress videos",

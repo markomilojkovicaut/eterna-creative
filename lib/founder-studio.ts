@@ -27,9 +27,12 @@ export const markoImageSrc = "/images/team/marko.png";
 export const studioPrincipleLabel = "Eterna principle";
 
 export const founderBio =
-  "I'm Marko. With a small senior team beside me, we've built our own products, made expensive mistakes, and taken revenue share bets on founders we believed in. That's not something agencies would do. We've been in your shoes — now it's our turn to help.";
+  "I'm Marko. With a small senior team beside me, we've built our own products, made expensive mistakes, and taken revenue share bets on founders we believed in. That's not something agencies would do. We've been in your shoes - now it's our turn to help.";
 
 export const bubblePartnerHref = "https://bubble.io/partners";
+
+export const bubblePartnerLabel =
+  "Bubble partner - for existing apps and migration work";
 
 export const founderPrinciples: FounderPrinciple[] = [
   {
@@ -40,7 +43,7 @@ export const founderPrinciples: FounderPrinciple[] = [
   },
   {
     id: "certified-engineers",
-    title: "Certified engineers only",
+    title: "Senior engineers only",
     description:
       "Small team means we only take projects we can fully resource with senior people. No filler hires, no handoff waste.",
   },
@@ -54,7 +57,7 @@ export const founderPrinciples: FounderPrinciple[] = [
     id: "own-products",
     title: "We build our own products too",
     description:
-      "Our studio products run on the same systems we build for you. We have skin in the methodology because we live it.",
+      "zonikai, testaimodels, and more - we run AI products ourselves. Same craft, same reliability bar we bring to client work.",
   },
   {
     id: "invest",

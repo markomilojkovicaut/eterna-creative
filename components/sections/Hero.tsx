@@ -97,10 +97,10 @@ export function Hero() {
               </div>
 
               <p className="max-w-[420px] text-body-md leading-relaxed text-text-sub">
-                We combine product strategy, lean engineering, and growth
-                systems to take your applications, websites and automations from
-                idea to revenue - and grow beyond. Your no-code and AI product
-                partner.
+                We combine product strategy, design craft, and AI-native
+                engineering to take your idea from concept to a validated
+                product - built fast, built to scale. Your AI-native product
+                studio.
               </p>
 
               <CallToActionLink href="/book">Book a call</CallToActionLink>

@@ -27,9 +27,9 @@ export function FinalCta() {
               </h2>
 
               <p className="mt-5 max-w-[560px] text-body-md leading-relaxed text-text-sub sm:text-body-lg">
-                Your idea has a window - let&apos;s not waste it. Book free
-                15-min call to chat about your product and see how we would
-                build it.
+                Your idea has a window - let&apos;s not waste it. Book a free
+                15-min strategy call and we&apos;ll show you how we&apos;d
+                validate and build it.
               </p>
 
               <CallToActionLink href="/book" className="mt-8">

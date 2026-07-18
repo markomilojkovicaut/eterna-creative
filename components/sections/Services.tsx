@@ -69,9 +69,8 @@ export function Services() {
               Not sure where to start?
             </h3>
             <p className="text-body-md leading-relaxed text-text-body">
-              Book a call where we will map your vision, user flows and tech
-              stack. You leave with a clear plan whether we work together or
-              not.
+              Book a strategy call - we map your vision, scope, and stack. You
+              leave with a clear plan whether we work together or not.
             </p>
             <CallToActionLink href="/book" className="w-fit">
               Let&apos;s talk

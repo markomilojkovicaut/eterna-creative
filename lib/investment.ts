@@ -10,7 +10,7 @@ export interface PricingTier {
 }
 
 export const investmentSubheading =
-  "We price by project complexity and value delivered. Every custom quote comes after the App Launch Blueprint - so you know exactly what you're paying for before you commit.";
+  "We price by complexity and value delivered. Every custom product quote comes after your free Launch Plan - so you know exactly what you're paying for before you commit.";
 
 export const pricingTiers: PricingTier[] = [
   {
@@ -18,7 +18,7 @@ export const pricingTiers: PricingTier[] = [
     icon: "rocket",
     title: "MVP build",
     description:
-      "For founders validating an idea fast with real users. Core functionality, no extras, still powerhouse.",
+      "For validating an idea with real users. Core product, flat price, owned code - no extras, still powerhouse.",
     price: "$4.000",
   },
   {
@@ -26,7 +26,7 @@ export const pricingTiers: PricingTier[] = [
     icon: "sparkles",
     title: "Full product",
     description:
-      "For founders who need a full-fledged product - validated scope, competitive features, ready to acquire users.",
+      "Validated scope, competitive features, ready to acquire users - engineered to scale.",
     price: "$8.000",
     popular: true,
   },
@@ -39,6 +39,9 @@ export const pricingTiers: PricingTier[] = [
     price: "$15.000",
   },
 ];
+
+export const investmentAlsoAvailable =
+  "Also available: websites, AI automations, validation, growth, and all services - scoped on the strategy call.";
 
 export const investmentCalculatorCta = {
   text: "Want to see how much you need to invest in your app - before even booking a call?",

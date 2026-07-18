@@ -17,9 +17,9 @@ export const founderJourneySteps: FounderJourneyStep[] = [
   },
   {
     period: "MONTH 1-5",
-    title: "Build starts. Scope grows every week.",
+    title: "Build starts - or a weekend AI demo feels like a product.",
     description:
-      "One more feature. €20K in and no real user has touched it.",
+      "Scope grows. Money goes out. No real user has touched a validated version.",
     phase: "neutral",
   },
   {
