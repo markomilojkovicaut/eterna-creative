@@ -1,11 +1,16 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 
 import { ServiceIcon } from "@/components/ui/ServiceIcon";
 import { SolutionIcon } from "@/components/ui/SolutionIcon";
-import type { HeaderDropdownItem, HeaderNavItem } from "@/lib/site-nav";
+import type {
+  HeaderDropdownItem,
+  HeaderNavItem,
+  ResourceNavIconId,
+} from "@/lib/site-nav";
 import { cn } from "@/lib/utils";
 
 const triggerClass =
@@ -15,6 +20,26 @@ const panelWidthByCols: Record<1 | 2 | 3, string> = {
   1: "w-[min(100vw-2rem,240px)]",
   2: "w-[min(100vw-2rem,480px)]",
   3: "w-[min(100vw-2rem,640px)]",
+};
+
+const resourceIcons: Record<ResourceNavIconId, React.ReactNode> = {
+  guides: (
+    <>
+      <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+    </>
+  ),
+  blog: (
+    <>
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+      <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" />
+    </>
+  ),
+  templates: (
+    <>
+      <rect width="18" height="18" x="3" y="3" rx="2" />
+      <path d="M3 9h18M9 21V9" />
+    </>
+  ),
 };
 
 function Chevron({ open }: { open: boolean }) {
@@ -34,6 +59,37 @@ function Chevron({ open }: { open: boolean }) {
     >
       <path d="m6 9 6 6 6-6" />
     </svg>
+  );
+}
+
+function ResourceIcon({
+  icon,
+  className,
+}: {
+  icon: ResourceNavIconId;
+  className?: string;
+}) {
+  return (
+    <span
+      className={cn(
+        "flex size-9 shrink-0 items-center justify-center text-text-heading",
+        className
+      )}
+      aria-hidden
+    >
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        {resourceIcons[icon]}
+      </svg>
+    </span>
   );
 }
 
@@ -59,6 +115,7 @@ function DropdownItemButton({
       {item.solutionIcon ? (
         <SolutionIcon icon={item.solutionIcon} className="shrink-0" />
       ) : null}
+      {item.resourceIcon ? <ResourceIcon icon={item.resourceIcon} /> : null}
       <span className="min-w-0">
         <span className="block text-[12px] font-semibold text-text-heading">
           {item.label}
@@ -73,6 +130,68 @@ function DropdownItemButton({
   );
 }
 
+function ResourcesDropdownPanel({
+  item,
+  onNavigate,
+}: {
+  item: Extract<HeaderNavItem, { type: "dropdown" }>;
+  onNavigate: () => void;
+}) {
+  const featured = item.columns[0]?.items[0];
+  const links = item.columns[1]?.items ?? [];
+
+  if (!featured) return null;
+
+  return (
+    <div className="grid grid-cols-1 gap-0 sm:grid-cols-[1.05fr_1fr]">
+      <Link
+        href={featured.href}
+        onClick={onNavigate}
+        className={cn(
+          "flex flex-col gap-3 rounded-soft p-3 no-underline",
+          "transition-colors hover:bg-bg-base/50"
+        )}
+      >
+        {featured.featuredImageSrc ? (
+          <div className="relative aspect-square w-[72px] overflow-hidden rounded-soft border border-border-dark bg-bg-base">
+            <Image
+              src={featured.featuredImageSrc}
+              alt=""
+              fill
+              className="object-cover"
+              sizes="72px"
+            />
+          </div>
+        ) : null}
+        <div>
+          <p className="text-[13px] font-semibold text-text-heading">
+            {featured.label}
+          </p>
+          {featured.description ? (
+            <p className="mt-1.5 text-[11px] leading-snug text-text-muted">
+              {featured.description}
+            </p>
+          ) : null}
+        </div>
+        <span className="mt-auto inline-flex w-fit items-center gap-1.5 rounded-full border border-border-dark bg-bg-base/70 px-3 py-1.5 text-[11px] font-semibold text-text-heading">
+          {featured.featuredCtaLabel ?? "Start"}
+          <span aria-hidden>→</span>
+        </span>
+      </Link>
+
+      <div className="flex flex-col justify-center gap-0.5 border-t border-border-dark pt-2 sm:border-l sm:border-t-0 sm:pl-2 sm:pt-0">
+        {links.map((entry) => (
+          <DropdownItemButton
+            key={entry.href + entry.label}
+            item={entry}
+            onNavigate={onNavigate}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function DropdownColumns({
   item,
   onNavigate,
@@ -80,6 +199,10 @@ function DropdownColumns({
   item: Extract<HeaderNavItem, { type: "dropdown" }>;
   onNavigate: () => void;
 }) {
+  if (item.id === "resources") {
+    return <ResourcesDropdownPanel item={item} onNavigate={onNavigate} />;
+  }
+
   const cols = item.panelCols ?? Math.min(item.columns.length, 3);
   const gridCols =
     cols === 3 ? "grid-cols-3" : cols === 2 ? "grid-cols-2" : "grid-cols-1";
@@ -115,6 +238,10 @@ export function HeaderNavDropdown({
   const rootRef = useRef<HTMLDivElement>(null);
   const menuId = useId();
   const cols = (item.panelCols ?? Math.min(item.columns.length, 3)) as 1 | 2 | 3;
+  const panelWidth =
+    item.id === "resources"
+      ? "w-[min(100vw-2rem,520px)]"
+      : panelWidthByCols[cols];
 
   useEffect(() => {
     if (!open) return;
@@ -163,7 +290,7 @@ export function HeaderNavDropdown({
         <div
           className={cn(
             "rounded-soft border border-border-dark bg-bg-card/95 p-3 shadow-glow-purple backdrop-blur-md",
-            panelWidthByCols[cols]
+            panelWidth
           )}
         >
           <DropdownColumns item={item} onNavigate={() => setOpen(false)} />
@@ -215,25 +342,29 @@ export function MobileNavSection({
       </button>
       {open ? (
         <div className="flex flex-col gap-3 border-l border-border-dark pl-3">
-          {item.columns.map((column, index) => (
-            <div
-              key={column.label ?? `col-${index}`}
-              className="flex flex-col gap-1"
-            >
-              {column.label ? (
-                <p className="px-3 text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-purple-light">
-                  {column.label}
-                </p>
-              ) : null}
-              {column.items.map((entry) => (
-                <DropdownItemButton
-                  key={entry.href + entry.label}
-                  item={entry}
-                  onNavigate={onNavigate}
-                />
-              ))}
-            </div>
-          ))}
+          {item.id === "resources" ? (
+            <ResourcesDropdownPanel item={item} onNavigate={onNavigate} />
+          ) : (
+            item.columns.map((column, index) => (
+              <div
+                key={column.label ?? `col-${index}`}
+                className="flex flex-col gap-1"
+              >
+                {column.label ? (
+                  <p className="px-3 text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-purple-light">
+                    {column.label}
+                  </p>
+                ) : null}
+                {column.items.map((entry) => (
+                  <DropdownItemButton
+                    key={entry.href + entry.label}
+                    item={entry}
+                    onNavigate={onNavigate}
+                  />
+                ))}
+              </div>
+            ))
+          )}
           {item.showViewAll && item.href ? (
             <Link
               href={item.href}

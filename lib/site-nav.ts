@@ -16,12 +16,18 @@ export type FooterContactLink = NavLink & {
   icon: "calendar" | "mail" | "linkedin";
 };
 
+export type ResourceNavIconId = "guides" | "blog" | "templates";
+
 export type HeaderDropdownItem = {
   label: string;
   href: string;
   description?: string;
   serviceIcon?: ServiceIconId;
   solutionIcon?: SolutionIconId;
+  resourceIcon?: ResourceNavIconId;
+  /** Featured visual for Resources dropdown (e.g. app calculator). */
+  featuredImageSrc?: string;
+  featuredCtaLabel?: string;
 };
 
 export type HeaderDropdownColumn = {
@@ -174,16 +180,35 @@ export const headerNavItems: HeaderNavItem[] = [
       {
         items: [
           {
-            label: "App calculator",
+            label: "App cost calculator",
             href: "/tools/app-cost-calculator",
+            description:
+              "Get accurate development and timeline estimate in 3 minutes - no sales calls & 100% free.",
+            featuredImageSrc: "/images/resources/app-calculator-thumb.png",
+            featuredCtaLabel: "Start",
           },
         ],
       },
       {
         items: [
-          { label: "Blog", href: "/blog" },
-          { label: "Guides", href: "/guides" },
-          { label: "Templates", href: "/templates" },
+          {
+            label: "Guides",
+            href: "/guides",
+            description: "Free tools for founders",
+            resourceIcon: "guides",
+          },
+          {
+            label: "Blog",
+            href: "/blog",
+            description: "Expert tips and stories",
+            resourceIcon: "blog",
+          },
+          {
+            label: "Templates",
+            href: "/templates",
+            description: "Ready to use templates",
+            resourceIcon: "templates",
+          },
         ],
       },
     ],
