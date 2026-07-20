@@ -25,14 +25,14 @@ export function EternaSystem() {
               titleMaxWidth="max-w-[520px]"
               subheading={
                 <>
-                  Every failure point is a stage in our methodology. Click an
+                  Every failure point is a stage in our methodology. Open an
                   engine to explore how we research, engineer, acquire, activate,
                   retain, and measure.
                 </>
               }
             />
 
-            <div className="mt-10 lg:mt-14">
+            <div className="mt-10 sm:mt-12 lg:mt-14 lg:-mx-6 xl:-mx-10">
               <EngineCircle engines={eternaEngines} />
             </div>
           </BorderedDarkPanel>

@@ -7,7 +7,12 @@ import { DarkSectionBackdrop, SectionHeading } from "@/components/ui";
 import { CallToActionLink } from "@/components/ui/CallToActionLink";
 import { CaseStudyCard } from "@/components/ui/CaseStudyCard";
 import { getCaseStudyBySlug } from "@/lib/case-studies";
-import { HEADER_OFFSET_CLASS } from "@/lib/layout-constants";
+import {
+  HEADER_OFFSET_CLASS,
+  LAYOUT_INNER_CLASS,
+  LAYOUT_OUTER_CLASS,
+} from "@/lib/layout-constants";
+import { cn } from "@/lib/utils";
 import {
   getAllSolutionSlugs,
   getSolutionPageContent,
@@ -55,8 +60,8 @@ export default async function SolutionPage({ params }: PageProps) {
     <main className={HEADER_OFFSET_CLASS}>
       <section className="relative overflow-hidden bg-bg-base pb-section pt-section">
         <DarkSectionBackdrop {...sectionBackdropPresets.services} />
-        <div className="relative z-10 mx-auto w-full max-w-container px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto w-full max-w-content">
+        <div className={cn("relative z-10", LAYOUT_OUTER_CLASS)}>
+          <div className={LAYOUT_INNER_CLASS}>
             <Link
               href="/#solutions"
               className="text-body-sm text-brand-purple-light hover:text-text-heading"

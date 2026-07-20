@@ -8,7 +8,11 @@ import {
   blueprintPageMeta,
   blueprintTiers,
 } from "@/lib/blueprint";
-import { HEADER_OFFSET_CLASS } from "@/lib/layout-constants";
+import {
+  HEADER_OFFSET_CLASS,
+  LAYOUT_INNER_CLASS,
+  LAYOUT_OUTER_CLASS,
+} from "@/lib/layout-constants";
 import { sectionBackdropPresets, investmentTopBandClass, investmentTopBandFadeClass } from "@/lib/section-backdrops";
 import { cn } from "@/lib/utils";
 
@@ -26,8 +30,8 @@ export default function BlueprintPage() {
           <div className={investmentTopBandFadeClass} />
         </div>
 
-        <div className="relative z-10 mx-auto w-full max-w-container px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto w-full max-w-content">
+        <div className={cn("relative z-10", LAYOUT_OUTER_CLASS)}>
+          <div className={LAYOUT_INNER_CLASS}>
             <SectionHeading
               label="Blueprint"
               lines={[

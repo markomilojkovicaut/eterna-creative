@@ -15,14 +15,26 @@ export function CaseStudyCard({
   className?: string;
 }) {
   return (
-    <article
+    <Link
+      href={`/portfolio/${study.slug}`}
       className={cn(
-        "group flex flex-col overflow-hidden rounded-soft border border-border-dark bg-bg-card/30 transition-colors duration-300 hover:border-border-strong hover:bg-bg-card/50",
+        "group relative flex flex-col overflow-hidden rounded-soft border border-border-dark bg-bg-card/30 no-underline transition-colors duration-300 hover:border-border-strong hover:bg-bg-card/50",
         className
       )}
     >
-      <div className="flex flex-1 flex-col gap-5 p-6 lg:p-8">
-        <PhaseLabel>{study.client}</PhaseLabel>
+      {/* Hover/focus details — tags, headline, Open */}
+      <div
+        className={cn(
+          "flex flex-col gap-5 overflow-hidden px-6 transition-[max-height,opacity,padding] duration-300 ease-out lg:px-8",
+          "max-h-0 opacity-0 py-0",
+          "group-hover:max-h-[480px] group-hover:opacity-100 group-hover:py-6 group-hover:lg:py-8",
+          "group-focus-within:max-h-[480px] group-focus-within:opacity-100 group-focus-within:py-6 group-focus-within:lg:py-8",
+          "motion-reduce:transition-none"
+        )}
+      >
+        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-purple-light">
+          {study.client}
+        </p>
 
         <ul className="flex flex-wrap gap-2">
           {study.tags.map((tag) => (
@@ -36,16 +48,14 @@ export function CaseStudyCard({
           {study.title}
         </h3>
 
-        <Link
-          href={`/portfolio/${study.slug}`}
-          className="mt-auto inline-flex w-fit items-center gap-1.5 text-body-sm font-semibold text-brand-pink transition-opacity hover:opacity-80"
-        >
+        <span className="inline-flex w-fit items-center gap-1.5 text-body-sm font-semibold text-brand-pink">
           Open
           <ArrowUpRight className="!h-4 !w-4" />
-        </Link>
+        </span>
       </div>
 
-      <div className="relative mt-auto aspect-[16/10] w-full overflow-hidden border-t border-border-dark">
+      {/* Always-visible image + title group */}
+      <div className="relative aspect-[16/10] w-full overflow-hidden border-t border-border-dark group-hover:border-t-border-strong">
         {study.coverImage ? (
           <Image
             src={study.coverImage}
@@ -62,14 +72,25 @@ export function CaseStudyCard({
           />
         )}
         <div
-          className="absolute inset-0 bg-gradient-to-t from-bg-base/80 via-transparent to-transparent opacity-60"
+          className="absolute inset-0 bg-gradient-to-t from-bg-base via-bg-base/40 to-transparent"
           aria-hidden
         />
         <div
           className="pointer-events-none absolute inset-0 bg-scanlines opacity-30"
           aria-hidden
         />
+
+        <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col gap-3 p-6 lg:p-8">
+          <PhaseLabel>Case study</PhaseLabel>
+          <p className="font-heading text-heading-lg font-bold text-text-heading lg:text-display-md">
+            {study.client}
+          </p>
+          <span className="inline-flex w-fit items-center gap-1.5 rounded-soft border border-border-dark bg-bg-card/70 px-3 py-1.5 text-body-sm font-medium text-text-heading backdrop-blur-sm">
+            Open case study
+            <ArrowUpRight className="!h-3.5 !w-3.5 !text-brand-purple-light" />
+          </span>
+        </div>
       </div>
-    </article>
+    </Link>
   );
 }

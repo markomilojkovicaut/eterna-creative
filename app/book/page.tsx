@@ -7,7 +7,12 @@ import { DarkSectionBackdrop, SectionHeading } from "@/components/ui";
 import { DarkFaqAccordion } from "@/components/ui/DarkFaqAccordion";
 import { bookExpectations, bookPageMeta, calEmbed } from "@/lib/book";
 import { faqItems } from "@/lib/faq";
-import { HEADER_OFFSET_CLASS } from "@/lib/layout-constants";
+import {
+  HEADER_OFFSET_CLASS,
+  LAYOUT_INNER_CLASS,
+  LAYOUT_OUTER_CLASS,
+} from "@/lib/layout-constants";
+import { cn } from "@/lib/utils";
 import { sectionBackdropPresets } from "@/lib/section-backdrops";
 
 export const metadata: Metadata = {
@@ -25,8 +30,8 @@ export default function BookPage() {
       <section className="relative overflow-hidden bg-bg-base pb-section pt-section">
         <DarkSectionBackdrop {...sectionBackdropPresets.challenges} />
 
-        <div className="relative z-10 mx-auto w-full max-w-container px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto w-full max-w-content">
+        <div className={cn("relative z-10", LAYOUT_OUTER_CLASS)}>
+          <div className={LAYOUT_INNER_CLASS}>
             <SectionHeading
               label="Book a strategy call"
               lines={[

@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useId, useState } from "react";
 
 import { CallToActionLink } from "@/components/ui/CallToActionLink";
+import { DarkTagPill } from "@/components/ui/DarkTagPill";
 import { EngineIcon } from "@/components/ui/EngineIcon";
 import type { EternaEngine } from "@/lib/eterna-engines";
 import { cn } from "@/lib/utils";
@@ -46,120 +46,263 @@ function describeArc(
   ].join(" ");
 }
 
-export function EngineCircle({ engines }: { engines: EternaEngine[] }) {
-  const [activeId, setActiveId] = useState<string | null>(engines[0]?.id ?? null);
-  const active = engines.find((e) => e.id === activeId) ?? engines[0];
+function EnginePopup({
+  engine,
+  onClose,
+}: {
+  engine: EternaEngine;
+  onClose: () => void;
+}) {
+  const titleId = useId();
 
-  const size = 320;
-  const cx = size / 2;
-  const cy = size / 2;
-  const innerR = 72;
-  const outerR = 148;
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [onClose]);
 
   return (
-    <div className="flex flex-col items-center gap-10 lg:flex-row lg:items-start lg:gap-16">
-      <div className="relative mx-auto shrink-0" style={{ width: size, height: size }}>
-        <svg
-          width={size}
-          height={size}
-          viewBox={`0 0 ${size} ${size}`}
-          className="overflow-visible"
-          role="img"
-          aria-label="Six Eterna methodology engines"
-        >
-          {engines.map((engine, index) => {
-            const startAngle = index * SEGMENT_ANGLE + 2;
-            const endAngle = (index + 1) * SEGMENT_ANGLE - 2;
-            const midAngle = (startAngle + endAngle) / 2;
-            const labelPos = polarToCartesian(cx, cy, (innerR + outerR) / 2, midAngle);
-            const isActive = active?.id === engine.id;
-
-            return (
-              <g key={engine.id}>
-                <path
-                  d={describeArc(cx, cy, innerR, outerR, startAngle, endAngle)}
-                  className={cn(
-                    "cursor-pointer transition-all duration-300",
-                    isActive
-                      ? "fill-brand-purple/30 stroke-brand-purple-light"
-                      : "fill-bg-card stroke-border-dark hover:fill-brand-purple/15"
-                  )}
-                  strokeWidth={1}
-                  onClick={() => setActiveId(engine.id)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                      e.preventDefault();
-                      setActiveId(engine.id);
-                    }
-                  }}
-                  tabIndex={0}
-                  role="button"
-                  aria-pressed={isActive}
-                  aria-label={`Engine ${engine.number}: ${engine.title}`}
-                />
-                <text
-                  x={labelPos.x}
-                  y={labelPos.y}
-                  textAnchor="middle"
-                  dominantBaseline="middle"
-                  className="pointer-events-none fill-text-sub text-[9px] font-semibold uppercase tracking-wider"
-                >
-                  {engine.number}
-                </text>
-              </g>
-            );
-          })}
-          <circle
-            cx={cx}
-            cy={cy}
-            r={innerR - 4}
-            className="fill-bg-base stroke-border-dark"
-            strokeWidth={1}
-          />
-        </svg>
-
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          {active && (
-            <div className="flex size-16 items-center justify-center">
-              <EngineIcon icon={active.icon} highlight={active.highlight} />
-            </div>
-          )}
-        </div>
-      </div>
-
-      {active && (
-        <div className="w-full max-w-lg rounded-soft border border-border-dark bg-bg-card/30 p-6 sm:p-8">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-purple-light">
-            Engine {active.number}
-          </p>
-          <h3
-            className={cn(
-              "mt-2 font-heading text-heading-lg font-bold",
-              active.highlight ? "text-brand-pink" : "text-text-heading"
-            )}
-          >
-            {active.title}
-          </h3>
-          <p className="mt-2 text-body-sm font-medium text-text-sub">
-            {active.subtitle}
-          </p>
-          <p className="mt-4 text-body-md leading-relaxed text-text-body">
-            {active.description}
-          </p>
-          <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-soft border border-border-dark">
-            <Image
-              src={`/images/engines/engine-${active.number}.png`}
-              alt={`Engine ${active.number} visual`}
-              fill
-              sizes="(max-width: 768px) 100vw, 512px"
-              className="object-cover"
-            />
+    <div
+      className="fixed inset-0 z-[80] flex items-center justify-center p-4 sm:p-6"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby={titleId}
+    >
+      <button
+        type="button"
+        className="absolute inset-0 bg-bg-base/80 backdrop-blur-sm"
+        aria-label="Close engine details"
+        onClick={onClose}
+      />
+      <div className="relative z-10 w-full max-w-lg overflow-hidden rounded-soft border border-border-dark bg-bg-card shadow-glow-purple">
+        <div className="flex items-start justify-between gap-4 border-b border-border-dark px-6 py-5 sm:px-8">
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-purple-light">
+              Engine {engine.number}
+            </p>
+            <h3
+              id={titleId}
+              className={cn(
+                "mt-2 font-heading text-heading-lg font-bold",
+                engine.highlight ? "text-brand-pink" : "text-text-heading"
+              )}
+            >
+              {engine.title}
+            </h3>
           </div>
-          <CallToActionLink href="/book" className="mt-8">
+          <button
+            type="button"
+            onClick={onClose}
+            className="inline-flex size-9 shrink-0 items-center justify-center rounded-soft border border-border-dark text-text-sub transition-colors hover:border-border-strong hover:text-text-heading"
+            aria-label="Close"
+          >
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path d="M6 6l12 12M18 6L6 18" />
+            </svg>
+          </button>
+        </div>
+
+        <div className="space-y-5 px-6 py-6 sm:px-8">
+          <div className="flex flex-wrap gap-2">
+            <DarkTagPill>{`Engine ${engine.number}`}</DarkTagPill>
+            <DarkTagPill>{engine.subtitle}</DarkTagPill>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <EngineIcon icon={engine.icon} highlight={engine.highlight} />
+            <p className="text-body-sm font-medium text-text-sub">
+              {engine.subtitle}
+            </p>
+          </div>
+
+          <p className="text-body-md leading-relaxed text-text-body">
+            {engine.description}
+          </p>
+
+          <CallToActionLink href="/book" className="w-fit">
             Book a strategy call
           </CallToActionLink>
         </div>
-      )}
+      </div>
     </div>
+  );
+}
+
+function EngineSegmentOverlay({
+  engine,
+  left,
+  top,
+  onOpen,
+}: {
+  engine: EternaEngine;
+  left: number;
+  top: number;
+  onOpen: () => void;
+}) {
+  return (
+    <div
+      className="absolute z-10 flex w-[28%] max-w-[200px] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-2.5 text-center sm:w-[26%] sm:gap-3 lg:max-w-[220px]"
+      style={{ left: `${left}%`, top: `${top}%` }}
+    >
+      <EngineIcon icon={engine.icon} highlight={engine.highlight} />
+      <p
+        className={cn(
+          "font-heading text-[11px] font-bold leading-snug sm:text-[13px] lg:text-body-sm",
+          engine.highlight ? "text-brand-pink" : "text-text-heading"
+        )}
+      >
+        {engine.title}
+      </p>
+      <button
+        type="button"
+        onClick={onOpen}
+        className={cn(
+          "inline-flex items-center justify-center rounded-soft border border-border-dark",
+          "bg-bg-card/80 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-text-heading sm:text-[11px]",
+          "transition-colors hover:border-border-strong hover:bg-bg-card"
+        )}
+      >
+        Learn more
+      </button>
+    </div>
+  );
+}
+
+export function EngineCircle({ engines }: { engines: EternaEngine[] }) {
+  const [openId, setOpenId] = useState<string | null>(null);
+  const open = engines.find((e) => e.id === openId) ?? null;
+
+  // Full-bleed circle inside the content rail
+  const size = 1000;
+  const cx = size / 2;
+  const cy = size / 2;
+  const innerR = 185;
+  const outerR = 495;
+  const labelR = (innerR + outerR) / 2;
+
+  return (
+    <>
+      {/* Mobile: stacked cards — circle is too dense under ~640px */}
+      <ul className="grid gap-3 sm:hidden">
+        {engines.map((engine) => (
+          <li key={engine.id}>
+            <button
+              type="button"
+              onClick={() => setOpenId(engine.id)}
+              className={cn(
+                "flex w-full items-center gap-4 rounded-soft border border-border-dark bg-bg-card/60 px-4 py-4 text-left",
+                "transition-colors hover:border-border-strong hover:bg-bg-card"
+              )}
+            >
+              <EngineIcon icon={engine.icon} highlight={engine.highlight} />
+              <div className="min-w-0 flex-1">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-purple-light">
+                  Engine {engine.number}
+                </p>
+                <p
+                  className={cn(
+                    "mt-1 font-heading text-body-sm font-bold",
+                    engine.highlight ? "text-brand-pink" : "text-text-heading"
+                  )}
+                >
+                  {engine.title}
+                </p>
+              </div>
+              <span className="shrink-0 text-[10px] font-semibold uppercase tracking-[0.08em] text-text-muted">
+                Open
+              </span>
+            </button>
+          </li>
+        ))}
+      </ul>
+
+      {/* Tablet/desktop: full-width circle */}
+      <div className="relative mx-auto hidden w-full sm:block">
+        <div className="relative aspect-square w-full">
+          <svg
+            viewBox={`0 0 ${size} ${size}`}
+            className="h-full w-full overflow-visible"
+            role="img"
+            aria-label="Six Eterna methodology engines"
+          >
+            {engines.map((engine, index) => {
+              const startAngle = index * SEGMENT_ANGLE + 1.2;
+              const endAngle = (index + 1) * SEGMENT_ANGLE - 1.2;
+              const isOpen = openId === engine.id;
+
+              return (
+                <path
+                  key={engine.id}
+                  d={describeArc(cx, cy, innerR, outerR, startAngle, endAngle)}
+                  className={cn(
+                    "transition-all duration-300",
+                    isOpen
+                      ? "fill-brand-purple/35 stroke-brand-purple-light"
+                      : "fill-bg-card/80 stroke-border-dark hover:fill-brand-purple/20"
+                  )}
+                  strokeWidth={2}
+                />
+              );
+            })}
+            <circle
+              cx={cx}
+              cy={cy}
+              r={innerR - 6}
+              className="fill-bg-base stroke-border-dark"
+              strokeWidth={2}
+            />
+            <text
+              x={cx}
+              y={cy - 14}
+              textAnchor="middle"
+              className="fill-brand-purple-light text-[26px] font-bold uppercase tracking-[0.2em]"
+            >
+              Eterna
+            </text>
+            <text
+              x={cx}
+              y={cy + 24}
+              textAnchor="middle"
+              className="fill-text-muted text-[18px] uppercase tracking-[0.16em]"
+            >
+              system
+            </text>
+          </svg>
+
+          {engines.map((engine, index) => {
+            const midAngle = index * SEGMENT_ANGLE + SEGMENT_ANGLE / 2;
+            const pos = polarToCartesian(cx, cy, labelR, midAngle);
+            const left = (pos.x / size) * 100;
+            const top = (pos.y / size) * 100;
+
+            return (
+              <EngineSegmentOverlay
+                key={engine.id}
+                engine={engine}
+                left={left}
+                top={top}
+                onOpen={() => setOpenId(engine.id)}
+              />
+            );
+          })}
+        </div>
+      </div>
+
+      {open && <EnginePopup engine={open} onClose={() => setOpenId(null)} />}
+    </>
   );
 }

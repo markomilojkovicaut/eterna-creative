@@ -12,7 +12,12 @@ import {
   migrationRebuilds,
   migrationSteps,
 } from "@/lib/migration";
-import { HEADER_OFFSET_CLASS } from "@/lib/layout-constants";
+import {
+  HEADER_OFFSET_CLASS,
+  LAYOUT_INNER_CLASS,
+  LAYOUT_OUTER_CLASS,
+} from "@/lib/layout-constants";
+import { cn } from "@/lib/utils";
 import { sectionBackdropPresets } from "@/lib/section-backdrops";
 
 export const metadata: Metadata = {
@@ -26,8 +31,8 @@ export default function MigrationPage() {
       <section className="relative overflow-hidden bg-bg-base pb-section pt-section">
         <DarkSectionBackdrop {...sectionBackdropPresets.challenges} />
 
-        <div className="relative z-10 mx-auto w-full max-w-container px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto w-full max-w-content">
+        <div className={cn("relative z-10", LAYOUT_OUTER_CLASS)}>
+          <div className={LAYOUT_INNER_CLASS}>
             <SectionHeading
               label="Migration"
               lines={[
@@ -129,14 +134,16 @@ export default function MigrationPage() {
       </Section>
 
       <section className="bg-bg-base py-section">
-        <div className="mx-auto w-full max-w-container px-4 text-center sm:px-6 lg:px-8">
-          <p className="text-body-md text-text-sub">
-            Already on Bubble?{" "}
-            <Link href="/book" className="text-brand-purple-light hover:text-text-heading">
-              Book a strategy call
-            </Link>{" "}
-            and we will audit whether migration is the right move.
-          </p>
+        <div className={LAYOUT_OUTER_CLASS}>
+          <div className={cn(LAYOUT_INNER_CLASS, "text-center")}>
+            <p className="text-body-md text-text-sub">
+              Already on Bubble?{" "}
+              <Link href="/book" className="text-brand-purple-light hover:text-text-heading">
+                Book a strategy call
+              </Link>{" "}
+              and we will audit whether migration is the right move.
+            </p>
+          </div>
         </div>
       </section>
     </main>

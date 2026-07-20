@@ -9,7 +9,11 @@ import { ServiceIcon } from "@/components/ui/ServiceIcon";
 import { getServicePageContent, getAllServiceSlugs } from "@/lib/service-pages";
 import { services, servicePhaseLabels } from "@/lib/services";
 import { eternaEngines } from "@/lib/eterna-engines";
-import { HEADER_OFFSET_CLASS } from "@/lib/layout-constants";
+import {
+  HEADER_OFFSET_CLASS,
+  LAYOUT_INNER_CLASS,
+  LAYOUT_OUTER_CLASS,
+} from "@/lib/layout-constants";
 import { sectionBackdropPresets } from "@/lib/section-backdrops";
 import { cn } from "@/lib/utils";
 
@@ -54,8 +58,8 @@ export default async function ServicePage({ params }: PageProps) {
       <section className="relative overflow-hidden bg-bg-base pb-section pt-section">
         <DarkSectionBackdrop {...sectionBackdropPresets.services} />
 
-        <div className="relative z-10 mx-auto w-full max-w-container px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto w-full max-w-content">
+        <div className={cn("relative z-10", LAYOUT_OUTER_CLASS)}>
+          <div className={LAYOUT_INNER_CLASS}>
             <Link
               href="/#services"
               className="text-body-sm text-brand-purple-light transition-colors hover:text-text-heading"
@@ -170,27 +174,29 @@ export default async function ServicePage({ params }: PageProps) {
       )}
 
       <section className="relative bg-bg-base py-section">
-        <div className="mx-auto w-full max-w-container px-4 sm:px-6 lg:px-8">
-          <div
-            className={cn(
-              "mx-auto flex max-w-content flex-col items-center rounded-soft border border-border-dark px-6 py-16 text-center sm:px-10"
-            )}
-          >
-            <h2 className="font-heading text-display-md font-bold text-text-heading">
-              Ready to talk{" "}
-              <span className="text-gradient-hero">{service.title.toLowerCase()}</span>?
-            </h2>
-            <p className="mt-4 max-w-lg text-body-md text-text-sub">
-              Book a free 15-minute strategy call. We will scope fit and next
-              steps - whether we work together or not.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-              <CallToActionLink href="/book">Book a strategy call</CallToActionLink>
-              {page.relatedLinks?.map((link) => (
-                <SecondaryCtaLink key={link.href} href={link.href}>
-                  {link.label}
-                </SecondaryCtaLink>
-              ))}
+        <div className={LAYOUT_OUTER_CLASS}>
+          <div className={LAYOUT_INNER_CLASS}>
+            <div
+              className={cn(
+                "flex flex-col items-center rounded-soft border border-border-dark px-6 py-16 text-center sm:px-10"
+              )}
+            >
+              <h2 className="font-heading text-display-md font-bold text-text-heading">
+                Ready to talk{" "}
+                <span className="text-gradient-hero">{service.title.toLowerCase()}</span>?
+              </h2>
+              <p className="mt-4 max-w-lg text-body-md text-text-sub">
+                Book a free 15-minute strategy call. We will scope fit and next
+                steps - whether we work together or not.
+              </p>
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+                <CallToActionLink href="/book">Book a strategy call</CallToActionLink>
+                {page.relatedLinks?.map((link) => (
+                  <SecondaryCtaLink key={link.href} href={link.href}>
+                    {link.label}
+                  </SecondaryCtaLink>
+                ))}
+              </div>
             </div>
           </div>
         </div>

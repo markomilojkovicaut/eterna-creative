@@ -1,6 +1,10 @@
 import { DarkSectionBackdrop, SectionHeading } from "@/components/ui";
 import type { SectionHeadingLine } from "@/components/ui/SectionHeading";
-import { HEADER_OFFSET_CLASS } from "@/lib/layout-constants";
+import {
+  HEADER_OFFSET_CLASS,
+  LAYOUT_INNER_CLASS,
+  LAYOUT_OUTER_CLASS,
+} from "@/lib/layout-constants";
 import { sectionBackdropPresets } from "@/lib/section-backdrops";
 import { cn } from "@/lib/utils";
 
@@ -21,8 +25,8 @@ export function ContentHubShell({
     <main className={HEADER_OFFSET_CLASS}>
       <section className="relative overflow-hidden bg-bg-base pb-section pt-section">
         <DarkSectionBackdrop {...sectionBackdropPresets.challenges} />
-        <div className="relative z-10 mx-auto w-full max-w-container px-4 sm:px-6 lg:px-8">
-          <div className={cn("mx-auto w-full max-w-content", className)}>
+        <div className={cn("relative z-10", LAYOUT_OUTER_CLASS)}>
+          <div className={cn(LAYOUT_INNER_CLASS, className)}>
             <SectionHeading
               label={label}
               lines={lines}
