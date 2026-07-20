@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
@@ -45,11 +46,21 @@ export function CaseStudyCard({
       </div>
 
       <div className="relative mt-auto aspect-[16/10] w-full overflow-hidden border-t border-border-dark">
-        <div
-          className="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.02]"
-          style={{ backgroundImage: study.imageGradient }}
-          aria-hidden
-        />
+        {study.coverImage ? (
+          <Image
+            src={study.coverImage}
+            alt={`${study.client} case study`}
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+          />
+        ) : (
+          <div
+            className="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.02]"
+            style={{ backgroundImage: study.imageGradient }}
+            aria-hidden
+          />
+        )}
         <div
           className="absolute inset-0 bg-gradient-to-t from-bg-base/80 via-transparent to-transparent opacity-60"
           aria-hidden

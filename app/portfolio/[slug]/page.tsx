@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -79,11 +80,23 @@ export default async function PortfolioCaseStudyPage({ params }: PageProps) {
           ) : null}
         </div>
 
-        <div
-          className="relative mt-12 aspect-[16/9] w-full overflow-hidden rounded-soft border border-border-dark"
-          style={{ backgroundImage: item.imageGradient }}
-        >
-          <div className="absolute inset-0 bg-scanlines opacity-30" aria-hidden />
+        <div className="relative mt-12 aspect-[16/9] w-full overflow-hidden rounded-soft border border-border-dark">
+          {item.coverImage ? (
+            <Image
+              src={item.coverImage}
+              alt={`${item.client} case study`}
+              fill
+              sizes="(max-width: 1024px) 100vw, 960px"
+              className="object-cover"
+              priority
+            />
+          ) : (
+            <div
+              className="absolute inset-0"
+              style={{ backgroundImage: item.imageGradient }}
+            />
+          )}
+          <div className="pointer-events-none absolute inset-0 bg-scanlines opacity-30" aria-hidden />
         </div>
 
         <div className="mt-12">

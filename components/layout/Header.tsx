@@ -68,7 +68,7 @@ export function Header() {
 
           <div className="hidden md:block">
             <CallToActionLink href="/book" size="sm">
-              Book a call
+              Book a strategy call
             </CallToActionLink>
           </div>
 
@@ -128,7 +128,7 @@ export function Header() {
               </Link>
             ))}
             <CallToActionLink href="/book" size="sm" className="w-fit">
-              Book a call
+              Book a strategy call
             </CallToActionLink>
           </div>
         </div>

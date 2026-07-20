@@ -3,7 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { Badge } from "@/components/ui/Badge";
-import { Button } from "@/components/ui/Button";
+import { CallToActionLink } from "@/components/ui/CallToActionLink";
+import { SecondaryCtaLink } from "@/components/ui/SecondaryCtaLink";
 import {
   getAllTemplateSlugs,
   getTemplateBySlug,
@@ -77,10 +78,19 @@ export default async function TemplatePage({ params }: PageProps) {
               ${template.price}
             </p>
           ) : null}
-          <div className="mt-6">
-            <Button variant="primary" size="md" type="button">
-              {template.isPaid ? "Purchase template" : "Download template"}
-            </Button>
+          <div className="mt-6 flex flex-wrap gap-3">
+            {template.isPaid ? (
+              <CallToActionLink href="/book">Purchase template</CallToActionLink>
+            ) : (
+              <a
+                href={template.downloadUrl}
+                download
+                className="inline-flex items-center justify-center rounded-soft bg-text-heading px-6 py-3 text-body-md font-semibold text-bg-base no-underline transition-opacity hover:opacity-90"
+              >
+                Download template
+              </a>
+            )}
+            <SecondaryCtaLink href="/book">Book a strategy call</SecondaryCtaLink>
           </div>
         </div>
       </Section>

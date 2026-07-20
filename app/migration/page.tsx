@@ -133,7 +133,7 @@ export default function MigrationPage() {
           <p className="text-body-md text-text-sub">
             Already on Bubble?{" "}
             <Link href="/book" className="text-brand-purple-light hover:text-text-heading">
-              Book a call
+              Book a strategy call
             </Link>{" "}
             and we will audit whether migration is the right move.
           </p>

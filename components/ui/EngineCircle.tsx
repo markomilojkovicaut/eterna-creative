@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 
 import { CallToActionLink } from "@/components/ui/CallToActionLink";
@@ -117,7 +118,7 @@ export function EngineCircle({ engines }: { engines: EternaEngine[] }) {
           />
         </svg>
 
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
           {active && (
             <div className="flex size-16 items-center justify-center">
               <EngineIcon icon={active.icon} highlight={active.highlight} />
@@ -145,8 +146,14 @@ export function EngineCircle({ engines }: { engines: EternaEngine[] }) {
           <p className="mt-4 text-body-md leading-relaxed text-text-body">
             {active.description}
           </p>
-          <div className="mt-8 aspect-[16/9] rounded-soft border border-border-dark bg-gradient-to-br from-brand-purple-dark/40 via-bg-base to-bg-card flex items-center justify-center">
-            <span className="text-body-sm text-text-muted">Engine visual</span>
+          <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-soft border border-border-dark">
+            <Image
+              src={`/images/engines/engine-${active.number}.png`}
+              alt={`Engine ${active.number} visual`}
+              fill
+              sizes="(max-width: 768px) 100vw, 512px"
+              className="object-cover"
+            />
           </div>
           <CallToActionLink href="/book" className="mt-8">
             Book a strategy call

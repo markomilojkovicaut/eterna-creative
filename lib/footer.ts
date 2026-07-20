@@ -36,7 +36,7 @@ export const footerLinkGroups = [
       { label: "Send email", href: "mailto:hello@eterna.dev", icon: "mail" as const },
       {
         label: "LinkedIn",
-        href: "https://www.linkedin.com",
+        href: "https://www.linkedin.com/company/eterna-creative",
         icon: "linkedin" as const,
         external: true,
       },

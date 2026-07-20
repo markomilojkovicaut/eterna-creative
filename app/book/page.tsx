@@ -28,7 +28,7 @@ export default function BookPage() {
         <div className="relative z-10 mx-auto w-full max-w-container px-4 sm:px-6 lg:px-8">
           <div className="mx-auto w-full max-w-content">
             <SectionHeading
-              label="Book a call"
+              label="Book a strategy call"
               lines={[
                 { text: "Free 15-min", variant: "default" },
                 { text: "strategy call", variant: "gradient" },
