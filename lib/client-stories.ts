@@ -45,6 +45,19 @@ export const featuredClientReview: FeaturedClientReview = {
 
 export const clientReviews: ClientReview[] = [
   {
+    id: "tania-espinoza",
+    name: "Tania Espinoza",
+    role: "Founder & CEO, Global 8 Connect",
+    quote:
+      "Working with Marko at Eterna on the development of my B2B platform has been an exceptional experience. Communication was outstanding from day one; they were always highly attentive to details and proactive. Despite a significant time zone difference, they were incredibly responsive, consistently answering questions and resolving doubts in less than 24 hours. Beyond their technical execution, they provided valuable, strategic recommendations that truly helped streamline the platform for our MVP launch. Eterna demonstrates a strong ownership mindset and a solid understanding of product development. I highly recommend them to anyone looking for a reliable, sharp, and communicative developer!",
+    avatarSrc: "/images/reviews/tania-global8connect.webp",
+    gradientCard: true,
+    reviewSource: {
+      label: "Clutch review",
+      href: "https://clutch.co/go-to-review/befb6945-69ab-4623-9b56-1aeb9e2912e1/473306",
+    },
+  },
+  {
     id: "stefanie-herbert",
     name: "Stefanie Herbert",
     role: "Co-founder, Relative Innovations",
