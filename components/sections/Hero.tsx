@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { CallToActionLink } from "@/components/ui/CallToActionLink";
 import { LabelPill } from "@/components/ui/LabelPill";
+import { PartnerLogoMarquee } from "@/components/ui/PartnerLogoMarquee";
 import {
   displayHeadingTypeClasses,
   heroH1LineClasses,
@@ -9,6 +10,7 @@ import {
   LAYOUT_INNER_CLASS,
   LAYOUT_OUTER_CLASS,
 } from "@/lib/layout-constants";
+import { partners } from "@/lib/partners";
 import { cn } from "@/lib/utils";
 
 function ClutchStars({ className }: { className?: string }) {
@@ -106,18 +108,61 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Bottom left: phones */}
-          <div className="flex w-full justify-center lg:col-span-6 lg:row-start-3 lg:justify-start lg:self-end">
-            <div className="w-full max-w-xl lg:max-w-2xl">
-              <Image
-                src="/images/hero-phones.png"
-                alt="Mobile app mockups built by Eterna"
-                width={900}
-                height={700}
-                priority
-                sizes="(max-width: 1280px) 640px, 512px"
-                className="block h-auto w-full"
-              />
+          {/* Bottom: phones + partner logos fading left behind the visual */}
+          <div className="relative w-full lg:col-span-12 lg:row-start-3 lg:self-end">
+            <div className="relative flex w-full flex-col gap-4 lg:block">
+              {/* Desktop: marquee behind/to the right of phones, fading left under the mockups */}
+              <div
+                className={cn(
+                  "pointer-events-none absolute inset-x-0 top-1/2 z-0 hidden -translate-y-1/2 overflow-hidden lg:block",
+                  "lg:left-[24%] lg:right-[-4%]"
+                )}
+              >
+                <div
+                  className="pointer-events-none absolute inset-y-0 left-0 z-20 w-48 bg-gradient-to-r from-bg-base via-bg-base/90 to-transparent xl:w-64"
+                  aria-hidden
+                />
+                <div
+                  className="pointer-events-none absolute inset-y-0 right-0 z-20 w-20 bg-gradient-to-l from-bg-base via-bg-base/80 to-transparent"
+                  aria-hidden
+                />
+                <PartnerLogoMarquee
+                  partners={partners}
+                  tone="white"
+                  className="pointer-events-auto relative z-10"
+                />
+              </div>
+
+              <div className="relative z-10 flex w-full justify-center lg:justify-start">
+                <div className="w-full max-w-xl lg:max-w-2xl">
+                  <Image
+                    src="/images/hero-phones.png"
+                    alt="Mobile app mockups built by Eterna"
+                    width={900}
+                    height={700}
+                    priority
+                    sizes="(max-width: 1280px) 640px, 512px"
+                    className="block h-auto w-full"
+                  />
+                </div>
+              </div>
+
+              {/* Mobile / tablet: logos under the visual with edge fades */}
+              <div className="relative overflow-hidden lg:hidden">
+                <div
+                  className="pointer-events-none absolute inset-y-0 left-0 z-20 w-12 bg-gradient-to-r from-bg-base via-bg-base/90 to-transparent sm:w-16"
+                  aria-hidden
+                />
+                <div
+                  className="pointer-events-none absolute inset-y-0 right-0 z-20 w-12 bg-gradient-to-l from-bg-base via-bg-base/90 to-transparent sm:w-16"
+                  aria-hidden
+                />
+                <PartnerLogoMarquee
+                  partners={partners}
+                  tone="white"
+                  className="relative z-10"
+                />
+              </div>
             </div>
           </div>
         </div>
