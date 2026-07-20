@@ -6,9 +6,22 @@ import { DarkTagPill } from "@/components/ui/DarkTagPill";
 import type { CaseStudy } from "@/lib/case-studies";
 import { cn } from "@/lib/utils";
 
+const openCaseStudyButtonClass =
+  "inline-flex w-fit items-center gap-1.5 rounded-soft border border-border-dark bg-bg-card/70 px-3 py-1.5 text-body-sm font-medium text-text-heading backdrop-blur-sm";
+
+function OpenCaseStudyButton({ className }: { className?: string }) {
+  return (
+    <span className={cn(openCaseStudyButtonClass, className)}>
+      Open case study
+      <ArrowUpRight className="!h-3.5 !w-3.5 !text-brand-purple-light" />
+    </span>
+  );
+}
+
 /**
  * Cover art already includes CASE STUDY + client + CTA.
  * Hover overlays tags + headline on a blurred/darkened image — no layout shift.
+ * Hover CTA matches the cover "Open case study" button.
  */
 export function CaseStudyCard({
   study,
@@ -54,10 +67,7 @@ export function CaseStudyCard({
             <p className="font-heading text-heading-lg font-bold text-text-heading lg:text-display-md">
               {study.client}
             </p>
-            <span className="inline-flex w-fit items-center gap-1.5 rounded-soft border border-border-dark bg-bg-card/70 px-3 py-1.5 text-body-sm font-medium text-text-heading backdrop-blur-sm">
-              Open case study
-              <ArrowUpRight className="!h-3.5 !w-3.5 !text-brand-purple-light" />
-            </span>
+            <OpenCaseStudyButton />
           </div>
         )}
 
@@ -96,17 +106,14 @@ export function CaseStudyCard({
             {study.title}
           </h3>
 
-          <span
+          <OpenCaseStudyButton
             className={cn(
-              "mt-auto inline-flex w-fit items-center gap-1.5 text-body-sm font-semibold text-brand-pink",
+              "mt-auto",
               "translate-y-[-8px] transition-transform delay-100 duration-300 ease-out",
               "group-hover:translate-y-0 group-focus-within:translate-y-0",
               "motion-reduce:translate-y-0 motion-reduce:delay-0"
             )}
-          >
-            Open
-            <ArrowUpRight className="!h-4 !w-4" />
-          </span>
+          />
         </div>
       </div>
     </Link>
