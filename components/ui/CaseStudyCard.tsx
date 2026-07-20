@@ -6,12 +6,12 @@ import { DarkTagPill } from "@/components/ui/DarkTagPill";
 import type { CaseStudy } from "@/lib/case-studies";
 import { cn } from "@/lib/utils";
 
-/** White CTA — idle covers never show this; hover overlay only. */
+/** White CTA — hover only. */
 function OpenCaseStudyButton({ className }: { className?: string }) {
   return (
     <span
       className={cn(
-        "inline-flex w-fit items-center gap-1.5 rounded-soft border border-white/30 bg-white px-3 py-1.5 text-body-sm font-medium text-bg-base",
+        "inline-flex w-fit items-center gap-1.5 rounded-soft bg-white px-3 py-1.5 text-body-sm font-medium text-bg-base shadow-sm",
         className
       )}
     >
@@ -22,8 +22,9 @@ function OpenCaseStudyButton({ className }: { className?: string }) {
 }
 
 /**
- * Cover art may include a baked-in CTA — masked on idle.
- * Hover overlays tags + headline + white Open case study button (no layout shift).
+ * Idle: cover art only (CASE STUDY + client are in the cover; no CTA).
+ * Hover: blur/darken cover, overlay tags + headline + white Open case study.
+ * Height never changes.
  */
 export function CaseStudyCard({
   study,
@@ -44,49 +45,57 @@ export function CaseStudyCard({
         {study.coverImage ? (
           <Image
             src={study.coverImage}
-            alt={`${study.client} case study`}
+            alt=""
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
             className={cn(
-              "object-cover transition-[transform,filter] duration-500 ease-out",
-              "group-hover:scale-[1.03] group-hover:blur-[2px] group-hover:brightness-[0.45]",
-              "group-focus-within:scale-[1.03] group-focus-within:blur-[2px] group-focus-within:brightness-[0.45]",
+              "object-cover object-top transition-[transform,filter] duration-500 ease-out",
+              "group-hover:scale-[1.03] group-hover:blur-[2px] group-hover:brightness-[0.4]",
+              "group-focus-within:scale-[1.03] group-focus-within:blur-[2px] group-focus-within:brightness-[0.4]",
               "motion-reduce:group-hover:scale-100 motion-reduce:group-hover:blur-none"
             )}
+            aria-hidden
           />
         ) : (
           <div
             className={cn(
-              "absolute inset-0 flex flex-col justify-end gap-3 p-6 transition-[transform,filter] duration-500 ease-out lg:p-8",
-              "group-hover:scale-[1.03] group-hover:blur-[2px] group-hover:brightness-[0.45]",
-              "group-focus-within:scale-[1.03] group-focus-within:blur-[2px] group-focus-within:brightness-[0.45]"
+              "absolute inset-0 transition-[transform,filter] duration-500 ease-out",
+              "group-hover:scale-[1.03] group-hover:blur-[2px] group-hover:brightness-[0.4]",
+              "group-focus-within:scale-[1.03] group-focus-within:blur-[2px] group-focus-within:brightness-[0.4]"
             )}
             style={{ backgroundImage: study.imageGradient }}
+            aria-hidden
+          />
+        )}
+
+        {/* Fallback idle label when no cover image (gradient only) */}
+        {!study.coverImage ? (
+          <div
+            className={cn(
+              "absolute inset-x-0 top-0 z-[6] flex flex-col gap-2 p-6 transition-opacity duration-300 lg:p-8",
+              "group-hover:opacity-0 group-focus-within:opacity-0"
+            )}
           >
-            <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-purple-light">
+            <span className="inline-flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-purple-light">
+              <span
+                className="h-3.5 w-[3px] shrink-0 rounded-full bg-brand-purple-light"
+                aria-hidden
+              />
               Case study
-            </p>
+            </span>
             <p className="font-heading text-heading-lg font-bold text-text-heading lg:text-display-md">
               {study.client}
             </p>
           </div>
-        )}
+        ) : null}
 
-        {/* Mask baked-in cover CTA on idle */}
-        <div
-          className={cn(
-            "pointer-events-none absolute inset-x-0 bottom-0 z-[5] h-[22%] bg-gradient-to-t from-[#08060f] via-[#08060f]/90 to-transparent",
-            "transition-opacity duration-300 group-hover:opacity-0 group-focus-within:opacity-0"
-          )}
-          aria-hidden
-        />
-
-        {/* Hover overlay — absolute, no height change */}
+        {/* Hover overlay — animates in from top; card height unchanged */}
         <div
           className={cn(
             "absolute inset-0 z-10 flex flex-col gap-4 p-6 lg:p-8",
-            "bg-bg-base/20 transition-opacity duration-300 ease-out",
+            "bg-bg-base/25 transition-opacity duration-300 ease-out",
             "opacity-0 group-hover:opacity-100 group-focus-within:opacity-100",
+            "pointer-events-none",
             "motion-reduce:transition-none"
           )}
         >
@@ -126,6 +135,7 @@ export function CaseStudyCard({
           />
         </div>
       </div>
+      <span className="sr-only">{study.client} case study</span>
     </Link>
   );
 }

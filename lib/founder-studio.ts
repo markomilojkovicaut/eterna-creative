@@ -79,7 +79,7 @@ export const teamMembers: TeamMember[] = [
     id: "artur",
     name: "Artur",
     role: "Lead engineer",
-    gradientClass: "bg-gradient-to-tr from-brand-purple-dark via-brand-purple to-brand-pink-light",
+    imageSrc: "/images/team/artur.png",
     staggerClass: "lg:translate-y-8",
   },
   {
