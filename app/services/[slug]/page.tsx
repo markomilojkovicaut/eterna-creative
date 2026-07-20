@@ -61,7 +61,7 @@ export default async function ServicePage({ params }: PageProps) {
         <div className={cn("relative z-10", LAYOUT_OUTER_CLASS)}>
           <div className={LAYOUT_INNER_CLASS}>
             <Link
-              href="/#services"
+              href="/services"
               className="text-body-sm text-brand-purple-light transition-colors hover:text-text-heading"
             >
               ← All services

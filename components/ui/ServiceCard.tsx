@@ -2,16 +2,16 @@
 
 import Link from "next/link";
 
+import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
 import { ServiceIcon } from "@/components/ui/ServiceIcon";
 import { getServiceSlug } from "@/lib/service-pages";
 import { servicePhaseLabels, type Service } from "@/lib/services";
 import { cn } from "@/lib/utils";
 
-/** Services section motion: slide-left reveal (shared by every service card). */
-const descHidden =
-  "translate-x-3 opacity-0 motion-reduce:translate-x-0";
-const descShown =
-  "group-hover:translate-x-0 group-hover:opacity-100 group-focus-within:translate-x-0 group-focus-within:opacity-100";
+const pillsHidden =
+  "translate-y-2 opacity-0 motion-reduce:translate-y-0";
+const pillsShown =
+  "group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:translate-y-0 group-focus-within:opacity-100";
 
 export function ServiceCard({
   service,
@@ -41,7 +41,6 @@ export function ServiceCard({
       />
 
       <div className="relative z-10 flex h-full min-h-0 flex-col">
-        {/* Top row: phase left, icon top-right aligned with phase */}
         <div className="flex items-start justify-between gap-3">
           <p
             className={cn(
@@ -56,7 +55,6 @@ export function ServiceCard({
           </div>
         </div>
 
-        {/* 8px between phase row and title */}
         <h3
           className={cn(
             "mt-2 font-heading text-heading-md font-bold",
@@ -66,8 +64,16 @@ export function ServiceCard({
           {service.title}
         </h3>
 
-        <div className="relative mt-auto min-h-[4.5rem] pt-4">
-          <ul className="absolute inset-x-0 bottom-0 flex flex-wrap gap-1.5 transition-all duration-300 group-hover:translate-y-1 group-hover:opacity-0 group-focus-within:translate-y-1 group-focus-within:opacity-0 motion-reduce:group-hover:translate-y-0 motion-reduce:group-focus-within:translate-y-0">
+        <div className="mt-auto flex flex-col gap-4 pt-4">
+          <ul
+            className={cn(
+              "flex min-h-[1.5rem] flex-wrap gap-1.5",
+              "transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none",
+              pillsHidden,
+              pillsShown,
+              "motion-reduce:group-hover:opacity-100 motion-reduce:group-focus-within:opacity-100"
+            )}
+          >
             {service.tags.map((tag) => (
               <li
                 key={tag}
@@ -78,17 +84,10 @@ export function ServiceCard({
             ))}
           </ul>
 
-          <p
-            className={cn(
-              "absolute inset-x-0 bottom-0 text-body-sm leading-relaxed text-text-body",
-              "transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none",
-              descHidden,
-              descShown,
-              "motion-reduce:group-hover:opacity-100 motion-reduce:group-focus-within:opacity-100"
-            )}
-          >
-            {service.description}
-          </p>
+          <span className="inline-flex w-fit items-center gap-1.5 text-body-sm font-semibold text-text-heading">
+            Open
+            <ArrowUpRight className="!h-4 !w-4 !text-brand-purple-light" />
+          </span>
         </div>
       </div>
     </Link>

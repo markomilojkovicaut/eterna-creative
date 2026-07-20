@@ -1,5 +1,8 @@
 "use client";
 
+import Link from "next/link";
+import { useState } from "react";
+
 import { CallToActionLink } from "@/components/ui/CallToActionLink";
 import { DarkSectionBackdrop, SectionHeading } from "@/components/ui";
 import { ServiceCard } from "@/components/ui/ServiceCard";
@@ -14,7 +17,6 @@ import {
   LAYOUT_OUTER_CLASS,
 } from "@/lib/layout-constants";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
 
 export function Services() {
   const [filter, setFilter] = useState<ServiceFilterId>("all");
@@ -72,9 +74,17 @@ export function Services() {
               Book a strategy call - we map your vision, scope, and stack. You
               leave with a clear plan whether we work together or not.
             </p>
-            <CallToActionLink href="/book" className="w-fit">
-              Book a strategy call
-            </CallToActionLink>
+            <div className="flex flex-wrap items-center gap-4">
+              <CallToActionLink href="/book" className="w-fit">
+                Book a strategy call
+              </CallToActionLink>
+              <Link
+                href="/services"
+                className="text-body-sm font-semibold text-brand-purple-light no-underline hover:text-text-heading"
+              >
+                View all services
+              </Link>
+            </div>
           </div>
         </div>
       </div>

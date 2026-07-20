@@ -119,19 +119,14 @@ function EnginePopup({
         <div className="space-y-5 px-6 py-6 sm:px-8">
           <div className="flex flex-wrap gap-2">
             <DarkTagPill>{`Engine ${engine.number}`}</DarkTagPill>
-            <DarkTagPill>{engine.subtitle}</DarkTagPill>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-start gap-4">
             <EngineIcon icon={engine.icon} highlight={engine.highlight} />
-            <p className="text-body-sm font-medium text-text-sub">
-              {engine.subtitle}
+            <p className="text-body-md leading-relaxed text-text-body">
+              {engine.description}
             </p>
           </div>
-
-          <p className="text-body-md leading-relaxed text-text-body">
-            {engine.description}
-          </p>
 
           <CallToActionLink href="/book" className="w-fit">
             Book a strategy call

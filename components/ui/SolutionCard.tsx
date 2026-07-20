@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 
+import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
 import { SolutionIcon } from "@/components/ui/SolutionIcon";
 import type { Solution } from "@/lib/solutions";
 import { cn } from "@/lib/utils";
@@ -41,7 +42,7 @@ export function SolutionCard({
           {solution.title}
         </h3>
 
-        <div className="relative mt-auto min-h-[11rem]">
+        <div className="relative min-h-[9rem] flex-1">
           <p
             className={cn(
               "absolute inset-x-0 top-0 text-body-md leading-relaxed text-text-body",
@@ -54,6 +55,18 @@ export function SolutionCard({
             {solution.description}
           </p>
         </div>
+
+        <span
+          className={cn(
+            "inline-flex w-fit items-center gap-1.5 rounded-soft border border-border-dark",
+            "bg-bg-card/70 px-3 py-1.5 text-body-sm font-medium text-text-heading",
+            "opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100",
+            "motion-reduce:opacity-100"
+          )}
+        >
+          Explore
+          <ArrowUpRight className="!h-3.5 !w-3.5 !text-brand-purple-light" />
+        </span>
       </div>
     </Link>
   );

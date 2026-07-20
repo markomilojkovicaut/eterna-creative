@@ -32,7 +32,7 @@ export function EternaSystem() {
               }
             />
 
-            <div className="mt-10 sm:mt-12 lg:mt-14 lg:-mx-6 xl:-mx-10">
+            <div className="mt-10 sm:mt-12 lg:mt-14">
               <EngineCircle engines={eternaEngines} />
             </div>
           </BorderedDarkPanel>
