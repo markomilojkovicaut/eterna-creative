@@ -79,7 +79,6 @@ export function Investment() {
                 )}
               >
                 {investmentCalculatorCta.label}
-                {investmentCalculatorCta.label}
                 <ArrowUpRight className="!text-brand-purple-light" />
               </Link>
             </div>
