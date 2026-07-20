@@ -1,15 +1,20 @@
 import Link from "next/link";
 
 import { Section } from "@/components/layout/Section";
-import { SectionHeading } from "@/components/ui";
 import { LightCtaLink } from "@/components/ui/LightCtaLink";
+import { LightEditorialDisplay } from "@/components/ui/LightEditorialDisplay";
 import { ResourceBentoCard } from "@/components/ui/ResourceBentoCard";
+import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { blogPosts } from "@/lib/blog-posts";
 import { guides } from "@/lib/guides-content";
 import { templates } from "@/lib/templates-content";
 import { resourceItems } from "@/lib/resources";
+import {
+  lightEditorialAccentLineClasses,
+  lightEditorialLineClasses,
+} from "@/lib/heading-styles";
 import { HEADER_OFFSET_CLASS } from "@/lib/layout-constants";
 import type { Metadata } from "next";
 
@@ -23,15 +28,15 @@ export default function ResourcesPage() {
   return (
     <main className={HEADER_OFFSET_CLASS}>
       <Section background="surface" className="text-text-ink-sub">
-        <SectionHeading
-          label="Resources"
-          labelVariant="light"
-          lines={[
-            { text: "Free tools to", variant: "default" },
-            { text: "help you grow", variant: "gradient" },
-          ]}
-          subheading="Tools, guides, templates, and blog posts - curated for founders and builders."
-        />
+        <SectionLabel tone="light">Resources</SectionLabel>
+        <LightEditorialDisplay className="mt-3 max-w-[520px]">
+          <span className={lightEditorialLineClasses}>Free tools to</span>
+          <span className={lightEditorialAccentLineClasses}>help you grow</span>
+        </LightEditorialDisplay>
+        <p className="mt-3 max-w-[520px] text-body-md leading-relaxed text-text-ink-sub">
+          Tools, guides, templates, and blog posts - curated for founders and
+          builders.
+        </p>
 
         <div className="mt-14">
           <h2 className="font-heading text-heading-md font-bold text-text-ink">

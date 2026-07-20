@@ -9,9 +9,14 @@ export interface SectionHeadingLine {
   variant?: SectionHeadingLineVariant;
 }
 
-const lineVariantClasses: Record<SectionHeadingLineVariant, string> = {
-  default:
-    "block text-display-md text-text-heading sm:text-display-lg",
+const lineVariantClassesDark: Record<SectionHeadingLineVariant, string> = {
+  default: "block text-display-md text-text-heading sm:text-display-lg",
+  gradient:
+    "block overflow-visible bg-gradient-to-r from-brand-purple to-brand-pink bg-clip-text pb-1 text-display-md text-transparent sm:text-display-lg",
+};
+
+const lineVariantClassesLight: Record<SectionHeadingLineVariant, string> = {
+  default: "block text-display-md text-text-ink sm:text-display-lg",
   gradient:
     "block overflow-visible bg-gradient-to-r from-brand-purple to-brand-pink bg-clip-text pb-1 text-display-md text-transparent sm:text-display-lg",
 };
@@ -41,6 +46,11 @@ export function SectionHeading({
   titleMaxWidth = "max-w-[640px]",
   subheadingMaxWidth = "max-w-[420px]",
 }: SectionHeadingProps) {
+  const lineClasses =
+    labelVariant === "light" ? lineVariantClassesLight : lineVariantClassesDark;
+  const subheadingColor =
+    labelVariant === "light" ? "text-text-ink-sub" : "text-text-sub";
+
   const title = (
     <h2
       className={cn(
@@ -54,7 +64,7 @@ export function SectionHeading({
         <span
           key={line.text}
           className={cn(
-            lineVariantClasses[line.variant ?? "default"],
+            lineClasses[line.variant ?? "default"],
             index > 0 && "mt-0.5"
           )}
         >
@@ -74,7 +84,8 @@ export function SectionHeading({
             <p
               className={cn(
                 subheadingMaxWidth,
-                "text-left text-body-md leading-relaxed text-text-sub lg:ml-auto lg:text-right lg:justify-self-end"
+                "text-left text-body-md leading-relaxed lg:ml-auto lg:text-right lg:justify-self-end",
+                subheadingColor
               )}
             >
               {subheading}
@@ -92,7 +103,8 @@ export function SectionHeading({
       {subheading && (
         <p
           className={cn(
-            "mt-3 text-body-md leading-relaxed text-text-sub",
+            "mt-3 text-body-md leading-relaxed",
+            subheadingColor,
             subheadingMaxWidth
           )}
         >

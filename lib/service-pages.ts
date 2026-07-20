@@ -339,9 +339,9 @@ export function getAllServiceSlugs(): string[] {
   return Object.keys(servicePageContent);
 }
 
-/** Map service card id to page slug (same id for all current services). */
+/** Map service card id to page path. */
 export function getServiceSlug(serviceId: string): string | null {
-  return servicePageContent[serviceId] ? serviceId : null;
+  return servicePageContent[serviceId] ? `/services/${serviceId}` : null;
 }
 
 export type { ServicePhase, ServiceIconId };
