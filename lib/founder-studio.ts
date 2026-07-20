@@ -83,13 +83,6 @@ export const teamMembers: TeamMember[] = [
     staggerClass: "lg:translate-y-8",
   },
   {
-    id: "jovana",
-    name: "Jovana",
-    role: "QA tester",
-    gradientClass: "bg-gradient-to-bl from-brand-pink via-brand-purple-light to-brand-purple-dark",
-    staggerClass: "lg:translate-y-16",
-  },
-  {
     id: "violeta",
     name: "Violeta",
     role: "Marketing director",

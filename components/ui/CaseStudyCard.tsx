@@ -6,22 +6,24 @@ import { DarkTagPill } from "@/components/ui/DarkTagPill";
 import type { CaseStudy } from "@/lib/case-studies";
 import { cn } from "@/lib/utils";
 
-const openCaseStudyButtonClass =
-  "inline-flex w-fit items-center gap-1.5 rounded-soft border border-border-dark bg-bg-card/70 px-3 py-1.5 text-body-sm font-medium text-text-heading backdrop-blur-sm";
-
+/** White CTA — idle covers never show this; hover overlay only. */
 function OpenCaseStudyButton({ className }: { className?: string }) {
   return (
-    <span className={cn(openCaseStudyButtonClass, className)}>
+    <span
+      className={cn(
+        "inline-flex w-fit items-center gap-1.5 rounded-soft border border-white/30 bg-white px-3 py-1.5 text-body-sm font-medium text-bg-base",
+        className
+      )}
+    >
       Open case study
-      <ArrowUpRight className="!h-3.5 !w-3.5 !text-brand-purple-light" />
+      <ArrowUpRight className="!h-3.5 !w-3.5 !text-brand-purple" />
     </span>
   );
 }
 
 /**
- * Cover art already includes CASE STUDY + client + CTA.
- * Hover overlays tags + headline on a blurred/darkened image — no layout shift.
- * Hover CTA matches the cover "Open case study" button.
+ * Cover art may include a baked-in CTA — masked on idle.
+ * Hover overlays tags + headline + white Open case study button (no layout shift).
  */
 export function CaseStudyCard({
   study,
@@ -67,9 +69,17 @@ export function CaseStudyCard({
             <p className="font-heading text-heading-lg font-bold text-text-heading lg:text-display-md">
               {study.client}
             </p>
-            <OpenCaseStudyButton />
           </div>
         )}
+
+        {/* Mask baked-in cover CTA on idle */}
+        <div
+          className={cn(
+            "pointer-events-none absolute inset-x-0 bottom-0 z-[5] h-[22%] bg-gradient-to-t from-[#08060f] via-[#08060f]/90 to-transparent",
+            "transition-opacity duration-300 group-hover:opacity-0 group-focus-within:opacity-0"
+          )}
+          aria-hidden
+        />
 
         {/* Hover overlay — absolute, no height change */}
         <div

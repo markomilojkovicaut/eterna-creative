@@ -111,7 +111,7 @@ export default async function SolutionPage({ params }: PageProps) {
               <h3 className="font-heading text-heading-sm font-bold text-text-heading">
                 {service.title}
               </h3>
-              <p className="mt-2 text-body-sm text-text-body">
+              <p className="mt-0 text-body-sm text-text-body">
                 {service.description}
               </p>
             </Link>

@@ -12,7 +12,7 @@ const triggerClass =
   "inline-flex items-center gap-1 text-[12px] text-text-body transition-colors hover:text-text-heading";
 
 const panelClass =
-  "absolute left-1/2 top-full z-50 mt-3 w-[min(100vw-2rem,420px)] -translate-x-1/2 rounded-soft border border-border-dark bg-bg-card/95 p-3 shadow-glow-purple backdrop-blur-md";
+  "w-[min(100vw-2rem,420px)] rounded-soft border border-border-dark bg-bg-card/95 p-3 shadow-glow-purple backdrop-blur-md";
 
 function Chevron({ open }: { open: boolean }) {
   return (
@@ -115,47 +115,53 @@ export function HeaderNavDropdown({
         <Chevron open={open} />
       </button>
 
+      {/* pt-3 keeps a hover bridge so the panel does not close between trigger and menu */}
       <div
         id={menuId}
         role="menu"
         hidden={!open}
-        className={cn(panelClass, !open && "pointer-events-none")}
-      >
-        {isIconGrid ? (
-          <div
-            className={cn(
-              "grid gap-1",
-              item.id === "services" ? "grid-cols-2" : "grid-cols-1"
-            )}
-          >
-            {item.items.map((entry) => (
-              <DropdownItemButton
-                key={entry.href}
-                item={entry}
-                onNavigate={() => setOpen(false)}
-              />
-            ))}
-          </div>
-        ) : (
-          <div className="flex flex-col gap-0.5">
-            {item.items.map((entry) => (
-              <DropdownItemButton
-                key={entry.href}
-                item={entry}
-                onNavigate={() => setOpen(false)}
-              />
-            ))}
-          </div>
+        className={cn(
+          "absolute left-1/2 top-full z-50 -translate-x-1/2 pt-3",
+          !open && "pointer-events-none"
         )}
+      >
+        <div className={panelClass}>
+          {isIconGrid ? (
+            <div
+              className={cn(
+                "grid gap-1",
+                item.id === "services" ? "grid-cols-2" : "grid-cols-1"
+              )}
+            >
+              {item.items.map((entry) => (
+                <DropdownItemButton
+                  key={entry.href}
+                  item={entry}
+                  onNavigate={() => setOpen(false)}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="flex flex-col gap-0.5">
+              {item.items.map((entry) => (
+                <DropdownItemButton
+                  key={entry.href}
+                  item={entry}
+                  onNavigate={() => setOpen(false)}
+                />
+              ))}
+            </div>
+          )}
 
-        <div className="mt-2 border-t border-border-dark pt-2">
-          <Link
-            href={item.href}
-            onClick={() => setOpen(false)}
-            className="block rounded-soft px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-brand-purple-light no-underline hover:bg-bg-base/50"
-          >
-            View all {item.label.toLowerCase()}
-          </Link>
+          <div className="mt-2 border-t border-border-dark pt-2">
+            <Link
+              href={item.href}
+              onClick={() => setOpen(false)}
+              className="block rounded-soft px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-brand-purple-light no-underline hover:bg-bg-base/50"
+            >
+              View all {item.label.toLowerCase()}
+            </Link>
+          </div>
         </div>
       </div>
     </div>

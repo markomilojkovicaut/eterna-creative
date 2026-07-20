@@ -33,7 +33,7 @@ export function SolutionCard({
         aria-hidden
       />
 
-      <div className="relative z-10 flex h-full flex-col gap-5 lg:gap-6">
+      <div className="relative z-10 flex h-full flex-col">
         <div className="flex items-start justify-between gap-3">
           <div className="transition-transform duration-500 group-hover:scale-110 group-focus-within:scale-110 motion-reduce:group-hover:scale-100">
             <SolutionIcon icon={solution.icon} />
@@ -52,11 +52,11 @@ export function SolutionCard({
           </span>
         </div>
 
-        <h3 className="font-heading text-[13px] font-bold uppercase tracking-[0.06em] text-text-heading sm:text-sm">
+        <h3 className="mt-5 font-heading text-[13px] font-bold uppercase tracking-[0.06em] text-text-heading sm:text-sm lg:mt-6">
           {solution.title}
         </h3>
 
-        <div className="relative mt-auto min-h-[9rem]">
+        <div className="relative mt-2 min-h-[9rem] flex-1">
           <p
             className={cn(
               "absolute inset-x-0 top-0 text-body-md leading-relaxed text-text-body",
