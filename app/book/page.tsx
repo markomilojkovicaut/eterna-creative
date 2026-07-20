@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { CalInlineEmbed } from "@/components/book/CalInlineEmbed";
 import { Section } from "@/components/layout/Section";
 import { DarkSectionBackdrop, SectionHeading } from "@/components/ui";
 import { DarkFaqAccordion } from "@/components/ui/DarkFaqAccordion";
-import { bookCalendlyUrl, bookExpectations, bookPageMeta } from "@/lib/book";
+import { bookExpectations, bookPageMeta, calEmbed } from "@/lib/book";
 import { faqItems } from "@/lib/faq";
 import { HEADER_OFFSET_CLASS } from "@/lib/layout-constants";
 import { sectionBackdropPresets } from "@/lib/section-backdrops";
@@ -51,19 +52,19 @@ export default function BookPage() {
                     ready to talk about what you are building.
                   </p>
                 </div>
-                <div className="flex min-h-[420px] flex-col items-center justify-center gap-4 px-6 py-10 sm:px-8">
-                  <p className="max-w-sm text-center text-body-md text-text-sub">
-                    Calendly embed goes here. Until then, use the button below
-                    to open scheduling in a new tab.
+                <div className="px-4 py-4 sm:px-6 sm:py-6">
+                  <CalInlineEmbed />
+                  <p className="mt-4 text-center text-body-sm text-text-muted">
+                    Embed not loading?{" "}
+                    <a
+                      href={calEmbed.externalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-brand-purple-light hover:text-text-heading"
+                    >
+                      Open cal.com/eterna/15min
+                    </a>
                   </p>
-                  <a
-                    href={bookCalendlyUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center rounded-soft bg-text-heading px-6 py-2 font-semibold text-bg-base no-underline transition-opacity hover:opacity-90"
-                  >
-                    Open scheduling
-                  </a>
                 </div>
               </div>
 

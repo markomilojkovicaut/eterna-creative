@@ -25,5 +25,19 @@ export const bookExpectations = [
   },
 ];
 
-/** Replace with your Calendly URL when ready. */
-export const bookCalendlyUrl = "https://calendly.com/eterna-creative/strategy-call";
+export const calEmbed = {
+  namespace: "15min",
+  calLink: "eterna/15min",
+  elementId: "my-cal-inline-15min",
+  origin: "https://app.cal.com",
+  scriptSrc: "https://app.cal.com/embed/embed.js",
+  externalUrl: "https://cal.com/eterna/15min",
+  inlineConfig: {
+    layout: "month_view",
+    useSlotsViewOnSmallScreen: "true",
+  },
+  uiConfig: {
+    hideEventTypeDetails: false,
+    layout: "month_view",
+  },
+} as const;
