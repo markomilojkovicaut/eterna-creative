@@ -11,8 +11,11 @@ import { cn } from "@/lib/utils";
 const triggerClass =
   "inline-flex items-center gap-1 text-[12px] text-text-body transition-colors hover:text-text-heading";
 
-const panelClass =
-  "w-[min(100vw-2rem,420px)] rounded-soft border border-border-dark bg-bg-card/95 p-3 shadow-glow-purple backdrop-blur-md";
+const panelWidthByCols: Record<1 | 2 | 3, string> = {
+  1: "w-[min(100vw-2rem,240px)]",
+  2: "w-[min(100vw-2rem,480px)]",
+  3: "w-[min(100vw-2rem,640px)]",
+};
 
 function Chevron({ open }: { open: boolean }) {
   return (
@@ -70,6 +73,39 @@ function DropdownItemButton({
   );
 }
 
+function DropdownColumns({
+  item,
+  onNavigate,
+}: {
+  item: Extract<HeaderNavItem, { type: "dropdown" }>;
+  onNavigate: () => void;
+}) {
+  const cols = item.panelCols ?? Math.min(item.columns.length, 3);
+  const gridCols =
+    cols === 3 ? "grid-cols-3" : cols === 2 ? "grid-cols-2" : "grid-cols-1";
+
+  return (
+    <div className={cn("grid gap-3", gridCols)}>
+      {item.columns.map((column, index) => (
+        <div key={column.label ?? `col-${index}`} className="flex flex-col gap-1">
+          {column.label ? (
+            <p className="px-3 pb-1 pt-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-purple-light">
+              {column.label}
+            </p>
+          ) : null}
+          {column.items.map((entry) => (
+            <DropdownItemButton
+              key={entry.href + entry.label}
+              item={entry}
+              onNavigate={onNavigate}
+            />
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export function HeaderNavDropdown({
   item,
 }: {
@@ -78,6 +114,7 @@ export function HeaderNavDropdown({
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const menuId = useId();
+  const cols = (item.panelCols ?? Math.min(item.columns.length, 3)) as 1 | 2 | 3;
 
   useEffect(() => {
     if (!open) return;
@@ -94,8 +131,6 @@ export function HeaderNavDropdown({
       document.removeEventListener("keydown", onKey);
     };
   }, [open]);
-
-  const isIconGrid = item.id === "services" || item.id === "solutions";
 
   return (
     <div
@@ -125,43 +160,25 @@ export function HeaderNavDropdown({
           !open && "pointer-events-none"
         )}
       >
-        <div className={panelClass}>
-          {isIconGrid ? (
-            <div
-              className={cn(
-                "grid gap-1",
-                item.id === "services" ? "grid-cols-2" : "grid-cols-1"
-              )}
-            >
-              {item.items.map((entry) => (
-                <DropdownItemButton
-                  key={entry.href}
-                  item={entry}
-                  onNavigate={() => setOpen(false)}
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="flex flex-col gap-0.5">
-              {item.items.map((entry) => (
-                <DropdownItemButton
-                  key={entry.href}
-                  item={entry}
-                  onNavigate={() => setOpen(false)}
-                />
-              ))}
-            </div>
+        <div
+          className={cn(
+            "rounded-soft border border-border-dark bg-bg-card/95 p-3 shadow-glow-purple backdrop-blur-md",
+            panelWidthByCols[cols]
           )}
+        >
+          <DropdownColumns item={item} onNavigate={() => setOpen(false)} />
 
-          <div className="mt-2 border-t border-border-dark pt-2">
-            <Link
-              href={item.href}
-              onClick={() => setOpen(false)}
-              className="block rounded-soft px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-brand-purple-light no-underline hover:bg-bg-base/50"
-            >
-              View all {item.label.toLowerCase()}
-            </Link>
-          </div>
+          {item.showViewAll && item.href ? (
+            <div className="mt-2 border-t border-border-dark pt-2">
+              <Link
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className="block rounded-soft px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-brand-purple-light no-underline hover:bg-bg-base/50"
+              >
+                View all {item.label.toLowerCase()}
+              </Link>
+            </div>
+          ) : null}
         </div>
       </div>
     </div>
@@ -179,11 +196,7 @@ export function MobileNavSection({
 
   if (item.type === "link") {
     return (
-      <Link
-        href={item.href}
-        className={triggerClass}
-        onClick={onNavigate}
-      >
+      <Link href={item.href} className={triggerClass} onClick={onNavigate}>
         {item.label}
       </Link>
     );
@@ -201,21 +214,35 @@ export function MobileNavSection({
         <Chevron open={open} />
       </button>
       {open ? (
-        <div className="flex flex-col gap-1 border-l border-border-dark pl-3">
-          {item.items.map((entry) => (
-            <DropdownItemButton
-              key={entry.href}
-              item={entry}
-              onNavigate={onNavigate}
-            />
+        <div className="flex flex-col gap-3 border-l border-border-dark pl-3">
+          {item.columns.map((column, index) => (
+            <div
+              key={column.label ?? `col-${index}`}
+              className="flex flex-col gap-1"
+            >
+              {column.label ? (
+                <p className="px-3 text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-purple-light">
+                  {column.label}
+                </p>
+              ) : null}
+              {column.items.map((entry) => (
+                <DropdownItemButton
+                  key={entry.href + entry.label}
+                  item={entry}
+                  onNavigate={onNavigate}
+                />
+              ))}
+            </div>
           ))}
-          <Link
-            href={item.href}
-            onClick={onNavigate}
-            className="px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-brand-purple-light no-underline"
-          >
-            View all {item.label.toLowerCase()}
-          </Link>
+          {item.showViewAll && item.href ? (
+            <Link
+              href={item.href}
+              onClick={onNavigate}
+              className="px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-brand-purple-light no-underline"
+            >
+              View all {item.label.toLowerCase()}
+            </Link>
+          ) : null}
         </div>
       ) : null}
     </div>
