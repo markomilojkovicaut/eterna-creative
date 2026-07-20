@@ -34,15 +34,29 @@ export function SolutionCard({
       />
 
       <div className="relative z-10 flex h-full flex-col gap-5 lg:gap-6">
-        <div className="transition-transform duration-500 group-hover:scale-110 group-focus-within:scale-110 motion-reduce:group-hover:scale-100">
-          <SolutionIcon icon={solution.icon} />
+        <div className="flex items-start justify-between gap-3">
+          <div className="transition-transform duration-500 group-hover:scale-110 group-focus-within:scale-110 motion-reduce:group-hover:scale-100">
+            <SolutionIcon icon={solution.icon} />
+          </div>
+
+          <span
+            className={cn(
+              "inline-flex shrink-0 items-center gap-1.5 rounded-soft border border-border-dark",
+              "bg-bg-card/70 px-3 py-1.5 text-body-sm font-medium text-text-heading",
+              "opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100",
+              "motion-reduce:opacity-100"
+            )}
+          >
+            Explore
+            <ArrowUpRight className="!h-3.5 !w-3.5 !text-brand-purple-light" />
+          </span>
         </div>
 
         <h3 className="font-heading text-[13px] font-bold uppercase tracking-[0.06em] text-text-heading sm:text-sm">
           {solution.title}
         </h3>
 
-        <div className="relative min-h-[9rem] flex-1">
+        <div className="relative mt-auto min-h-[9rem]">
           <p
             className={cn(
               "absolute inset-x-0 top-0 text-body-md leading-relaxed text-text-body",
@@ -55,18 +69,6 @@ export function SolutionCard({
             {solution.description}
           </p>
         </div>
-
-        <span
-          className={cn(
-            "inline-flex w-fit items-center gap-1.5 rounded-soft border border-border-dark",
-            "bg-bg-card/70 px-3 py-1.5 text-body-sm font-medium text-text-heading",
-            "opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100",
-            "motion-reduce:opacity-100"
-          )}
-        >
-          Explore
-          <ArrowUpRight className="!h-3.5 !w-3.5 !text-brand-purple-light" />
-        </span>
       </div>
     </Link>
   );
