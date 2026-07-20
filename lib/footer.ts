@@ -16,7 +16,7 @@ export const footerLinkGroups = [
     links: [
       { label: "Home", href: "/" },
       { label: "Case studies", href: "/portfolio" },
-      { label: "Career", href: "/jobs" },
+      { label: "Resources", href: "/resources" },
     ],
   },
   {

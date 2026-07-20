@@ -1,5 +1,5 @@
-import { EngineCard } from "@/components/ui/EngineCard";
 import { BorderedDarkPanel, SectionHeading } from "@/components/ui";
+import { EngineCircle } from "@/components/ui/EngineCircle";
 import { eternaEngines } from "@/lib/eterna-engines";
 import {
   LAYOUT_INNER_CLASS,
@@ -25,20 +25,15 @@ export function EternaSystem() {
               titleMaxWidth="max-w-[520px]"
               subheading={
                 <>
-                  Every one of these failure points is a stage in our
-                  methodology. We don&apos;t just build - we research before we
-                  build, plan acquisition before we launch, and instrument
-                  retention before it is a problem.
+                  Every failure point is a stage in our methodology. Click an
+                  engine to explore how we research, engineer, acquire, activate,
+                  retain, and measure.
                 </>
               }
             />
 
-            <div className="mt-10 overflow-hidden rounded-soft border border-border-dark lg:mt-14">
-              <div className="grid divide-x divide-y divide-border-dark md:grid-cols-2 lg:grid-cols-3">
-                {eternaEngines.map((engine) => (
-                  <EngineCard key={engine.id} engine={engine} />
-                ))}
-              </div>
+            <div className="mt-10 lg:mt-14">
+              <EngineCircle engines={eternaEngines} />
             </div>
           </BorderedDarkPanel>
         </div>

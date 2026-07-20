@@ -20,7 +20,7 @@ export function Services() {
   const [filter, setFilter] = useState<ServiceFilterId>("all");
 
   return (
-    <section className="relative overflow-hidden bg-bg-base pt-section">
+    <section id="services" className="relative overflow-hidden bg-bg-base pt-section">
       <DarkSectionBackdrop
         flipVertical
         objectPosition="bottom-right"

@@ -1,34 +1,39 @@
 import type { Metadata } from "next";
-import { HEADER_OFFSET_CLASS } from "@/lib/layout-constants";
-import { Badge } from "@/components/ui/Badge";
-import { Card } from "@/components/ui/Card";
+
+import { CaseStudyCard } from "@/components/ui/CaseStudyCard";
+import { SectionHeading } from "@/components/ui";
 import { Section } from "@/components/layout/Section";
+import { caseStudies } from "@/lib/case-studies";
+import { HEADER_OFFSET_CLASS } from "@/lib/layout-constants";
 
 export const metadata: Metadata = {
   title: "Portfolio | Eterna",
   description:
-    "Case studies from startups we helped launch on Bubble.io - from MVP to traction.",
+    "Case studies from products we validated, designed, and built with founders - from MVP to traction.",
 };
 
 export default function PortfolioPage() {
   return (
     <main className={HEADER_OFFSET_CLASS}>
       <Section>
-        <h1 className="font-heading text-display-md text-text-heading">
-          Portfolio
-        </h1>
-        <p className="mt-4 max-w-2xl text-body-md text-text-body">
-          Real products we shipped with founders - marketplaces, SaaS tools, and
-          mobile-first apps built on Bubble.io.
-        </p>
+        <SectionHeading
+          label="Case studies"
+          lines={[
+            { text: "Products we've", variant: "default" },
+            { text: "built and launched", variant: "gradient" },
+          ]}
+          subheading={
+            <>
+              Real products, real founders, real outcomes - same methodology
+              every time: validated, designed, and built to scale.
+            </>
+          }
+        />
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <Card hover glow="purple" className="p-6">
-            <Badge variant="pink">Tag</Badge>
-            <p className="mt-4 text-body-md text-text-body">
-              Case studies will appear here once connected to your CMS.
-            </p>
-          </Card>
+        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:mt-16 lg:gap-8">
+          {caseStudies.map((study) => (
+            <CaseStudyCard key={study.id} study={study} />
+          ))}
         </div>
       </Section>
     </main>

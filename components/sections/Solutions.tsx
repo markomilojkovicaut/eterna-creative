@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 
 export function Solutions() {
   return (
-    <section className="relative overflow-hidden bg-bg-base pt-section">
+    <section id="solutions" className="relative overflow-hidden bg-bg-base pt-section">
       <DarkSectionBackdrop
         flipVertical
         objectPosition="bottom-right"

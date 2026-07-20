@@ -1,4 +1,5 @@
 import { LightEditorialDisplay } from "@/components/ui/LightEditorialDisplay";
+import { LightCtaLink } from "@/components/ui/LightCtaLink";
 import { ResourceBentoCard } from "@/components/ui/ResourceBentoCard";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { resourceItems } from "@/lib/resources";
@@ -16,6 +17,10 @@ export function Resources() {
         <span className={lightEditorialLineClasses}>Free tools to</span>
         <span className={lightEditorialAccentLineClasses}>help you grow</span>
       </LightEditorialDisplay>
+
+      <LightCtaLink href="/resources" className="mt-6">
+        View all resources
+      </LightCtaLink>
 
       <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:auto-rows-[minmax(168px,auto)] lg:gap-5">
         {resourceItems.map((item) => (

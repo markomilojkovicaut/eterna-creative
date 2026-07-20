@@ -1,29 +1,25 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+
 import { Badge } from "@/components/ui/Badge";
+import { getAllBlogSlugs, getBlogPostBySlug } from "@/lib/blog-posts";
 import { HEADER_OFFSET_CLASS } from "@/lib/layout-constants";
 import { Section } from "@/components/layout/Section";
-import type { BlogPost } from "@/lib/types";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
-async function getPostBySlug(slug: string): Promise<BlogPost | null> {
-  void slug;
-  return null;
-}
-
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
-  return [];
+  return getAllBlogSlugs().map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = await getPostBySlug(slug);
+  const post = getBlogPostBySlug(slug);
 
   if (post) {
     return {
@@ -33,15 +29,14 @@ export async function generateMetadata({
   }
 
   return {
-    title: `Post | Eterna Blog`,
-    description:
-      "Insights for startup founders building MVPs on Bubble.io.",
+    title: "Post | Eterna Blog",
+    description: "Insights for startup founders building products.",
   };
 }
 
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params;
-  const post = await getPostBySlug(slug);
+  const post = getBlogPostBySlug(slug);
 
   if (!post) {
     notFound();
@@ -65,8 +60,8 @@ export default async function BlogPostPage({ params }: PageProps) {
             {post.readTime} min read
           </p>
         </div>
-        <article className="mt-12 text-body-md text-text-body">
-          Content from CMS
+        <article className="prose-invert mt-12 max-w-2xl text-body-md leading-relaxed text-text-body">
+          <p>{post.content}</p>
         </article>
       </Section>
     </main>

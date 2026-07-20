@@ -1,30 +1,29 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
+import {
+  getAllTemplateSlugs,
+  getTemplateBySlug,
+} from "@/lib/templates-content";
 import { HEADER_OFFSET_CLASS } from "@/lib/layout-constants";
 import { Section } from "@/components/layout/Section";
-import type { Template } from "@/lib/types";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
-async function getTemplateBySlug(slug: string): Promise<Template | null> {
-  void slug;
-  return null;
-}
-
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
-  return [];
+  return getAllTemplateSlugs().map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const template = await getTemplateBySlug(slug);
+  const template = getTemplateBySlug(slug);
 
   if (template) {
     return {
@@ -35,14 +34,13 @@ export async function generateMetadata({
 
   return {
     title: "Template | Eterna Templates",
-    description:
-      "Bubble.io starter templates from Eterna for faster MVP development.",
+    description: "Starter templates from Eterna for faster MVP development.",
   };
 }
 
 export default async function TemplatePage({ params }: PageProps) {
   const { slug } = await params;
-  const template = await getTemplateBySlug(slug);
+  const template = getTemplateBySlug(slug);
 
   if (!template) {
     notFound();
@@ -64,7 +62,7 @@ export default async function TemplatePage({ params }: PageProps) {
                 {tag}
               </Badge>
             ))}
-            <Badge variant={template.isPaid ? "purple" : "success"}>
+            <Badge variant={template.isPaid ? "purple" : "muted"}>
               {template.isPaid ? "Paid" : "Free"}
             </Badge>
           </div>
@@ -80,7 +78,7 @@ export default async function TemplatePage({ params }: PageProps) {
             </p>
           ) : null}
           <div className="mt-6">
-            <Button variant="primary" size="md">
+            <Button variant="primary" size="md" type="button">
               {template.isPaid ? "Purchase template" : "Download template"}
             </Button>
           </div>

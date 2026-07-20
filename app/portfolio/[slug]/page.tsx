@@ -1,48 +1,44 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
+import { CallToActionLink } from "@/components/ui/CallToActionLink";
+import { getAllCaseStudySlugs, getCaseStudyBySlug } from "@/lib/case-studies";
 import { HEADER_OFFSET_CLASS } from "@/lib/layout-constants";
 import { Section } from "@/components/layout/Section";
-import type { PortfolioItem } from "@/lib/types";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
-async function getPortfolioBySlug(slug: string): Promise<PortfolioItem | null> {
-  void slug;
-  return null;
-}
-
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
-  return [];
+  return getAllCaseStudySlugs().map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const item = await getPortfolioBySlug(slug);
+  const item = getCaseStudyBySlug(slug);
 
   if (item) {
     return {
-      title: `${item.title} | Eterna Portfolio`,
+      title: `${item.client} | Eterna Portfolio`,
       description: item.description,
     };
   }
 
   return {
     title: "Case Study | Eterna Portfolio",
-    description:
-      "Bubble.io case studies from Eterna - MVPs built for startup founders.",
+    description: "Case studies from Eterna - products built for startup founders.",
   };
 }
 
 export default async function PortfolioCaseStudyPage({ params }: PageProps) {
   const { slug } = await params;
-  const item = await getPortfolioBySlug(slug);
+  const item = getCaseStudyBySlug(slug);
 
   if (!item) {
     notFound();
@@ -82,11 +78,30 @@ export default async function PortfolioCaseStudyPage({ params }: PageProps) {
             </div>
           ) : null}
         </div>
+
+        <div
+          className="relative mt-12 aspect-[16/9] w-full overflow-hidden rounded-soft border border-border-dark"
+          style={{ backgroundImage: item.imageGradient }}
+        >
+          <div className="absolute inset-0 bg-scanlines opacity-30" aria-hidden />
+        </div>
+
         <div className="mt-12">
           <h2 className="font-heading text-heading-lg text-text-heading">
             Results
           </h2>
-          <p className="mt-4 text-body-md text-text-body">{item.results}</p>
+          <p className="mt-4 max-w-2xl text-body-md text-text-body">
+            {item.results}
+          </p>
+        </div>
+
+        <div className="mt-12 border-t border-border-dark pt-12">
+          <p className="text-body-md text-text-sub">
+            Building something similar?
+          </p>
+          <CallToActionLink href="/book" className="mt-4">
+            Book a strategy call
+          </CallToActionLink>
         </div>
       </Section>
     </main>
