@@ -7,6 +7,11 @@ import {
   LAYOUT_OUTER_CLASS,
 } from "@/lib/layout-constants";
 import { proofProducts } from "@/lib/proof-products";
+import {
+  investmentTopBandClass,
+  investmentTopBandFadeClass,
+  sectionBackdropPresets,
+} from "@/lib/section-backdrops";
 import { cn } from "@/lib/utils";
 
 /** Proof section motion: scale-soft reveal (shared by every proof card). */
@@ -55,14 +60,13 @@ function ProofScreenshot({
 
 export function Proof() {
   return (
-    <section className="relative overflow-hidden bg-bg-base pt-section">
-      <DarkSectionBackdrop
-        flipVertical
-        objectPosition="bottom-right"
-        gradient="section"
-      />
+    <section className="relative overflow-hidden bg-bg-base py-section">
+      <div className={investmentTopBandClass} aria-hidden>
+        <DarkSectionBackdrop {...sectionBackdropPresets.investment} />
+        <div className={investmentTopBandFadeClass} />
+      </div>
 
-      <div className={cn("relative z-10 pb-section", LAYOUT_OUTER_CLASS)}>
+      <div className={cn("relative z-10", LAYOUT_OUTER_CLASS)}>
         <div className={LAYOUT_INNER_CLASS}>
           <SectionHeading
             label="Proof"

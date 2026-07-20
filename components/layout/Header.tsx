@@ -8,14 +8,8 @@ import {
   LAYOUT_INNER_CLASS,
   LAYOUT_OUTER_CLASS,
 } from "@/lib/layout-constants";
+import { headerNavLinks } from "@/lib/site-nav";
 import { cn } from "@/lib/utils";
-
-const navLinks = [
-  { label: "Services", href: "/#services" },
-  { label: "Portfolio", href: "/portfolio" },
-  { label: "Blog", href: "/blog" },
-  { label: "About", href: "/#about" },
-];
 
 const navLinkClass =
   "text-[12px] text-text-body transition-colors hover:text-text-heading";
@@ -59,7 +53,7 @@ export function Header() {
           </Link>
 
           <nav className="hidden items-center gap-8 md:flex">
-            {navLinks.map((link) => (
+            {headerNavLinks.map((link) => (
               <Link key={link.href} href={link.href} className={navLinkClass}>
                 {link.label}
               </Link>
@@ -68,7 +62,7 @@ export function Header() {
 
           <div className="hidden md:block">
             <CallToActionLink href="/book" size="sm">
-              Book a call
+              Book a strategy call
             </CallToActionLink>
           </div>
 
@@ -117,7 +111,7 @@ export function Header() {
       >
         <div className={LAYOUT_OUTER_CLASS}>
           <div className={cn(LAYOUT_INNER_CLASS, "flex flex-col gap-4 py-4")}>
-            {navLinks.map((link) => (
+            {headerNavLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -128,7 +122,7 @@ export function Header() {
               </Link>
             ))}
             <CallToActionLink href="/book" size="sm" className="w-fit">
-              Book a call
+              Book a strategy call
             </CallToActionLink>
           </div>
         </div>

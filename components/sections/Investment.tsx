@@ -61,7 +61,7 @@ export function Investment() {
                   "no-underline transition-colors hover:border-border-strong hover:bg-bg-card/80"
                 )}
               >
-                Book a call
+                Book a strategy call
                 <ArrowUpRight className="!text-brand-purple-light" />
               </Link>
             </div>

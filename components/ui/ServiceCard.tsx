@@ -1,6 +1,9 @@
 "use client";
 
+import Link from "next/link";
+
 import { ServiceIcon } from "@/components/ui/ServiceIcon";
+import { getServiceSlug } from "@/lib/service-pages";
 import { servicePhaseLabels, type Service } from "@/lib/services";
 import { cn } from "@/lib/utils";
 
@@ -20,13 +23,14 @@ export function ServiceCard({
   className?: string;
 }) {
   const highlight = service.iconHighlight ?? false;
+  const href = getServiceSlug(service.id) ?? `/services/${service.id}`;
 
   return (
-    <article
-      tabIndex={0}
+    <Link
+      href={href}
       className={cn(
         "group relative flex min-h-[240px] flex-col overflow-hidden p-4 outline-none transition-opacity duration-300 sm:min-h-[260px] sm:p-5 lg:min-h-[280px] lg:p-6",
-        "focus-visible:ring-2 focus-visible:ring-brand-purple-light/50",
+        "no-underline focus-visible:ring-2 focus-visible:ring-brand-purple-light/50",
         highlighted ? "opacity-100" : "opacity-[0.35]",
         className
       )}
@@ -87,6 +91,6 @@ export function ServiceCard({
           </p>
         </div>
       </div>
-    </article>
+    </Link>
   );
 }

@@ -46,7 +46,6 @@ export function Hero() {
         aria-hidden
       />
 
-      {/* Content shell: must be h-full so inner flex + mt-auto fill the viewport */}
       <div
         className={cn(
           "relative z-10 flex h-full min-h-0 flex-col",
@@ -60,7 +59,6 @@ export function Hero() {
             LAYOUT_INNER_CLASS
           )}
         >
-          {/* Top left: label + heading */}
           <div className="flex flex-col items-center text-center lg:col-span-6 lg:row-start-1 lg:items-start lg:text-left">
             <LabelPill>AI-native product studio</LabelPill>
 
@@ -79,7 +77,6 @@ export function Hero() {
             </h1>
           </div>
 
-          {/* Middle right: partner label, subheading, CTA */}
           <div className="flex flex-col items-center justify-center gap-6 text-center lg:col-span-5 lg:col-start-8 lg:row-start-2 lg:items-end lg:text-right">
             <div className="flex w-full max-w-[420px] flex-col items-center gap-6 lg:items-end">
               <div className="flex flex-wrap items-center justify-center gap-3 text-[16px] lg:justify-end">
@@ -106,7 +103,6 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Bottom left: phones */}
           <div className="flex w-full justify-center lg:col-span-6 lg:row-start-3 lg:justify-start lg:self-end">
             <div className="w-full max-w-xl lg:max-w-2xl">
               <Image
