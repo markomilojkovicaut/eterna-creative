@@ -6,13 +6,14 @@ import { DarkFaqAccordion } from "@/components/ui/DarkFaqAccordion";
 import { DarkTagPill } from "@/components/ui/DarkTagPill";
 import { SecondaryCtaLink } from "@/components/ui/SecondaryCtaLink";
 import { ServiceIcon } from "@/components/ui/ServiceIcon";
+import { eternaEngines } from "@/lib/eterna-engines";
 import {
+  HEADER_OFFSET_CLASS,
   LAYOUT_INNER_CLASS,
   LAYOUT_OUTER_CLASS,
 } from "@/lib/layout-constants";
 import { sectionBackdropPresets } from "@/lib/section-backdrops";
 import type { ServicePageContent } from "@/lib/service-page-types";
-import { eternaEngines } from "@/lib/eterna-engines";
 import { servicePhaseLabels, type Service } from "@/lib/services";
 import { cn } from "@/lib/utils";
 
@@ -43,9 +44,9 @@ export function ServiceDetailView({
   const includedIsList = page.included.items.every((i) => !i.body);
 
   return (
-    <main>
+    <main className={HEADER_OFFSET_CLASS}>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-bg-base pb-section pt-[calc(48px+theme(spacing.section))]">
+      <section className="relative overflow-hidden bg-bg-base pb-section pt-section">
         <DarkSectionBackdrop {...sectionBackdropPresets.services} />
         <Rail>
           <Link
