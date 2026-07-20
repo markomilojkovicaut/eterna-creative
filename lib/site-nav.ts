@@ -13,10 +13,11 @@ export type NavLink = {
 };
 
 export type FooterContactLink = NavLink & {
-  icon: "calendar" | "mail" | "linkedin";
+  icon?: "calendar" | "mail" | "linkedin";
 };
 
 export type ResourceNavIconId = "guides" | "blog" | "templates";
+export type CompanyNavIconId = "about" | "careers";
 
 export type HeaderDropdownItem = {
   label: string;
@@ -25,6 +26,7 @@ export type HeaderDropdownItem = {
   serviceIcon?: ServiceIconId;
   solutionIcon?: SolutionIconId;
   resourceIcon?: ResourceNavIconId;
+  companyIcon?: CompanyNavIconId;
   /** Featured visual for Resources dropdown (e.g. app calculator). */
   featuredImageSrc?: string;
   featuredCtaLabel?: string;
@@ -222,8 +224,8 @@ export const headerNavItems: HeaderNavItem[] = [
     columns: [
       {
         items: [
-          { label: "About us", href: "/about" },
-          { label: "Careers", href: "/careers" },
+          { label: "About us", href: "/about", companyIcon: "about" },
+          { label: "Careers", href: "/careers", companyIcon: "careers" },
         ],
       },
     ],
@@ -253,24 +255,19 @@ export const footerLinkGroups = [
     label: "Pages",
     links: [
       { label: "Home", href: "/" },
-      { label: "Portfolio", href: "/portfolio" },
       { label: "Services", href: "/services" },
+      { label: "Portfolio", href: "/portfolio" },
       { label: "Solutions", href: "/#solutions" },
-      { label: "Blueprint", href: "/blueprint" },
-      { label: "Migration", href: "/migration" },
-      { label: "About us", href: "/about" },
-      { label: "Careers", href: "/careers" },
     ] as const satisfies readonly NavLink[],
   },
   {
     id: "resources",
     label: "Resources",
     links: [
-      { label: "Resources hub", href: "/resources" },
+      { label: "App calculator", href: "/tools/app-cost-calculator" },
       { label: "Blog", href: "/blog" },
       { label: "Guides", href: "/guides" },
       { label: "Templates", href: "/templates" },
-      { label: "App calculator", href: "/tools/app-cost-calculator" },
     ] as const satisfies readonly NavLink[],
   },
   {
@@ -282,11 +279,20 @@ export const footerLinkGroups = [
         href: "/book",
         icon: "calendar" as const,
       },
+      { label: "Blueprint", href: "/blueprint" },
       {
         label: "Send email",
         href: "mailto:hello@eterna.dev",
         icon: "mail" as const,
       },
+    ] as const satisfies readonly FooterContactLink[],
+  },
+  {
+    id: "company",
+    label: "Company",
+    links: [
+      { label: "About us", href: "/about" },
+      { label: "Careers", href: "/careers" },
       {
         label: "LinkedIn",
         href: "https://www.linkedin.com/company/eterna-creative",

@@ -16,8 +16,9 @@ import {
 import { headerNavItems } from "@/lib/site-nav";
 import { cn } from "@/lib/utils";
 
+/** Match dropdown trigger metrics so Portfolio sits on the same baseline. */
 const navLinkClass =
-  "text-[12px] text-text-body transition-colors hover:text-text-heading";
+  "inline-flex h-8 items-center text-[12px] leading-none text-text-body transition-colors hover:text-text-heading";
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);

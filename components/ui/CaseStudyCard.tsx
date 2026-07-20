@@ -6,7 +6,7 @@ import { DarkTagPill } from "@/components/ui/DarkTagPill";
 import type { CaseStudy } from "@/lib/case-studies";
 import { cn } from "@/lib/utils";
 
-/** White CTA — hover only. */
+/** White CTA — hover / focus only. Never on idle flat card. */
 function OpenCaseStudyButton({ className }: { className?: string }) {
   return (
     <span
@@ -22,8 +22,8 @@ function OpenCaseStudyButton({ className }: { className?: string }) {
 }
 
 /**
- * Idle: cover art only (CASE STUDY + client are in the cover; no CTA).
- * Hover: blur/darken cover, overlay tags + headline + white Open case study.
+ * Idle: cover + CASE STUDY + client (no Open CTA).
+ * Hover: blur/darken, tags + headline + white Open case study.
  * Height never changes.
  */
 export function CaseStudyCard({
@@ -68,7 +68,18 @@ export function CaseStudyCard({
           />
         )}
 
-        {/* Fallback idle label when no cover image (gradient only) */}
+        {/* Mask any residual baked CTA at the bottom of cover art on idle */}
+        <div
+          className={cn(
+            "pointer-events-none absolute inset-x-0 bottom-0 z-[5] h-[28%]",
+            "bg-gradient-to-t from-bg-base via-bg-base/75 to-transparent",
+            "transition-opacity duration-300",
+            "group-hover:opacity-0 group-focus-within:opacity-0"
+          )}
+          aria-hidden
+        />
+
+        {/* Idle labels when cover art has no baked title */}
         {!study.coverImage ? (
           <div
             className={cn(
@@ -89,7 +100,7 @@ export function CaseStudyCard({
           </div>
         ) : null}
 
-        {/* Hover overlay — animates in from top; card height unchanged */}
+        {/* Hover overlay — Open CTA only here */}
         <div
           className={cn(
             "absolute inset-0 z-10 flex flex-col gap-4 p-6 lg:p-8",

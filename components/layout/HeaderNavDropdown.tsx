@@ -14,20 +14,16 @@ import type {
 import { cn } from "@/lib/utils";
 
 const triggerClass =
-  "inline-flex items-center gap-1 text-[12px] text-text-body transition-colors hover:text-text-heading";
+  "inline-flex h-8 items-center gap-1 text-[12px] leading-none text-text-body transition-colors hover:text-text-heading";
 
 const panelWidthByCols: Record<1 | 2 | 3, string> = {
-  1: "w-[min(100vw-2rem,240px)]",
+  1: "w-[min(100vw-2rem,280px)]",
   2: "w-[min(100vw-2rem,480px)]",
   3: "w-[min(100vw-2rem,640px)]",
 };
 
 const resourceIcons: Record<ResourceNavIconId, React.ReactNode> = {
-  guides: (
-    <>
-      <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
-    </>
-  ),
+  guides: <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />,
   blog: (
     <>
       <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -41,6 +37,57 @@ const resourceIcons: Record<ResourceNavIconId, React.ReactNode> = {
     </>
   ),
 };
+
+const companyIcons: Record<"about" | "careers", React.ReactNode> = {
+  about: (
+    <>
+      <circle cx="12" cy="8" r="4" />
+      <path d="M4 20a8 8 0 0 1 16 0" />
+    </>
+  ),
+  careers: (
+    <>
+      <rect width="16" height="12" x="4" y="6" rx="2" />
+      <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M4 12h16" />
+    </>
+  ),
+};
+
+/** Circle frame matching ServiceIcon / SolutionIcon. */
+function NavCircleIcon({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <span
+      className={cn(
+        "relative flex size-10 shrink-0 items-center justify-center",
+        className
+      )}
+      aria-hidden
+    >
+      <span className="absolute inset-0 rounded-full border border-border-dark" />
+      <span className="relative flex size-8 items-center justify-center rounded-full bg-bg-card">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.75"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="text-brand-purple-light"
+        >
+          {children}
+        </svg>
+      </span>
+    </span>
+  );
+}
 
 function Chevron({ open }: { open: boolean }) {
   return (
@@ -59,37 +106,6 @@ function Chevron({ open }: { open: boolean }) {
     >
       <path d="m6 9 6 6 6-6" />
     </svg>
-  );
-}
-
-function ResourceIcon({
-  icon,
-  className,
-}: {
-  icon: ResourceNavIconId;
-  className?: string;
-}) {
-  return (
-    <span
-      className={cn(
-        "flex size-9 shrink-0 items-center justify-center text-text-heading",
-        className
-      )}
-      aria-hidden
-    >
-      <svg
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.75"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        {resourceIcons[icon]}
-      </svg>
-    </span>
   );
 }
 
@@ -115,7 +131,16 @@ function DropdownItemButton({
       {item.solutionIcon ? (
         <SolutionIcon icon={item.solutionIcon} className="shrink-0" />
       ) : null}
-      {item.resourceIcon ? <ResourceIcon icon={item.resourceIcon} /> : null}
+      {item.resourceIcon ? (
+        <NavCircleIcon className="!size-9">
+          {resourceIcons[item.resourceIcon]}
+        </NavCircleIcon>
+      ) : null}
+      {item.companyIcon ? (
+        <NavCircleIcon className="!size-9">
+          {companyIcons[item.companyIcon]}
+        </NavCircleIcon>
+      ) : null}
       <span className="min-w-0">
         <span className="block text-[12px] font-semibold text-text-heading">
           {item.label}
