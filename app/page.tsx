@@ -17,8 +17,8 @@ import { Solutions } from "@/components/sections/Solutions";
 
 /**
  * Homepage rhythm:
- * Intro → HOW we work (problem, engines, approach/process) → WHAT we offer
- * (products, doors, cases, proof, solutions) → trust & close.
+ * Intro → WHAT (products, start here) → HOW (challenges, engines, then white
+ * approach/process) → WHAT again (cases, proof, solutions) → trust & close.
  */
 export default function HomePage() {
   return (
@@ -26,14 +26,16 @@ export default function HomePage() {
       <Hero />
       <HomeLightChapter />
 
-      {/* HOW — challenges + methodology + approach/process */}
+      {/* WHAT — offer first */}
+      <Services />
+      <EntryDoors />
+
+      {/* HOW — problem + methodology, then white approach/process */}
       <FounderJourney />
       <EternaSystem />
       <HomeApproachChapter />
 
-      {/* WHAT — products, entry doors, proof of work, who it's for */}
-      <Services />
-      <EntryDoors />
+      {/* WHAT again — proof of work + who it's for */}
       <CaseStudies />
       <Proof />
       <Solutions />
