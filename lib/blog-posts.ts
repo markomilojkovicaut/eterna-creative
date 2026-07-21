@@ -37,6 +37,18 @@ export const blogPosts: BlogPost[] = [
     category: "Founders",
     coverImage: "",
   },
+  {
+    slug: "best-use-of-ai-award",
+    title: "Best Use of AI: building products we run ourselves",
+    excerpt:
+      "Why shipping our own AI products sets the reliability bar we bring to every client engagement.",
+    content:
+      "Awards are nice. Production is the test. We build and operate AI products in-house so client work inherits the same eval discipline, cost control, and failure handling - not a demo that collapses under real traffic.",
+    publishedAt: "2026-03-10",
+    readTime: 4,
+    category: "AI",
+    coverImage: "",
+  },
 ];
 
 export function getBlogPostBySlug(slug: string): BlogPost | undefined {

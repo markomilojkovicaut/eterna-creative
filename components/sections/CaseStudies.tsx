@@ -1,11 +1,13 @@
 import { CaseStudyCard } from "@/components/ui/CaseStudyCard";
 import { DarkSectionBackdrop, SectionHeading } from "@/components/ui";
 import { SecondaryCtaLink } from "@/components/ui/SecondaryCtaLink";
+import { SectionPullQuote } from "@/components/ui/SectionPullQuote";
 import { caseStudies } from "@/lib/case-studies";
 import {
   LAYOUT_INNER_CLASS,
   LAYOUT_OUTER_CLASS,
 } from "@/lib/layout-constants";
+import { quoteInCaseStudies } from "@/lib/section-quotes";
 import { cn } from "@/lib/utils";
 
 export function CaseStudies() {
@@ -38,7 +40,12 @@ export function CaseStudies() {
             ))}
           </div>
 
-          <div className="mt-section flex justify-center">
+          <SectionPullQuote
+            quote={quoteInCaseStudies}
+            className="mt-10 lg:mt-14"
+          />
+
+          <div className="mt-10 flex justify-center lg:mt-14">
             <SecondaryCtaLink href="/portfolio">
               View all case studies
             </SecondaryCtaLink>
