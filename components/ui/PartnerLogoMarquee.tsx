@@ -6,10 +6,32 @@ import Link from "next/link";
 import type { Partner } from "@/lib/partners";
 import { cn } from "@/lib/utils";
 
-const caseStudyTagClasses =
-  "inline-flex rounded-full border border-border-muted bg-bg-muted px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-text-ink-muted transition-colors duration-300";
+export type PartnerLogoTone = "ink" | "white";
 
-function PartnerLogoCell({ partner }: { partner: Partner }) {
+const caseStudyTagClassesByTone: Record<PartnerLogoTone, string> = {
+  ink: "inline-flex rounded-full border border-border-muted bg-bg-muted px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-text-ink-muted transition-colors duration-300 group-hover/case:border-border-strong group-hover/case:bg-bg-surface group-hover/case:text-text-ink",
+  white:
+    "inline-flex rounded-full border border-border-dark bg-bg-card/50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-text-sub transition-colors duration-300 group-hover/case:border-border-strong group-hover/case:bg-bg-card group-hover/case:text-text-heading",
+};
+
+const logoFilterByTone: Record<PartnerLogoTone, string> = {
+  /** Black logos for light surfaces (existing Partners section). */
+  ink: "brightness-0",
+  /**
+   * White logos for dark surfaces (Hero).
+   * Invert turns dark marks white and white JPEG backgrounds black;
+   * screen blend then drops those black backgrounds on the dark hero.
+   */
+  white: "invert mix-blend-screen",
+};
+
+function PartnerLogoCell({
+  partner,
+  tone,
+}: {
+  partner: Partner;
+  tone: PartnerLogoTone;
+}) {
   const content = (
     <div className="flex flex-col items-center justify-center gap-1">
       <Image
@@ -17,17 +39,13 @@ function PartnerLogoCell({ partner }: { partner: Partner }) {
         alt={partner.name}
         width={160}
         height={48}
-        className="h-auto max-h-8 w-auto max-w-[130px] object-contain object-center brightness-0"
+        className={cn(
+          "h-auto max-h-8 w-auto max-w-[130px] object-contain object-center",
+          logoFilterByTone[tone]
+        )}
       />
       {partner.caseStudySlug && (
-        <span
-          className={cn(
-            caseStudyTagClasses,
-            "group-hover/case:border-border-strong group-hover/case:bg-bg-surface group-hover/case:text-text-ink"
-          )}
-        >
-          Case study
-        </span>
+        <span className={caseStudyTagClassesByTone[tone]}>Case study</span>
       )}
     </div>
   );
@@ -52,9 +70,12 @@ function PartnerLogoCell({ partner }: { partner: Partner }) {
 export function PartnerLogoMarquee({
   partners,
   className,
+  tone = "ink",
 }: {
   partners: Partner[];
   className?: string;
+  /** `ink` = black logos (light bg). `white` = white logos (dark bg). */
+  tone?: PartnerLogoTone;
 }) {
   const track = [...partners, ...partners];
 
@@ -75,6 +96,7 @@ export function PartnerLogoMarquee({
           <PartnerLogoCell
             key={`${partner.id}-${index}`}
             partner={partner}
+            tone={tone}
           />
         ))}
       </div>

@@ -79,14 +79,13 @@ export function FounderLedStudio() {
             <DarkAccordion items={founderPrinciples} />
           </div>
 
-          <div className="mt-section grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4 lg:items-end lg:gap-5">
+          <div className="mt-section grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-3 lg:items-end lg:gap-5">
             {teamMembers.map((member) => (
               <TeamMemberCard key={member.id} member={member} />
             ))}
           </div>
 
-          {/* 120px gap; +4rem on lg accounts for Jovana's translate-y-16 stagger */}
-          <div className="relative mt-section lg:mt-[calc(7.5rem+4rem)] overflow-hidden rounded-soft border border-border-dark bg-bg-card/30">
+          <div className="relative mt-section overflow-hidden rounded-soft border border-border-dark bg-bg-card/30">
             <div
               className="pointer-events-none absolute inset-0 bg-gradient-to-t from-brand-purple-dark via-bg-base to-bg-base"
               aria-hidden

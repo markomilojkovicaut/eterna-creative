@@ -45,6 +45,19 @@ export const featuredClientReview: FeaturedClientReview = {
 
 export const clientReviews: ClientReview[] = [
   {
+    id: "tania-espinoza",
+    name: "Tania Espinoza",
+    role: "Founder & CEO, Global 8 Connect",
+    quote:
+      "Despite a significant time zone difference, they were incredibly responsive - questions answered in less than 24 hours. Beyond the build, they gave strategic recommendations that streamlined our B2B marketplace for MVP launch. Strong ownership mindset and real product thinking.",
+    avatarSrc: "/images/reviews/tania-global8connect.webp",
+    gradientCard: true,
+    reviewSource: {
+      label: "Clutch review",
+      href: "https://clutch.co/go-to-review/befb6945-69ab-4623-9b56-1aeb9e2912e1/473306",
+    },
+  },
+  {
     id: "stefanie-herbert",
     name: "Stefanie Herbert",
     role: "Co-founder, Relative Innovations",

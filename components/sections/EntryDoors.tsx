@@ -31,12 +31,12 @@ export function EntryDoors() {
           />
 
           <div className="mt-14 overflow-hidden rounded-soft border border-border-dark lg:mt-16">
-            <div className="grid divide-y divide-border-dark lg:grid-cols-3 lg:divide-x lg:divide-y-0">
+            <div className="grid divide-y divide-border-dark lg:grid-cols-4 lg:divide-x lg:divide-y-0">
               {entryDoors.map((door) => (
                 <Link
                   key={door.id}
                   href={door.href}
-                  className="group relative flex h-full min-h-[240px] flex-col overflow-hidden p-6 sm:min-h-[260px] sm:p-7 lg:p-8"
+                  className="group relative flex h-full min-h-[240px] flex-col overflow-hidden p-6 sm:min-h-[260px] sm:p-7 lg:min-h-[280px] lg:p-6 xl:p-8"
                 >
                   <div
                     className="pointer-events-none absolute inset-0 bg-engine-hover opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100"

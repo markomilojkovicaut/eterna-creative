@@ -1,5 +1,8 @@
 "use client";
 
+import Link from "next/link";
+
+import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
 import { SolutionIcon } from "@/components/ui/SolutionIcon";
 import type { Solution } from "@/lib/solutions";
 import { cn } from "@/lib/utils";
@@ -17,11 +20,11 @@ export function SolutionCard({
   className?: string;
 }) {
   return (
-    <article
-      tabIndex={0}
+    <Link
+      href={`/solutions/${solution.id}`}
       className={cn(
         "group relative flex h-full min-h-[300px] flex-col overflow-hidden p-6 outline-none sm:min-h-[320px] sm:p-7 lg:p-8",
-        "focus-visible:ring-2 focus-visible:ring-brand-purple-light/50",
+        "no-underline focus-visible:ring-2 focus-visible:ring-brand-purple-light/50",
         className
       )}
     >
@@ -30,16 +33,30 @@ export function SolutionCard({
         aria-hidden
       />
 
-      <div className="relative z-10 flex h-full flex-col gap-5 lg:gap-6">
-        <div className="transition-transform duration-500 group-hover:scale-110 group-focus-within:scale-110 motion-reduce:group-hover:scale-100">
-          <SolutionIcon icon={solution.icon} />
+      <div className="relative z-10 flex h-full flex-col">
+        <div className="flex items-start justify-between gap-3">
+          <div className="transition-transform duration-500 group-hover:scale-110 group-focus-within:scale-110 motion-reduce:group-hover:scale-100">
+            <SolutionIcon icon={solution.icon} />
+          </div>
+
+          <span
+            className={cn(
+              "inline-flex shrink-0 items-center gap-1.5 rounded-soft border border-border-dark",
+              "bg-bg-card/70 px-3 py-1.5 text-body-sm font-medium text-text-heading",
+              "opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100",
+              "motion-reduce:opacity-100"
+            )}
+          >
+            Explore
+            <ArrowUpRight className="!h-3.5 !w-3.5 !text-brand-purple-light" />
+          </span>
         </div>
 
-        <h3 className="font-heading text-[13px] font-bold uppercase tracking-[0.06em] text-text-heading sm:text-sm">
+        <h3 className="mt-5 font-heading text-[13px] font-bold uppercase tracking-[0.06em] text-text-heading sm:text-sm lg:mt-6">
           {solution.title}
         </h3>
 
-        <div className="relative mt-auto min-h-[11rem]">
+        <div className="relative mt-2 min-h-[9rem] flex-1">
           <p
             className={cn(
               "absolute inset-x-0 top-0 text-body-md leading-relaxed text-text-body",
@@ -53,6 +70,6 @@ export function SolutionCard({
           </p>
         </div>
       </div>
-    </article>
+    </Link>
   );
 }

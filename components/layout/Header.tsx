@@ -3,22 +3,22 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+
+import {
+  HeaderNavDropdown,
+  MobileNavSection,
+} from "@/components/layout/HeaderNavDropdown";
 import { CallToActionLink } from "@/components/ui/CallToActionLink";
 import {
   LAYOUT_INNER_CLASS,
   LAYOUT_OUTER_CLASS,
 } from "@/lib/layout-constants";
+import { headerNavItems } from "@/lib/site-nav";
 import { cn } from "@/lib/utils";
 
-const navLinks = [
-  { label: "Services", href: "/#services" },
-  { label: "Portfolio", href: "/portfolio" },
-  { label: "Blog", href: "/blog" },
-  { label: "About", href: "/#about" },
-];
-
+/** Match dropdown trigger metrics so Portfolio sits on the same baseline. */
 const navLinkClass =
-  "text-[12px] text-text-body transition-colors hover:text-text-heading";
+  "inline-flex h-8 items-center text-[12px] leading-none text-text-body transition-colors hover:text-text-heading";
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -58,23 +58,31 @@ export function Header() {
             />
           </Link>
 
-          <nav className="hidden items-center gap-8 md:flex">
-            {navLinks.map((link) => (
-              <Link key={link.href} href={link.href} className={navLinkClass}>
-                {link.label}
-              </Link>
-            ))}
+          <nav className="hidden items-center gap-8 lg:flex">
+            {headerNavItems.map((item) =>
+              item.type === "link" ? (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={navLinkClass}
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <HeaderNavDropdown key={item.id} item={item} />
+              )
+            )}
           </nav>
 
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <CallToActionLink href="/book" size="sm">
-              Book a call
+              Book a strategy call
             </CallToActionLink>
           </div>
 
           <button
             type="button"
-            className="inline-flex h-8 w-8 items-center justify-center rounded-soft text-text-sub md:hidden"
+            className="inline-flex h-8 w-8 items-center justify-center rounded-soft text-text-sub lg:hidden"
             aria-expanded={mobileOpen}
             aria-label="Toggle navigation menu"
             onClick={() => setMobileOpen((open) => !open)}
@@ -108,27 +116,24 @@ export function Header() {
 
       <nav
         className={cn(
-          "md:hidden",
+          "lg:hidden",
           mobileOpen ? "block" : "hidden",
           scrolled
             ? "border-t border-border-default bg-black/95 backdrop-blur-md"
-            : "border-t border-transparent bg-transparent backdrop-blur-none"
+            : "border-t border-transparent bg-bg-base/95 backdrop-blur-md"
         )}
       >
         <div className={LAYOUT_OUTER_CLASS}>
           <div className={cn(LAYOUT_INNER_CLASS, "flex flex-col gap-4 py-4")}>
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={navLinkClass}
-                onClick={() => setMobileOpen(false)}
-              >
-                {link.label}
-              </Link>
+            {headerNavItems.map((item) => (
+              <MobileNavSection
+                key={item.type === "link" ? item.href : item.id}
+                item={item}
+                onNavigate={() => setMobileOpen(false)}
+              />
             ))}
             <CallToActionLink href="/book" size="sm" className="w-fit">
-              Book a call
+              Book a strategy call
             </CallToActionLink>
           </div>
         </div>

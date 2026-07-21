@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { DarkSectionBackdrop, SectionHeading } from "@/components/ui";
 import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
@@ -7,6 +8,11 @@ import {
   LAYOUT_OUTER_CLASS,
 } from "@/lib/layout-constants";
 import { proofProducts } from "@/lib/proof-products";
+import {
+  investmentTopBandClass,
+  investmentTopBandFadeClass,
+  sectionBackdropPresets,
+} from "@/lib/section-backdrops";
 import { cn } from "@/lib/utils";
 
 /** Proof section motion: scale-soft reveal (shared by every proof card). */
@@ -14,7 +20,7 @@ const descHidden = "scale-[0.96] opacity-0 motion-reduce:scale-100";
 const descShown =
   "group-hover:scale-100 group-hover:opacity-100 group-focus-within:scale-100 group-focus-within:opacity-100";
 
-function ProofScreenshot({
+function ProofVisual({
   src,
   alt,
   label,
@@ -26,9 +32,8 @@ function ProofScreenshot({
   return (
     <div
       className={cn(
-        "relative aspect-[16/10] w-full max-w-[200px] shrink-0 overflow-hidden rounded-soft border border-border-dark",
-        "bg-bg-card/50 transition-transform duration-300 group-hover:scale-[1.02] group-focus-within:scale-[1.02]",
-        "sm:ml-auto"
+        "relative mt-auto aspect-video w-full overflow-hidden rounded-soft border border-border-dark",
+        "bg-bg-card/50 transition-transform duration-300 group-hover:scale-[1.01] group-focus-within:scale-[1.01]"
       )}
     >
       {src ? (
@@ -36,7 +41,7 @@ function ProofScreenshot({
           src={src}
           alt={alt}
           fill
-          sizes="200px"
+          sizes="(max-width: 768px) 100vw, 800px"
           className="object-cover object-top"
         />
       ) : (
@@ -55,14 +60,13 @@ function ProofScreenshot({
 
 export function Proof() {
   return (
-    <section className="relative overflow-hidden bg-bg-base pt-section">
-      <DarkSectionBackdrop
-        flipVertical
-        objectPosition="bottom-right"
-        gradient="section"
-      />
+    <section className="relative overflow-hidden bg-bg-base py-section">
+      <div className={investmentTopBandClass} aria-hidden>
+        <DarkSectionBackdrop {...sectionBackdropPresets.investment} />
+        <div className={investmentTopBandFadeClass} />
+      </div>
 
-      <div className={cn("relative z-10 pb-section", LAYOUT_OUTER_CLASS)}>
+      <div className={cn("relative z-10", LAYOUT_OUTER_CLASS)}>
         <div className={LAYOUT_INNER_CLASS}>
           <SectionHeading
             label="Proof"
@@ -74,64 +78,86 @@ export function Proof() {
             subheadingMaxWidth="max-w-[520px]"
             subheading={
               <>
-                Every product ships with AI now - the hard part is making it
-                reliable. We build and run our own AI products, so we know how
-                to make yours behave in production, not just in a demo.
+                We build and run our own AI products - so when we put AI in
+                yours, it has to hold up in production, not just in a demo.
               </>
             }
           />
 
           <div className="mt-14 overflow-hidden rounded-soft border border-border-dark lg:mt-16">
-            <div className="grid divide-y divide-border-dark lg:grid-cols-2 lg:divide-x lg:divide-y-0">
-              {proofProducts.map((product) => (
-                <a
-                  key={product.id}
-                  href={product.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative flex h-full min-h-[240px] overflow-hidden p-6 sm:min-h-[260px] sm:p-7 lg:p-8"
-                >
-                  <div
-                    className="pointer-events-none absolute inset-0 bg-engine-hover opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100"
-                    aria-hidden
-                  />
+            <div className="grid divide-y divide-border-dark">
+              {proofProducts.map((product) => {
+                const isAward = product.kind === "award";
+                const linkProps = product.external
+                  ? { target: "_blank" as const, rel: "noopener noreferrer" }
+                  : {};
 
-                  <div className="relative z-10 flex w-full flex-col gap-5 sm:flex-row sm:items-stretch sm:gap-6">
-                    {/* Left: heading, description, open affordance */}
-                    <div className="flex min-w-0 flex-1 flex-col gap-4">
-                      <div className="flex items-center gap-3">
-                        <h3 className="font-heading text-[13px] font-bold uppercase tracking-[0.06em] text-text-heading sm:text-sm">
-                          {product.name}
-                        </h3>
-                        <ArrowUpRight className="opacity-70 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-100 group-focus-within:translate-x-0.5 group-focus-within:opacity-100" />
-                      </div>
-
-                      <div className="relative min-h-[5.5rem] flex-1">
-                        <p
-                          className={cn(
-                            "absolute inset-x-0 top-0 text-body-md leading-relaxed text-text-body",
-                            "transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none",
-                            descHidden,
-                            descShown,
-                            "motion-reduce:group-hover:opacity-100 motion-reduce:group-focus-within:opacity-100"
-                          )}
-                        >
-                          {product.description}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Right: screenshot */}
-                    <ProofScreenshot
-                      src={product.screenshotSrc}
-                      alt={
-                        product.screenshotAlt ?? `${product.name} screenshot`
-                      }
-                      label={product.name}
+                return (
+                  <Link
+                    key={product.id}
+                    href={product.href}
+                    {...linkProps}
+                    className="group relative flex min-h-[320px] overflow-hidden p-6 sm:min-h-[360px] sm:p-8 lg:min-h-[400px] lg:p-10"
+                  >
+                    <div
+                      className="pointer-events-none absolute inset-0 bg-engine-hover opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100"
+                      aria-hidden
                     />
-                  </div>
-                </a>
-              ))}
+
+                    {isAward ? (
+                      <div className="relative z-10 flex w-full flex-col gap-6">
+                        <div>
+                          <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-purple-light">
+                            Recognition
+                          </p>
+                          <h3 className="mt-3 font-heading text-heading-md font-bold text-text-heading">
+                            {product.name}
+                          </h3>
+                          <p className="mt-3 max-w-[640px] text-body-md leading-relaxed text-text-body">
+                            {product.description}
+                          </p>
+                        </div>
+                        <span className="mt-auto inline-flex w-fit items-center gap-1.5 text-body-sm font-semibold text-text-heading">
+                          Read the story
+                          <ArrowUpRight className="!h-4 !w-4 !text-brand-purple-light" />
+                        </span>
+                      </div>
+                    ) : (
+                      <div className="relative z-10 flex w-full flex-col gap-6">
+                        <div className="flex flex-wrap items-center gap-3">
+                          <h3 className="font-heading text-[13px] font-bold uppercase tracking-[0.06em] text-text-heading sm:text-sm">
+                            {product.name}
+                          </h3>
+                          <ArrowUpRight className="opacity-70 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-100 group-focus-within:translate-x-0.5 group-focus-within:opacity-100" />
+                        </div>
+
+                        <div className="relative min-h-[4.5rem]">
+                          <p
+                            className={cn(
+                              "absolute inset-x-0 top-0 max-w-[640px] text-body-md leading-relaxed text-text-body",
+                              "transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none",
+                              descHidden,
+                              descShown,
+                              "motion-reduce:group-hover:opacity-100 motion-reduce:group-focus-within:opacity-100"
+                            )}
+                          >
+                            {product.description}
+                          </p>
+                        </div>
+
+                        <ProofVisual
+                          src={product.screenshotSrc}
+                          alt={
+                            product.screenshotAlt ??
+                            `${product.name} screenshot`
+                          }
+                          label={product.name}
+                        />
+                      </div>
+                    )}
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </div>

@@ -13,7 +13,7 @@ export const solutions: Solution[] = [
     icon: "rocket",
     title: "Founders & Startups",
     description:
-      "You have a validated problem or early traction and need to move fast - without over-building or burning runway. We take you from idea to a fundable product you actually own: validated first, engineered to scale, launched in weeks. Your technical co-founder, minus the equity ask.",
+      "You have a validated problem or early traction and need to move fast - without over-building or burning runway. We take you from idea to a fundable product you actually own: validated first, engineered to scale, launched in weeks.",
   },
   {
     id: "creators",

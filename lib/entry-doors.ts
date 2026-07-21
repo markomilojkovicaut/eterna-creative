@@ -12,8 +12,8 @@ export const entryDoors: EntryDoor[] = [
     title: "I have an idea",
     description:
       "We validate it, plan it, and build it - from free Launch Plan to live product.",
-    ctaLabel: "Book a strategy call",
-    href: "/book",
+    ctaLabel: "See the Blueprint",
+    href: "/blueprint",
   },
   {
     id: "migrate",
@@ -21,7 +21,7 @@ export const entryDoors: EntryDoor[] = [
     description:
       "Migrate your Bubble app to custom code you own - cleanly, no rebuild chaos.",
     ctaLabel: "See how migration works",
-    href: "/book",
+    href: "/migration",
   },
   {
     id: "automate",
@@ -29,6 +29,14 @@ export const entryDoors: EntryDoor[] = [
     description:
       "AI automations and agents (n8n) that cut manual work and run themselves.",
     ctaLabel: "Automate a workflow",
-    href: "/book",
+    href: "/services/automation",
+  },
+  {
+    id: "vibecode",
+    title: "I need to rescue vibecode",
+    description:
+      "Turn AI-generated prototypes into production software you can ship and maintain.",
+    ctaLabel: "See how rescue works",
+    href: "/rescue-vibecode",
   },
 ];
