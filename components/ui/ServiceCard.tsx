@@ -17,13 +17,17 @@ export function ServiceCard({
   service,
   highlighted,
   className,
+  eyebrow,
 }: {
   service: Service;
   highlighted: boolean;
   className?: string;
+  /** Overrides the default Plan/Build/Grow phase label. */
+  eyebrow?: string;
 }) {
   const highlight = service.iconHighlight ?? false;
   const href = getServiceSlug(service.id) ?? `/services/${service.id}`;
+  const label = eyebrow ?? servicePhaseLabels[service.phase];
 
   return (
     <Link
@@ -48,7 +52,7 @@ export function ServiceCard({
               highlight ? "text-brand-pink" : "text-brand-purple-light"
             )}
           >
-            {servicePhaseLabels[service.phase]}
+            {label}
           </p>
           <div className="shrink-0 transition-transform duration-500 group-hover:rotate-6 group-focus-within:rotate-6 motion-reduce:group-hover:rotate-0 motion-reduce:group-focus-within:rotate-0">
             <ServiceIcon icon={service.icon} highlight={highlight} />

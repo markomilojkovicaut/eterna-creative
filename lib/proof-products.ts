@@ -5,7 +5,14 @@ export interface ProofProduct {
   href: string;
   screenshotSrc?: string;
   screenshotAlt?: string;
+  /** Optional recognition badge shown on the card. */
+  awardLabel?: string;
 }
+
+export const proofAward = {
+  label: "Best Use of AI",
+  detail: "Award won with our own AI testing product",
+};
 
 export const proofProducts: ProofProduct[] = [
   {
@@ -25,5 +32,6 @@ export const proofProducts: ProofProduct[] = [
     href: "https://www.testaimodels.com",
     screenshotSrc: "/images/proof/testaimodels.png",
     screenshotAlt: "testaimodels product screenshot",
+    awardLabel: "Best Use of AI",
   },
 ];

@@ -69,20 +69,20 @@ export const headerNavItems: HeaderNavItem[] = [
     panelCols: 3,
     columns: [
       {
-        label: "Build",
+        label: "Products",
         items: [
           {
-            label: "Applications",
+            label: "Product",
             href: "/services/application",
             serviceIcon: "application",
           },
           {
-            label: "Websites",
+            label: "Website",
             href: "/services/website",
             serviceIcon: "website",
           },
           {
-            label: "Automations",
+            label: "Automation",
             href: "/services/automation",
             serviceIcon: "automation",
           },

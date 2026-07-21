@@ -1,25 +1,52 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
 
 import { CallToActionLink } from "@/components/ui/CallToActionLink";
 import { DarkSectionBackdrop, SectionHeading } from "@/components/ui";
 import { ServiceCard } from "@/components/ui/ServiceCard";
-import { ServiceFilterBar } from "@/components/ui/ServiceFilterBar";
-import {
-  isServiceHighlighted,
-  services,
-  type ServiceFilterId,
-} from "@/lib/services";
+import { services, type Service } from "@/lib/services";
 import {
   LAYOUT_INNER_CLASS,
   LAYOUT_OUTER_CLASS,
 } from "@/lib/layout-constants";
 import { cn } from "@/lib/utils";
 
+/** Primary sell: the three Build products (modules live on detail pages). */
+const productIds = ["application", "website", "automation"] as const;
+
+const productDisplay: Record<
+  (typeof productIds)[number],
+  { title: string; tags: string[] }
+> = {
+  application: {
+    title: "Product",
+    tags: ["Strategy", "UI/UX", "Development"],
+  },
+  website: {
+    title: "Website",
+    tags: ["UI/UX", "Build", "Copy"],
+  },
+  automation: {
+    title: "Automation",
+    tags: ["Workflows", "Process", "AI agents"],
+  },
+};
+
+function toProductCard(service: Service): Service {
+  const display = productDisplay[service.id as (typeof productIds)[number]];
+  if (!display) return service;
+  return {
+    ...service,
+    title: display.title,
+    tags: display.tags,
+  };
+}
+
 export function Services() {
-  const [filter, setFilter] = useState<ServiceFilterId>("all");
+  const products = services
+    .filter((s) => productIds.includes(s.id as (typeof productIds)[number]))
+    .map(toProductCard);
 
   return (
     <section id="services" className="relative overflow-hidden bg-bg-base pt-section">
@@ -33,42 +60,62 @@ export function Services() {
         <div className={LAYOUT_INNER_CLASS}>
           <SectionHeading
             split
-            label="Services"
+            label="Products we make"
             lines={[
-              { text: "Single studio -", variant: "default" },
-              { text: "from spark to scale", variant: "gradient" },
+              { text: "Three products.", variant: "default" },
+              { text: "Modules inside.", variant: "gradient" },
             ]}
             titleMaxWidth="max-w-[520px]"
             subheading={
               <>
-                Some clients come for the build, others for the strategy or
-                growth. Most end up needing all and that&apos;s exactly what we
-                cover in single studio. We stay with you until you succeed.
+                App, website, or automation - pick what you need built. Design,
+                development, copy, and AI capabilities live as modules inside
+                each product, not as a flat list of peers.
               </>
             }
           />
 
-          <ServiceFilterBar
-            active={filter}
-            onChange={setFilter}
-            className="mt-8 lg:mt-10"
-          />
-
-          <div className="mt-6 overflow-hidden rounded-soft border border-border-dark lg:mt-8">
-            <div className="grid divide-x divide-y divide-border-dark sm:grid-cols-2 lg:grid-cols-4">
-              {services.map((service) => (
+          <div className="mt-8 overflow-hidden rounded-soft border border-border-dark lg:mt-10">
+            <div className="grid divide-x divide-y divide-border-dark sm:grid-cols-3">
+              {products.map((product) => (
                 <ServiceCard
-                  key={service.id}
-                  service={service}
-                  highlighted={isServiceHighlighted(service, filter)}
+                  key={product.id}
+                  service={product}
+                  highlighted
+                  eyebrow="Product"
                 />
               ))}
             </div>
           </div>
 
+          <p className="mt-6 max-w-[560px] text-body-sm leading-relaxed text-text-sub">
+            Also available:{" "}
+            <Link
+              href="/services/research"
+              className="text-brand-purple-light no-underline hover:text-text-heading"
+            >
+              validation
+            </Link>
+            ,{" "}
+            <Link
+              href="/services/growth"
+              className="text-brand-purple-light no-underline hover:text-text-heading"
+            >
+              growth
+            </Link>
+            , and{" "}
+            <Link
+              href="/services/in-app"
+              className="text-brand-purple-light no-underline hover:text-text-heading"
+            >
+              marketing
+            </Link>{" "}
+            under Plan and Grow - secondary offers, not separate products.
+          </p>
+
           <div className="mt-10 flex w-full max-w-[400px] flex-col gap-4 lg:mt-14">
             <h3 className="font-heading text-heading-md font-bold text-text-heading">
-              Not sure where to start?
+              Not sure which product fits?
             </h3>
             <p className="text-body-md leading-relaxed text-text-body">
               Book a strategy call - we map your vision, scope, and stack. You
@@ -82,7 +129,7 @@ export function Services() {
                 href="/services"
                 className="text-body-sm font-semibold text-brand-purple-light no-underline hover:text-text-heading"
               >
-                View all services
+                View full studio menu
               </Link>
             </div>
           </div>
