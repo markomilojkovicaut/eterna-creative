@@ -21,9 +21,9 @@ export default function HomePage() {
       <Hero />
       <HomeLightChapter />
       <FounderJourney />
+      <EternaSystem />
       <EntryDoors />
       <Services />
-      <EternaSystem />
       <HomeApproachChapter />
       <CaseStudies />
       <Proof />

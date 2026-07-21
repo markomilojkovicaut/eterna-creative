@@ -225,9 +225,9 @@ export function EngineCircle({ engines }: { engines: EternaEngine[] }) {
         ))}
       </ul>
 
-      {/* Tablet/desktop: full-width circle */}
-      <div className="relative mx-auto hidden w-full sm:block">
-        <div className="relative aspect-square w-full">
+      {/* Tablet/desktop: capped circle (max 800×800) */}
+      <div className="relative mx-auto hidden w-full max-w-[800px] sm:block">
+        <div className="relative aspect-square w-full max-h-[800px]">
           <svg
             viewBox={`0 0 ${size} ${size}`}
             className="h-full w-full overflow-visible"
