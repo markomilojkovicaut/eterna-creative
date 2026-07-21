@@ -22,12 +22,12 @@ export function ServiceCard({
   service: Service;
   highlighted: boolean;
   className?: string;
-  /** Overrides the default Plan/Build/Grow phase label. */
+  /** Overrides the default Plan/Build/Grow phase label. Empty string hides it. */
   eyebrow?: string;
 }) {
   const highlight = service.iconHighlight ?? false;
   const href = getServiceSlug(service.id) ?? `/services/${service.id}`;
-  const label = eyebrow ?? servicePhaseLabels[service.phase];
+  const label = eyebrow === undefined ? servicePhaseLabels[service.phase] : eyebrow;
 
   return (
     <Link
@@ -46,14 +46,18 @@ export function ServiceCard({
 
       <div className="relative z-10 flex h-full min-h-0 flex-col">
         <div className="flex items-start justify-between gap-3">
-          <p
-            className={cn(
-              "pt-1 text-[11px] font-semibold uppercase tracking-[0.12em]",
-              highlight ? "text-brand-pink" : "text-brand-purple-light"
-            )}
-          >
-            {label}
-          </p>
+          {label ? (
+            <p
+              className={cn(
+                "pt-1 text-[11px] font-semibold uppercase tracking-[0.12em]",
+                highlight ? "text-brand-pink" : "text-brand-purple-light"
+              )}
+            >
+              {label}
+            </p>
+          ) : (
+            <span />
+          )}
           <div className="shrink-0 transition-transform duration-500 group-hover:rotate-6 group-focus-within:rotate-6 motion-reduce:group-hover:rotate-0 motion-reduce:group-focus-within:rotate-0">
             <ServiceIcon icon={service.icon} highlight={highlight} />
           </div>
@@ -62,6 +66,7 @@ export function ServiceCard({
         <h3
           className={cn(
             "mt-2 font-heading text-heading-md font-bold",
+            !label && "mt-0",
             highlight ? "text-brand-pink" : "text-text-heading"
           )}
         >

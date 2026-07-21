@@ -20,7 +20,7 @@ const productDisplay: Record<
   { title: string; tags: string[] }
 > = {
   application: {
-    title: "Product",
+    title: "Application",
     tags: ["Strategy", "UI/UX", "Development"],
   },
   website: {
@@ -62,15 +62,15 @@ export function Services() {
             split
             label="Products we make"
             lines={[
-              { text: "Three products.", variant: "default" },
-              { text: "Modules inside.", variant: "gradient" },
+              { text: "Ship the product", variant: "default" },
+              { text: "users pay for", variant: "gradient" },
             ]}
-            titleMaxWidth="max-w-[520px]"
+            titleMaxWidth="max-w-[560px]"
             subheading={
               <>
-                App, website, or automation - pick what you need built. Design,
-                development, copy, and AI capabilities live as modules inside
-                each product, not as a flat list of peers.
+                Applications, websites, and AI automations - built to launch,
+                convert, and scale. Spec first, flat scope, senior team on the
+                work.
               </>
             }
           />
@@ -82,40 +82,15 @@ export function Services() {
                   key={product.id}
                   service={product}
                   highlighted
-                  eyebrow="Product"
+                  eyebrow=""
                 />
               ))}
             </div>
           </div>
 
-          <p className="mt-6 max-w-[560px] text-body-sm leading-relaxed text-text-sub">
-            Also available:{" "}
-            <Link
-              href="/services/research"
-              className="text-brand-purple-light no-underline hover:text-text-heading"
-            >
-              validation
-            </Link>
-            ,{" "}
-            <Link
-              href="/services/growth"
-              className="text-brand-purple-light no-underline hover:text-text-heading"
-            >
-              growth
-            </Link>
-            , and{" "}
-            <Link
-              href="/services/in-app"
-              className="text-brand-purple-light no-underline hover:text-text-heading"
-            >
-              marketing
-            </Link>{" "}
-            under Plan and Grow - secondary offers, not separate products.
-          </p>
-
           <div className="mt-10 flex w-full max-w-[400px] flex-col gap-4 lg:mt-14">
             <h3 className="font-heading text-heading-md font-bold text-text-heading">
-              Not sure which product fits?
+              Need validation or growth too?
             </h3>
             <p className="text-body-md leading-relaxed text-text-body">
               Book a strategy call - we map your vision, scope, and stack. You
@@ -129,7 +104,7 @@ export function Services() {
                 href="/services"
                 className="text-body-sm font-semibold text-brand-purple-light no-underline hover:text-text-heading"
               >
-                View full studio menu
+                See Plan & Grow
               </Link>
             </div>
           </div>

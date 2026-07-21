@@ -5,14 +5,13 @@ export interface ProofProduct {
   href: string;
   screenshotSrc?: string;
   screenshotAlt?: string;
-  /** Optional recognition badge shown on the card. */
-  awardLabel?: string;
+  /** External product vs internal page (blog, etc.). */
+  external?: boolean;
+  /** Compact award cell in the Proof grid. */
+  kind?: "product" | "award";
 }
 
-export const proofAward = {
-  label: "Best Use of AI",
-  detail: "Award won with our own AI testing product",
-};
+export const proofAwardHref = "/blog/best-use-of-ai-award";
 
 export const proofProducts: ProofProduct[] = [
   {
@@ -23,6 +22,8 @@ export const proofProducts: ProofProduct[] = [
     href: "https://www.zonikai.com",
     screenshotSrc: "/images/proof/zonikai.png",
     screenshotAlt: "zonikai product screenshot",
+    external: true,
+    kind: "product",
   },
   {
     id: "testaimodels",
@@ -32,6 +33,16 @@ export const proofProducts: ProofProduct[] = [
     href: "https://www.testaimodels.com",
     screenshotSrc: "/images/proof/testaimodels.png",
     screenshotAlt: "testaimodels product screenshot",
-    awardLabel: "Best Use of AI",
+    external: true,
+    kind: "product",
+  },
+  {
+    id: "best-use-of-ai",
+    name: "Best Use of AI",
+    description:
+      "Award for an AI product we built and run ourselves - the same reliability bar we bring to client work.",
+    href: proofAwardHref,
+    external: false,
+    kind: "award",
   },
 ];

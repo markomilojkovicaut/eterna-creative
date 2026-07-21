@@ -2,6 +2,18 @@ import type { BlogPost } from "@/lib/types";
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "best-use-of-ai-award",
+    title: "How we won Best Use of AI",
+    excerpt:
+      "We did not win for a demo. We won for an AI product we run ourselves - and what that taught us about shipping reliable AI for clients.",
+    content:
+      "Most AI awards go to slide decks. Ours went to testaimodels - an LLM comparison product we built and operate for agencies and AI teams. The lesson we bring to every client engagement: AI only counts when it is reliable in production, measurable on cost and quality, and owned by a team that uses it daily. That is the bar we apply when we put AI inside your application, website, or automation.",
+    publishedAt: "2026-06-01",
+    readTime: 5,
+    category: "AI",
+    coverImage: "",
+  },
+  {
     slug: "no-code-mvp-timeline",
     title: "MVP timeline: idea to launch",
     excerpt:

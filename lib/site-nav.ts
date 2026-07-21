@@ -72,7 +72,7 @@ export const headerNavItems: HeaderNavItem[] = [
         label: "Products",
         items: [
           {
-            label: "Product",
+            label: "Application",
             href: "/services/application",
             serviceIcon: "application",
           },

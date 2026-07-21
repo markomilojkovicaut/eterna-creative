@@ -22,9 +22,8 @@ function OpenCaseStudyButton({ className }: { className?: string }) {
 }
 
 /**
- * Idle: cover + CASE STUDY + client (no Open CTA).
+ * Idle: cover + CASE STUDY + client with proper padding (HTML, not baked art).
  * Hover: blur/darken, tags + headline + white Open case study.
- * Height never changes.
  */
 export function CaseStudyCard({
   study,
@@ -49,7 +48,7 @@ export function CaseStudyCard({
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
             className={cn(
-              "object-cover object-top transition-[transform,filter] duration-500 ease-out",
+              "object-cover object-center transition-[transform,filter] duration-500 ease-out",
               "group-hover:scale-[1.03] group-hover:blur-[2px] group-hover:brightness-[0.4]",
               "group-focus-within:scale-[1.03] group-focus-within:blur-[2px] group-focus-within:brightness-[0.4]",
               "motion-reduce:group-hover:scale-100 motion-reduce:group-hover:blur-none"
@@ -68,37 +67,35 @@ export function CaseStudyCard({
           />
         )}
 
-        {/* Mask any residual baked CTA at the bottom of cover art on idle */}
+        {/* Cover baked-in cover typography so HTML labels control padding */}
         <div
           className={cn(
-            "pointer-events-none absolute inset-x-0 bottom-0 z-[5] h-[28%]",
-            "bg-gradient-to-t from-bg-base via-bg-base/75 to-transparent",
+            "pointer-events-none absolute inset-0 z-[4]",
+            "bg-gradient-to-br from-bg-base via-bg-base/70 to-transparent",
             "transition-opacity duration-300",
             "group-hover:opacity-0 group-focus-within:opacity-0"
           )}
           aria-hidden
         />
 
-        {/* Idle labels when cover art has no baked title */}
-        {!study.coverImage ? (
-          <div
-            className={cn(
-              "absolute inset-x-0 top-0 z-[6] flex flex-col gap-2 p-6 transition-opacity duration-300 lg:p-8",
-              "group-hover:opacity-0 group-focus-within:opacity-0"
-            )}
-          >
-            <span className="inline-flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-purple-light">
-              <span
-                className="h-3.5 w-[3px] shrink-0 rounded-full bg-brand-purple-light"
-                aria-hidden
-              />
-              Case study
-            </span>
-            <p className="font-heading text-heading-lg font-bold text-text-heading lg:text-display-md">
-              {study.client}
-            </p>
-          </div>
-        ) : null}
+        {/* Idle labels — design-system padding */}
+        <div
+          className={cn(
+            "absolute inset-x-0 top-0 z-[6] flex flex-col gap-2 p-6 transition-opacity duration-300 lg:p-8",
+            "group-hover:opacity-0 group-focus-within:opacity-0"
+          )}
+        >
+          <span className="inline-flex items-center gap-2.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-purple-light">
+            <span
+              className="h-3.5 w-[3px] shrink-0 rounded-full bg-brand-purple-light"
+              aria-hidden
+            />
+            Case study
+          </span>
+          <p className="font-heading text-heading-lg font-bold text-text-heading lg:text-display-md">
+            {study.client}
+          </p>
+        </div>
 
         {/* Hover overlay — Open CTA only here */}
         <div
