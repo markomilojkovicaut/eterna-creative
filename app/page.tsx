@@ -15,19 +15,29 @@ import { HomeResourcesChapter } from "@/components/sections/HomeResourcesChapter
 import { Investment } from "@/components/sections/Investment";
 import { Solutions } from "@/components/sections/Solutions";
 
+/**
+ * Homepage rhythm:
+ * Intro → HOW we work (problem, engines, approach/process) → WHAT we offer
+ * (products, doors, cases, proof, solutions) → trust & close.
+ */
 export default function HomePage() {
   return (
     <main className="relative">
       <Hero />
       <HomeLightChapter />
+
+      {/* HOW — challenges + methodology + approach/process */}
       <FounderJourney />
       <EternaSystem />
+      <HomeApproachChapter />
+
+      {/* WHAT — products, entry doors, proof of work, who it's for */}
       <Services />
       <EntryDoors />
-      <HomeApproachChapter />
       <CaseStudies />
       <Proof />
       <Solutions />
+
       <HomeClientStoriesChapter />
       <FounderLedStudio />
       <HomeResourcesChapter />

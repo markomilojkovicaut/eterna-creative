@@ -4,6 +4,21 @@ import { CornerPlusAccents } from "@/components/ui/CornerPlusAccents";
 import type { ToolStackItem } from "@/lib/tool-stack";
 import { cn } from "@/lib/utils";
 
+function monogram(name: string) {
+  const cleaned = name.replace(/\.js$/i, "").replace(/\s+/g, " ").trim();
+  if (cleaned.toLowerCase() === "next.js" || cleaned.toLowerCase() === "next") {
+    return "Nx";
+  }
+  if (cleaned.toLowerCase().startsWith("tailwind")) {
+    return "Tw";
+  }
+  const parts = cleaned.split(/[\s.-]+/).filter(Boolean);
+  if (parts.length >= 2) {
+    return `${parts[0]![0] ?? ""}${parts[1]![0] ?? ""}`.toUpperCase();
+  }
+  return cleaned.slice(0, 2).toUpperCase();
+}
+
 export function ToolStackCard({
   tool,
   className,
@@ -11,6 +26,8 @@ export function ToolStackCard({
   tool: ToolStackItem;
   className?: string;
 }) {
+  const hasLogo = Boolean(tool.logoSrc);
+
   return (
     <div
       className={cn(
@@ -20,17 +37,20 @@ export function ToolStackCard({
     >
       <CornerPlusAccents />
       <div className="flex size-9 items-center justify-center rounded-full bg-text-ink sm:size-10">
-        {tool.logoSrc ? (
+        {hasLogo ? (
           <Image
-            src={tool.logoSrc}
+            src={tool.logoSrc!}
             alt=""
             width={28}
             height={28}
             className="h-5 w-5 object-contain sm:h-6 sm:w-6"
           />
         ) : (
-          <span className="font-heading text-[11px] font-bold uppercase tracking-wide text-bg-surface">
-            {tool.name.slice(0, 2)}
+          <span
+            className="font-heading text-[10px] font-bold uppercase tracking-wide text-bg-surface sm:text-[11px]"
+            title={`${tool.name} logo coming soon`}
+          >
+            {monogram(tool.name)}
           </span>
         )}
       </div>
