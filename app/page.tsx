@@ -22,8 +22,8 @@ export default function HomePage() {
       <HomeLightChapter />
       <FounderJourney />
       <EternaSystem />
-      <EntryDoors />
       <Services />
+      <EntryDoors />
       <HomeApproachChapter />
       <CaseStudies />
       <Proof />

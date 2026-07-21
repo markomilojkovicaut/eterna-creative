@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
@@ -22,8 +21,9 @@ function OpenCaseStudyButton({ className }: { className?: string }) {
 }
 
 /**
- * Idle: cover + CASE STUDY + client with proper padding (HTML, not baked art).
+ * Idle: gradient plane + CASE STUDY + client (HTML labels).
  * Hover: blur/darken, tags + headline + white Open case study.
+ * Cover PNGs with baked typography are not used on cards.
  */
 export function CaseStudyCard({
   study,
@@ -41,40 +41,14 @@ export function CaseStudyCard({
       )}
     >
       <div className="relative aspect-[16/10] w-full overflow-hidden">
-        {study.coverImage ? (
-          <Image
-            src={study.coverImage}
-            alt=""
-            fill
-            sizes="(max-width: 768px) 100vw, 50vw"
-            className={cn(
-              "object-cover object-center transition-[transform,filter] duration-500 ease-out",
-              "group-hover:scale-[1.03] group-hover:blur-[2px] group-hover:brightness-[0.4]",
-              "group-focus-within:scale-[1.03] group-focus-within:blur-[2px] group-focus-within:brightness-[0.4]",
-              "motion-reduce:group-hover:scale-100 motion-reduce:group-hover:blur-none"
-            )}
-            aria-hidden
-          />
-        ) : (
-          <div
-            className={cn(
-              "absolute inset-0 transition-[transform,filter] duration-500 ease-out",
-              "group-hover:scale-[1.03] group-hover:blur-[2px] group-hover:brightness-[0.4]",
-              "group-focus-within:scale-[1.03] group-focus-within:blur-[2px] group-focus-within:brightness-[0.4]"
-            )}
-            style={{ backgroundImage: study.imageGradient }}
-            aria-hidden
-          />
-        )}
-
-        {/* Cover baked-in cover typography so HTML labels control padding */}
         <div
           className={cn(
-            "pointer-events-none absolute inset-0 z-[4]",
-            "bg-gradient-to-br from-bg-base via-bg-base/70 to-transparent",
-            "transition-opacity duration-300",
-            "group-hover:opacity-0 group-focus-within:opacity-0"
+            "absolute inset-0 transition-[transform,filter] duration-500 ease-out",
+            "group-hover:scale-[1.03] group-hover:blur-[2px] group-hover:brightness-[0.4]",
+            "group-focus-within:scale-[1.03] group-focus-within:blur-[2px] group-focus-within:brightness-[0.4]",
+            "motion-reduce:group-hover:scale-100 motion-reduce:group-hover:blur-none"
           )}
+          style={{ backgroundImage: study.imageGradient }}
           aria-hidden
         />
 

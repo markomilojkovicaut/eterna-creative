@@ -168,6 +168,10 @@ export const headerNavItems: HeaderNavItem[] = [
             label: "Business automation",
             href: "/services/automation",
           },
+          {
+            label: "Rescue vibecode",
+            href: "/rescue-vibecode",
+          },
         ],
       },
     ],

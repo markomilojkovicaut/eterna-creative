@@ -31,4 +31,12 @@ export const entryDoors: EntryDoor[] = [
     ctaLabel: "Automate a workflow",
     href: "/services/automation",
   },
+  {
+    id: "vibecode",
+    title: "I need to rescue vibecode",
+    description:
+      "Turn AI-generated prototypes into production software you can ship and maintain.",
+    ctaLabel: "See how rescue works",
+    href: "/rescue-vibecode",
+  },
 ];

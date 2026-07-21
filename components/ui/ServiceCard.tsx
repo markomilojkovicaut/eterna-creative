@@ -56,22 +56,30 @@ export function ServiceCard({
               {label}
             </p>
           ) : (
-            <span />
+            <h3
+              className={cn(
+                "font-heading text-heading-lg font-bold",
+                highlight ? "text-brand-pink" : "text-text-heading"
+              )}
+            >
+              {service.title}
+            </h3>
           )}
           <div className="shrink-0 transition-transform duration-500 group-hover:rotate-6 group-focus-within:rotate-6 motion-reduce:group-hover:rotate-0 motion-reduce:group-focus-within:rotate-0">
             <ServiceIcon icon={service.icon} highlight={highlight} />
           </div>
         </div>
 
-        <h3
-          className={cn(
-            "mt-2 font-heading text-heading-md font-bold",
-            !label && "mt-0",
-            highlight ? "text-brand-pink" : "text-text-heading"
-          )}
-        >
-          {service.title}
-        </h3>
+        {label ? (
+          <h3
+            className={cn(
+              "mt-2 font-heading text-heading-md font-bold",
+              highlight ? "text-brand-pink" : "text-text-heading"
+            )}
+          >
+            {service.title}
+          </h3>
+        ) : null}
 
         <div className="mt-auto flex flex-col gap-4 pt-4">
           <ul
