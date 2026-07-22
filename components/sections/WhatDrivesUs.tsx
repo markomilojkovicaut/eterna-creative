@@ -30,12 +30,35 @@ const stats = [
   },
 ] as const;
 
-const missionSentences = [
-  "AI collapsed the build timeline so anyone can ship a demo.",
-  "What still separates winners is judgment: strategy, smart architecture, design craft and a path to revenue.",
-  "That is why we exist - an AI-native product studio that plans, builds, and grows digital products engineered to compound.",
-  "Faster with AI. Stronger with craft.",
-  "So the advantage is on your side.",
+type MissionChunk = {
+  text: string;
+  bold?: boolean;
+};
+
+/** Sentence groups for scroll opacity; bold key judgment words inside. */
+const missionGroups: MissionChunk[][] = [
+  [
+    { text: "AI collapsed the build timeline so anyone can ship a demo. " },
+  ],
+  [
+    { text: "What still separates winners is " },
+    { text: "judgment", bold: true },
+    { text: ": strategy, smart architecture, design craft and a path to revenue. " },
+  ],
+  [
+    { text: "That is why we exist - an " },
+    { text: "AI-native product studio", bold: true },
+    {
+      text: " that plans, builds, and grows digital products that ",
+    },
+    { text: "compound instead of expire", bold: true },
+    { text: ". " },
+  ],
+  [
+    { text: "So the " },
+    { text: "advantage is on your side", bold: true },
+    { text: "." },
+  ],
 ];
 
 export function WhatDrivesUs() {
@@ -58,7 +81,6 @@ export function WhatDrivesUs() {
     const onScroll = () => {
       const rect = el.getBoundingClientRect();
       const viewport = window.innerHeight || 1;
-      // Reveal as the block moves through the middle of the viewport
       const start = viewport * 0.85;
       const end = viewport * 0.25;
       const raw = (start - rect.top) / (start - end);
@@ -79,36 +101,38 @@ export function WhatDrivesUs() {
       <div className="flex w-full min-w-0 flex-col lg:max-w-[720px]">
         <LabelPill variant="light">Mission</LabelPill>
 
-        <div className="mt-3 flex flex-col gap-8">
+        <div className="mt-3 flex w-full flex-col gap-8">
           <div
             ref={containerRef}
             className="font-heading w-full text-[38px] font-normal leading-[1.12] tracking-[-1.5px] text-text-ink"
           >
-            {missionSentences.map((sentence, index) => {
-              const segment = 1 / missionSentences.length;
+            {missionGroups.map((group, index) => {
+              const segment = 1 / missionGroups.length;
               const local = (progress - index * segment) / segment;
               const opacity = Math.min(1, Math.max(0.22, local));
-              const isLast = index === missionSentences.length - 1;
 
               return (
                 <span
-                  key={sentence}
-                  className={cn(
-                    "transition-opacity duration-300 ease-out",
-                    isLast && "font-bold"
-                  )}
+                  key={index}
+                  className="transition-opacity duration-300 ease-out"
                   style={{ opacity }}
                 >
-                  {sentence}
-                  {index < missionSentences.length - 1 ? " " : null}
+                  {group.map((chunk) => (
+                    <span
+                      key={chunk.text}
+                      className={cn(chunk.bold && "font-bold")}
+                    >
+                      {chunk.text}
+                    </span>
+                  ))}
                 </span>
               );
             })}
           </div>
 
-          <QuoteBar>
-            Speed is the strategy.{" "}
-            <span className="font-bold">Systems are the weapon.</span>
+          <QuoteBar className="w-fit max-w-full">
+            AI gets you moving.{" "}
+            <span className="font-bold">Systems make it compound.</span>
           </QuoteBar>
         </div>
       </div>

@@ -25,8 +25,8 @@ export function HeroPhones({ className }: { className?: string }) {
       <PhoneFrame
         className={cn(
           "absolute left-[10%] top-[14%] z-[1] w-[40%] origin-bottom",
-          "-rotate-[12deg] animate-phone-float-left",
-          "group-hover:-translate-x-[4%] group-hover:-translate-y-[2%] group-hover:-rotate-[14deg]",
+          "-rotate-[6deg] animate-phone-float-left",
+          "group-hover:-translate-x-[4%] group-hover:-translate-y-[2%] group-hover:-rotate-[8deg]",
           "transition-transform duration-700 ease-out motion-reduce:animate-none"
         )}
       >
@@ -36,8 +36,8 @@ export function HeroPhones({ className }: { className?: string }) {
       <PhoneFrame
         className={cn(
           "absolute right-[10%] top-[14%] z-[1] w-[40%] origin-bottom",
-          "rotate-[12deg] animate-phone-float-right",
-          "group-hover:translate-x-[4%] group-hover:-translate-y-[2%] group-hover:rotate-[14deg]",
+          "rotate-[6deg] animate-phone-float-right",
+          "group-hover:translate-x-[4%] group-hover:-translate-y-[2%] group-hover:rotate-[8deg]",
           "transition-transform duration-700 ease-out motion-reduce:animate-none"
         )}
       >

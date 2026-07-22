@@ -54,18 +54,18 @@ export type HeaderNavItem =
       panelCols?: 1 | 2 | 3;
     };
 
-/** Primary header: 3 products + solutions + resources + company. */
+/** Primary header: Portfolio proof, then Products, For, Resources, Company. */
 export const headerNavItems: HeaderNavItem[] = [
+  { type: "link", label: "Portfolio", href: "/portfolio" },
   {
     type: "dropdown",
     id: "services",
-    label: "Services",
+    label: "Products",
     href: "/#services",
     showViewAll: false,
     panelCols: 1,
     columns: [
       {
-        label: "Products",
         items: [
           {
             label: "Application",
@@ -89,7 +89,6 @@ export const headerNavItems: HeaderNavItem[] = [
       },
     ],
   },
-  { type: "link", label: "Portfolio", href: "/portfolio" },
   {
     type: "dropdown",
     id: "solutions",
@@ -150,7 +149,6 @@ export const headerNavItems: HeaderNavItem[] = [
             href: "/tools/app-cost-calculator",
             description:
               "Get accurate development and timeline estimate in 3 minutes - no sales calls & 100% free.",
-            featuredImageSrc: "/images/resources/app-calculator-thumb.png",
             featuredCtaLabel: "Open calculator",
           },
         ],
@@ -217,7 +215,7 @@ export const footerLinkGroups = [
     label: "Pages",
     links: [
       { label: "Home", href: "/" },
-      { label: "Services", href: "/#services" },
+      { label: "Products", href: "/#services" },
       { label: "Portfolio", href: "/portfolio" },
       { label: "Who we serve", href: "/#who-we-serve" },
     ] as const satisfies readonly NavLink[],

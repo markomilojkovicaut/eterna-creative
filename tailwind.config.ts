@@ -99,18 +99,18 @@ const config: Config = {
         },
         "phone-float-left": {
           "0%, 100%": {
-            transform: "translate3d(0, 0, 0) rotate(-12deg)",
+            transform: "translate3d(0, 0, 0) rotate(-6deg)",
           },
           "50%": {
-            transform: "translate3d(-3.5%, -1.5%, 0) rotate(-13.5deg)",
+            transform: "translate3d(-3.5%, -1.5%, 0) rotate(-7.5deg)",
           },
         },
         "phone-float-right": {
           "0%, 100%": {
-            transform: "translate3d(0, 0, 0) rotate(12deg)",
+            transform: "translate3d(0, 0, 0) rotate(6deg)",
           },
           "50%": {
-            transform: "translate3d(3.5%, -1.5%, 0) rotate(13.5deg)",
+            transform: "translate3d(3.5%, -1.5%, 0) rotate(7.5deg)",
           },
         },
         "phone-float-center": {

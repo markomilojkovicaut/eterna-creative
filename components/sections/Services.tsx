@@ -46,9 +46,9 @@ export function Services() {
               {productOffers.map((product) => (
                 <div
                   key={product.id}
-                  className="group relative flex flex-col gap-6 p-6 sm:p-8 lg:min-h-[520px] lg:p-8 xl:p-10"
+                  className="group relative flex flex-col gap-6 p-6 sm:p-8 lg:min-h-[480px] lg:p-8 xl:p-10"
                 >
-                  <div className="min-w-0 pr-0 sm:pr-[108px]">
+                  <div className="min-w-0">
                     <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-purple-light">
                       {product.number}
                     </p>
@@ -66,21 +66,22 @@ export function Services() {
                     </p>
                   </div>
 
-                  <ul className="mt-auto flex flex-col gap-2 pb-0 sm:pb-28">
-                    {product.modules.map((mod) => (
-                      <li key={mod.id}>
-                        <span className="inline-flex rounded-soft border border-border-dark bg-bg-card/40 px-2.5 py-1 text-[11px] font-medium tracking-wide text-text-sub">
-                          {mod.label}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <ProductDevicePreview
-                    variant={product.id as ProductId}
-                    size="sm"
-                    className="pointer-events-none absolute bottom-6 right-6 hidden sm:block lg:bottom-8 lg:right-8"
-                  />
+                  <div className="mt-auto flex items-end justify-between gap-4">
+                    <ul className="flex min-w-0 flex-1 flex-col gap-2">
+                      {product.modules.map((mod) => (
+                        <li key={mod.id}>
+                          <span className="inline-flex rounded-soft border border-border-dark bg-bg-card/40 px-2.5 py-1 text-[11px] font-medium tracking-wide text-text-sub">
+                            {mod.label}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                    <ProductDevicePreview
+                      variant={product.id as ProductId}
+                      size="sm"
+                      className="pointer-events-none hidden shrink-0 self-end sm:block"
+                    />
+                  </div>
                 </div>
               ))}
             </div>

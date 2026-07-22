@@ -2,26 +2,35 @@
 
 import { useCallback, useEffect, useState } from "react";
 
-import type { FounderJourneyStep } from "@/lib/founder-journey";
 import { cn } from "@/lib/utils";
 
-export interface ChallengeAccordionProps {
-  items: FounderJourneyStep[];
+export type DarkRotateAccordionAccent = "purple" | "danger";
+
+export interface DarkRotateAccordionItem {
+  id: string;
+  title: string;
+  description: string;
+  eyebrow?: string;
+  accent?: DarkRotateAccordionAccent;
+}
+
+export interface DarkRotateAccordionProps {
+  items: DarkRotateAccordionItem[];
   intervalMs?: number;
   className?: string;
   defaultActiveIndex?: number;
 }
 
 /**
- * Dark auto-accordion for the Challenges journey — same interaction model as
- * Approach / Founder principles: one open panel, border fill, auto-advance.
+ * Dark auto-accordion: one open panel, left border fill, auto-advance.
+ * Used by Challenges (danger accents) and How we use AI (purple only).
  */
-export function ChallengeAccordion({
+export function DarkRotateAccordion({
   items,
   intervalMs = 8000,
   className,
   defaultActiveIndex = 0,
-}: ChallengeAccordionProps) {
+}: DarkRotateAccordionProps) {
   const [activeIndex, setActiveIndex] = useState(defaultActiveIndex);
   const [progressCycle, setProgressCycle] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -62,11 +71,12 @@ export function ChallengeAccordion({
       {items.map((item, index) => {
         const isActive = activeIndex === index;
         const isLast = index === items.length - 1;
-        const isChallenge = item.phase === "challenge";
+        const accent = item.accent ?? "purple";
+        const isDanger = accent === "danger";
 
         return (
           <div
-            key={`${item.period}-${item.title}`}
+            key={item.id}
             className={cn(
               "relative flex",
               !isLast && "border-b border-border-dark"
@@ -75,9 +85,7 @@ export function ChallengeAccordion({
             <div
               className={cn(
                 "relative w-1 shrink-0",
-                isChallenge
-                  ? "bg-brand-danger/20"
-                  : "bg-brand-purple-light/15"
+                isDanger ? "bg-brand-danger/20" : "bg-brand-purple-light/15"
               )}
               aria-hidden
             >
@@ -86,7 +94,7 @@ export function ChallengeAccordion({
                   key={progressCycle}
                   className={cn(
                     "absolute inset-x-0 top-0 h-full origin-top animate-approach-border-fill",
-                    isChallenge ? "bg-brand-danger" : "bg-brand-purple-light"
+                    isDanger ? "bg-brand-danger" : "bg-brand-purple-light"
                   )}
                   style={{
                     animationDuration: `${intervalMs}ms`,
@@ -108,15 +116,24 @@ export function ChallengeAccordion({
                 className="block w-full text-left"
                 aria-expanded={isActive}
               >
+                {item.eyebrow ? (
+                  <span
+                    className={cn(
+                      "block text-[11px] font-semibold uppercase tracking-[0.12em]",
+                      isDanger
+                        ? "text-brand-danger"
+                        : "text-brand-purple-light"
+                    )}
+                  >
+                    {item.eyebrow}
+                  </span>
+                ) : null}
                 <span
                   className={cn(
-                    "block text-[11px] font-semibold uppercase tracking-[0.12em]",
-                    isChallenge ? "text-brand-danger" : "text-brand-purple-light"
+                    "block font-heading text-body-md font-bold leading-snug text-text-heading sm:text-heading-sm",
+                    item.eyebrow && "mt-1.5"
                   )}
                 >
-                  {item.period}
-                </span>
-                <span className="mt-1.5 block font-heading text-body-md font-bold leading-snug text-text-heading sm:text-heading-sm">
                   {item.title}
                 </span>
               </button>
@@ -131,4 +148,11 @@ export function ChallengeAccordion({
       })}
     </div>
   );
+}
+
+/** @deprecated Use DarkRotateAccordion - kept as alias for Challenges. */
+export function ChallengeAccordion(
+  props: DarkRotateAccordionProps
+) {
+  return <DarkRotateAccordion {...props} />;
 }

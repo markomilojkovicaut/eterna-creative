@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { DarkSectionBackdrop, SectionHeading } from "@/components/ui";
 import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
+import { DarkRotateAccordion } from "@/components/ui/ChallengeAccordion";
 import { SectionPullQuote } from "@/components/ui/SectionPullQuote";
 import { aiPractices } from "@/lib/ai-expertise";
 import {
@@ -184,20 +185,16 @@ export function Proof() {
               Not a slide deck of AI buzzwords - the same stack and discipline
               we use on client builds and our own products.
             </p>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              {aiPractices.map((practice) => (
-                <div
-                  key={practice.id}
-                  className="rounded-soft border border-border-dark bg-bg-card/30 p-5 sm:p-6"
-                >
-                  <h4 className="font-heading text-heading-sm font-bold text-text-heading">
-                    {practice.title}
-                  </h4>
-                  <p className="mt-2 text-body-sm leading-relaxed text-text-body">
-                    {practice.description}
-                  </p>
-                </div>
-              ))}
+            <div className="mt-8 max-w-[720px]">
+              <DarkRotateAccordion
+                items={aiPractices.map((practice, index) => ({
+                  id: practice.id,
+                  eyebrow: `0${index + 1}`,
+                  title: practice.title,
+                  description: practice.description,
+                  accent: "purple" as const,
+                }))}
+              />
             </div>
           </div>
 

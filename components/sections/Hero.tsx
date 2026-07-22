@@ -118,7 +118,7 @@ export function Hero() {
             </CallToActionLink>
           </div>
 
-          <div className="relative z-0 mt-10 flex w-full max-w-md flex-1 items-end justify-center lg:mt-12 lg:max-w-lg">
+          <div className="relative z-0 mt-[60px] flex w-full max-w-md flex-1 items-end justify-center lg:max-w-lg">
             <HeroPhones className="w-full" />
           </div>
         </div>

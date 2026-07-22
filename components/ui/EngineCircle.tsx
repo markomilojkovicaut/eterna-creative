@@ -117,10 +117,7 @@ function EnginePopup({
         </div>
 
         <div className="space-y-5 px-6 py-6 sm:px-8">
-          <div className="flex flex-wrap gap-2">
-            <DarkTagPill>{`Engine ${engine.number}`}</DarkTagPill>
-            <DarkTagPill>{engine.subtitle}</DarkTagPill>
-          </div>
+          <DarkTagPill>{`Engine ${engine.number}`}</DarkTagPill>
 
           <div className="flex items-center gap-4">
             <EngineIcon icon={engine.icon} highlight={engine.highlight} />
@@ -131,6 +128,25 @@ function EnginePopup({
 
           <p className="text-body-md leading-relaxed text-text-body">
             {engine.description}
+          </p>
+
+          <ul className="space-y-3 border-t border-border-dark pt-5">
+            {engine.details.map((detail) => (
+              <li
+                key={detail}
+                className="flex gap-3 text-body-sm leading-relaxed text-text-body"
+              >
+                <span
+                  className="mt-2 size-1.5 shrink-0 rounded-full bg-brand-purple-light"
+                  aria-hidden
+                />
+                <span>{detail}</span>
+              </li>
+            ))}
+          </ul>
+
+          <p className="rounded-soft border border-border-dark bg-bg-base/50 px-4 py-3 text-body-sm leading-relaxed text-text-sub">
+            {engine.outcome}
           </p>
 
           <CallToActionLink href="/book" className="w-fit">

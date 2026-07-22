@@ -2,13 +2,23 @@ import {
   DarkSectionBackdrop,
   SectionHeading,
 } from "@/components/ui";
-import { ChallengeAccordion } from "@/components/ui/ChallengeAccordion";
+import { DarkRotateAccordion } from "@/components/ui/ChallengeAccordion";
 import { founderJourneySteps } from "@/lib/founder-journey";
 import {
   LAYOUT_INNER_CLASS,
   LAYOUT_OUTER_CLASS,
 } from "@/lib/layout-constants";
 import { cn } from "@/lib/utils";
+
+const challengeItems = founderJourneySteps.map((step) => ({
+  id: step.period,
+  eyebrow: step.period,
+  title: step.title,
+  description: step.description,
+  accent: (step.phase === "challenge" ? "danger" : "purple") as
+    | "danger"
+    | "purple",
+}));
 
 export function FounderJourney() {
   return (
@@ -29,7 +39,7 @@ export function FounderJourney() {
           />
 
           <div className="mt-14 max-w-[720px]">
-            <ChallengeAccordion items={founderJourneySteps} />
+            <DarkRotateAccordion items={challengeItems} />
           </div>
         </div>
       </div>
