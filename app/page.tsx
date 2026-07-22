@@ -13,12 +13,13 @@ import { Faq } from "@/components/sections/Faq";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { HomeResourcesChapter } from "@/components/sections/HomeResourcesChapter";
 import { Investment } from "@/components/sections/Investment";
+import { HomeOfferBridge } from "@/components/sections/HomeOfferBridge";
 import { Solutions } from "@/components/sections/Solutions";
 
 /**
  * Homepage rhythm:
- * Intro → WHAT (products, start here) → HOW (challenges, engines, then white
- * approach/process) → WHAT again (cases, proof, solutions) → trust & close.
+ * Intro → WHAT (products, start here) → bridge → HOW (challenges, engines,
+ * approach) → WHAT again (cases, proof, who we serve) → trust & close.
  */
 export default function HomePage() {
   return (
@@ -29,6 +30,8 @@ export default function HomePage() {
       {/* WHAT — offer first */}
       <Services />
       <EntryDoors />
+
+      <HomeOfferBridge />
 
       {/* HOW — problem + methodology, then white approach/process */}
       <FounderJourney />

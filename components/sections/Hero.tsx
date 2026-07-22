@@ -34,10 +34,10 @@ function ClutchStars({ className }: { className?: string }) {
   );
 }
 
-/** Centered hero: pill + Clutch, H1, product rail, CTA, looping phones. */
+/** Centered hero: pill + Clutch, clearer H1, product rail, CTA, subtle phones. */
 export function Hero() {
   return (
-    <section className="relative h-screen min-h-[840px] overflow-hidden bg-bg-base">
+    <section className="relative min-h-screen overflow-hidden bg-bg-base">
       <Image
         src="/images/hero-bg.png"
         alt=""
@@ -53,17 +53,17 @@ export function Hero() {
 
       <div
         className={cn(
-          "relative z-10 flex h-full min-h-0 flex-col",
+          "relative z-10 flex min-h-screen flex-col",
           LAYOUT_OUTER_CLASS
         )}
       >
         <div
           className={cn(
-            "flex h-full min-h-0 flex-col items-center justify-between gap-8 pt-[120px] pb-10 text-center",
+            "flex flex-1 flex-col items-center px-0 pb-8 pt-[120px] text-center",
             LAYOUT_INNER_CLASS
           )}
         >
-          <div className="flex w-full max-w-[720px] flex-col items-center">
+          <div className="flex w-full max-w-[760px] shrink-0 flex-col items-center">
             <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
               <LabelPill>AI-native product studio</LabelPill>
               <span className="hidden h-4 w-px bg-border-strong sm:block" aria-hidden />
@@ -80,7 +80,7 @@ export function Hero() {
               )}
             >
               <span className={cn(heroH1LineClasses, "text-text-heading")}>
-                Idea to revenue
+                From idea to revenue
               </span>
               <span
                 className={cn(
@@ -88,7 +88,7 @@ export function Hero() {
                   "mt-0.5 pb-1 text-gradient-hero"
                 )}
               >
-                the whole journey
+                your product&apos;s whole journey
               </span>
             </h1>
 
@@ -113,23 +113,23 @@ export function Hero() {
               ))}
             </nav>
 
-            <CallToActionLink href="/book" className="mt-8">
+            <CallToActionLink href="/book" className="relative z-20 mt-8">
               Book a strategy call
             </CallToActionLink>
           </div>
 
-          <div className="flex w-full max-w-xl justify-center lg:max-w-2xl">
-            <HeroPhones />
+          <div className="relative z-0 mt-10 flex w-full max-w-md flex-1 items-end justify-center lg:mt-12 lg:max-w-lg">
+            <HeroPhones className="w-full" />
           </div>
         </div>
       </div>
 
       <div
-        className="pointer-events-none absolute bottom-0 left-0 z-[14] h-[140px] w-full bg-gradient-to-t from-bg-base to-transparent"
+        className="pointer-events-none absolute bottom-0 left-0 z-[14] h-[100px] w-full bg-gradient-to-t from-bg-base to-transparent"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute bottom-0 left-0 z-[15] h-[140px] w-full bg-gradient-to-t from-brand-purple-dark to-transparent opacity-50"
+        className="pointer-events-none absolute bottom-0 left-0 z-[15] h-[100px] w-full bg-gradient-to-t from-brand-purple-dark to-transparent opacity-40"
         aria-hidden
       />
 

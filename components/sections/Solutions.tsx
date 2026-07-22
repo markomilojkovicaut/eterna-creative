@@ -1,4 +1,5 @@
 import { DarkSectionBackdrop, SectionHeading } from "@/components/ui";
+import { CallToActionLink } from "@/components/ui/CallToActionLink";
 import { SolutionCard } from "@/components/ui/SolutionCard";
 import {
   LAYOUT_INNER_CLASS,
@@ -19,17 +20,23 @@ export function Solutions() {
       <div className={cn("relative z-10 pb-section", LAYOUT_OUTER_CLASS)}>
         <div className={LAYOUT_INNER_CLASS}>
           <SectionHeading
+            split
             label="Who we serve"
             lines={[
               { text: "One studio for", variant: "default" },
               { text: "different clients", variant: "gradient" },
             ]}
             titleMaxWidth="max-w-[560px]"
-            subheadingMaxWidth="max-w-[520px]"
+            subheadingMaxWidth="max-w-[420px]"
             subheading={
               <>
                 Different goals, different stages, same commitment. Tell us
                 where you are and we&apos;ll show you how we build with you.
+                <span className="mt-5 flex justify-start lg:justify-end">
+                  <CallToActionLink href="/book" size="sm">
+                    Book a strategy call
+                  </CallToActionLink>
+                </span>
               </>
             }
           />

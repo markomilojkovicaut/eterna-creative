@@ -93,7 +93,7 @@ export const headerNavItems: HeaderNavItem[] = [
   {
     type: "dropdown",
     id: "solutions",
-    label: "Who we serve",
+    label: "For",
     showViewAll: false,
     panelCols: 2,
     columns: [
@@ -151,7 +151,7 @@ export const headerNavItems: HeaderNavItem[] = [
             description:
               "Get accurate development and timeline estimate in 3 minutes - no sales calls & 100% free.",
             featuredImageSrc: "/images/resources/app-calculator-thumb.png",
-            featuredCtaLabel: "Start",
+            featuredCtaLabel: "Open calculator",
           },
         ],
       },

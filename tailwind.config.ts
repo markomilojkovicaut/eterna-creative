@@ -101,42 +101,24 @@ const config: Config = {
           "0%, 100%": {
             transform: "translate3d(0, 0, 0) rotate(-12deg)",
           },
-          "35%": {
-            transform: "translate3d(-22%, -10%, 0) rotate(-26deg)",
-          },
           "50%": {
-            transform: "translate3d(-24%, -12%, 0) rotate(-28deg)",
-          },
-          "70%": {
-            transform: "translate3d(-8%, -4%, 0) rotate(-16deg)",
+            transform: "translate3d(-3.5%, -1.5%, 0) rotate(-13.5deg)",
           },
         },
         "phone-float-right": {
           "0%, 100%": {
             transform: "translate3d(0, 0, 0) rotate(12deg)",
           },
-          "35%": {
-            transform: "translate3d(22%, -10%, 0) rotate(26deg)",
-          },
           "50%": {
-            transform: "translate3d(24%, -12%, 0) rotate(28deg)",
-          },
-          "70%": {
-            transform: "translate3d(8%, -4%, 0) rotate(16deg)",
+            transform: "translate3d(3.5%, -1.5%, 0) rotate(13.5deg)",
           },
         },
         "phone-float-center": {
           "0%, 100%": {
             transform: "translate3d(-50%, 0, 0) scale(1)",
           },
-          "35%": {
-            transform: "translate3d(-50%, -14%, 0) scale(1.06)",
-          },
           "50%": {
-            transform: "translate3d(-50%, -16%, 0) scale(1.08)",
-          },
-          "70%": {
-            transform: "translate3d(-50%, -6%, 0) scale(1.02)",
+            transform: "translate3d(-50%, -2.5%, 0) scale(1.02)",
           },
         },
         "phone-float-solo": {
@@ -162,11 +144,11 @@ const config: Config = {
         "partner-marquee":
           "partner-marquee 90s linear infinite",
         "phone-float-left":
-          "phone-float-left 9s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite",
+          "phone-float-left 14s ease-in-out infinite",
         "phone-float-right":
-          "phone-float-right 9s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite",
+          "phone-float-right 14s ease-in-out infinite",
         "phone-float-center":
-          "phone-float-center 9s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite",
+          "phone-float-center 14s ease-in-out infinite",
         "phone-float-solo":
           "phone-float-solo 5.5s ease-in-out infinite",
         "phone-screen-pulse":

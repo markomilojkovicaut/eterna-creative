@@ -89,7 +89,7 @@ export const teamMembers: TeamMember[] = [
     name: "Artur",
     role: "Lead engineer",
     imageSrc: "/images/team/artur.png",
-    staggerClass: "",
+    staggerClass: "lg:translate-y-6",
   },
   {
     id: "violeta",

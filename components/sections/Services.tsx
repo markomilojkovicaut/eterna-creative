@@ -46,34 +46,27 @@ export function Services() {
               {productOffers.map((product) => (
                 <div
                   key={product.id}
-                  className="group flex flex-col gap-6 p-6 sm:p-8 lg:min-h-[520px] lg:p-8 xl:p-10"
+                  className="group relative flex flex-col gap-6 p-6 sm:p-8 lg:min-h-[520px] lg:p-8 xl:p-10"
                 >
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="min-w-0">
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-purple-light">
-                        {product.number}
-                      </p>
-                      <Link
-                        href={product.href}
-                        className="mt-3 inline-flex items-center gap-2 no-underline"
-                      >
-                        <h3 className="font-heading text-[1.75rem] font-bold leading-snug text-text-heading transition-colors group-hover:text-brand-purple-light">
-                          {product.title}
-                        </h3>
-                        <ArrowUpRight className="opacity-50 transition-all group-hover:translate-x-0.5 group-hover:opacity-100" />
-                      </Link>
-                      <p className="mt-3 text-body-md leading-relaxed text-text-body">
-                        {product.description}
-                      </p>
-                    </div>
-                    <ProductDevicePreview
-                      variant={product.id as ProductId}
-                      size="sm"
-                      className="hidden shrink-0 sm:block"
-                    />
+                  <div className="min-w-0 pr-0 sm:pr-[108px]">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-purple-light">
+                      {product.number}
+                    </p>
+                    <Link
+                      href={product.href}
+                      className="mt-3 inline-flex items-center gap-2 no-underline"
+                    >
+                      <h3 className="font-heading text-[1.75rem] font-bold leading-snug text-text-heading transition-colors group-hover:text-brand-purple-light">
+                        {product.title}
+                      </h3>
+                      <ArrowUpRight className="opacity-50 transition-all group-hover:translate-x-0.5 group-hover:opacity-100" />
+                    </Link>
+                    <p className="mt-3 text-body-md leading-relaxed text-text-body">
+                      {product.description}
+                    </p>
                   </div>
 
-                  <ul className="mt-auto flex flex-col gap-2">
+                  <ul className="mt-auto flex flex-col gap-2 pb-0 sm:pb-28">
                     {product.modules.map((mod) => (
                       <li key={mod.id}>
                         <span className="inline-flex rounded-soft border border-border-dark bg-bg-card/40 px-2.5 py-1 text-[11px] font-medium tracking-wide text-text-sub">
@@ -82,6 +75,12 @@ export function Services() {
                       </li>
                     ))}
                   </ul>
+
+                  <ProductDevicePreview
+                    variant={product.id as ProductId}
+                    size="sm"
+                    className="pointer-events-none absolute bottom-6 right-6 hidden sm:block lg:bottom-8 lg:right-8"
+                  />
                 </div>
               ))}
             </div>
