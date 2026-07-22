@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import { CallToActionLink } from "@/components/ui/CallToActionLink";
 import { DarkSectionBackdrop } from "@/components/ui/DarkSectionBackdrop";
 import { Reveal } from "@/components/ui/Reveal";
@@ -54,12 +56,12 @@ export function FinalCta() {
                 </CallToActionLink>
                 <p className="mt-4 text-body-sm text-text-muted">
                   Not ready to talk?{" "}
-                  <a
+                  <Link
                     href="/blueprint"
                     className="font-medium text-brand-purple-light no-underline transition-colors hover:text-text-heading"
                   >
                     See how the Launch Plan works
-                  </a>
+                  </Link>
                   .
                 </p>
               </div>
