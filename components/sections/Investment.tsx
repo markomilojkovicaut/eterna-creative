@@ -7,6 +7,7 @@ import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
 import { PricingCard } from "@/components/ui/PricingCard";
 import { Reveal } from "@/components/ui/Reveal";
 import {
+  engagementPathSteps,
   investmentAlsoAvailable,
   investmentCalculatorCta,
   investmentSubheading,
@@ -47,9 +48,39 @@ export function Investment() {
             />
           </Reveal>
 
+          <Reveal delay={80}>
+            <ol className="mt-10 grid gap-3 sm:mt-12 sm:grid-cols-3 lg:mt-14 lg:gap-4">
+              {engagementPathSteps.map((step) => (
+                <li
+                  key={step.id}
+                  className="flex flex-col rounded-soft border border-border-dark bg-bg-card/40 p-4 sm:p-5"
+                >
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-purple-light">
+                    {step.number}
+                  </span>
+                  <h3 className="mt-2 font-heading text-heading-md font-bold text-text-heading">
+                    {step.title}
+                  </h3>
+                  <p className="mt-2 flex-1 text-body-sm leading-relaxed text-text-body">
+                    {step.description}
+                  </p>
+                  {step.href && step.ctaLabel ? (
+                    <Link
+                      href={step.href}
+                      className="mt-4 inline-flex w-fit items-center gap-1.5 text-body-sm font-semibold text-brand-purple-light no-underline transition-colors hover:text-text-heading"
+                    >
+                      {step.ctaLabel}
+                      <ArrowUpRight className="!h-3.5 !w-3.5 !text-brand-purple-light" />
+                    </Link>
+                  ) : null}
+                </li>
+              ))}
+            </ol>
+          </Reveal>
+
           <Reveal
             delay={100}
-            className="mt-14 overflow-hidden rounded-soft border border-border-dark lg:mt-16"
+            className="mt-10 overflow-hidden rounded-soft border border-border-dark lg:mt-12"
           >
             <div className="grid divide-y divide-border-dark lg:grid-cols-3 lg:divide-x lg:divide-y-0">
               {pricingTiers.map((tier) => (

@@ -6,11 +6,23 @@ export interface FaqItem {
 
 export const faqItems: FaqItem[] = [
   {
+    id: "how-to-start",
+    question: "How do we start if we're not ready for a full build?",
+    answer:
+      "Start small. Book a free 15-minute strategy call. If there's a fit, we run a Scope Session and deliver a free Launch Plan - app map, hero preview, flat price, and timeline - before any build commitment. Need deeper validation first? We offer a paid Validation Sprint or App Launch Blueprint. Websites and automations can often skip the full Launch Plan and scope on the call alone.",
+  },
+  {
     id: "nocode-vs-code",
     question:
       "How is custom code different from no-code? Which should I choose?",
     answer:
       "We default to AI-assisted custom code you own - reliable, scalable, and not locked to a platform. No-code (Bubble) is still a strong lane when stage, speed, or an existing Bubble app makes it the smarter call. The craft is the same either way: product thinking, design, and engineering to the level your stage demands. Starting fresh? We usually build custom. Already on Bubble and hitting limits? We migrate you cleanly.",
+  },
+  {
+    id: "ownership",
+    question: "Who owns the code and IP when we're done?",
+    answer:
+      "You do. On delivery and final payment, you own the product, codebase, designs, and documentation we produced for the engagement. We don't lock you into our tools or license. Handoff includes repo access, hosting setup, and enough docs for your team - or another partner - to keep shipping.",
   },
   {
     id: "launch-plan",
@@ -41,7 +53,7 @@ export const faqItems: FaqItem[] = [
     id: "team",
     question: "Who actually works on my project?",
     answer:
-      "Marko (studio founder) is the primary point of contact and involved in all key decisions. Every project is staffed with senior people only - there are no juniors assigned to fill seats. The core team includes a senior engineer, a designer/architect, and a marketing specialist depending on scope. We don't take on more projects than we can resource properly. If we can't give your project the attention it needs, we'll tell you upfront.",
+      "The people you meet are the people doing the work. Marko (studio founder) is your primary contact and involved in key decisions. Every project is staffed with senior people only - no juniors filling seats. Core team typically includes a senior engineer and a designer/architect, plus marketing when the scope needs it. We don't take on more projects than we can resource properly. If we can't give your project the attention it needs, we'll tell you upfront.",
   },
   {
     id: "payment",

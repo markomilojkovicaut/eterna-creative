@@ -44,14 +44,24 @@ export function FinalCta() {
                 </h2>
 
                 <p className="mt-5 max-w-[560px] text-body-md leading-relaxed text-text-sub sm:text-body-lg">
-                  Your product idea has a window - let&apos;s not waste it. Book a
-                  free 15-min strategy call and we&apos;ll show you how we would
-                  build it.
+                  Start with a free 15-min strategy call. If there&apos;s a fit,
+                  you get a Launch Plan before any build commitment - then we
+                  ship with the Eterna Method.
                 </p>
 
                 <CallToActionLink href="/book" className="mt-8">
                   Book a strategy call
                 </CallToActionLink>
+                <p className="mt-4 text-body-sm text-text-muted">
+                  Not ready to talk?{" "}
+                  <a
+                    href="/blueprint"
+                    className="font-medium text-brand-purple-light no-underline transition-colors hover:text-text-heading"
+                  >
+                    See how the Launch Plan works
+                  </a>
+                  .
+                </p>
               </div>
             </div>
           </Reveal>
