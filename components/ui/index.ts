@@ -39,7 +39,6 @@ export { PricingCard } from "./PricingCard";
 export { PricingIcon } from "./PricingIcon";
 export { ProcessStepCard } from "./ProcessStepCard";
 export { QuoteBar, type QuoteBarAccent } from "./QuoteBar";
-export { QuoteIcon } from "./QuoteIcon";
 export { HeroPhones } from "./HeroPhones";
 export { SectionPullQuote } from "./SectionPullQuote";
 export { ReviewAvatar } from "./ReviewAvatar";
