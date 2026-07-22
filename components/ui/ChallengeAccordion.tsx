@@ -19,21 +19,25 @@ export interface DarkRotateAccordionProps {
   intervalMs?: number;
   className?: string;
   defaultActiveIndex?: number;
+  /** Dark surfaces (default) or light/white chapters. */
+  variant?: "dark" | "light";
 }
 
 /**
- * Dark auto-accordion: one open panel, left border fill, auto-advance.
- * Used by Challenges (danger accents) and How we use AI (purple only).
+ * Auto-accordion: one open panel, left border fill, auto-advance.
+ * Dark: Challenges (legacy), How we use AI. Light: Challenges on white.
  */
 export function DarkRotateAccordion({
   items,
   intervalMs = 8000,
   className,
   defaultActiveIndex = 0,
+  variant = "dark",
 }: DarkRotateAccordionProps) {
   const [activeIndex, setActiveIndex] = useState(defaultActiveIndex);
   const [progressCycle, setProgressCycle] = useState(0);
   const [paused, setPaused] = useState(false);
+  const isLight = variant === "light";
 
   const selectIndex = useCallback((index: number) => {
     setActiveIndex(index);
@@ -56,7 +60,10 @@ export function DarkRotateAccordion({
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-soft border border-border-dark bg-bg-card/40",
+        "overflow-hidden rounded-soft border",
+        isLight
+          ? "border-border-muted bg-bg-muted"
+          : "border-border-dark bg-bg-card/40",
         className
       )}
       onMouseEnter={() => setPaused(true)}
@@ -79,13 +86,18 @@ export function DarkRotateAccordion({
             key={item.id}
             className={cn(
               "relative flex",
-              !isLast && "border-b border-border-dark"
+              !isLast &&
+                (isLight ? "border-b border-border-muted" : "border-b border-border-dark")
             )}
           >
             <div
               className={cn(
                 "relative w-1 shrink-0",
-                isDanger ? "bg-brand-danger/20" : "bg-brand-purple-light/15"
+                isDanger
+                  ? "bg-brand-danger/20"
+                  : isLight
+                    ? "bg-brand-purple/20"
+                    : "bg-brand-purple-light/15"
               )}
               aria-hidden
             >
@@ -94,7 +106,11 @@ export function DarkRotateAccordion({
                   key={progressCycle}
                   className={cn(
                     "absolute inset-x-0 top-0 h-full origin-top animate-approach-border-fill",
-                    isDanger ? "bg-brand-danger" : "bg-brand-purple-light"
+                    isDanger
+                      ? "bg-brand-danger"
+                      : isLight
+                        ? "bg-brand-purple"
+                        : "bg-brand-purple-light"
                   )}
                   style={{
                     animationDuration: `${intervalMs}ms`,
@@ -122,7 +138,9 @@ export function DarkRotateAccordion({
                       "block text-[11px] font-semibold uppercase tracking-[0.12em]",
                       isDanger
                         ? "text-brand-danger"
-                        : "text-brand-purple-light"
+                        : isLight
+                          ? "text-brand-purple"
+                          : "text-brand-purple-light"
                     )}
                   >
                     {item.eyebrow}
@@ -130,7 +148,8 @@ export function DarkRotateAccordion({
                 ) : null}
                 <span
                   className={cn(
-                    "block font-heading text-body-md font-bold leading-snug text-text-heading sm:text-heading-sm",
+                    "block font-heading text-body-md font-bold leading-snug sm:text-heading-sm",
+                    isLight ? "text-text-ink" : "text-text-heading",
                     item.eyebrow && "mt-1.5"
                   )}
                 >
@@ -138,7 +157,12 @@ export function DarkRotateAccordion({
                 </span>
               </button>
               {isActive ? (
-                <p className="mt-2 max-w-[560px] text-body-md leading-relaxed text-text-body">
+                <p
+                  className={cn(
+                    "mt-2 max-w-[560px] text-body-md leading-relaxed",
+                    isLight ? "text-text-ink-sub" : "text-text-body"
+                  )}
+                >
                   {item.description}
                 </p>
               ) : null}
@@ -150,9 +174,7 @@ export function DarkRotateAccordion({
   );
 }
 
-/** @deprecated Use DarkRotateAccordion - kept as alias for Challenges. */
-export function ChallengeAccordion(
-  props: DarkRotateAccordionProps
-) {
+/** @deprecated Use DarkRotateAccordion */
+export function ChallengeAccordion(props: DarkRotateAccordionProps) {
   return <DarkRotateAccordion {...props} />;
 }

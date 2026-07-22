@@ -1,7 +1,4 @@
-import {
-  DarkSectionBackdrop,
-  SectionHeading,
-} from "@/components/ui";
+import { SectionHeading } from "@/components/ui";
 import { DarkRotateAccordion } from "@/components/ui/ChallengeAccordion";
 import { founderJourneySteps } from "@/lib/founder-journey";
 import {
@@ -20,15 +17,15 @@ const challengeItems = founderJourneySteps.map((step) => ({
     | "purple",
 }));
 
+/** White challenges chapter - engines stay on dark behind it. */
 export function FounderJourney() {
   return (
-    <section className="relative bg-bg-base pt-section pb-section">
-      <DarkSectionBackdrop objectPosition="right" gradient="section" />
-
+    <section className="relative bg-bg-surface pt-section pb-section text-text-ink-sub">
       <div className={cn("relative z-10", LAYOUT_OUTER_CLASS)}>
         <div className={LAYOUT_INNER_CLASS}>
           <SectionHeading
             label="Challenges"
+            labelVariant="light"
             lines={[
               { text: "The typical", variant: "default" },
               { text: "founder journey", variant: "gradient" },
@@ -39,7 +36,7 @@ export function FounderJourney() {
           />
 
           <div className="mt-14 max-w-[720px]">
-            <DarkRotateAccordion items={challengeItems} />
+            <DarkRotateAccordion items={challengeItems} variant="light" />
           </div>
         </div>
       </div>

@@ -177,25 +177,26 @@ export function Proof() {
             </div>
           </div>
 
-          <div className="mt-14 lg:mt-16">
-            <h3 className="font-heading text-heading-lg font-bold text-text-heading">
-              How we use AI in our work
-            </h3>
-            <p className="mt-3 max-w-[560px] text-body-md leading-relaxed text-text-body">
-              Not a slide deck of AI buzzwords - the same stack and discipline
-              we use on client builds and our own products.
-            </p>
-            <div className="mt-8 max-w-[720px]">
-              <DarkRotateAccordion
-                items={aiPractices.map((practice, index) => ({
-                  id: practice.id,
-                  eyebrow: `0${index + 1}`,
-                  title: practice.title,
-                  description: practice.description,
-                  accent: "purple" as const,
-                }))}
-              />
+          <div className="mt-14 grid gap-8 lg:mt-16 lg:grid-cols-2 lg:items-start lg:gap-12 xl:gap-16">
+            <div className="min-w-0 max-w-[420px]">
+              <h3 className="font-heading text-heading-lg font-bold text-text-heading">
+                How we use AI in our work
+              </h3>
+              <p className="mt-3 text-body-md leading-relaxed text-text-body">
+                Not a slide deck of AI buzzwords - the same stack and discipline
+                we use on client builds and our own products.
+              </p>
             </div>
+            <DarkRotateAccordion
+              className="w-full"
+              items={aiPractices.map((practice, index) => ({
+                id: practice.id,
+                eyebrow: `0${index + 1}`,
+                title: practice.title,
+                description: practice.description,
+                accent: "purple" as const,
+              }))}
+            />
           </div>
 
           <SectionPullQuote quote={quoteAfterProof} className="mt-10 lg:mt-14" />

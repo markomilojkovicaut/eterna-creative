@@ -74,7 +74,7 @@ export const headerNavItems: HeaderNavItem[] = [
             serviceIcon: "application",
           },
           {
-            label: "Automations",
+            label: "Automation",
             href: "/services/automation",
             description: "AI workflows and agents",
             serviceIcon: "automation",
@@ -234,7 +234,7 @@ export const footerLinkGroups = [
     id: "contact",
     label: "Contact",
     links: [
-      { label: "Book a strategy call", href: "/book" },
+      { label: "Book a call", href: "/book" },
       { label: "Send email", href: "mailto:hello@eterna.dev" },
     ] as const satisfies readonly FooterContactLink[],
   },

@@ -1,5 +1,6 @@
 export { ArrowUpRight } from "./ArrowUpRight";
 export { Badge } from "./Badge";
+export { CalculatorPhonePreview } from "./CalculatorPhonePreview";
 export { CaseStudyCard } from "./CaseStudyCard";
 export { BorderedDarkPanel } from "./BorderedDarkPanel";
 export { Button } from "./Button";

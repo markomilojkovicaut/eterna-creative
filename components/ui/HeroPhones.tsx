@@ -170,7 +170,7 @@ function PhoneScreenAutomations() {
   return (
     <div className="flex h-full flex-col bg-[#07070c] px-2.5 pb-2.5">
       <p className="text-[6px] font-semibold uppercase tracking-[0.14em] text-brand-pink">
-        Automations
+        Automation
       </p>
       <p className="mt-1 font-heading text-[10px] font-bold leading-tight text-text-heading">
         Agent workflow

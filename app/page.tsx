@@ -13,12 +13,11 @@ import { Faq } from "@/components/sections/Faq";
 import { FinalCta } from "@/components/sections/FinalCta";
 import { HomeResourcesChapter } from "@/components/sections/HomeResourcesChapter";
 import { Investment } from "@/components/sections/Investment";
-import { HomeOfferBridge } from "@/components/sections/HomeOfferBridge";
 import { Solutions } from "@/components/sections/Solutions";
 
 /**
  * Homepage rhythm:
- * Intro → WHAT (products, start here) → bridge → HOW (challenges, engines,
+ * Intro → WHAT (products, start here) → HOW (challenges white, engines dark,
  * approach) → WHAT again (cases, proof, who we serve) → trust & close.
  */
 export default function HomePage() {
@@ -31,9 +30,7 @@ export default function HomePage() {
       <Services />
       <EntryDoors />
 
-      <HomeOfferBridge />
-
-      {/* HOW — problem + methodology, then white approach/process */}
+      {/* HOW — white challenges, then dark engines + approach */}
       <FounderJourney />
       <EternaSystem />
       <HomeApproachChapter />

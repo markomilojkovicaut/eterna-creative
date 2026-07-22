@@ -1,6 +1,6 @@
 /**
  * Three products we sell. Modules listed as pills; module pages later.
- * Order: Application → Automations → Website.
+ * Order: Application → Automation → Website.
  */
 
 export type ProductId = "application" | "automation" | "website";
@@ -21,9 +21,9 @@ export interface ProductOffer {
 
 /** Short names for hero product rail. */
 export const heroProductRail = [
-  { id: "application", label: "Apps", href: "/services/application" },
-  { id: "automation", label: "Automations", href: "/services/automation" },
-  { id: "website", label: "Websites", href: "/services/website" },
+  { id: "application", label: "Application", href: "/services/application" },
+  { id: "automation", label: "Automation", href: "/services/automation" },
+  { id: "website", label: "Website", href: "/services/website" },
 ] as const;
 
 export const productOffers: ProductOffer[] = [
@@ -48,7 +48,7 @@ export const productOffers: ProductOffer[] = [
   {
     id: "automation",
     number: "02",
-    title: "Automations",
+    title: "Automation",
     description:
       "AI workflows and agents that cut manual work and run reliably in production.",
     href: "/services/automation",

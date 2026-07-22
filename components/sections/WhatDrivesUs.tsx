@@ -120,7 +120,9 @@ export function WhatDrivesUs() {
                   {group.map((chunk) => (
                     <span
                       key={chunk.text}
-                      className={cn(chunk.bold && "font-bold")}
+                      className={cn(
+                        chunk.bold && "text-gradient-hero font-bold"
+                      )}
                     >
                       {chunk.text}
                     </span>
@@ -132,7 +134,9 @@ export function WhatDrivesUs() {
 
           <QuoteBar className="w-fit max-w-full">
             AI gets you moving.{" "}
-            <span className="font-bold">Systems make it compound.</span>
+            <span className="text-gradient-hero font-bold">
+              Systems make it compound.
+            </span>
           </QuoteBar>
         </div>
       </div>

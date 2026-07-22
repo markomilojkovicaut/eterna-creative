@@ -1,5 +1,5 @@
 import { DarkSectionBackdrop, SectionHeading } from "@/components/ui";
-import { SecondaryCtaLink } from "@/components/ui/SecondaryCtaLink";
+import { CallToActionLink } from "@/components/ui/CallToActionLink";
 import { SolutionCard } from "@/components/ui/SolutionCard";
 import {
   LAYOUT_INNER_CLASS,
@@ -29,11 +29,6 @@ export function Solutions() {
             titleMaxWidth="max-w-[560px]"
             subheadingMaxWidth="max-w-[420px]"
             subheading="Different goals, different stages, same commitment. Tell us where you are and we'll show you how we build with you."
-            subheadingAction={
-              <SecondaryCtaLink href="/book" className="!px-4 !py-2 !text-[12px]">
-                Book a strategy call
-              </SecondaryCtaLink>
-            }
           />
 
           <div className="mt-14 overflow-hidden rounded-soft border border-border-dark lg:mt-16">
@@ -42,6 +37,10 @@ export function Solutions() {
                 <SolutionCard key={solution.id} solution={solution} />
               ))}
             </div>
+          </div>
+
+          <div className="mt-10 flex justify-center lg:mt-12">
+            <CallToActionLink href="/book">Book a strategy call</CallToActionLink>
           </div>
         </div>
       </div>
