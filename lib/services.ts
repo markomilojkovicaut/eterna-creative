@@ -64,7 +64,7 @@ export const services: Service[] = [
     id: "application",
     title: "Application",
     description:
-      "Ship a product you own - AI-assisted custom by default, no-code when the stage calls for it.",
+      "Ship a product that scales - AI-assisted custom by default, no-code when the stage calls for it.",
     tags: ["Custom", "AI-assisted", "No-code"],
     icon: "application",
     phase: "build",

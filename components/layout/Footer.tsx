@@ -99,7 +99,8 @@ export function Footer() {
                     </p>
                     <ul className="mt-3 space-y-2">
                       {group.links.map((link) => {
-                        const isContact = "icon" in link;
+                        const isContact =
+                          "icon" in link && Boolean(link.icon);
 
                         return (
                           <li key={link.label}>
@@ -113,7 +114,9 @@ export function Footer() {
                                   }
                                 : {})}
                             >
-                              {isContact && <ContactLinkIcon icon={link.icon} />}
+                              {isContact && link.icon ? (
+                                <ContactLinkIcon icon={link.icon} />
+                              ) : null}
                               {link.label}
                             </Link>
                           </li>

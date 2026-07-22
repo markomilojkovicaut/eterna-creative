@@ -25,16 +25,17 @@ export function Services() {
         <div className={LAYOUT_INNER_CLASS}>
           <SectionHeading
             split
-            label="What we build"
+            label="Products"
             lines={[
-              { text: "Custom products", variant: "default" },
-              { text: "& solutions", variant: "gradient" },
+              { text: "Ship products that", variant: "default" },
+              { text: "earn their keep", variant: "gradient" },
             ]}
             titleMaxWidth="max-w-[560px]"
             subheading={
               <>
-                Three offers. Everything else is a module inside them - from
-                validation and UI/UX to AI agents and growth.
+                Applications, automations, and websites built to launch, convert,
+                and scale - with the strategy, craft, and AI muscle behind every
+                release.
               </>
             }
           />

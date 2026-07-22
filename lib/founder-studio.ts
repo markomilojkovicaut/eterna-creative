@@ -3,12 +3,16 @@ export type FounderPrincipleId =
   | "certified-engineers"
   | "bad-idea"
   | "own-products"
-  | "invest";
+  | "invest"
+  | "bubble-partner";
 
 export interface FounderPrinciple {
   id: FounderPrincipleId;
   title: string;
   description: string;
+  /** Optional outbound link shown when the item is expanded. */
+  href?: string;
+  hrefLabel?: string;
 }
 
 export interface TeamMember {
@@ -30,9 +34,6 @@ export const founderBio =
   "I'm Marko. With a small senior team beside me, we've built our own products, made expensive mistakes, and taken revenue share bets on founders we believed in. That's not something agencies would do. We've been in your shoes - now it's our turn to help.";
 
 export const bubblePartnerHref = "https://bubble.io/partners";
-
-export const bubblePartnerLabel =
-  "Bubble partner - for existing apps and migration work";
 
 export const founderPrinciples: FounderPrinciple[] = [
   {
@@ -65,6 +66,14 @@ export const founderPrinciples: FounderPrinciple[] = [
     description:
       "For founders with a validated idea and real conviction, we sometimes offer to co-invest, and become tech co-founder.",
   },
+  {
+    id: "bubble-partner",
+    title: "Bubble Bronze partner",
+    description:
+      "Official Bubble partner. We build on Bubble when the stage calls for it - and migrate or go custom when you need code that scales beyond the platform.",
+    href: bubblePartnerHref,
+    hrefLabel: "View partnership",
+  },
 ];
 
 export const teamMembers: TeamMember[] = [
@@ -73,20 +82,20 @@ export const teamMembers: TeamMember[] = [
     name: "Marko",
     role: "Founder, Eterna Studio",
     imageSrc: markoImageSrc,
-    staggerClass: "lg:translate-y-0",
+    staggerClass: "",
   },
   {
     id: "artur",
     name: "Artur",
     role: "Lead engineer",
     imageSrc: "/images/team/artur.png",
-    staggerClass: "lg:translate-y-8",
+    staggerClass: "",
   },
   {
     id: "violeta",
     name: "Violeta",
     role: "Marketing director",
     imageSrc: "/images/team/violeta.png",
-    staggerClass: "lg:translate-y-4",
+    staggerClass: "",
   },
 ];

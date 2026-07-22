@@ -1,16 +1,11 @@
-import Link from "next/link";
-
 import {
   DarkAccordion,
   DarkSectionBackdrop,
   SectionHeading,
   TeamMemberCard,
 } from "@/components/ui";
-import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
 import { QuoteIcon } from "@/components/ui/QuoteIcon";
 import {
-  bubblePartnerHref,
-  bubblePartnerLabel,
   founderBio,
   founderPrinciples,
   studioPrincipleLabel,
@@ -55,38 +50,18 @@ export function FounderLedStudio() {
                   Founder, Eterna Studio
                 </p>
               </div>
-
-              <div className="mt-6 flex flex-col gap-3 rounded-soft border border-border-dark bg-bg-card/40 p-4 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:p-5">
-                <p className="text-body-sm text-text-sub">
-                  {bubblePartnerLabel}
-                </p>
-                <Link
-                  href={bubblePartnerHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={cn(
-                    "inline-flex shrink-0 items-center justify-center gap-2 rounded-soft border border-border-dark",
-                    "bg-bg-card/60 px-5 py-[10px] text-body-md font-medium text-text-heading",
-                    "no-underline transition-colors hover:border-border-strong hover:bg-bg-card/80"
-                  )}
-                >
-                  Open
-                  <ArrowUpRight className="!text-brand-purple-light" />
-                </Link>
-              </div>
             </div>
 
             <DarkAccordion items={founderPrinciples} />
           </div>
 
-          <div className="mt-section grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4 lg:items-end lg:gap-5">
+          <div className="mt-section grid w-full grid-cols-1 gap-5 sm:grid-cols-3 sm:gap-6 lg:gap-8">
             {teamMembers.map((member) => (
               <TeamMemberCard key={member.id} member={member} />
             ))}
           </div>
 
-          {/* 120px gap; +4rem on lg accounts for Jovana's translate-y-16 stagger */}
-          <div className="relative mt-section lg:mt-[calc(7.5rem+4rem)] overflow-hidden rounded-soft border border-border-dark bg-bg-card/30">
+          <div className="relative mt-section overflow-hidden rounded-soft border border-border-dark bg-bg-card/30">
             <div
               className="pointer-events-none absolute inset-0 bg-gradient-to-t from-brand-purple-dark via-bg-base to-bg-base"
               aria-hidden

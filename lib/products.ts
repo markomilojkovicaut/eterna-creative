@@ -1,9 +1,9 @@
 /**
- * Three custom products we sell. Modules listed as pills on the homepage;
- * dedicated module pages can be added later under each product.
+ * Three products we sell. Modules listed as pills; module pages later.
+ * Order: Application → Automations → Website.
  */
 
-export type ProductId = "application" | "website" | "automation";
+export type ProductId = "application" | "automation" | "website";
 
 export interface ProductModule {
   id: string;
@@ -25,7 +25,7 @@ export const productOffers: ProductOffer[] = [
     number: "01",
     title: "Application",
     description:
-      "Custom products you own - validated, designed, engineered, and set to grow.",
+      "Digital products that scale - validated, designed, engineered, and ready to grow.",
     href: "/services/application",
     modules: [
       { id: "validation", label: "Validation" },
@@ -42,25 +42,8 @@ export const productOffers: ProductOffer[] = [
     ],
   },
   {
-    id: "website",
-    number: "02",
-    title: "Website",
-    description:
-      "Sites that convert - clear story, strong craft, ready to rank and grow traffic.",
-    href: "/services/website",
-    modules: [
-      { id: "strategy", label: "Strategy" },
-      { id: "ui-ux", label: "UI/UX" },
-      { id: "development", label: "Development" },
-      { id: "cro", label: "CRO" },
-      { id: "content", label: "Content" },
-      { id: "seo-aeo", label: "SEO / AEO" },
-      { id: "social", label: "Social marketing" },
-    ],
-  },
-  {
     id: "automation",
-    number: "03",
+    number: "02",
     title: "Automations",
     description:
       "AI workflows and agents that cut manual work and run reliably in production.",
@@ -73,6 +56,23 @@ export const productOffers: ProductOffer[] = [
       { id: "n8n", label: "n8n agents" },
       { id: "digitalisation", label: "Company digitalisation" },
       { id: "ai-impl", label: "AI implementation" },
+    ],
+  },
+  {
+    id: "website",
+    number: "03",
+    title: "Website",
+    description:
+      "Sites that convert - clear story, strong craft, ready to rank and grow traffic.",
+    href: "/services/website",
+    modules: [
+      { id: "strategy", label: "Strategy" },
+      { id: "ui-ux", label: "UI/UX" },
+      { id: "development", label: "Development" },
+      { id: "cro", label: "CRO" },
+      { id: "content", label: "Content" },
+      { id: "seo-aeo", label: "SEO / AEO" },
+      { id: "social", label: "Social marketing" },
     ],
   },
 ];

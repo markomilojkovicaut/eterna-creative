@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { CallToActionLink } from "@/components/ui/CallToActionLink";
+import { HeroPhones } from "@/components/ui/HeroPhones";
 import { LabelPill } from "@/components/ui/LabelPill";
 import {
   displayHeadingTypeClasses,
@@ -104,17 +105,7 @@ export function Hero() {
           </div>
 
           <div className="flex w-full justify-center lg:col-span-6 lg:row-start-3 lg:justify-start lg:self-end">
-            <div className="w-full max-w-xl lg:max-w-2xl">
-              <Image
-                src="/images/hero-phones.png"
-                alt="Mobile app mockups built by Eterna"
-                width={900}
-                height={700}
-                priority
-                sizes="(max-width: 1280px) 640px, 512px"
-                className="block h-auto w-full"
-              />
-            </div>
+            <HeroPhones />
           </div>
         </div>
       </div>

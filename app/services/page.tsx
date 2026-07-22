@@ -15,12 +15,12 @@ export const metadata: Metadata = {
 export default function ServicesHubPage() {
   return (
     <ContentHubShell
-      label="Services"
+      label="Products"
       lines={[
-        { text: "Custom products", variant: "default" },
-        { text: "& solutions", variant: "gradient" },
+        { text: "Ship products that", variant: "default" },
+        { text: "earn their keep", variant: "gradient" },
       ]}
-      subheading="Three offers. Modules inside each - from validation and UI/UX to AI agents and growth. Pick a product or book a strategy call."
+      subheading="Applications, automations, and websites built to launch, convert, and scale - with the strategy, craft, and AI muscle behind every release."
     >
       <div className="overflow-hidden rounded-soft border border-border-dark">
         <div className="grid divide-y divide-border-dark lg:grid-cols-3 lg:divide-x lg:divide-y-0">
