@@ -173,8 +173,3 @@ export function DarkRotateAccordion({
     </div>
   );
 }
-
-/** @deprecated Use DarkRotateAccordion */
-export function ChallengeAccordion(props: DarkRotateAccordionProps) {
-  return <DarkRotateAccordion {...props} />;
-}

@@ -1,9 +1,12 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 
 import { CallToActionLink } from "@/components/ui/CallToActionLink";
 import { HeroPhones } from "@/components/ui/HeroPhones";
 import { LabelPill } from "@/components/ui/LabelPill";
+import { Reveal } from "@/components/ui/Reveal";
 import {
   displayHeadingTypeClasses,
   heroH1LineClasses,
@@ -34,7 +37,7 @@ function ClutchStars({ className }: { className?: string }) {
   );
 }
 
-/** Centered hero: pill + Clutch, clearer H1, product rail, CTA, subtle phones. */
+/** Centered hero with Fab-style load stagger. */
 export function Hero() {
   return (
     <section className="relative min-h-screen overflow-hidden bg-bg-base">
@@ -64,63 +67,73 @@ export function Hero() {
           )}
         >
           <div className="flex w-full max-w-[760px] shrink-0 flex-col items-center">
-            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+            <Reveal immediate className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
               <LabelPill>AI-native product studio</LabelPill>
               <span className="hidden h-4 w-px bg-border-strong sm:block" aria-hidden />
               <span className="inline-flex items-center gap-2 text-[14px] sm:text-[15px]">
                 <span className="font-semibold text-text-heading">Clutch</span>
                 <ClutchStars />
               </span>
-            </div>
+            </Reveal>
 
-            <h1
-              className={cn(
-                "mt-6 overflow-visible",
-                displayHeadingTypeClasses
-              )}
-            >
-              <span className={cn(heroH1LineClasses, "text-text-heading")}>
-                From idea to revenue.
-              </span>
-              <span
+            <Reveal immediate delay={90}>
+              <h1
                 className={cn(
-                  heroH1LineClasses,
-                  "mt-0.5 pb-1 text-gradient-hero"
+                  "mt-6 overflow-visible",
+                  displayHeadingTypeClasses
                 )}
               >
-                Built to compound, not just launch.
-              </span>
-            </h1>
-
-            <nav
-              aria-label="Products"
-              className="mt-5 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-body-sm font-medium text-text-sub sm:text-body-md"
-            >
-              {heroProductRail.map((item, index) => (
-                <span key={item.id} className="inline-flex items-center gap-2">
-                  {index > 0 ? (
-                    <span className="text-brand-purple-light/50" aria-hidden>
-                      ·
-                    </span>
-                  ) : null}
-                  <Link
-                    href={item.href}
-                    className="text-text-sub no-underline transition-colors hover:text-text-heading"
-                  >
-                    {item.label}
-                  </Link>
+                <span className={cn(heroH1LineClasses, "text-text-heading")}>
+                  From idea to revenue.
                 </span>
-              ))}
-            </nav>
+                <span
+                  className={cn(
+                    heroH1LineClasses,
+                    "mt-0.5 pb-1 text-gradient-hero"
+                  )}
+                >
+                  Built to compound, not just launch.
+                </span>
+              </h1>
+            </Reveal>
 
-            <CallToActionLink href="/book" className="relative z-20 mt-8">
-              Book a strategy call
-            </CallToActionLink>
+            <Reveal immediate delay={160}>
+              <nav
+                aria-label="Products"
+                className="mt-5 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-body-sm font-medium text-text-sub sm:text-body-md"
+              >
+                {heroProductRail.map((item, index) => (
+                  <span key={item.id} className="inline-flex items-center gap-2">
+                    {index > 0 ? (
+                      <span className="text-brand-purple-light/50" aria-hidden>
+                        ·
+                      </span>
+                    ) : null}
+                    <Link
+                      href={item.href}
+                      className="text-text-sub no-underline transition-colors hover:text-text-heading"
+                    >
+                      {item.label}
+                    </Link>
+                  </span>
+                ))}
+              </nav>
+            </Reveal>
+
+            <Reveal immediate delay={230}>
+              <CallToActionLink href="/book" className="relative z-20 mt-8">
+                Book a strategy call
+              </CallToActionLink>
+            </Reveal>
           </div>
 
-          <div className="relative z-0 mt-[80px] flex w-full max-w-md flex-1 items-end justify-center lg:max-w-lg">
+          <Reveal
+            immediate
+            delay={320}
+            className="relative z-0 mt-[80px] flex w-full max-w-md flex-1 items-end justify-center lg:max-w-lg"
+          >
             <HeroPhones className="w-full" />
-          </div>
+          </Reveal>
         </div>
       </div>
 

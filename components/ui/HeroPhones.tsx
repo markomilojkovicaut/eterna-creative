@@ -58,6 +58,15 @@ export function HeroPhones({ className }: { className?: string }) {
   );
 }
 
+/** Shared hover-only treatment for product device previews in offer cards. */
+export const productDeviceHoverClassName = cn(
+  "pointer-events-none hidden shrink-0 self-end sm:block",
+  "opacity-0 translate-y-2 transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
+  "group-hover:opacity-100 group-hover:translate-y-0",
+  "group-focus-within:opacity-100 group-focus-within:translate-y-0",
+  "motion-reduce:opacity-100 motion-reduce:translate-y-0"
+);
+
 /** Static product device for cards / service heroes - no motion. */
 export function ProductDevicePreview({
   variant,

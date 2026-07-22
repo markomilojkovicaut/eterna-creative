@@ -14,11 +14,7 @@ import { FinalCta } from "@/components/sections/FinalCta";
 import { HomeResourcesChapter } from "@/components/sections/HomeResourcesChapter";
 import { Investment } from "@/components/sections/Investment";
 import { Solutions } from "@/components/sections/Solutions";
-import { Reveal } from "@/components/ui/Reveal";
 
-/**
- * Homepage with Fab-style scroll reveals on sections and card groups.
- */
 export default function HomePage() {
   return (
     <main className="relative">
@@ -28,40 +24,26 @@ export default function HomePage() {
       <EntryDoors />
       <FounderJourney />
 
-      <Reveal>
-        <EternaSystem />
-      </Reveal>
+      <EternaSystem />
 
-      <Reveal>
-        <HomeApproachChapter />
-      </Reveal>
+      <HomeApproachChapter />
 
       <CaseStudies />
 
-      <Reveal>
-        <Proof />
-      </Reveal>
+      <Proof />
 
       <Solutions />
 
-      <Reveal>
-        <HomeClientStoriesChapter />
-      </Reveal>
+      <HomeClientStoriesChapter />
 
-      <Reveal>
-        <FounderLedStudio />
-      </Reveal>
+      <FounderLedStudio />
 
       <HomeResourcesChapter />
       <Investment />
 
-      <Reveal>
-        <Faq />
-      </Reveal>
+      <Faq />
 
-      <Reveal>
-        <FinalCta />
-      </Reveal>
+      <FinalCta />
     </main>
   );
 }

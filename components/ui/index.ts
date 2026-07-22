@@ -2,6 +2,10 @@ export { ArrowUpRight } from "./ArrowUpRight";
 export { Badge } from "./Badge";
 export { CalculatorPhonePreview } from "./CalculatorPhonePreview";
 export { Reveal, useReveal, type RevealProps } from "./Reveal";
+export {
+  DividedCardGrid,
+  ProductOffersGrid,
+} from "./ProductOffersGrid";
 export { CaseStudyCard } from "./CaseStudyCard";
 export { BorderedDarkPanel } from "./BorderedDarkPanel";
 export { Button } from "./Button";
@@ -10,7 +14,6 @@ export { Card } from "./Card";
 export { CornerPlusAccents } from "./CornerPlusAccents";
 export { DarkAccordion } from "./DarkAccordion";
 export {
-  ChallengeAccordion,
   DarkRotateAccordion,
   type DarkRotateAccordionAccent,
   type DarkRotateAccordionItem,
@@ -28,7 +31,6 @@ export { FeaturedReviewCard } from "./FeaturedReviewCard";
 export { QuoteIcon } from "./QuoteIcon";
 export { ResourceBentoCard } from "./ResourceBentoCard";
 export { ReviewCardsCarousel } from "./ReviewCardsCarousel";
-export { EngineCard } from "./EngineCard";
 export { EngineIcon } from "./EngineIcon";
 export {
   AutoAccordion,
@@ -48,7 +50,11 @@ export { PricingCard } from "./PricingCard";
 export { PricingIcon } from "./PricingIcon";
 export { ProcessStepCard } from "./ProcessStepCard";
 export { QuoteBar, type QuoteBarAccent } from "./QuoteBar";
-export { HeroPhones, ProductDevicePreview } from "./HeroPhones";
+export {
+  HeroPhones,
+  ProductDevicePreview,
+  productDeviceHoverClassName,
+} from "./HeroPhones";
 export { SectionPullQuote } from "./SectionPullQuote";
 export { ReviewAvatar } from "./ReviewAvatar";
 export { ReviewCard } from "./ReviewCard";
@@ -64,8 +70,6 @@ export { SectionLabel, type SectionLabelProps } from "./SectionLabel";
 export { SecondaryCtaLink, type SecondaryCtaLinkProps } from "./SecondaryCtaLink";
 export { SolutionCard } from "./SolutionCard";
 export { SolutionIcon } from "./SolutionIcon";
-export { ServiceCard } from "./ServiceCard";
-export { ServiceFilterBar } from "./ServiceFilterBar";
 export { ServiceIcon } from "./ServiceIcon";
 export { StatCard, statSuffixes } from "./StatCard";
 export { TeamMemberCard } from "./TeamMemberCard";

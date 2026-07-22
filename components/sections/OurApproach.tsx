@@ -1,27 +1,26 @@
+"use client";
+
 import { ApproachCalloutAccordion } from "@/components/ui/ApproachCalloutAccordion";
 import { LightEditorialDisplay } from "@/components/ui/LightEditorialDisplay";
+import { Reveal } from "@/components/ui/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { ToolStackCard } from "@/components/ui/ToolStackCard";
 import {
   lightEditorialAccentLineClasses,
   lightEditorialLineClasses,
 } from "@/lib/heading-styles";
+import {
+  LIGHT_RIGHT_COLUMN_CLASS,
+  LIGHT_SPREAD_LAYOUT_CLASS,
+  LIGHT_STICKY_ASIDE_CLASS,
+} from "@/lib/layout-constants";
 import { toolStackGroups, toolsByGroup } from "@/lib/tool-stack";
 import { cn } from "@/lib/utils";
 
-const stickyAsideClass =
-  "lg:sticky lg:top-6 lg:w-full lg:max-w-[400px] lg:shrink-0 lg:self-start";
-
-const spreadLayoutClass =
-  "flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-12 xl:gap-16";
-
-const rightColumnClass =
-  "flex w-full min-w-0 max-w-[480px] flex-col lg:shrink-0";
-
 export function OurApproach() {
   return (
-    <div className={spreadLayoutClass}>
-      <aside className={stickyAsideClass}>
+    <div className={LIGHT_SPREAD_LAYOUT_CLASS}>
+      <Reveal as="aside" className={LIGHT_STICKY_ASIDE_CLASS}>
         <SectionLabel tone="light">Our approach</SectionLabel>
 
         <LightEditorialDisplay className="mt-3">
@@ -30,9 +29,9 @@ export function OurApproach() {
           </span>
           <span className={lightEditorialAccentLineClasses}>actual stage</span>
         </LightEditorialDisplay>
-      </aside>
+      </Reveal>
 
-      <div className={rightColumnClass}>
+      <Reveal delay={100} className={LIGHT_RIGHT_COLUMN_CLASS}>
         <ApproachCalloutAccordion />
 
         <div className="mt-section overflow-hidden rounded-soft border border-border-muted">
@@ -70,7 +69,7 @@ export function OurApproach() {
             );
           })}
         </div>
-      </div>
+      </Reveal>
     </div>
   );
 }

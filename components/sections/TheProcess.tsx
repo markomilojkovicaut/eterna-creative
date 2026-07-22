@@ -1,26 +1,25 @@
+"use client";
+
 import { LabelPill } from "@/components/ui/LabelPill";
 import { LightCtaLink } from "@/components/ui/LightCtaLink";
 import { LightEditorialDisplay } from "@/components/ui/LightEditorialDisplay";
 import { ProcessStepCard } from "@/components/ui/ProcessStepCard";
+import { Reveal } from "@/components/ui/Reveal";
 import {
   lightEditorialAccentLineClasses,
   lightEditorialLineClasses,
 } from "@/lib/heading-styles";
+import {
+  LIGHT_SPREAD_LAYOUT_CLASS,
+  LIGHT_STICKY_ASIDE_CLASS,
+} from "@/lib/layout-constants";
 import { processSteps } from "@/lib/process-steps";
-
-const stickyAsideClass =
-  "lg:sticky lg:top-6 lg:w-full lg:max-w-[400px] lg:shrink-0 lg:self-start";
-
-const spreadLayoutClass =
-  "flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-12 xl:gap-16";
-
-const rightColumnClass =
-  "w-full min-w-0 max-w-[480px] shrink-0 border-t border-border-muted";
+import { cn } from "@/lib/utils";
 
 export function TheProcess() {
   return (
-    <div className={spreadLayoutClass}>
-      <aside className={stickyAsideClass}>
+    <div className={LIGHT_SPREAD_LAYOUT_CLASS}>
+      <Reveal as="aside" className={LIGHT_STICKY_ASIDE_CLASS}>
         <LabelPill variant="light">The process</LabelPill>
 
         <LightEditorialDisplay className="mt-3">
@@ -33,21 +32,27 @@ export function TheProcess() {
         <LightCtaLink href="/book" className="mt-8">
           Book a strategy call
         </LightCtaLink>
-      </aside>
+      </Reveal>
 
-      <div className={rightColumnClass}>
+      <Reveal
+        delay={100}
+        className={cn(
+          "w-full min-w-0 max-w-[480px] shrink-0 border-t border-border-muted"
+        )}
+      >
         {processSteps.map((step, index) => (
-          <ProcessStepCard
-            key={step.id}
-            step={step}
-            showTopBorder={
-              index > 0 &&
-              !step.gradientBackground &&
-              !processSteps[index - 1]?.gradientBackground
-            }
-          />
+          <Reveal key={step.id} delay={80 + index * 70}>
+            <ProcessStepCard
+              step={step}
+              showTopBorder={
+                index > 0 &&
+                !step.gradientBackground &&
+                !processSteps[index - 1]?.gradientBackground
+              }
+            />
+          </Reveal>
         ))}
-      </div>
+      </Reveal>
     </div>
   );
 }
