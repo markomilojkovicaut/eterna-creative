@@ -7,6 +7,7 @@ export { CallToActionLink } from "./CallToActionLink";
 export { Card } from "./Card";
 export { CornerPlusAccents } from "./CornerPlusAccents";
 export { DarkAccordion } from "./DarkAccordion";
+export { ChallengeAccordion } from "./ChallengeAccordion";
 export { DarkFaqAccordion } from "./DarkFaqAccordion";
 export { DarkTagPill } from "./DarkTagPill";
 export { FounderPrincipleIcon } from "./FounderPrincipleIcon";

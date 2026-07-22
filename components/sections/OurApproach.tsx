@@ -53,11 +53,13 @@ export function OurApproach() {
                 <div
                   className={cn(
                     "grid divide-x divide-y divide-border-muted",
-                    tools.length === 2
+                    tools.length <= 2
                       ? "grid-cols-2"
-                      : tools.length === 4
-                        ? "grid-cols-2 sm:grid-cols-4"
-                        : "grid-cols-3"
+                      : tools.length === 3
+                        ? "grid-cols-3"
+                        : tools.length === 4
+                          ? "grid-cols-2 sm:grid-cols-4"
+                          : "grid-cols-2 sm:grid-cols-3"
                   )}
                 >
                   {tools.map((tool) => (

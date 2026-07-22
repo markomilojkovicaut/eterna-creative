@@ -137,6 +137,14 @@ const config: Config = {
           "0%, 100%": { transform: "scaleY(0.55)" },
           "50%": { transform: "scaleY(1)" },
         },
+        "engine-orbit": {
+          from: { transform: "rotate(0deg)" },
+          to: { transform: "rotate(360deg)" },
+        },
+        "engine-ring-pulse": {
+          "0%, 100%": { opacity: "0.35", transform: "scale(1)" },
+          "50%": { opacity: "0.7", transform: "scale(1.04)" },
+        },
       },
       animation: {
         "approach-border-fill":
@@ -155,6 +163,9 @@ const config: Config = {
           "phone-screen-pulse 3.5s ease-in-out infinite",
         "phone-bar-rise":
           "phone-bar-rise 2.8s ease-in-out infinite",
+        "engine-orbit": "engine-orbit 28s linear infinite",
+        "engine-ring-pulse":
+          "engine-ring-pulse 5.5s ease-in-out infinite",
       },
       backgroundImage: {
         "hero-gradient":

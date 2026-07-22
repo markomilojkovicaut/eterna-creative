@@ -146,17 +146,23 @@ function EngineSegmentOverlay({
   engine,
   left,
   top,
+  active,
   onOpen,
+  onHoverChange,
 }: {
   engine: EternaEngine;
   left: number;
   top: number;
+  active: boolean;
   onOpen: () => void;
+  onHoverChange: (hovered: boolean) => void;
 }) {
   return (
     <div
       className="absolute z-10 flex w-[28%] max-w-[200px] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-2.5 text-center sm:w-[26%] sm:gap-3 lg:max-w-[220px]"
       style={{ left: `${left}%`, top: `${top}%` }}
+      onMouseEnter={() => onHoverChange(true)}
+      onMouseLeave={() => onHoverChange(false)}
     >
       <EngineIcon icon={engine.icon} highlight={engine.highlight} />
       <p
@@ -171,9 +177,10 @@ function EngineSegmentOverlay({
         type="button"
         onClick={onOpen}
         className={cn(
-          "inline-flex items-center justify-center rounded-soft border border-border-dark",
-          "bg-bg-card/80 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-text-heading sm:text-[11px]",
-          "transition-colors hover:border-border-strong hover:bg-bg-card"
+          "inline-flex items-center justify-center rounded-soft border-0 bg-transparent",
+          "px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] sm:text-[11px]",
+          "text-brand-purple-light transition-colors hover:text-text-heading",
+          active && "text-text-heading"
         )}
       >
         Learn more
@@ -182,11 +189,108 @@ function EngineSegmentOverlay({
   );
 }
 
+/** Subtle living core - same visual language as hero devices, contextual to engines. */
+function EngineCoreVisual() {
+  return (
+    <div
+      className="pointer-events-none absolute left-1/2 top-1/2 z-[5] flex h-[34%] w-[34%] -translate-x-1/2 -translate-y-1/2 items-center justify-center"
+      aria-hidden
+    >
+      <div className="absolute inset-[8%] rounded-full border border-brand-purple-light/20 animate-engine-ring-pulse" />
+      <div className="absolute inset-[18%] rounded-full border border-brand-pink/15 animate-engine-ring-pulse [animation-delay:1.4s]" />
+
+      {/* Mini orbiting nodes - six engines as a quiet system pulse */}
+      <div className="absolute inset-[22%] animate-engine-orbit motion-reduce:animate-none">
+        {Array.from({ length: 6 }).map((_, i) => {
+          const angle = i * 60;
+          return (
+            <span
+              key={i}
+              className="absolute left-1/2 top-1/2 size-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brand-purple-light/70 shadow-[0_0_10px_rgba(184,184,255,0.45)]"
+              style={{
+                transform: `rotate(${angle}deg) translateY(-42px) rotate(-${angle}deg)`,
+              }}
+            />
+          );
+        })}
+      </div>
+
+      {/* Compact device stack - echoes hero phones, reads as product system */}
+      <div className="relative flex h-[58%] w-[42%] items-end justify-center">
+        <div
+          className={cn(
+            "absolute left-[4%] top-[18%] z-[1] h-[72%] w-[42%] origin-bottom",
+            "-rotate-[10deg] overflow-hidden rounded-[0.65rem] border border-border-dark bg-bg-card",
+            "animate-phone-float-left motion-reduce:animate-none"
+          )}
+        >
+          <div className="flex h-full flex-col gap-0.5 bg-gradient-to-b from-[#0a0a12] to-[#1F1145]/70 p-1.5 pt-2.5">
+            <div className="h-0.5 w-[55%] rounded-full bg-brand-purple-light/50" />
+            <div className="mt-1 h-4 flex-1 rounded-sm bg-bg-base/50" />
+            <div className="h-1.5 rounded-sm bg-white/90" />
+          </div>
+        </div>
+        <div
+          className={cn(
+            "absolute right-[4%] top-[18%] z-[1] h-[72%] w-[42%] origin-bottom",
+            "rotate-[10deg] overflow-hidden rounded-[0.65rem] border border-border-dark bg-bg-card",
+            "animate-phone-float-right motion-reduce:animate-none"
+          )}
+        >
+          <div className="flex h-full flex-col gap-0.5 bg-[#07070c] p-1.5 pt-2.5">
+            <div className="h-0.5 w-[40%] rounded-full bg-brand-pink/60" />
+            <div className="mt-1 space-y-0.5">
+              <div className="h-2 rounded-sm border border-border-dark bg-bg-card/60" />
+              <div className="h-2 rounded-sm border border-border-dark bg-bg-card/60" />
+              <div className="h-2 rounded-sm border border-border-dark bg-bg-card/60" />
+            </div>
+          </div>
+        </div>
+        <div
+          className={cn(
+            "absolute left-1/2 top-[6%] z-[2] h-[78%] w-[46%] -translate-x-1/2 origin-bottom",
+            "overflow-hidden rounded-[0.7rem] border border-border-dark bg-bg-card shadow-[0_8px_24px_rgba(31,17,69,0.45)]",
+            "animate-phone-float-center motion-reduce:animate-none"
+          )}
+        >
+          <div className="flex h-full flex-col bg-gradient-to-b from-bg-base via-[#12082a] to-[#1F1145] p-1.5 pt-2.5">
+            <div className="mx-auto mb-1 h-1 w-[30%] rounded-full bg-black" />
+            <p className="text-center text-[5px] font-semibold uppercase tracking-[0.14em] text-brand-purple-light">
+              Engines
+            </p>
+            <div className="mt-1 flex flex-1 items-end gap-0.5 px-0.5 pb-0.5">
+              {[45, 62, 52, 78, 68, 88].map((h, i) => (
+                <div
+                  key={i}
+                  className="flex-1 rounded-[1px] bg-gradient-to-t from-brand-purple to-brand-pink opacity-85 animate-phone-bar-rise motion-reduce:animate-none"
+                  style={{
+                    height: `${h}%`,
+                    animationDelay: `${i * 0.18}s`,
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="absolute inset-x-0 bottom-[6%] text-center">
+        <p className="text-[9px] font-bold uppercase tracking-[0.22em] text-brand-purple-light sm:text-[10px]">
+          Eterna
+        </p>
+        <p className="mt-0.5 text-[8px] uppercase tracking-[0.18em] text-text-muted sm:text-[9px]">
+          system
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export function EngineCircle({ engines }: { engines: EternaEngine[] }) {
   const [openId, setOpenId] = useState<string | null>(null);
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
   const open = engines.find((e) => e.id === openId) ?? null;
 
-  // Full-bleed circle inside the content rail
   const size = 1000;
   const cx = size / 2;
   const cy = size / 2;
@@ -196,7 +300,6 @@ export function EngineCircle({ engines }: { engines: EternaEngine[] }) {
 
   return (
     <>
-      {/* Mobile: stacked cards — circle is too dense under ~640px */}
       <ul className="grid gap-3 sm:hidden">
         {engines.map((engine) => (
           <li key={engine.id}>
@@ -222,15 +325,14 @@ export function EngineCircle({ engines }: { engines: EternaEngine[] }) {
                   {engine.title}
                 </p>
               </div>
-              <span className="shrink-0 text-[10px] font-semibold uppercase tracking-[0.08em] text-text-muted">
-                Open
+              <span className="shrink-0 text-[10px] font-semibold uppercase tracking-[0.08em] text-brand-purple-light">
+                Learn more
               </span>
             </button>
           </li>
         ))}
       </ul>
 
-      {/* Tablet/desktop: capped circle */}
       <div className="relative mx-auto hidden w-full max-w-[800px] sm:block">
         <div className="relative aspect-square w-full max-h-[800px]">
           <svg
@@ -243,16 +345,21 @@ export function EngineCircle({ engines }: { engines: EternaEngine[] }) {
               const startAngle = index * SEGMENT_ANGLE + 1.2;
               const endAngle = (index + 1) * SEGMENT_ANGLE - 1.2;
               const isOpen = openId === engine.id;
+              const isHovered = hoveredId === engine.id;
 
               return (
                 <path
                   key={engine.id}
                   d={describeArc(cx, cy, innerR, outerR, startAngle, endAngle)}
                   className={cn(
-                    "transition-all duration-300",
+                    "transition-[fill,stroke,opacity] duration-300",
                     isOpen
-                      ? "fill-brand-purple/35 stroke-brand-purple-light"
-                      : "fill-bg-card/80 stroke-border-dark hover:fill-brand-purple/20"
+                      ? "fill-brand-purple/40 stroke-brand-purple-light"
+                      : isHovered
+                        ? "fill-brand-purple/28 stroke-brand-purple-light/70"
+                        : hoveredId
+                          ? "fill-bg-card/45 stroke-border-dark opacity-70"
+                          : "fill-bg-card/80 stroke-border-dark"
                   )}
                   strokeWidth={2}
                 />
@@ -265,23 +372,9 @@ export function EngineCircle({ engines }: { engines: EternaEngine[] }) {
               className="fill-bg-base stroke-border-dark"
               strokeWidth={2}
             />
-            <text
-              x={cx}
-              y={cy - 14}
-              textAnchor="middle"
-              className="fill-brand-purple-light text-[26px] font-bold uppercase tracking-[0.2em]"
-            >
-              Eterna
-            </text>
-            <text
-              x={cx}
-              y={cy + 24}
-              textAnchor="middle"
-              className="fill-text-muted text-[18px] uppercase tracking-[0.16em]"
-            >
-              system
-            </text>
           </svg>
+
+          <EngineCoreVisual />
 
           {engines.map((engine, index) => {
             const midAngle = index * SEGMENT_ANGLE + SEGMENT_ANGLE / 2;
@@ -295,7 +388,11 @@ export function EngineCircle({ engines }: { engines: EternaEngine[] }) {
                 engine={engine}
                 left={left}
                 top={top}
+                active={openId === engine.id || hoveredId === engine.id}
                 onOpen={() => setOpenId(engine.id)}
+                onHoverChange={(hovered) =>
+                  setHoveredId(hovered ? engine.id : null)
+                }
               />
             );
           })}

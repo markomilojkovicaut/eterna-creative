@@ -25,32 +25,51 @@ export const toolStackGroups: {
 ];
 
 /**
- * Studio tool set. New logos: drop PNGs at /images/tools/{id}.png and set logoSrc.
+ * Studio tool set. New logos: drop white-on-transparent PNGs at
+ * /public/images/tools/{id}.png and set logoSrc.
+ *
+ * Strong next logos to source (if you use them day-to-day):
+ * - AI: OpenAI, TypeScript
+ * - Platforms: Supabase, Stripe, Make
+ * - Design: Linear, Framer
+ * - Ship: GitHub, Vercel, Railway
+ * - Growth: Resend, Meta Ads
+ * Skip tools you do not actually ship with - empty slots beat filler brands.
  */
 export const toolStackItems: ToolStackItem[] = [
   // AI & build
   { id: "claude", name: "Claude", logoSrc: "/images/tools/claude.png", group: "ai-build" },
   { id: "cursor", name: "Cursor", logoSrc: "/images/tools/cursor.png", group: "ai-build" },
+  { id: "openai", name: "OpenAI", group: "ai-build" },
   { id: "nextjs", name: "Next.js", group: "ai-build" },
+  { id: "typescript", name: "TypeScript", group: "ai-build" },
   { id: "tailwind", name: "Tailwind CSS", group: "ai-build" },
 
   // Platforms
   { id: "bubble", name: "Bubble", logoSrc: "/images/tools/bubble.png", group: "platforms" },
   { id: "xano", name: "Xano", group: "platforms" },
   { id: "n8n", name: "n8n", logoSrc: "/images/tools/n8n.png", group: "platforms" },
+  { id: "supabase", name: "Supabase", group: "platforms" },
+  { id: "make", name: "Make", group: "platforms" },
+  { id: "stripe", name: "Stripe", group: "platforms" },
 
   // Design & product
   { id: "figma", name: "Figma", logoSrc: "/images/tools/figma.png", group: "design-product" },
+  { id: "framer", name: "Framer", group: "design-product" },
+  { id: "linear", name: "Linear", group: "design-product" },
   { id: "posthog", name: "PostHog", logoSrc: "/images/tools/posthog.png", group: "design-product" },
   { id: "notion", name: "Notion", logoSrc: "/images/tools/notion.png", group: "design-product" },
 
   // Ship
   { id: "github", name: "GitHub", group: "ship" },
   { id: "vercel", name: "Vercel", group: "ship" },
+  { id: "railway", name: "Railway", group: "ship" },
 
   // Growth
   { id: "linkedin", name: "LinkedIn", logoSrc: "/images/tools/linkedin.png", group: "growth" },
   { id: "brevo", name: "Brevo", logoSrc: "/images/tools/brevo.png", group: "growth" },
+  { id: "resend", name: "Resend", group: "growth" },
+  { id: "meta-ads", name: "Meta Ads", group: "growth" },
 ];
 
 export function toolsByGroup(groupId: ToolStackGroupId): ToolStackItem[] {
