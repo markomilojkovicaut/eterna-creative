@@ -1,12 +1,17 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { DarkSectionBackdrop, SectionHeading } from "@/components/ui";
 import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
+import { DarkRotateAccordion } from "@/components/ui/ChallengeAccordion";
+import { SectionPullQuote } from "@/components/ui/SectionPullQuote";
+import { aiPractices } from "@/lib/ai-expertise";
 import {
   LAYOUT_INNER_CLASS,
   LAYOUT_OUTER_CLASS,
 } from "@/lib/layout-constants";
 import { proofProducts } from "@/lib/proof-products";
+import { quoteAfterProof } from "@/lib/section-quotes";
 import { cn } from "@/lib/utils";
 
 /** Proof section motion: scale-soft reveal (shared by every proof card). */
@@ -14,7 +19,7 @@ const descHidden = "scale-[0.96] opacity-0 motion-reduce:scale-100";
 const descShown =
   "group-hover:scale-100 group-hover:opacity-100 group-focus-within:scale-100 group-focus-within:opacity-100";
 
-function ProofScreenshot({
+function ProofVisual({
   src,
   alt,
   label,
@@ -26,9 +31,8 @@ function ProofScreenshot({
   return (
     <div
       className={cn(
-        "relative aspect-[16/10] w-full max-w-[200px] shrink-0 overflow-hidden rounded-soft border border-border-dark",
-        "bg-bg-card/50 transition-transform duration-300 group-hover:scale-[1.02] group-focus-within:scale-[1.02]",
-        "sm:ml-auto"
+        "relative mt-auto aspect-video w-full overflow-hidden rounded-soft border border-border-dark",
+        "bg-bg-card/50 transition-transform duration-300 group-hover:scale-[1.01] group-focus-within:scale-[1.01]"
       )}
     >
       {src ? (
@@ -36,7 +40,7 @@ function ProofScreenshot({
           src={src}
           alt={alt}
           fill
-          sizes="200px"
+          sizes="(max-width: 1024px) 100vw, 33vw"
           className="object-cover object-top"
         />
       ) : (
@@ -55,7 +59,10 @@ function ProofScreenshot({
 
 export function Proof() {
   return (
-    <section className="relative overflow-hidden bg-bg-base pt-section">
+    <section
+      id="ai-expertise"
+      className="relative overflow-hidden bg-bg-base pt-section"
+    >
       <DarkSectionBackdrop
         flipVertical
         objectPosition="bottom-right"
@@ -65,7 +72,7 @@ export function Proof() {
       <div className={cn("relative z-10 pb-section", LAYOUT_OUTER_CLASS)}>
         <div className={LAYOUT_INNER_CLASS}>
           <SectionHeading
-            label="Proof"
+            label="AI expertise"
             lines={[
               { text: "AI that", variant: "default" },
               { text: "actually works", variant: "gradient" },
@@ -82,58 +89,117 @@ export function Proof() {
           />
 
           <div className="mt-14 overflow-hidden rounded-soft border border-border-dark lg:mt-16">
-            <div className="grid divide-y divide-border-dark lg:grid-cols-2 lg:divide-x lg:divide-y-0">
-              {proofProducts.map((product) => (
-                <a
-                  key={product.id}
-                  href={product.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative flex h-full min-h-[240px] overflow-hidden p-6 sm:min-h-[260px] sm:p-7 lg:p-8"
-                >
-                  <div
-                    className="pointer-events-none absolute inset-0 bg-engine-hover opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100"
-                    aria-hidden
-                  />
+            <div className="grid divide-y divide-border-dark lg:grid-cols-3 lg:divide-x lg:divide-y-0">
+              {proofProducts.map((product) => {
+                const isAward = product.kind === "award";
+                const linkProps = product.external
+                  ? { target: "_blank" as const, rel: "noopener noreferrer" }
+                  : {};
 
-                  <div className="relative z-10 flex w-full flex-col gap-5 sm:flex-row sm:items-stretch sm:gap-6">
-                    {/* Left: heading, description, open affordance */}
-                    <div className="flex min-w-0 flex-1 flex-col gap-4">
-                      <div className="flex items-center gap-3">
-                        <h3 className="font-heading text-[13px] font-bold uppercase tracking-[0.06em] text-text-heading sm:text-sm">
-                          {product.name}
-                        </h3>
-                        <ArrowUpRight className="opacity-70 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-100 group-focus-within:translate-x-0.5 group-focus-within:opacity-100" />
-                      </div>
-
-                      <div className="relative min-h-[5.5rem] flex-1">
-                        <p
-                          className={cn(
-                            "absolute inset-x-0 top-0 text-body-md leading-relaxed text-text-body",
-                            "transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none",
-                            descHidden,
-                            descShown,
-                            "motion-reduce:group-hover:opacity-100 motion-reduce:group-focus-within:opacity-100"
-                          )}
-                        >
-                          {product.description}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Right: screenshot */}
-                    <ProofScreenshot
-                      src={product.screenshotSrc}
-                      alt={
-                        product.screenshotAlt ?? `${product.name} screenshot`
-                      }
-                      label={product.name}
+                return (
+                  <Link
+                    key={product.id}
+                    href={product.href}
+                    {...linkProps}
+                    className="group relative flex min-h-[320px] overflow-hidden p-6 sm:min-h-[360px] sm:p-7 lg:min-h-[380px] lg:p-8"
+                  >
+                    <div
+                      className="pointer-events-none absolute inset-0 bg-engine-hover opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100"
+                      aria-hidden
                     />
-                  </div>
-                </a>
-              ))}
+
+                    {isAward ? (
+                      <div className="relative z-10 flex w-full flex-col gap-5">
+                        <div>
+                          <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-purple-light">
+                            Recognition
+                          </p>
+                          <h3 className="mt-3 font-heading text-heading-md font-bold text-text-heading">
+                            {product.name}
+                          </h3>
+                        </div>
+
+                        <div className="relative min-h-[5.5rem] flex-1">
+                          <p
+                            className={cn(
+                              "absolute inset-x-0 top-0 text-body-md leading-relaxed text-text-body",
+                              "transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none",
+                              descHidden,
+                              descShown,
+                              "motion-reduce:group-hover:opacity-100 motion-reduce:group-focus-within:opacity-100"
+                            )}
+                          >
+                            {product.description}
+                          </p>
+                        </div>
+
+                        <span className="mt-auto inline-flex w-fit items-center gap-1.5 text-body-sm font-semibold text-text-heading">
+                          Read the story
+                          <ArrowUpRight className="!h-4 !w-4 !text-brand-purple-light" />
+                        </span>
+                      </div>
+                    ) : (
+                      <div className="relative z-10 flex w-full flex-col gap-5">
+                        <div className="flex flex-wrap items-center gap-3">
+                          <h3 className="font-heading text-[13px] font-bold uppercase tracking-[0.06em] text-text-heading sm:text-sm">
+                            {product.name}
+                          </h3>
+                          <ArrowUpRight className="opacity-70 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-100 group-focus-within:translate-x-0.5 group-focus-within:opacity-100" />
+                        </div>
+
+                        <div className="relative min-h-[5.5rem]">
+                          <p
+                            className={cn(
+                              "absolute inset-x-0 top-0 text-body-md leading-relaxed text-text-body",
+                              "transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none",
+                              descHidden,
+                              descShown,
+                              "motion-reduce:group-hover:opacity-100 motion-reduce:group-focus-within:opacity-100"
+                            )}
+                          >
+                            {product.description}
+                          </p>
+                        </div>
+
+                        <ProofVisual
+                          src={product.screenshotSrc}
+                          alt={
+                            product.screenshotAlt ??
+                            `${product.name} screenshot`
+                          }
+                          label={product.name}
+                        />
+                      </div>
+                    )}
+                  </Link>
+                );
+              })}
             </div>
           </div>
+
+          <div className="mt-14 grid gap-8 lg:mt-16 lg:grid-cols-2 lg:items-start lg:gap-12 xl:gap-16">
+            <div className="min-w-0 max-w-[420px]">
+              <h3 className="font-heading text-heading-lg font-bold text-text-heading">
+                How we use AI in our work
+              </h3>
+              <p className="mt-3 text-body-md leading-relaxed text-text-body">
+                Not a slide deck of AI buzzwords - the same stack and discipline
+                we use on client builds and our own products.
+              </p>
+            </div>
+            <DarkRotateAccordion
+              className="w-full"
+              items={aiPractices.map((practice, index) => ({
+                id: practice.id,
+                eyebrow: `0${index + 1}`,
+                title: practice.title,
+                description: practice.description,
+                accent: "purple" as const,
+              }))}
+            />
+          </div>
+
+          <SectionPullQuote quote={quoteAfterProof} className="mt-10 lg:mt-14" />
         </div>
       </div>
     </section>

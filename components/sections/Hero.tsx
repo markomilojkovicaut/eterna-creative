@@ -1,5 +1,8 @@
 import Image from "next/image";
+import Link from "next/link";
+
 import { CallToActionLink } from "@/components/ui/CallToActionLink";
+import { HeroPhones } from "@/components/ui/HeroPhones";
 import { LabelPill } from "@/components/ui/LabelPill";
 import {
   displayHeadingTypeClasses,
@@ -9,6 +12,7 @@ import {
   LAYOUT_INNER_CLASS,
   LAYOUT_OUTER_CLASS,
 } from "@/lib/layout-constants";
+import { heroProductRail } from "@/lib/products";
 import { cn } from "@/lib/utils";
 
 function ClutchStars({ className }: { className?: string }) {
@@ -30,9 +34,10 @@ function ClutchStars({ className }: { className?: string }) {
   );
 }
 
+/** Centered hero: pill + Clutch, clearer H1, product rail, CTA, subtle phones. */
 export function Hero() {
   return (
-    <section className="relative h-screen min-h-[840px] overflow-hidden bg-bg-base">
+    <section className="relative min-h-screen overflow-hidden bg-bg-base">
       <Image
         src="/images/hero-bg.png"
         alt=""
@@ -46,27 +51,36 @@ export function Hero() {
         aria-hidden
       />
 
-      {/* Content shell: must be h-full so inner flex + mt-auto fill the viewport */}
       <div
         className={cn(
-          "relative z-10 flex h-full min-h-0 flex-col",
+          "relative z-10 flex min-h-screen flex-col",
           LAYOUT_OUTER_CLASS
         )}
       >
         <div
           className={cn(
-            "grid h-full min-h-0 grid-rows-[auto_1fr_auto] gap-8 pt-[120px]",
-            "lg:grid-cols-12 lg:gap-x-8",
+            "flex flex-1 flex-col items-center px-0 pb-8 pt-[120px] text-center",
             LAYOUT_INNER_CLASS
           )}
         >
-          {/* Top left: label + heading */}
-          <div className="flex flex-col items-center text-center lg:col-span-6 lg:row-start-1 lg:items-start lg:text-left">
-            <LabelPill>AI-native product studio</LabelPill>
+          <div className="flex w-full max-w-[760px] shrink-0 flex-col items-center">
+            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+              <LabelPill>AI-native product studio</LabelPill>
+              <span className="hidden h-4 w-px bg-border-strong sm:block" aria-hidden />
+              <span className="inline-flex items-center gap-2 text-[14px] sm:text-[15px]">
+                <span className="font-semibold text-text-heading">Clutch</span>
+                <ClutchStars />
+              </span>
+            </div>
 
-            <h1 className={cn("mt-6 overflow-visible", displayHeadingTypeClasses)}>
+            <h1
+              className={cn(
+                "mt-6 overflow-visible",
+                displayHeadingTypeClasses
+              )}
+            >
               <span className={cn(heroH1LineClasses, "text-text-heading")}>
-                Idea to revenue
+                From idea to revenue.
               </span>
               <span
                 className={cn(
@@ -74,61 +88,48 @@ export function Hero() {
                   "mt-0.5 pb-1 text-gradient-hero"
                 )}
               >
-                the whole journey
+                Built to compound, not just launch.
               </span>
             </h1>
+
+            <nav
+              aria-label="Products"
+              className="mt-5 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-body-sm font-medium text-text-sub sm:text-body-md"
+            >
+              {heroProductRail.map((item, index) => (
+                <span key={item.id} className="inline-flex items-center gap-2">
+                  {index > 0 ? (
+                    <span className="text-brand-purple-light/50" aria-hidden>
+                      ·
+                    </span>
+                  ) : null}
+                  <Link
+                    href={item.href}
+                    className="text-text-sub no-underline transition-colors hover:text-text-heading"
+                  >
+                    {item.label}
+                  </Link>
+                </span>
+              ))}
+            </nav>
+
+            <CallToActionLink href="/book" className="relative z-20 mt-8">
+              Book a strategy call
+            </CallToActionLink>
           </div>
 
-          {/* Middle right: partner label, subheading, CTA */}
-          <div className="flex flex-col items-center justify-center gap-6 text-center lg:col-span-5 lg:col-start-8 lg:row-start-2 lg:items-end lg:text-right">
-            <div className="flex w-full max-w-[420px] flex-col items-center gap-6 lg:items-end">
-              <div className="flex flex-wrap items-center justify-center gap-3 text-[16px] lg:justify-end">
-                <span className="inline-flex items-center gap-2 text-text-heading">
-                  <span className="lowercase">bubble</span>
-                  <span className="relative top-px text-[14px] font-semibold uppercase tracking-wide text-brand-purple-light">
-                    Partner
-                  </span>
-                </span>
-                <span className="h-4 w-px bg-border-strong" aria-hidden />
-                <span className="flex items-center gap-2">
-                  <span className="font-semibold text-text-heading">Clutch</span>
-                  <ClutchStars />
-                </span>
-              </div>
-
-              <p className="max-w-[420px] text-body-md leading-relaxed text-text-sub">
-                We combine product strategy, design craft, and AI-native
-                engineering to take your idea from concept to a validated
-                product - built fast, built to scale.
-              </p>
-
-              <CallToActionLink href="/book">Book a strategy call</CallToActionLink>
-            </div>
-          </div>
-
-          {/* Bottom left: phones */}
-          <div className="flex w-full justify-center lg:col-span-6 lg:row-start-3 lg:justify-start lg:self-end">
-            <div className="w-full max-w-xl lg:max-w-2xl">
-              <Image
-                src="/images/hero-phones.png"
-                alt="Mobile app mockups built by Eterna"
-                width={900}
-                height={700}
-                priority
-                sizes="(max-width: 1280px) 640px, 512px"
-                className="block h-auto w-full"
-              />
-            </div>
+          <div className="relative z-0 mt-[80px] flex w-full max-w-md flex-1 items-end justify-center lg:max-w-lg">
+            <HeroPhones className="w-full" />
           </div>
         </div>
       </div>
 
       <div
-        className="pointer-events-none absolute bottom-0 left-0 z-[14] h-[140px] w-full bg-gradient-to-t from-bg-base to-transparent"
+        className="pointer-events-none absolute bottom-0 left-0 z-[14] h-[100px] w-full bg-gradient-to-t from-bg-base to-transparent"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute bottom-0 left-0 z-[15] h-[140px] w-full bg-gradient-to-t from-brand-purple-dark to-transparent opacity-50"
+        className="pointer-events-none absolute bottom-0 left-0 z-[15] h-[100px] w-full bg-gradient-to-t from-brand-purple-dark to-transparent opacity-40"
         aria-hidden
       />
 

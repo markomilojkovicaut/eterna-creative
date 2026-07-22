@@ -35,7 +35,7 @@ export const faqItems: FaqItem[] = [
     question:
       "What if I just need a website or an automation, not a full app?",
     answer:
-      "Absolutely - we handle those independently. Marketing and product websites are scoped on their own. Automations (n8n, AI agents, workflows) start from a single workflow up. You don't need to buy a full product build to work with us. A 15-minute strategy call is enough to scope a smaller project - no full Launch Plan needed for these.",
+      "Absolutely - we handle those independently. Marketing and product websites are scoped on their own. Automation (n8n, AI agents, workflows) starts from a single workflow up. You don't need to buy a full product build to work with us. A 15-minute strategy call is enough to scope a smaller project - no full Launch Plan needed for these.",
   },
   {
     id: "team",

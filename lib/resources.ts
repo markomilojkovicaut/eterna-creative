@@ -34,7 +34,7 @@ export const resourceItems: ResourceItem[] = [
     title: "App cost calculator",
     href: "/tools/app-cost-calculator",
     variant: "dark",
-    imageSrc: "/images/hero-bg.png",
+    imageSrc: "/images/resources/app-cost-calculator.png",
     imageAlt: "App cost calculator preview",
     description:
       "Estimate build scope and budget before you commit to a full roadmap.",

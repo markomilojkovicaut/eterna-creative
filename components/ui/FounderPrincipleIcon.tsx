@@ -34,6 +34,12 @@ const iconPaths: Record<FounderPrincipleId, React.ReactNode> = {
       <path d="M12 8v8M9.5 10.5c.5-1 2-1 2.5 0s2 1 2.5 0" />
     </>
   ),
+  "bubble-partner": (
+    <>
+      <circle cx="12" cy="12" r="8" />
+      <path d="M8 12h8M12 8v8" />
+    </>
+  ),
 };
 
 export function FounderPrincipleIcon({

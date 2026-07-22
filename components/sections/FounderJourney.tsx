@@ -1,9 +1,8 @@
-import {
-  DarkSectionBackdrop,
-  SectionHeading,
-  TimelineMarker,
-  TimelineRail,
-} from "@/components/ui";
+"use client";
+
+import { SectionHeading } from "@/components/ui";
+import { DarkRotateAccordion } from "@/components/ui/ChallengeAccordion";
+import { Reveal } from "@/components/ui/Reveal";
 import { founderJourneySteps } from "@/lib/founder-journey";
 import {
   LAYOUT_INNER_CLASS,
@@ -11,62 +10,39 @@ import {
 } from "@/lib/layout-constants";
 import { cn } from "@/lib/utils";
 
-const periodClasses = {
-  neutral: "text-text-heading",
-  challenge: "text-brand-danger",
-} as const;
+const challengeItems = founderJourneySteps.map((step) => ({
+  id: step.period,
+  eyebrow: step.period,
+  title: step.title,
+  description: step.description,
+  accent: (step.phase === "challenge" ? "danger" : "purple") as
+    | "danger"
+    | "purple",
+}));
 
+/** White challenges chapter - engines stay on dark behind it. */
 export function FounderJourney() {
   return (
-    <section className="relative bg-bg-base pt-section pb-0">
-      <DarkSectionBackdrop objectPosition="right" gradient="section" />
-
+    <section className="relative bg-bg-surface pt-section pb-section text-text-ink-sub">
       <div className={cn("relative z-10", LAYOUT_OUTER_CLASS)}>
         <div className={LAYOUT_INNER_CLASS}>
-          <SectionHeading
-            label="Challenges"
-            lines={[
-              { text: "The typical", variant: "default" },
-              { text: "founder journey", variant: "gradient" },
-            ]}
-            titleMaxWidth="max-w-[640px]"
-          />
+          <Reveal>
+            <SectionHeading
+              label="Challenges"
+              labelVariant="light"
+              lines={[
+                { text: "The typical", variant: "default" },
+                { text: "founder journey", variant: "gradient" },
+              ]}
+              titleMaxWidth="max-w-[640px]"
+              subheading="Six moments where most products lose the plot. Hover to pause, click to jump."
+              subheadingMaxWidth="max-w-[420px]"
+            />
+          </Reveal>
 
-          <div className="relative mt-14 max-w-[720px] overflow-visible pb-20">
-            <TimelineRail variant="challenge-gradient" />
-
-            <ol className="flex flex-col overflow-visible">
-              {founderJourneySteps.map((step, index) => (
-                <li
-                  key={step.period}
-                  className={cn(
-                    "relative flex items-start overflow-visible pl-8 sm:pl-9",
-                    index < founderJourneySteps.length - 1 && "pb-14 sm:pb-16",
-                    index === founderJourneySteps.length - 1 && "mb-section"
-                  )}
-                >
-                  <TimelineMarker phase={step.phase} />
-
-                  <div className="min-w-0 flex-1">
-                    <p
-                      className={cn(
-                        "text-[12px] font-semibold uppercase leading-[1.4] tracking-[0.08em]",
-                        periodClasses[step.phase]
-                      )}
-                    >
-                      {step.period}
-                    </p>
-                    <h3 className="mt-2 font-heading text-[18px] font-bold leading-snug text-text-heading">
-                      {step.title}
-                    </h3>
-                    <p className="mt-2 max-w-[600px] text-body-md leading-relaxed text-text-body">
-                      {step.description}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </div>
+          <Reveal delay={100} className="mt-14 max-w-[720px]">
+            <DarkRotateAccordion items={challengeItems} variant="light" />
+          </Reveal>
         </div>
       </div>
     </section>

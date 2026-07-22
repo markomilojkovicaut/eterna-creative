@@ -90,9 +90,22 @@ export function DarkAccordion({
                   {item.title}
                 </button>
                 {isActive && (
-                  <p className="mt-2 text-body-md leading-relaxed text-text-body">
-                    {item.description}
-                  </p>
+                  <>
+                    <p className="mt-2 text-body-md leading-relaxed text-text-body">
+                      {item.description}
+                    </p>
+                    {item.href ? (
+                      <a
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-3 inline-flex items-center gap-1.5 text-body-sm font-semibold text-brand-purple-light no-underline hover:text-text-heading"
+                      >
+                        {item.hrefLabel ?? "Learn more"}
+                        <span aria-hidden>↗</span>
+                      </a>
+                    ) : null}
+                  </>
                 )}
               </div>
             </div>

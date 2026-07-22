@@ -1,5 +1,8 @@
+"use client";
+
 import { DarkSectionBackdrop, SectionHeading } from "@/components/ui";
 import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
+import { Reveal } from "@/components/ui/Reveal";
 import {
   LAYOUT_INNER_CLASS,
   LAYOUT_OUTER_CLASS,
@@ -21,16 +24,21 @@ export function EntryDoors() {
 
       <div className={cn("relative z-10 pb-section", LAYOUT_OUTER_CLASS)}>
         <div className={LAYOUT_INNER_CLASS}>
-          <SectionHeading
-            label="Start here"
-            lines={[
-              { text: "Start where", variant: "default" },
-              { text: "you are", variant: "gradient" },
-            ]}
-            titleMaxWidth="max-w-[560px]"
-          />
+          <Reveal>
+            <SectionHeading
+              label="Start here"
+              lines={[
+                { text: "Start where", variant: "default" },
+                { text: "you are", variant: "gradient" },
+              ]}
+              titleMaxWidth="max-w-[560px]"
+            />
+          </Reveal>
 
-          <div className="mt-14 overflow-hidden rounded-soft border border-border-dark lg:mt-16">
+          <Reveal
+            delay={90}
+            className="mt-14 overflow-hidden rounded-soft border border-border-dark lg:mt-16"
+          >
             <div className="grid divide-y divide-border-dark lg:grid-cols-3 lg:divide-x lg:divide-y-0">
               {entryDoors.map((door) => (
                 <Link
@@ -70,7 +78,7 @@ export function EntryDoors() {
                 </Link>
               ))}
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
 

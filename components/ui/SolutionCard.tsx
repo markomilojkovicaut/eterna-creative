@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import { SolutionIcon } from "@/components/ui/SolutionIcon";
 import type { Solution } from "@/lib/solutions";
 import { cn } from "@/lib/utils";
@@ -17,11 +19,11 @@ export function SolutionCard({
   className?: string;
 }) {
   return (
-    <article
-      tabIndex={0}
+    <Link
+      href={`/solutions/${solution.id}`}
       className={cn(
         "group relative flex h-full min-h-[300px] flex-col overflow-hidden p-6 outline-none sm:min-h-[320px] sm:p-7 lg:p-8",
-        "focus-visible:ring-2 focus-visible:ring-brand-purple-light/50",
+        "no-underline focus-visible:ring-2 focus-visible:ring-brand-purple-light/50",
         className
       )}
     >
@@ -53,6 +55,6 @@ export function SolutionCard({
           </p>
         </div>
       </div>
-    </article>
+    </Link>
   );
 }

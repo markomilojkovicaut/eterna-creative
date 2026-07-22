@@ -1,26 +1,24 @@
 "use client";
 
+import Link from "next/link";
+
 import { CallToActionLink } from "@/components/ui/CallToActionLink";
 import { DarkSectionBackdrop, SectionHeading } from "@/components/ui";
-import { ServiceCard } from "@/components/ui/ServiceCard";
-import { ServiceFilterBar } from "@/components/ui/ServiceFilterBar";
-import {
-  isServiceHighlighted,
-  services,
-  type ServiceFilterId,
-} from "@/lib/services";
+import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
+import { ProductDevicePreview } from "@/components/ui/HeroPhones";
+import { Reveal } from "@/components/ui/Reveal";
+import { SectionPullQuote } from "@/components/ui/SectionPullQuote";
 import {
   LAYOUT_INNER_CLASS,
   LAYOUT_OUTER_CLASS,
 } from "@/lib/layout-constants";
+import { productOffers, type ProductId } from "@/lib/products";
+import { quoteAfterWhatWeDo } from "@/lib/section-quotes";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
 
 export function Services() {
-  const [filter, setFilter] = useState<ServiceFilterId>("all");
-
   return (
-    <section className="relative overflow-hidden bg-bg-base pt-section">
+    <section id="services" className="relative overflow-hidden bg-bg-base pt-section">
       <DarkSectionBackdrop
         flipVertical
         objectPosition="bottom-right"
@@ -29,44 +27,87 @@ export function Services() {
 
       <div className={cn("relative z-10 pb-section", LAYOUT_OUTER_CLASS)}>
         <div className={LAYOUT_INNER_CLASS}>
-          <SectionHeading
-            split
-            label="Services"
-            lines={[
-              { text: "Single studio -", variant: "default" },
-              { text: "from spark to scale", variant: "gradient" },
-            ]}
-            titleMaxWidth="max-w-[520px]"
-            subheading={
-              <>
-                Some clients come for the build, others for the strategy or
-                growth. Most end up needing all and that&apos;s exactly what we
-                cover in single studio. We stay with you until you succeed.
-              </>
-            }
-          />
+          <Reveal>
+            <SectionHeading
+              split
+              label="Products"
+              lines={[
+                { text: "Ship products that", variant: "default" },
+                { text: "earn their keep", variant: "gradient" },
+              ]}
+              titleMaxWidth="max-w-[560px]"
+              subheading={
+                <>
+                  Applications, automations, and websites built to launch, convert,
+                  and scale - with the strategy, craft, and AI muscle behind every
+                  release.
+                </>
+              }
+            />
+          </Reveal>
 
-          <ServiceFilterBar
-            active={filter}
-            onChange={setFilter}
-            className="mt-8 lg:mt-10"
-          />
+          <Reveal delay={80} className="mt-14 overflow-hidden rounded-soft border border-border-dark lg:mt-16">
+            <div className="grid divide-y divide-border-dark lg:grid-cols-3 lg:divide-x lg:divide-y-0">
+              {productOffers.map((product) => (
+                <div
+                  key={product.id}
+                  className="group relative flex flex-col gap-6 p-6 sm:p-8 lg:min-h-[480px] lg:p-8 xl:p-10"
+                >
+                  <div className="min-w-0">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-purple-light">
+                      {product.number}
+                    </p>
+                    <Link
+                      href={product.href}
+                      className="mt-3 inline-flex items-center gap-2 no-underline"
+                    >
+                      <h3 className="font-heading text-[1.75rem] font-bold leading-snug text-text-heading transition-colors group-hover:text-brand-purple-light">
+                        {product.title}
+                      </h3>
+                      <ArrowUpRight className="opacity-50 transition-all group-hover:translate-x-0.5 group-hover:opacity-100" />
+                    </Link>
+                    <p className="mt-3 text-body-md leading-relaxed text-text-body">
+                      {product.description}
+                    </p>
+                  </div>
 
-          <div className="mt-6 overflow-hidden rounded-soft border border-border-dark lg:mt-8">
-            <div className="grid divide-x divide-y divide-border-dark sm:grid-cols-2 lg:grid-cols-4">
-              {services.map((service) => (
-                <ServiceCard
-                  key={service.id}
-                  service={service}
-                  highlighted={isServiceHighlighted(service, filter)}
-                />
+                  <div className="mt-auto flex items-end justify-between gap-4">
+                    <ul className="flex min-w-0 flex-1 flex-col gap-2">
+                      {product.modules.map((mod) => (
+                        <li key={mod.id}>
+                          <span className="inline-flex rounded-soft border border-border-dark bg-bg-card/40 px-2.5 py-1 text-[11px] font-medium tracking-wide text-text-sub">
+                            {mod.label}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                    <ProductDevicePreview
+                      variant={product.id as ProductId}
+                      size="sm"
+                      className={cn(
+                        "pointer-events-none hidden shrink-0 self-end sm:block",
+                        "opacity-0 translate-y-2 transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
+                        "group-hover:opacity-100 group-hover:translate-y-0",
+                        "group-focus-within:opacity-100 group-focus-within:translate-y-0",
+                        "motion-reduce:opacity-100 motion-reduce:translate-y-0"
+                      )}
+                    />
+                  </div>
+                </div>
               ))}
             </div>
-          </div>
+          </Reveal>
 
-          <div className="mt-10 flex w-full max-w-[400px] flex-col gap-4 lg:mt-14">
+          <Reveal delay={140}>
+            <SectionPullQuote
+              quote={quoteAfterWhatWeDo}
+              className="mt-10 lg:mt-14"
+            />
+          </Reveal>
+
+          <Reveal delay={180} className="mt-10 flex w-full max-w-[400px] flex-col gap-4 lg:mt-14">
             <h3 className="font-heading text-heading-md font-bold text-text-heading">
-              Not sure where to start?
+              Not sure which product fits?
             </h3>
             <p className="text-body-md leading-relaxed text-text-body">
               Book a strategy call - we map your vision, scope, and stack. You
@@ -75,7 +116,7 @@ export function Services() {
             <CallToActionLink href="/book" className="w-fit">
               Book a strategy call
             </CallToActionLink>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

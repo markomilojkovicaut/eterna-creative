@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
+import { CalculatorPhonePreview } from "@/components/ui/CalculatorPhonePreview";
 import type { ResourceItem } from "@/lib/resources";
 import { resourceTypeLabels } from "@/lib/resources";
 import { lightResourceGradientClasses } from "@/lib/surface-styles";
@@ -86,8 +87,13 @@ export function ResourceBentoCard({
             </Link>
           </div>
 
-          <div className="relative mt-6 min-h-[160px] w-full shrink-0 overflow-hidden rounded-soft border border-border-dark bg-bg-card/40 sm:min-h-[180px] lg:mt-0 lg:min-h-[200px] lg:w-[48%] lg:flex-1">
-            {item.imageSrc && (
+          <div className="relative mt-6 flex min-h-[160px] w-full shrink-0 items-center justify-center overflow-hidden rounded-soft border border-border-dark bg-bg-card/40 sm:min-h-[180px] lg:mt-0 lg:min-h-[200px] lg:w-[48%] lg:flex-1">
+            {item.id === "app-cost-calculator" ? (
+              <CalculatorPhonePreview
+                className="mx-auto w-[88%]"
+                maxWidthClass="max-w-[280px]"
+              />
+            ) : item.imageSrc ? (
               <>
                 <Image
                   src={item.imageSrc}
@@ -105,7 +111,7 @@ export function ResourceBentoCard({
                   aria-hidden
                 />
               </>
-            )}
+            ) : null}
           </div>
         </div>
       </article>

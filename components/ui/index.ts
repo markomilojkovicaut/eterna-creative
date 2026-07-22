@@ -1,5 +1,7 @@
 export { ArrowUpRight } from "./ArrowUpRight";
 export { Badge } from "./Badge";
+export { CalculatorPhonePreview } from "./CalculatorPhonePreview";
+export { Reveal, useReveal, type RevealProps } from "./Reveal";
 export { CaseStudyCard } from "./CaseStudyCard";
 export { BorderedDarkPanel } from "./BorderedDarkPanel";
 export { Button } from "./Button";
@@ -7,6 +9,13 @@ export { CallToActionLink } from "./CallToActionLink";
 export { Card } from "./Card";
 export { CornerPlusAccents } from "./CornerPlusAccents";
 export { DarkAccordion } from "./DarkAccordion";
+export {
+  ChallengeAccordion,
+  DarkRotateAccordion,
+  type DarkRotateAccordionAccent,
+  type DarkRotateAccordionItem,
+  type DarkRotateAccordionProps,
+} from "./ChallengeAccordion";
 export { DarkFaqAccordion } from "./DarkFaqAccordion";
 export { DarkTagPill } from "./DarkTagPill";
 export { FounderPrincipleIcon } from "./FounderPrincipleIcon";
@@ -39,6 +48,8 @@ export { PricingCard } from "./PricingCard";
 export { PricingIcon } from "./PricingIcon";
 export { ProcessStepCard } from "./ProcessStepCard";
 export { QuoteBar, type QuoteBarAccent } from "./QuoteBar";
+export { HeroPhones, ProductDevicePreview } from "./HeroPhones";
+export { SectionPullQuote } from "./SectionPullQuote";
 export { ReviewAvatar } from "./ReviewAvatar";
 export { ReviewCard } from "./ReviewCard";
 export { ReviewStars } from "./ReviewStars";

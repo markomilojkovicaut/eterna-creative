@@ -97,12 +97,75 @@ const config: Config = {
           from: { transform: "translateX(0)" },
           to: { transform: "translateX(-50%)" },
         },
+        "phone-float-left": {
+          "0%, 100%": {
+            transform: "translate3d(0, 0, 0) rotate(-6deg)",
+          },
+          "50%": {
+            transform: "translate3d(-3.5%, -1.5%, 0) rotate(-7.5deg)",
+          },
+        },
+        "phone-float-right": {
+          "0%, 100%": {
+            transform: "translate3d(0, 0, 0) rotate(6deg)",
+          },
+          "50%": {
+            transform: "translate3d(3.5%, -1.5%, 0) rotate(7.5deg)",
+          },
+        },
+        "phone-float-center": {
+          "0%, 100%": {
+            transform: "translate3d(-50%, 0, 0) scale(1)",
+          },
+          "50%": {
+            transform: "translate3d(-50%, -2.5%, 0) scale(1.02)",
+          },
+        },
+        "phone-float-solo": {
+          "0%, 100%": {
+            transform: "translate3d(0, 0, 0) rotate(-2deg)",
+          },
+          "50%": {
+            transform: "translate3d(0, -8%, 0) rotate(2deg)",
+          },
+        },
+        "phone-screen-pulse": {
+          "0%, 100%": { opacity: "0.85" },
+          "50%": { opacity: "1" },
+        },
+        "phone-bar-rise": {
+          "0%, 100%": { transform: "scaleY(0.55)" },
+          "50%": { transform: "scaleY(1)" },
+        },
+        "engine-orbit": {
+          from: { transform: "rotate(0deg)" },
+          to: { transform: "rotate(360deg)" },
+        },
+        "engine-ring-pulse": {
+          "0%, 100%": { opacity: "0.35", transform: "scale(1)" },
+          "50%": { opacity: "0.7", transform: "scale(1.04)" },
+        },
       },
       animation: {
         "approach-border-fill":
           "approach-border-fill 9s linear forwards",
         "partner-marquee":
           "partner-marquee 90s linear infinite",
+        "phone-float-left":
+          "phone-float-left 14s ease-in-out infinite",
+        "phone-float-right":
+          "phone-float-right 14s ease-in-out infinite",
+        "phone-float-center":
+          "phone-float-center 14s ease-in-out infinite",
+        "phone-float-solo":
+          "phone-float-solo 5.5s ease-in-out infinite",
+        "phone-screen-pulse":
+          "phone-screen-pulse 3.5s ease-in-out infinite",
+        "phone-bar-rise":
+          "phone-bar-rise 2.8s ease-in-out infinite",
+        "engine-orbit": "engine-orbit 28s linear infinite",
+        "engine-ring-pulse":
+          "engine-ring-pulse 5.5s ease-in-out infinite",
       },
       backgroundImage: {
         "hero-gradient":
