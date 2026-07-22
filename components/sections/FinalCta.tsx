@@ -1,5 +1,8 @@
+"use client";
+
 import { CallToActionLink } from "@/components/ui/CallToActionLink";
 import { DarkSectionBackdrop } from "@/components/ui/DarkSectionBackdrop";
+import { Reveal } from "@/components/ui/Reveal";
 import { displayHeadingTypeClasses } from "@/lib/heading-styles";
 import { sectionBackdropPresets } from "@/lib/section-backdrops";
 import {
@@ -13,7 +16,7 @@ export function FinalCta() {
     <section className="relative bg-bg-base py-section">
       <div className={LAYOUT_OUTER_CLASS}>
         <div className={LAYOUT_INNER_CLASS}>
-          <div className="relative overflow-hidden rounded-soft border border-border-dark">
+          <Reveal className="relative overflow-hidden rounded-soft border border-border-dark">
             <DarkSectionBackdrop {...sectionBackdropPresets.challenges} />
 
             <div className="relative z-10 flex flex-col items-center px-6 py-[160px] text-center sm:px-10">
@@ -36,7 +39,7 @@ export function FinalCta() {
                 Book a strategy call
               </CallToActionLink>
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

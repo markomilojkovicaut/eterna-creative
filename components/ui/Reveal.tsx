@@ -12,12 +12,20 @@ import {
 
 import { cn } from "@/lib/utils";
 
+type UseRevealOptions = {
+  delayMs?: number;
+  /** Play on mount (hero / above-fold) instead of waiting for scroll. */
+  immediate?: boolean;
+};
+
 /**
- * Fab Senchuri-style scroll reveal:
+ * Fab Senchuri-style reveal:
  * opacity 0 + translateY(22px) → settle with soft cubic ease.
  */
-
-export function useReveal(delayMs = 0) {
+export function useReveal({
+  delayMs = 0,
+  immediate = false,
+}: UseRevealOptions = {}) {
   const ref = useRef<HTMLElement | null>(null);
   const [inView, setInView] = useState(false);
 
@@ -34,6 +42,18 @@ export function useReveal(delayMs = 0) {
       return;
     }
 
+    if (immediate) {
+      // Double rAF so the browser paints the hidden state before transitioning in.
+      let raf2 = 0;
+      const raf1 = window.requestAnimationFrame(() => {
+        raf2 = window.requestAnimationFrame(() => setInView(true));
+      });
+      return () => {
+        window.cancelAnimationFrame(raf1);
+        window.cancelAnimationFrame(raf2);
+      };
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -46,7 +66,7 @@ export function useReveal(delayMs = 0) {
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, []);
+  }, [immediate]);
 
   const setRef = useCallback((node: HTMLElement | null) => {
     ref.current = node;
@@ -66,6 +86,8 @@ export interface RevealProps {
   className?: string;
   /** Stagger delay in ms (Fab-style cascade). */
   delay?: number;
+  /** Animate on page load rather than on scroll. */
+  immediate?: boolean;
   as?: ElementType;
 }
 
@@ -73,9 +95,10 @@ export function Reveal({
   children,
   className,
   delay = 0,
+  immediate = false,
   as: Tag = "div",
 }: RevealProps) {
-  const reveal = useReveal(delay);
+  const reveal = useReveal({ delayMs: delay, immediate });
 
   return (
     <Tag

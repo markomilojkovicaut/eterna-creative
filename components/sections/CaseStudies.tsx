@@ -11,12 +11,13 @@ import {
   LAYOUT_OUTER_CLASS,
 } from "@/lib/layout-constants";
 import { quoteInCaseStudies } from "@/lib/section-quotes";
+import { sectionBackdropPresets } from "@/lib/section-backdrops";
 import { cn } from "@/lib/utils";
 
 export function CaseStudies() {
   return (
     <section className="relative overflow-hidden bg-bg-base py-section">
-      <DarkSectionBackdrop objectPosition="right" gradient="section" />
+      <DarkSectionBackdrop {...sectionBackdropPresets.challenges} />
 
       <div className={cn("relative z-10", LAYOUT_OUTER_CLASS)}>
         <div className={LAYOUT_INNER_CLASS}>

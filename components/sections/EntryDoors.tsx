@@ -8,6 +8,7 @@ import {
   LAYOUT_OUTER_CLASS,
 } from "@/lib/layout-constants";
 import { entryDoors } from "@/lib/entry-doors";
+import { sectionBackdropPresets } from "@/lib/section-backdrops";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
@@ -20,7 +21,7 @@ const descShown =
 export function EntryDoors() {
   return (
     <section className="relative overflow-hidden bg-bg-base pt-section">
-      <DarkSectionBackdrop objectPosition="right" gradient="section" />
+      <DarkSectionBackdrop {...sectionBackdropPresets.challenges} />
 
       <div className={cn("relative z-10 pb-section", LAYOUT_OUTER_CLASS)}>
         <div className={LAYOUT_INNER_CLASS}>

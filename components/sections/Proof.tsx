@@ -1,9 +1,13 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 
 import { DarkSectionBackdrop, SectionHeading } from "@/components/ui";
 import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
 import { DarkRotateAccordion } from "@/components/ui/ChallengeAccordion";
+import { DividedCardGrid } from "@/components/ui/ProductOffersGrid";
+import { Reveal } from "@/components/ui/Reveal";
 import { SectionPullQuote } from "@/components/ui/SectionPullQuote";
 import { aiPractices } from "@/lib/ai-expertise";
 import {
@@ -12,6 +16,7 @@ import {
 } from "@/lib/layout-constants";
 import { proofProducts } from "@/lib/proof-products";
 import { quoteAfterProof } from "@/lib/section-quotes";
+import { sectionBackdropPresets } from "@/lib/section-backdrops";
 import { cn } from "@/lib/utils";
 
 /** Proof section motion: scale-soft reveal (shared by every proof card). */
@@ -63,33 +68,31 @@ export function Proof() {
       id="ai-expertise"
       className="relative overflow-hidden bg-bg-base pt-section"
     >
-      <DarkSectionBackdrop
-        flipVertical
-        objectPosition="bottom-right"
-        gradient="section"
-      />
+      <DarkSectionBackdrop {...sectionBackdropPresets.services} />
 
       <div className={cn("relative z-10 pb-section", LAYOUT_OUTER_CLASS)}>
         <div className={LAYOUT_INNER_CLASS}>
-          <SectionHeading
-            label="AI expertise"
-            lines={[
-              { text: "AI that", variant: "default" },
-              { text: "actually works", variant: "gradient" },
-            ]}
-            titleMaxWidth="max-w-[560px]"
-            subheadingMaxWidth="max-w-[520px]"
-            subheading={
-              <>
-                Every product ships with AI now - the hard part is making it
-                reliable. We build and run our own AI products, so we know how
-                to make yours behave in production, not just in a demo.
-              </>
-            }
-          />
+          <Reveal>
+            <SectionHeading
+              label="AI expertise"
+              lines={[
+                { text: "AI that", variant: "default" },
+                { text: "actually works", variant: "gradient" },
+              ]}
+              titleMaxWidth="max-w-[560px]"
+              subheadingMaxWidth="max-w-[520px]"
+              subheading={
+                <>
+                  Every product ships with AI now - the hard part is making it
+                  reliable. We build and run our own AI products, so we know how
+                  to make yours behave in production, not just in a demo.
+                </>
+              }
+            />
+          </Reveal>
 
-          <div className="mt-14 overflow-hidden rounded-soft border border-border-dark lg:mt-16">
-            <div className="grid divide-y divide-border-dark lg:grid-cols-3 lg:divide-x lg:divide-y-0">
+          <Reveal delay={80} className="mt-14 lg:mt-16">
+            <DividedCardGrid>
               {proofProducts.map((product) => {
                 const isAward = product.kind === "award";
                 const linkProps = product.external
@@ -174,32 +177,36 @@ export function Proof() {
                   </Link>
                 );
               })}
-            </div>
-          </div>
+            </DividedCardGrid>
+          </Reveal>
 
-          <div className="mt-14 grid gap-8 lg:mt-16 lg:grid-cols-2 lg:items-start lg:gap-12 xl:gap-16">
-            <div className="min-w-0 max-w-[420px]">
-              <h3 className="font-heading text-heading-lg font-bold text-text-heading">
-                How we use AI in our work
-              </h3>
-              <p className="mt-3 text-body-md leading-relaxed text-text-body">
-                Not a slide deck of AI buzzwords - the same stack and discipline
-                we use on client builds and our own products.
-              </p>
+          <Reveal delay={140}>
+            <div className="mt-14 grid gap-8 lg:mt-16 lg:grid-cols-2 lg:items-start lg:gap-12 xl:gap-16">
+              <div className="min-w-0 max-w-[420px]">
+                <h3 className="font-heading text-heading-lg font-bold text-text-heading">
+                  How we use AI in our work
+                </h3>
+                <p className="mt-3 text-body-md leading-relaxed text-text-body">
+                  Not a slide deck of AI buzzwords - the same stack and discipline
+                  we use on client builds and our own products.
+                </p>
+              </div>
+              <DarkRotateAccordion
+                className="w-full"
+                items={aiPractices.map((practice, index) => ({
+                  id: practice.id,
+                  eyebrow: `0${index + 1}`,
+                  title: practice.title,
+                  description: practice.description,
+                  accent: "purple" as const,
+                }))}
+              />
             </div>
-            <DarkRotateAccordion
-              className="w-full"
-              items={aiPractices.map((practice, index) => ({
-                id: practice.id,
-                eyebrow: `0${index + 1}`,
-                title: practice.title,
-                description: practice.description,
-                accent: "purple" as const,
-              }))}
-            />
-          </div>
+          </Reveal>
 
-          <SectionPullQuote quote={quoteAfterProof} className="mt-10 lg:mt-14" />
+          <Reveal delay={180}>
+            <SectionPullQuote quote={quoteAfterProof} className="mt-10 lg:mt-14" />
+          </Reveal>
         </div>
       </div>
     </section>

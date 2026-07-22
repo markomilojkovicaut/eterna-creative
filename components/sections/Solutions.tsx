@@ -9,16 +9,13 @@ import {
   LAYOUT_OUTER_CLASS,
 } from "@/lib/layout-constants";
 import { solutions } from "@/lib/solutions";
+import { sectionBackdropPresets } from "@/lib/section-backdrops";
 import { cn } from "@/lib/utils";
 
 export function Solutions() {
   return (
     <section id="who-we-serve" className="relative overflow-hidden bg-bg-base pt-section">
-      <DarkSectionBackdrop
-        flipVertical
-        objectPosition="bottom-right"
-        gradient="section"
-      />
+      <DarkSectionBackdrop {...sectionBackdropPresets.services} />
 
       <div className={cn("relative z-10 pb-section", LAYOUT_OUTER_CLASS)}>
         <div className={LAYOUT_INNER_CLASS}>
