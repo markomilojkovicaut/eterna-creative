@@ -73,7 +73,7 @@ export const services: Service[] = [
   },
   {
     id: "automation",
-    title: "Automation AI",
+    title: "Automation",
     description:
       "Cut manual work with n8n workflows and AI agents that run reliably after you launch.",
     tags: ["n8n", "AI agents", "Workflows"],

@@ -63,7 +63,7 @@ export const servicePageContent: Record<string, ServicePageContent> = {
   automation: {
     slug: "automation",
     hero: {
-      label: "Automation AI",
+      label: "Automation",
       lines: [
         { text: "Automate the", variant: "default" },
         { text: "manual work", variant: "gradient" },
