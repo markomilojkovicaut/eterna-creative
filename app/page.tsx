@@ -17,18 +17,13 @@ import { Solutions } from "@/components/sections/Solutions";
 import { Reveal } from "@/components/ui/Reveal";
 
 /**
- * Homepage with Fab-style scroll reveals.
- * Sections that own internal Reveals are not double-wrapped.
+ * Homepage with Fab-style scroll reveals on sections and card groups.
  */
 export default function HomePage() {
   return (
     <main className="relative">
       <Hero />
-
-      <Reveal>
-        <HomeLightChapter />
-      </Reveal>
-
+      <HomeLightChapter />
       <Services />
       <EntryDoors />
       <FounderJourney />
@@ -57,13 +52,8 @@ export default function HomePage() {
         <FounderLedStudio />
       </Reveal>
 
-      <Reveal>
-        <HomeResourcesChapter />
-      </Reveal>
-
-      <Reveal>
-        <Investment />
-      </Reveal>
+      <HomeResourcesChapter />
+      <Investment />
 
       <Reveal>
         <Faq />
