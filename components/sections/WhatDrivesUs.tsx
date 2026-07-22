@@ -30,24 +30,26 @@ export function WhatDrivesUs() {
   return (
     <div className="grid gap-10 lg:grid-cols-[minmax(0,720px)_minmax(0,1fr)] lg:gap-12 xl:gap-16">
       <div className="flex w-full min-w-0 flex-col lg:max-w-[720px]">
-        <LabelPill variant="light">What drives us</LabelPill>
+        <LabelPill variant="light">Mission</LabelPill>
 
         <div className="mt-3 flex flex-col gap-8">
-        <LightEditorialDisplay
-          as="p"
-          className="w-full text-[40px] sm:text-[40px] lg:text-[40px]"
-        >
-          Building a product used to take a year and cost a fortune. AI and
-          modern tools just ended that era. The unfair advantage now belongs to
-          whoever ships a validated, well-architected product first and solves
-          distribution.{" "}
-          <span className="font-bold">We exist to make sure it&apos;s you.</span>
-        </LightEditorialDisplay>
+          <LightEditorialDisplay
+            as="p"
+            className="w-full text-[40px] sm:text-[40px] lg:text-[40px]"
+          >
+            AI collapsed the build timeline so anyone can ship a demo. What
+            still separates winners is judgment: strategy, smart architecture,
+            design craft and a path to revenue. That is why we exist - an
+            AI-native product studio that plans, builds, and grows digital
+            products engineered to compound. Faster with AI. Stronger with
+            craft.{" "}
+            <span className="font-bold">So the advantage is on your side.</span>
+          </LightEditorialDisplay>
 
-        <QuoteBar>
-          Speed is the strategy.{" "}
-          <span className="font-bold">Systems are the weapon.</span>
-        </QuoteBar>
+          <QuoteBar>
+            Speed is the strategy.{" "}
+            <span className="font-bold">Systems are the weapon.</span>
+          </QuoteBar>
         </div>
       </div>
 

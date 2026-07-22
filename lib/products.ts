@@ -19,6 +19,13 @@ export interface ProductOffer {
   modules: ProductModule[];
 }
 
+/** Short names for hero product rail. */
+export const heroProductRail = [
+  { id: "application", label: "Apps", href: "/services/application" },
+  { id: "automation", label: "Automations", href: "/services/automation" },
+  { id: "website", label: "Websites", href: "/services/website" },
+] as const;
+
 export const productOffers: ProductOffer[] = [
   {
     id: "application",
@@ -28,17 +35,14 @@ export const productOffers: ProductOffer[] = [
       "Digital products that scale - validated, designed, engineered, and ready to grow.",
     href: "/services/application",
     modules: [
-      { id: "validation", label: "Validation" },
+      { id: "discovery", label: "Discovery" },
       { id: "strategy", label: "Strategy" },
-      { id: "ui-ux", label: "UI/UX" },
+      { id: "ux-ui", label: "UX/UI" },
       { id: "architecture", label: "Architecture" },
-      { id: "engineering", label: "Engineering" },
-      { id: "qa", label: "QA" },
-      { id: "maintenance", label: "Maintenance" },
-      { id: "optimisations", label: "Optimisations" },
-      { id: "gtm", label: "GTM" },
-      { id: "in-app", label: "In-app marketing" },
-      { id: "social", label: "Social marketing" },
+      { id: "build", label: "Build" },
+      { id: "qa-launch", label: "QA & launch" },
+      { id: "optimise", label: "Optimise" },
+      { id: "marketing", label: "Marketing" },
     ],
   },
   {
@@ -50,12 +54,11 @@ export const productOffers: ProductOffer[] = [
     href: "/services/automation",
     modules: [
       { id: "audit", label: "Audit" },
-      { id: "strategy", label: "Strategy" },
-      { id: "process", label: "Process optimisations" },
-      { id: "workflows", label: "Workflow automations" },
-      { id: "n8n", label: "n8n agents" },
-      { id: "digitalisation", label: "Company digitalisation" },
-      { id: "ai-impl", label: "AI implementation" },
+      { id: "strategy", label: "Automation strategy" },
+      { id: "process", label: "Process design" },
+      { id: "workflows", label: "Workflows" },
+      { id: "agents", label: "AI agents" },
+      { id: "integration", label: "Systems integration" },
     ],
   },
   {
@@ -67,12 +70,12 @@ export const productOffers: ProductOffer[] = [
     href: "/services/website",
     modules: [
       { id: "strategy", label: "Strategy" },
-      { id: "ui-ux", label: "UI/UX" },
-      { id: "development", label: "Development" },
+      { id: "ux-ui", label: "UX/UI" },
+      { id: "build", label: "Build" },
+      { id: "copy", label: "Copy" },
       { id: "cro", label: "CRO" },
-      { id: "content", label: "Content" },
-      { id: "seo-aeo", label: "SEO / AEO" },
-      { id: "social", label: "Social marketing" },
+      { id: "seo-aeo", label: "SEO/AEO" },
+      { id: "marketing", label: "Marketing" },
     ],
   },
 ];

@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 
 export function Solutions() {
   return (
-    <section id="solutions" className="relative overflow-hidden bg-bg-base pt-section">
+    <section id="who-we-serve" className="relative overflow-hidden bg-bg-base pt-section">
       <DarkSectionBackdrop
         flipVertical
         objectPosition="bottom-right"
@@ -19,7 +19,7 @@ export function Solutions() {
       <div className={cn("relative z-10 pb-section", LAYOUT_OUTER_CLASS)}>
         <div className={LAYOUT_INNER_CLASS}>
           <SectionHeading
-            label="Solutions"
+            label="Who we serve"
             lines={[
               { text: "One studio for", variant: "default" },
               { text: "different clients", variant: "gradient" },

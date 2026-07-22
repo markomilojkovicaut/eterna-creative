@@ -63,14 +63,14 @@ export default async function SolutionPage({ params }: PageProps) {
         <div className={cn("relative z-10", LAYOUT_OUTER_CLASS)}>
           <div className={LAYOUT_INNER_CLASS}>
             <Link
-              href="/#solutions"
+              href="/#who-we-serve"
               className="text-body-sm text-brand-purple-light hover:text-text-heading"
             >
-              ← All solutions
+              ← Who we serve
             </Link>
             <div className="mt-8">
               <SectionHeading
-                label="Solutions"
+                label="Who we serve"
                 lines={page.hero.lines}
                 subheading={page.hero.subheading}
               />

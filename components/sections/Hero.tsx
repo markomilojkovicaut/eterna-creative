@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+
 import { CallToActionLink } from "@/components/ui/CallToActionLink";
 import { HeroPhones } from "@/components/ui/HeroPhones";
 import { LabelPill } from "@/components/ui/LabelPill";
@@ -10,6 +12,7 @@ import {
   LAYOUT_INNER_CLASS,
   LAYOUT_OUTER_CLASS,
 } from "@/lib/layout-constants";
+import { heroProductRail } from "@/lib/products";
 import { cn } from "@/lib/utils";
 
 function ClutchStars({ className }: { className?: string }) {
@@ -31,6 +34,10 @@ function ClutchStars({ className }: { className?: string }) {
   );
 }
 
+/**
+ * Hero layout: left stack (pill → H1 → products rail → CTA),
+ * right proof strip, phones bottom-left. No long subheading.
+ */
 export function Hero() {
   return (
     <section className="relative h-screen min-h-[840px] overflow-hidden bg-bg-base">
@@ -60,7 +67,7 @@ export function Hero() {
             LAYOUT_INNER_CLASS
           )}
         >
-          <div className="flex flex-col items-center text-center lg:col-span-6 lg:row-start-1 lg:items-start lg:text-left">
+          <div className="flex flex-col items-center text-center lg:col-span-7 lg:row-start-1 lg:items-start lg:text-left">
             <LabelPill>AI-native product studio</LabelPill>
 
             <h1 className={cn("mt-6 overflow-visible", displayHeadingTypeClasses)}>
@@ -76,35 +83,50 @@ export function Hero() {
                 the whole journey
               </span>
             </h1>
+
+            <nav
+              aria-label="Products"
+              className="mt-6 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-body-sm font-medium text-text-sub lg:justify-start sm:text-body-md"
+            >
+              {heroProductRail.map((item, index) => (
+                <span key={item.id} className="inline-flex items-center gap-2">
+                  {index > 0 ? (
+                    <span className="text-brand-purple-light/50" aria-hidden>
+                      ·
+                    </span>
+                  ) : null}
+                  <Link
+                    href={item.href}
+                    className="text-text-sub no-underline transition-colors hover:text-text-heading"
+                  >
+                    {item.label}
+                  </Link>
+                </span>
+              ))}
+            </nav>
+
+            <CallToActionLink href="/book" className="mt-8">
+              Book a strategy call
+            </CallToActionLink>
           </div>
 
-          <div className="flex flex-col items-center justify-center gap-6 text-center lg:col-span-5 lg:col-start-8 lg:row-start-2 lg:items-end lg:text-right">
-            <div className="flex w-full max-w-[420px] flex-col items-center gap-6 lg:items-end">
-              <div className="flex flex-wrap items-center justify-center gap-3 text-[16px] lg:justify-end">
-                <span className="inline-flex items-center gap-2 text-text-heading">
-                  <span className="lowercase">bubble</span>
-                  <span className="relative top-px text-[14px] font-semibold uppercase tracking-wide text-brand-purple-light">
-                    Partner
-                  </span>
+          <div className="flex flex-col items-center justify-start gap-3 text-center lg:col-span-5 lg:col-start-8 lg:row-start-1 lg:items-end lg:justify-center lg:text-right">
+            <div className="flex flex-wrap items-center justify-center gap-3 text-[16px] lg:justify-end">
+              <span className="inline-flex items-center gap-2 text-text-heading">
+                <span className="lowercase">bubble</span>
+                <span className="relative top-px text-[14px] font-semibold uppercase tracking-wide text-brand-purple-light">
+                  Partner
                 </span>
-                <span className="h-4 w-px bg-border-strong" aria-hidden />
-                <span className="flex items-center gap-2">
-                  <span className="font-semibold text-text-heading">Clutch</span>
-                  <ClutchStars />
-                </span>
-              </div>
-
-              <p className="max-w-[420px] text-body-md leading-relaxed text-text-sub">
-                We combine product strategy, design craft, and AI-native
-                engineering to take your idea from concept to a validated
-                product - built fast, built to scale.
-              </p>
-
-              <CallToActionLink href="/book">Book a strategy call</CallToActionLink>
+              </span>
+              <span className="h-4 w-px bg-border-strong" aria-hidden />
+              <span className="flex items-center gap-2">
+                <span className="font-semibold text-text-heading">Clutch</span>
+                <ClutchStars />
+              </span>
             </div>
           </div>
 
-          <div className="flex w-full justify-center lg:col-span-6 lg:row-start-3 lg:justify-start lg:self-end">
+          <div className="flex w-full justify-center lg:col-span-7 lg:row-start-3 lg:justify-start lg:self-end">
             <HeroPhones />
           </div>
         </div>

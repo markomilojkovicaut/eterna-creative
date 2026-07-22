@@ -93,7 +93,7 @@ export const headerNavItems: HeaderNavItem[] = [
   {
     type: "dropdown",
     id: "solutions",
-    label: "Solutions",
+    label: "Who we serve",
     showViewAll: false,
     panelCols: 2,
     columns: [
@@ -219,7 +219,7 @@ export const footerLinkGroups = [
       { label: "Home", href: "/" },
       { label: "Services", href: "/#services" },
       { label: "Portfolio", href: "/portfolio" },
-      { label: "Solutions", href: "/#solutions" },
+      { label: "Who we serve", href: "/#who-we-serve" },
     ] as const satisfies readonly NavLink[],
   },
   {
