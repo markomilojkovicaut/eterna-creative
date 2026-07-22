@@ -32,9 +32,9 @@ export function CaseStudies() {
               subheadingMaxWidth="max-w-[520px]"
               subheading={
                 <>
-                  Real products, real founders, real outcomes - across industries
-                  and stages. Same methodology every time: validated, designed,
-                  and built to scale.
+                  Real products, real founders, real outcomes - measured in users,
+                  revenue, and speed to launch. Same methodology every time:
+                  validated, designed, and built to scale.
                 </>
               }
             />

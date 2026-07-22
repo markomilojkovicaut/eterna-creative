@@ -74,6 +74,13 @@ export function Hero() {
                 <span className="font-semibold text-text-heading">Clutch</span>
                 <ClutchStars />
               </span>
+              <span className="hidden h-4 w-px bg-border-strong sm:block" aria-hidden />
+              <Link
+                href="/blog/best-use-of-ai-award"
+                className="text-[14px] font-semibold text-brand-purple-light no-underline transition-colors hover:text-text-heading sm:text-[15px]"
+              >
+                Best Use of AI
+              </Link>
             </Reveal>
 
             <Reveal immediate delay={90}>

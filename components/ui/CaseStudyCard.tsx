@@ -21,8 +21,7 @@ function OpenCaseStudyButton({ className }: { className?: string }) {
 }
 
 /**
- * Single image plane:
- * Idle — Case study + client
+ * Idle — client + outcome metrics
  * Hover — tags + title + Open CTA
  */
 export function CaseStudyCard({
@@ -32,6 +31,8 @@ export function CaseStudyCard({
   study: CaseStudy;
   className?: string;
 }) {
+  const visibleOutcomes = study.outcomes.slice(0, 3);
+
   return (
     <Link
       href={`/portfolio/${study.slug}`}
@@ -68,6 +69,37 @@ export function CaseStudyCard({
           <p className="font-heading text-heading-lg font-bold text-text-heading lg:text-display-md">
             {study.client}
           </p>
+        </div>
+
+        {/* Outcome metrics — always visible on idle (hidden on hover) */}
+        <div
+          className={cn(
+            "absolute inset-x-0 bottom-0 z-[6] p-6 transition-opacity duration-300 lg:p-8",
+            "group-hover:opacity-0 group-focus-within:opacity-0"
+          )}
+        >
+          <dl
+            className={cn(
+              "grid gap-3",
+              visibleOutcomes.length >= 3
+                ? "grid-cols-3"
+                : visibleOutcomes.length === 2
+                  ? "grid-cols-2"
+                  : "grid-cols-1"
+            )}
+          >
+            {visibleOutcomes.map((outcome) => (
+              <div key={`${outcome.value}-${outcome.label}`} className="min-w-0">
+                <dt className="sr-only">{outcome.label}</dt>
+                <dd className="font-heading text-heading-md font-bold leading-none text-text-heading sm:text-heading-lg">
+                  {outcome.value}
+                </dd>
+                <p className="mt-1.5 text-[11px] leading-snug text-text-sub sm:text-body-sm">
+                  {outcome.label}
+                </p>
+              </div>
+            ))}
+          </dl>
         </div>
 
         <div
@@ -115,7 +147,12 @@ export function CaseStudyCard({
           />
         </div>
       </div>
-      <span className="sr-only">{study.client} case study</span>
+      <span className="sr-only">
+        {study.client} case study
+        {visibleOutcomes
+          .map((o) => `${o.value} ${o.label}`)
+          .join(", ")}
+      </span>
     </Link>
   );
 }
