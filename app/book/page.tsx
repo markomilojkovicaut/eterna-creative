@@ -118,7 +118,7 @@ export default function BookPage() {
           subheading="Quick answers on what happens on the call and what comes next."
         />
         <div className="mt-10 max-w-3xl">
-          <DarkFaqAccordion items={bookFaqItems} className="border-border-muted bg-bg-muted" />
+          <DarkFaqAccordion items={bookFaqItems} tone="light" />
         </div>
       </Section>
     </main>

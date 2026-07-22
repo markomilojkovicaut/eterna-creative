@@ -39,7 +39,8 @@ export function WhatDrivesUs() {
         >
           Building a product used to take a year and cost a fortune. AI and
           modern tools just ended that era. The unfair advantage now belongs to
-          whoever ships a validated, well-architected product first.{" "}
+          whoever ships a validated, well-architected product first and solves
+          distribution.{" "}
           <span className="font-bold">We exist to make sure it&apos;s you.</span>
         </LightEditorialDisplay>
 

@@ -11,13 +11,13 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Eterna | No-Code App Development for Startups",
+  title: "Eterna | AI-native product studio",
   description:
-    "We build MVPs on Bubble.io. Fast, founder-friendly, and built to scale.",
+    "Custom applications, websites, and AI automations - spec first, flat scope, from idea to revenue.",
   openGraph: {
-    title: "Eterna | No-Code App Development for Startups",
+    title: "Eterna | AI-native product studio",
     description:
-      "We build MVPs on Bubble.io. Fast, founder-friendly, and built to scale.",
+      "Custom applications, websites, and AI automations - spec first, flat scope, from idea to revenue.",
     type: "website",
   },
 };

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { DarkSectionBackdrop, SectionHeading } from "@/components/ui";
 import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
 import { SectionPullQuote } from "@/components/ui/SectionPullQuote";
+import { aiPractices } from "@/lib/ai-expertise";
 import {
   LAYOUT_INNER_CLASS,
   LAYOUT_OUTER_CLASS,
@@ -57,7 +58,10 @@ function ProofVisual({
 
 export function Proof() {
   return (
-    <section className="relative overflow-hidden bg-bg-base pt-section">
+    <section
+      id="ai-expertise"
+      className="relative overflow-hidden bg-bg-base pt-section"
+    >
       <DarkSectionBackdrop
         flipVertical
         objectPosition="bottom-right"
@@ -67,7 +71,7 @@ export function Proof() {
       <div className={cn("relative z-10 pb-section", LAYOUT_OUTER_CLASS)}>
         <div className={LAYOUT_INNER_CLASS}>
           <SectionHeading
-            label="Proof"
+            label="AI expertise"
             lines={[
               { text: "AI that", variant: "default" },
               { text: "actually works", variant: "gradient" },
@@ -169,6 +173,31 @@ export function Proof() {
                   </Link>
                 );
               })}
+            </div>
+          </div>
+
+          <div className="mt-14 lg:mt-16">
+            <h3 className="font-heading text-heading-lg font-bold text-text-heading">
+              How we use AI in our work
+            </h3>
+            <p className="mt-3 max-w-[560px] text-body-md leading-relaxed text-text-body">
+              Not a slide deck of AI buzzwords - the same stack and discipline
+              we use on client builds and our own products.
+            </p>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              {aiPractices.map((practice) => (
+                <div
+                  key={practice.id}
+                  className="rounded-soft border border-border-dark bg-bg-card/30 p-5 sm:p-6"
+                >
+                  <h4 className="font-heading text-heading-sm font-bold text-text-heading">
+                    {practice.title}
+                  </h4>
+                  <p className="mt-2 text-body-sm leading-relaxed text-text-body">
+                    {practice.description}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
 

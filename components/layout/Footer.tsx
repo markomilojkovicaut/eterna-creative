@@ -91,7 +91,7 @@ export function Footer() {
             <div className="flex min-h-0 flex-col gap-8">
               <NewsletterSignup className="min-h-[200px] flex-1 lg:min-h-0" />
 
-              <div className="grid w-full grid-cols-3 gap-x-6 gap-y-6 sm:gap-x-8">
+              <div className="grid w-full grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4 sm:gap-x-8">
                 {footerLinkGroups.map((group) => (
                   <div key={group.id}>
                     <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-text-muted">

@@ -34,15 +34,16 @@ export default function MigrationPage() {
         <div className={cn("relative z-10", LAYOUT_OUTER_CLASS)}>
           <div className={LAYOUT_INNER_CLASS}>
             <SectionHeading
-              label="Migration"
+              label="Rescue"
               lines={[
-                { text: "Outgrow Bubble", variant: "default" },
-                { text: "without chaos", variant: "gradient" },
+                { text: "Rescue no-code", variant: "default" },
+                { text: "& vibecode", variant: "gradient" },
               ]}
               subheading={
                 <>
-                  Migrate to custom code you own - cleanly phased, flat priced,
-                  with data and users carried over where it matters.
+                  Migrate Bubble apps or stabilize AI-generated prototypes into
+                  production code you own - cleanly phased, flat priced, with
+                  data and users carried over where it matters.
                 </>
               }
             />
@@ -137,11 +138,11 @@ export default function MigrationPage() {
         <div className={LAYOUT_OUTER_CLASS}>
           <div className={cn(LAYOUT_INNER_CLASS, "text-center")}>
             <p className="text-body-md text-text-sub">
-              Already on Bubble?{" "}
+              Already on Bubble or stuck in vibecode?{" "}
               <Link href="/book" className="text-brand-purple-light hover:text-text-heading">
                 Book a strategy call
               </Link>{" "}
-              and we will audit whether migration is the right move.
+              and we will audit whether rescue is the right move.
             </p>
           </div>
         </div>

@@ -9,10 +9,13 @@ export function DarkFaqAccordion({
   items,
   className,
   defaultOpenId,
+  tone = "dark",
 }: {
   items: FaqItem[];
   className?: string;
   defaultOpenId?: string;
+  /** Use light on white/surface sections so questions stay readable. */
+  tone?: "dark" | "light";
 }) {
   const [openId, setOpenId] = useState<string | null>(defaultOpenId ?? null);
 
@@ -22,10 +25,13 @@ export function DarkFaqAccordion({
 
   if (items.length === 0) return null;
 
+  const isLight = tone === "light";
+
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-soft border border-border-dark bg-bg-card/40",
+        "overflow-hidden rounded-soft border bg-bg-card/40",
+        isLight ? "border-border-muted bg-bg-muted" : "border-border-dark",
         className
       )}
     >
@@ -36,7 +42,9 @@ export function DarkFaqAccordion({
         return (
           <div
             key={item.id}
-            className={cn(!isLast && "border-b border-border-dark")}
+            className={cn(
+              !isLast && (isLight ? "border-b border-border-muted" : "border-b border-border-dark")
+            )}
           >
             <button
               type="button"
@@ -44,12 +52,20 @@ export function DarkFaqAccordion({
               className="flex w-full items-start justify-between gap-4 px-5 py-5 text-left sm:px-6 sm:py-6"
               aria-expanded={isOpen}
             >
-              <span className="font-heading text-body-sm font-semibold leading-snug text-text-heading sm:text-body-md">
+              <span
+                className={cn(
+                  "font-heading text-body-sm font-semibold leading-snug sm:text-body-md",
+                  isLight ? "text-text-ink" : "text-text-heading"
+                )}
+              >
                 {item.question}
               </span>
               <span
                 className={cn(
-                  "mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-full border border-border-dark bg-bg-card text-brand-purple-light transition-transform duration-200",
+                  "mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-full border transition-transform duration-200",
+                  isLight
+                    ? "border-border-muted bg-bg-surface text-brand-purple"
+                    : "border-border-dark bg-bg-card text-brand-purple-light",
                   isOpen && "rotate-180"
                 )}
                 aria-hidden
@@ -71,7 +87,12 @@ export function DarkFaqAccordion({
 
             {isOpen && (
               <div className="px-5 pb-5 sm:px-6 sm:pb-6">
-                <p className="max-w-[640px] text-body-md leading-relaxed text-text-body">
+                <p
+                  className={cn(
+                    "max-w-[640px] text-body-md leading-relaxed",
+                    isLight ? "text-text-ink-sub" : "text-text-body"
+                  )}
+                >
                   {item.answer}
                 </p>
               </div>

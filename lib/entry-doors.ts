@@ -16,11 +16,11 @@ export const entryDoors: EntryDoor[] = [
     href: "/blueprint",
   },
   {
-    id: "migrate",
-    title: "I'm outgrowing no-code",
+    id: "rescue",
+    title: "I'm stuck on no-code or vibecode",
     description:
-      "Migrate your Bubble app to custom code you own - cleanly, no rebuild chaos.",
-    ctaLabel: "See how migration works",
+      "Migrate Bubble apps or rescue AI-generated prototypes into production code you own - cleanly, without rebuild chaos.",
+    ctaLabel: "See how rescue works",
     href: "/migration",
   },
   {

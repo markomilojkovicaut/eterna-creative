@@ -9,37 +9,4 @@ export const newsletterCopy = {
   subline: "Monthly insights on building better products.",
 };
 
-export const footerLinkGroups = [
-  {
-    id: "pages",
-    label: "Pages",
-    links: [
-      { label: "Home", href: "/" },
-      { label: "Case studies", href: "/portfolio" },
-      { label: "Resources", href: "/resources" },
-    ],
-  },
-  {
-    id: "resources",
-    label: "Resources",
-    links: [
-      { label: "Guides", href: "/guides" },
-      { label: "Blog", href: "/blog" },
-      { label: "Templates", href: "/templates" },
-    ],
-  },
-  {
-    id: "contact",
-    label: "Contact",
-    links: [
-      { label: "Book a strategy call", href: "/book", icon: "calendar" as const },
-      { label: "Send email", href: "mailto:hello@eterna.dev", icon: "mail" as const },
-      {
-        label: "LinkedIn",
-        href: "https://www.linkedin.com/company/eterna-creative",
-        icon: "linkedin" as const,
-        external: true,
-      },
-    ],
-  },
-] as const;
+export { footerLinkGroups } from "@/lib/site-nav";

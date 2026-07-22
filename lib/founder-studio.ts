@@ -79,15 +79,8 @@ export const teamMembers: TeamMember[] = [
     id: "artur",
     name: "Artur",
     role: "Lead engineer",
-    gradientClass: "bg-gradient-to-tr from-brand-purple-dark via-brand-purple to-brand-pink-light",
+    imageSrc: "/images/team/artur.png",
     staggerClass: "lg:translate-y-8",
-  },
-  {
-    id: "jovana",
-    name: "Jovana",
-    role: "QA tester",
-    gradientClass: "bg-gradient-to-bl from-brand-pink via-brand-purple-light to-brand-purple-dark",
-    staggerClass: "lg:translate-y-16",
   },
   {
     id: "violeta",
