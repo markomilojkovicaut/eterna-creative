@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 
+import { AccordionProgressRail } from "@/components/ui/AccordionProgressRail";
 import type { QuoteBarAccent } from "@/components/ui/QuoteBar";
 import { cn } from "@/lib/utils";
 
@@ -23,13 +24,19 @@ export interface AutoAccordionProps {
 }
 
 const accentFillClasses: Record<AutoAccordionAccent, string> = {
-  purple: "bg-brand-purple-light",
+  purple: "bg-brand-purple",
   pink: "bg-brand-pink",
   black: "bg-text-ink",
 };
 
+const accentTrackClasses: Record<AutoAccordionAccent, string> = {
+  purple: "bg-brand-purple/25",
+  pink: "bg-brand-pink/25",
+  black: "bg-text-ink/20",
+};
+
 /**
- * Unified accordion: one open panel at a time, left-border fill animation,
+ * Unified accordion: one open panel at a time, left-rail progress,
  * auto-rotates on an interval. Click a title to switch panels.
  */
 export function AutoAccordion({
@@ -40,6 +47,7 @@ export function AutoAccordion({
 }: AutoAccordionProps) {
   const [activeIndex, setActiveIndex] = useState(defaultActiveIndex);
   const [progressCycle, setProgressCycle] = useState(0);
+  const [paused, setPaused] = useState(false);
 
   const selectIndex = useCallback((index: number) => {
     setActiveIndex(index);
@@ -47,7 +55,7 @@ export function AutoAccordion({
   }, []);
 
   useEffect(() => {
-    if (items.length <= 1) return;
+    if (items.length <= 1 || paused) return;
 
     const timer = window.setInterval(() => {
       setActiveIndex((current) => (current + 1) % items.length);
@@ -55,7 +63,7 @@ export function AutoAccordion({
     }, intervalMs);
 
     return () => window.clearInterval(timer);
-  }, [progressCycle, items.length, intervalMs]);
+  }, [progressCycle, items.length, intervalMs, paused]);
 
   if (items.length === 0) return null;
 
@@ -65,6 +73,14 @@ export function AutoAccordion({
         "overflow-hidden rounded-soft border border-border-muted bg-bg-muted",
         className
       )}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) {
+          setPaused(false);
+        }
+      }}
     >
       {items.map((item, index) => {
         const isActive = activeIndex === index;
@@ -79,21 +95,14 @@ export function AutoAccordion({
               !isLast && "border-b border-border-muted"
             )}
           >
-            <div
-              className="relative w-1 shrink-0 bg-brand-purple-light/20"
-              aria-hidden
-            >
-              {isActive && (
-                <div
-                  key={progressCycle}
-                  className={cn(
-                    "absolute inset-x-0 top-0 h-full origin-top animate-approach-border-fill",
-                    accentFillClasses[accent]
-                  )}
-                  style={{ animationDuration: `${intervalMs}ms` }}
-                />
-              )}
-            </div>
+            <AccordionProgressRail
+              active={isActive}
+              cycle={progressCycle}
+              durationMs={intervalMs}
+              paused={paused}
+              trackClassName={accentTrackClasses[accent]}
+              fillClassName={accentFillClasses[accent]}
+            />
 
             <div
               className={cn(

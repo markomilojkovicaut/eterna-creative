@@ -145,6 +145,14 @@ const config: Config = {
           "0%, 100%": { opacity: "0.35", transform: "scale(1)" },
           "50%": { opacity: "0.7", transform: "scale(1.04)" },
         },
+        "phone-3d-drift": {
+          "0%, 100%": {
+            transform: "rotateX(14deg) rotateY(-8deg) translateZ(0)",
+          },
+          "50%": {
+            transform: "rotateX(10deg) rotateY(8deg) translateZ(12px)",
+          },
+        },
       },
       animation: {
         "approach-border-fill":
@@ -166,6 +174,8 @@ const config: Config = {
         "engine-orbit": "engine-orbit 28s linear infinite",
         "engine-ring-pulse":
           "engine-ring-pulse 5.5s ease-in-out infinite",
+        "phone-3d-drift":
+          "phone-3d-drift 8s ease-in-out infinite",
       },
       backgroundImage: {
         "hero-gradient":

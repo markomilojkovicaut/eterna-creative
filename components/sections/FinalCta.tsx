@@ -16,28 +16,43 @@ export function FinalCta() {
     <section className="relative bg-bg-base py-section">
       <div className={LAYOUT_OUTER_CLASS}>
         <div className={LAYOUT_INNER_CLASS}>
-          <Reveal className="relative overflow-hidden rounded-soft border border-border-dark">
-            <DarkSectionBackdrop {...sectionBackdropPresets.challenges} />
+          <Reveal className="relative overflow-hidden rounded-soft p-px">
+            <div
+              className="pointer-events-none absolute inset-[-40%] cta-comet-border"
+              aria-hidden
+            />
+            <div
+              className="pointer-events-none absolute inset-0 rounded-soft opacity-40"
+              aria-hidden
+              style={{
+                background:
+                  "linear-gradient(90deg, rgba(184,184,255,0.35), rgba(133,133,255,0.2), rgba(203,128,255,0.35))",
+              }}
+            />
 
-            <div className="relative z-10 flex flex-col items-center px-6 py-[160px] text-center sm:px-10">
-              <h2
-                className={cn(
-                  displayHeadingTypeClasses,
-                  "text-display-lg font-bold text-text-heading sm:text-display-xl"
-                )}
-              >
-                Ready to <span className="text-gradient-hero">start?</span>
-              </h2>
+            <div className="relative overflow-hidden rounded-[7px] border border-border-dark bg-bg-base">
+              <DarkSectionBackdrop {...sectionBackdropPresets.challenges} />
 
-              <p className="mt-5 max-w-[560px] text-body-md leading-relaxed text-text-sub sm:text-body-lg">
-                Your product idea has a window - let&apos;s not waste it. Book a
-                free 15-min strategy call and we&apos;ll show you how we would
-                build it.
-              </p>
+              <div className="relative z-10 flex flex-col items-center px-6 py-[160px] text-center sm:px-10">
+                <h2
+                  className={cn(
+                    displayHeadingTypeClasses,
+                    "text-display-lg font-bold text-text-heading sm:text-display-xl"
+                  )}
+                >
+                  Ready to <span className="text-gradient-hero">start?</span>
+                </h2>
 
-              <CallToActionLink href="/book" className="mt-8">
-                Book a strategy call
-              </CallToActionLink>
+                <p className="mt-5 max-w-[560px] text-body-md leading-relaxed text-text-sub sm:text-body-lg">
+                  Your product idea has a window - let&apos;s not waste it. Book a
+                  free 15-min strategy call and we&apos;ll show you how we would
+                  build it.
+                </p>
+
+                <CallToActionLink href="/book" className="mt-8">
+                  Book a strategy call
+                </CallToActionLink>
+              </div>
             </div>
           </Reveal>
         </div>

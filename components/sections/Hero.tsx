@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { CallToActionLink } from "@/components/ui/CallToActionLink";
-import { HeroPhones } from "@/components/ui/HeroPhones";
+import { HeroPhones, HeroPhones3D } from "@/components/ui/HeroPhones";
 import { LabelPill } from "@/components/ui/LabelPill";
 import { Reveal } from "@/components/ui/Reveal";
 import {
@@ -130,9 +130,10 @@ export function Hero() {
           <Reveal
             immediate
             delay={320}
-            className="relative z-0 mt-[80px] flex w-full max-w-md flex-1 items-end justify-center lg:max-w-lg"
+            className="relative z-0 mt-[80px] flex w-full max-w-md flex-col items-center justify-end gap-10 lg:max-w-lg"
           >
             <HeroPhones className="w-full" />
+            <HeroPhones3D className="w-full" />
           </Reveal>
         </div>
       </div>

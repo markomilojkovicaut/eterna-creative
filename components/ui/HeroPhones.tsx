@@ -58,6 +58,74 @@ export function HeroPhones({ className }: { className?: string }) {
   );
 }
 
+/**
+ * Perspective duplicate of the hero phones - sits below the flat trio.
+ * Rest pose reads as 3D; hover adds a light Y-axis spin.
+ */
+export function HeroPhones3D({ className }: { className?: string }) {
+  return (
+    <div
+      className={cn(
+        "group/3d relative mx-auto aspect-[16/10] w-full max-w-sm [perspective:900px] lg:max-w-md",
+        className
+      )}
+      aria-label="3D product previews on three phones"
+    >
+      <div
+        className="pointer-events-none absolute left-1/2 top-[62%] h-[32%] w-[60%] -translate-x-1/2 rounded-full bg-brand-purple/20 blur-3xl"
+        aria-hidden
+      />
+
+      <div
+        className={cn(
+          "absolute inset-0 origin-center [transform-style:preserve-3d]",
+          "animate-phone-3d-drift motion-reduce:animate-none",
+          "transition-[transform] duration-700 ease-out",
+          "group-hover/3d:animate-none",
+          "group-hover/3d:[transform:rotateX(8deg)_rotateY(28deg)_translateZ(24px)]",
+          "motion-reduce:group-hover/3d:transform-none"
+        )}
+      >
+        <PhoneFrame
+          className={cn(
+            "absolute left-[8%] top-[18%] z-[1] w-[38%] origin-bottom",
+            "[transform:translateZ(-40px)_rotateY(18deg)_rotateX(6deg)_rotateZ(-8deg)]",
+            "shadow-[0_28px_50px_rgba(0,0,0,0.55)]",
+            "transition-transform duration-700 ease-out",
+            "group-hover/3d:[transform:translateZ(-16px)_rotateY(36deg)_rotateX(4deg)_rotateZ(-10deg)]"
+          )}
+        >
+          <PhoneScreenAutomations />
+        </PhoneFrame>
+
+        <PhoneFrame
+          className={cn(
+            "absolute right-[8%] top-[18%] z-[1] w-[38%] origin-bottom",
+            "[transform:translateZ(-40px)_rotateY(-18deg)_rotateX(6deg)_rotateZ(8deg)]",
+            "shadow-[0_28px_50px_rgba(0,0,0,0.55)]",
+            "transition-transform duration-700 ease-out",
+            "group-hover/3d:[transform:translateZ(-16px)_rotateY(-36deg)_rotateX(4deg)_rotateZ(10deg)]"
+          )}
+        >
+          <PhoneScreenWebsite />
+        </PhoneFrame>
+
+        <PhoneFrame
+          className={cn(
+            "absolute left-1/2 top-[8%] z-[2] w-[42%] origin-bottom",
+            "[transform:translate3d(-50%,0,48px)_rotateX(4deg)]",
+            "shadow-[0_36px_60px_rgba(31,17,69,0.55)]",
+            "transition-transform duration-700 ease-out",
+            "group-hover/3d:[transform:translate3d(-50%,0,72px)_rotateY(14deg)_rotateX(2deg)_scale(1.04)]"
+          )}
+        >
+          <PhoneScreenApplication />
+        </PhoneFrame>
+      </div>
+    </div>
+  );
+}
+
 /** Shared hover-only treatment for product device previews in offer cards. */
 export const productDeviceHoverClassName = cn(
   "pointer-events-none hidden shrink-0 self-end sm:block",
@@ -201,8 +269,8 @@ function PhoneScreenAutomations() {
           </div>
         ))}
       </div>
-      <div className="mt-1.5 rounded-soft border border-brand-purple/40 bg-brand-purple/20 px-2 py-1 text-center text-[7px] font-semibold text-brand-purple-light">
-        Running · 99.2% uptime
+      <div className="mt-1.5 whitespace-nowrap rounded-soft border border-brand-purple/40 bg-brand-purple/20 px-2 py-1 text-center text-[7px] font-semibold text-brand-purple-light">
+        Running now
       </div>
     </div>
   );
@@ -228,8 +296,8 @@ function PhoneScreenWebsite() {
           <div className="h-1 w-[60%] rounded-full bg-white/10" />
         </div>
       </div>
-      <div className="mt-1.5 rounded-soft bg-white px-2 py-1 text-center text-[7px] font-semibold text-bg-base">
-        Book a strategy call
+      <div className="mt-1.5 whitespace-nowrap rounded-soft bg-white px-2 py-1 text-center text-[7px] font-semibold text-bg-base">
+        Book a call
       </div>
     </div>
   );

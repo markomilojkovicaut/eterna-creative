@@ -81,8 +81,8 @@ function EnginePopup({
         aria-label="Close engine details"
         onClick={onClose}
       />
-      <div className="relative z-10 w-full max-w-lg overflow-hidden rounded-soft border border-border-dark bg-bg-card shadow-glow-purple">
-        <div className="flex items-start justify-between gap-4 border-b border-border-dark px-6 py-5 sm:px-8">
+      <div className="relative z-10 flex max-h-[80vh] w-full max-w-lg flex-col overflow-hidden rounded-soft border border-border-dark bg-bg-card shadow-glow-purple">
+        <div className="flex shrink-0 items-start justify-between gap-4 border-b border-border-dark px-6 py-5 sm:px-8">
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-purple-light">
               Engine {engine.number}
@@ -116,7 +116,7 @@ function EnginePopup({
           </button>
         </div>
 
-        <div className="space-y-5 px-6 py-6 sm:px-8">
+        <div className="min-h-0 flex-1 space-y-5 overflow-y-auto overscroll-contain px-6 py-6 sm:px-8">
           <DarkTagPill>{`Engine ${engine.number}`}</DarkTagPill>
 
           <div className="flex items-center gap-4">

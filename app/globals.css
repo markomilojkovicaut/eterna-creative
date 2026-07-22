@@ -1,6 +1,12 @@
 @import "tailwindcss";
 @config "../tailwind.config.ts";
 
+@property --cta-comet-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
 @layer base {
   * {
     @apply border-border-default;
@@ -45,6 +51,38 @@
       opacity: 1 !important;
       transform: none !important;
       transition: none !important;
+    }
+  }
+
+  /** Light comet that travels around the Ready to start CTA border. */
+  .cta-comet-border {
+    background: conic-gradient(
+      from var(--cta-comet-angle),
+      transparent 0deg,
+      transparent 300deg,
+      rgba(184, 184, 255, 0.12) 318deg,
+      rgba(255, 255, 255, 0.95) 338deg,
+      rgba(203, 128, 255, 0.9) 348deg,
+      transparent 360deg
+    );
+    animation: cta-comet-spin 3.2s linear infinite;
+  }
+
+  @keyframes cta-comet-spin {
+    to {
+      --cta-comet-angle: 360deg;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cta-comet-border {
+      animation: none;
+      background: linear-gradient(
+        90deg,
+        rgba(184, 184, 255, 0.4),
+        rgba(133, 133, 255, 0.3),
+        rgba(203, 128, 255, 0.4)
+      );
     }
   }
 }
