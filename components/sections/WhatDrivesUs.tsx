@@ -35,7 +35,7 @@ type MissionChunk = {
   bold?: boolean;
 };
 
-/** Sentence groups for scroll opacity; bold key judgment words inside. */
+/** Sentence groups for scroll opacity; only two gradient highlights. */
 const missionGroups: MissionChunk[][] = [
   [
     { text: "AI collapsed the build timeline so anyone can ship a demo. " },
@@ -46,19 +46,13 @@ const missionGroups: MissionChunk[][] = [
     { text: ": strategy, smart architecture, design craft and a path to revenue. " },
   ],
   [
-    { text: "That is why we exist - an " },
-    { text: "AI-native product studio", bold: true },
     {
-      text: " that plans, builds, and grows digital products that ",
+      text: "That is why we exist - an AI-native product studio that plans, builds, and grows digital products that ",
     },
     { text: "compound instead of expire", bold: true },
     { text: ". " },
   ],
-  [
-    { text: "So the " },
-    { text: "advantage is on your side", bold: true },
-    { text: "." },
-  ],
+  [{ text: "So the advantage is on your side." }],
 ];
 
 export function WhatDrivesUs() {

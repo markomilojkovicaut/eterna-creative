@@ -80,7 +80,7 @@ export function Hero() {
               )}
             >
               <span className={cn(heroH1LineClasses, "text-text-heading")}>
-                From idea to revenue
+                From idea to revenue.
               </span>
               <span
                 className={cn(
@@ -88,7 +88,7 @@ export function Hero() {
                   "mt-0.5 pb-1 text-gradient-hero"
                 )}
               >
-                your product&apos;s whole journey
+                Built to compound, not just launch.
               </span>
             </h1>
 

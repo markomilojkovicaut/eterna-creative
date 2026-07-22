@@ -7,12 +7,17 @@ import {
 } from "@/lib/layout-constants";
 import { cn } from "@/lib/utils";
 
+/**
+ * Contained engines panel: image backdrop stays inside content margins.
+ * No full-bleed dark section fill; no bottom section padding.
+ */
 export function EternaSystem() {
   return (
-    <section className="relative bg-bg-base pb-section pt-0">
+    <section className="relative bg-bg-surface pt-0">
       <div className={cn("relative z-10", LAYOUT_OUTER_CLASS)}>
         <div className={cn("relative -mt-20", LAYOUT_INNER_CLASS)}>
           <BorderedDarkPanel
+            className="bg-bg-base"
             backdrop={{ flip: true, objectPosition: "left", gradient: "panel" }}
           >
             <SectionHeading
