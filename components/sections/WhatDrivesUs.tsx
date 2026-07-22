@@ -35,7 +35,7 @@ export function WhatDrivesUs() {
         <div className="mt-3 flex flex-col gap-8">
           <LightEditorialDisplay
             as="p"
-            className="w-full text-[40px] sm:text-[40px] lg:text-[40px]"
+            className="w-full text-[38px] leading-[1.12] tracking-[-1.5px] sm:text-[38px] lg:text-[38px]"
           >
             AI collapsed the build timeline so anyone can ship a demo. What
             still separates winners is judgment: strategy, smart architecture,

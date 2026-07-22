@@ -3,12 +3,13 @@ import Link from "next/link";
 import { CallToActionLink } from "@/components/ui/CallToActionLink";
 import { DarkSectionBackdrop, SectionHeading } from "@/components/ui";
 import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
+import { ProductDevicePreview } from "@/components/ui/HeroPhones";
 import { SectionPullQuote } from "@/components/ui/SectionPullQuote";
 import {
   LAYOUT_INNER_CLASS,
   LAYOUT_OUTER_CLASS,
 } from "@/lib/layout-constants";
-import { productOffers } from "@/lib/products";
+import { productOffers, type ProductId } from "@/lib/products";
 import { quoteAfterWhatWeDo } from "@/lib/section-quotes";
 import { cn } from "@/lib/utils";
 
@@ -45,24 +46,31 @@ export function Services() {
               {productOffers.map((product) => (
                 <div
                   key={product.id}
-                  className="flex flex-col gap-6 p-6 sm:p-8 lg:min-h-[480px] lg:p-8 xl:p-10"
+                  className="group flex flex-col gap-6 p-6 sm:p-8 lg:min-h-[520px] lg:p-8 xl:p-10"
                 >
-                  <div>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-purple-light">
-                      {product.number}
-                    </p>
-                    <Link
-                      href={product.href}
-                      className="group mt-3 inline-flex items-center gap-2 no-underline"
-                    >
-                      <h3 className="font-heading text-[1.75rem] font-bold leading-snug text-text-heading transition-colors group-hover:text-brand-purple-light">
-                        {product.title}
-                      </h3>
-                      <ArrowUpRight className="opacity-50 transition-all group-hover:translate-x-0.5 group-hover:opacity-100" />
-                    </Link>
-                    <p className="mt-3 text-body-md leading-relaxed text-text-body">
-                      {product.description}
-                    </p>
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="min-w-0">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-purple-light">
+                        {product.number}
+                      </p>
+                      <Link
+                        href={product.href}
+                        className="mt-3 inline-flex items-center gap-2 no-underline"
+                      >
+                        <h3 className="font-heading text-[1.75rem] font-bold leading-snug text-text-heading transition-colors group-hover:text-brand-purple-light">
+                          {product.title}
+                        </h3>
+                        <ArrowUpRight className="opacity-50 transition-all group-hover:translate-x-0.5 group-hover:opacity-100" />
+                      </Link>
+                      <p className="mt-3 text-body-md leading-relaxed text-text-body">
+                        {product.description}
+                      </p>
+                    </div>
+                    <ProductDevicePreview
+                      variant={product.id as ProductId}
+                      size="sm"
+                      className="hidden shrink-0 sm:block"
+                    />
                   </div>
 
                   <ul className="mt-auto flex flex-col gap-2">

@@ -97,12 +97,82 @@ const config: Config = {
           from: { transform: "translateX(0)" },
           to: { transform: "translateX(-50%)" },
         },
+        "phone-float-left": {
+          "0%, 100%": {
+            transform: "translate3d(0, 0, 0) rotate(-12deg)",
+          },
+          "35%": {
+            transform: "translate3d(-22%, -10%, 0) rotate(-26deg)",
+          },
+          "50%": {
+            transform: "translate3d(-24%, -12%, 0) rotate(-28deg)",
+          },
+          "70%": {
+            transform: "translate3d(-8%, -4%, 0) rotate(-16deg)",
+          },
+        },
+        "phone-float-right": {
+          "0%, 100%": {
+            transform: "translate3d(0, 0, 0) rotate(12deg)",
+          },
+          "35%": {
+            transform: "translate3d(22%, -10%, 0) rotate(26deg)",
+          },
+          "50%": {
+            transform: "translate3d(24%, -12%, 0) rotate(28deg)",
+          },
+          "70%": {
+            transform: "translate3d(8%, -4%, 0) rotate(16deg)",
+          },
+        },
+        "phone-float-center": {
+          "0%, 100%": {
+            transform: "translate3d(-50%, 0, 0) scale(1)",
+          },
+          "35%": {
+            transform: "translate3d(-50%, -14%, 0) scale(1.06)",
+          },
+          "50%": {
+            transform: "translate3d(-50%, -16%, 0) scale(1.08)",
+          },
+          "70%": {
+            transform: "translate3d(-50%, -6%, 0) scale(1.02)",
+          },
+        },
+        "phone-float-solo": {
+          "0%, 100%": {
+            transform: "translate3d(0, 0, 0) rotate(-2deg)",
+          },
+          "50%": {
+            transform: "translate3d(0, -8%, 0) rotate(2deg)",
+          },
+        },
+        "phone-screen-pulse": {
+          "0%, 100%": { opacity: "0.85" },
+          "50%": { opacity: "1" },
+        },
+        "phone-bar-rise": {
+          "0%, 100%": { transform: "scaleY(0.55)" },
+          "50%": { transform: "scaleY(1)" },
+        },
       },
       animation: {
         "approach-border-fill":
           "approach-border-fill 9s linear forwards",
         "partner-marquee":
           "partner-marquee 90s linear infinite",
+        "phone-float-left":
+          "phone-float-left 9s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite",
+        "phone-float-right":
+          "phone-float-right 9s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite",
+        "phone-float-center":
+          "phone-float-center 9s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite",
+        "phone-float-solo":
+          "phone-float-solo 5.5s ease-in-out infinite",
+        "phone-screen-pulse":
+          "phone-screen-pulse 3.5s ease-in-out infinite",
+        "phone-bar-rise":
+          "phone-bar-rise 2.8s ease-in-out infinite",
       },
       backgroundImage: {
         "hero-gradient":

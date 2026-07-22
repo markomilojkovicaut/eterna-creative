@@ -2,8 +2,11 @@
 
 import { cn } from "@/lib/utils";
 
+export type ProductDeviceVariant = "application" | "automation" | "website";
+
 /**
- * Three on-brand phone mockups. Idle: tight fan. Hover/focus: exploded spread.
+ * Three on-brand phones with a continuous explode/float loop.
+ * Hover deepens the spread. Used on hero; single devices reuse screens elsewhere.
  */
 export function HeroPhones({ className }: { className?: string }) {
   return (
@@ -15,43 +18,83 @@ export function HeroPhones({ className }: { className?: string }) {
       tabIndex={0}
       aria-label="Product previews on three phones"
     >
-      {/* Left — Automations */}
+      <div
+        className="pointer-events-none absolute left-1/2 top-[55%] h-[40%] w-[70%] -translate-x-1/2 rounded-full bg-brand-purple/25 blur-3xl animate-phone-screen-pulse"
+        aria-hidden
+      />
+
       <PhoneFrame
         className={cn(
           "absolute left-[8%] top-[12%] z-[1] w-[42%] origin-bottom",
-          "-rotate-[14deg] transition-transform duration-500 ease-out",
-          "group-hover:-translate-x-[18%] group-hover:-translate-y-[6%] group-hover:-rotate-[22deg]",
-          "group-focus-within:-translate-x-[18%] group-focus-within:-translate-y-[6%] group-focus-within:-rotate-[22deg]",
-          "motion-reduce:transition-none"
+          "animate-phone-float-left",
+          "group-hover:[animation-play-state:paused] group-hover:-translate-x-[26%] group-hover:-translate-y-[14%] group-hover:-rotate-[30deg]",
+          "group-focus-within:[animation-play-state:paused] group-focus-within:-translate-x-[26%] group-focus-within:-translate-y-[14%] group-focus-within:-rotate-[30deg]",
+          "transition-transform duration-500 ease-out motion-reduce:animate-none motion-reduce:transition-none"
         )}
+        style={{ animationDelay: "0s" }}
       >
-        <PhoneScreenAutomations />
+        <PhoneScreenAutomations live />
       </PhoneFrame>
 
-      {/* Right — Website */}
       <PhoneFrame
         className={cn(
           "absolute right-[8%] top-[12%] z-[1] w-[42%] origin-bottom",
-          "rotate-[14deg] transition-transform duration-500 ease-out",
-          "group-hover:translate-x-[18%] group-hover:-translate-y-[6%] group-hover:rotate-[22deg]",
-          "group-focus-within:translate-x-[18%] group-focus-within:-translate-y-[6%] group-focus-within:rotate-[22deg]",
-          "motion-reduce:transition-none"
+          "animate-phone-float-right",
+          "group-hover:[animation-play-state:paused] group-hover:translate-x-[26%] group-hover:-translate-y-[14%] group-hover:rotate-[30deg]",
+          "group-focus-within:[animation-play-state:paused] group-focus-within:translate-x-[26%] group-focus-within:-translate-y-[14%] group-focus-within:rotate-[30deg]",
+          "transition-transform duration-500 ease-out motion-reduce:animate-none motion-reduce:transition-none"
         )}
+        style={{ animationDelay: "0.35s" }}
       >
-        <PhoneScreenWebsite />
+        <PhoneScreenWebsite live />
       </PhoneFrame>
 
-      {/* Center — Application */}
       <PhoneFrame
         className={cn(
-          "absolute left-1/2 top-[4%] z-[2] w-[46%] -translate-x-1/2 origin-bottom",
-          "transition-transform duration-500 ease-out",
-          "group-hover:-translate-y-[10%] group-hover:scale-[1.04]",
-          "group-focus-within:-translate-y-[10%] group-focus-within:scale-[1.04]",
-          "motion-reduce:transition-none"
+          "absolute left-1/2 top-[4%] z-[2] w-[46%] origin-bottom",
+          "animate-phone-float-center",
+          "group-hover:[animation-play-state:paused] group-hover:-translate-y-[18%] group-hover:scale-[1.1]",
+          "group-focus-within:[animation-play-state:paused] group-focus-within:-translate-y-[18%] group-focus-within:scale-[1.1]",
+          "transition-transform duration-500 ease-out motion-reduce:animate-none motion-reduce:transition-none"
         )}
+        style={{ animationDelay: "0.7s" }}
       >
-        <PhoneScreenApplication />
+        <PhoneScreenApplication live />
+      </PhoneFrame>
+    </div>
+  );
+}
+
+/** Single product device for cards / service heroes. */
+export function ProductDevicePreview({
+  variant,
+  className,
+  size = "md",
+}: {
+  variant: ProductDeviceVariant;
+  className?: string;
+  size?: "sm" | "md";
+}) {
+  return (
+    <div
+      className={cn(
+        "relative mx-auto",
+        size === "sm" ? "w-[120px]" : "w-[160px]",
+        className
+      )}
+    >
+      <div
+        className="pointer-events-none absolute inset-x-2 bottom-0 h-1/3 rounded-full bg-brand-purple/30 blur-2xl animate-phone-screen-pulse"
+        aria-hidden
+      />
+      <PhoneFrame className="relative w-full animate-phone-float-solo motion-reduce:animate-none">
+        {variant === "application" ? (
+          <PhoneScreenApplication live />
+        ) : variant === "automation" ? (
+          <PhoneScreenAutomations live />
+        ) : (
+          <PhoneScreenWebsite live />
+        )}
       </PhoneFrame>
     </div>
   );
@@ -60,17 +103,20 @@ export function HeroPhones({ className }: { className?: string }) {
 function PhoneFrame({
   children,
   className,
+  style,
 }: {
   children: React.ReactNode;
   className?: string;
+  style?: React.CSSProperties;
 }) {
   return (
     <div
       className={cn(
         "overflow-hidden rounded-[1.35rem] border border-border-dark bg-bg-card shadow-[0_20px_50px_rgba(31,17,69,0.45)]",
-        "ring-1 ring-brand-purple-light/10",
+        "ring-1 ring-brand-purple-light/15",
         className
       )}
+      style={style}
     >
       <div className="relative aspect-[9/19] w-full bg-bg-base">
         <div
@@ -83,7 +129,7 @@ function PhoneFrame({
   );
 }
 
-function PhoneScreenApplication() {
+function PhoneScreenApplication({ live }: { live?: boolean }) {
   return (
     <div className="flex h-full flex-col bg-gradient-to-b from-[#0a0a12] via-bg-base to-[#1F1145]/80 px-3 pb-3">
       <p className="text-[7px] font-semibold uppercase tracking-[0.14em] text-brand-purple-light">
@@ -96,7 +142,10 @@ function PhoneScreenApplication() {
         {["Users", "MRR", "Retention", "NPS"].map((label) => (
           <div
             key={label}
-            className="rounded-soft border border-border-dark bg-bg-card/60 px-1.5 py-1.5"
+            className={cn(
+              "rounded-soft border border-border-dark bg-bg-card/60 px-1.5 py-1.5",
+              live && "animate-phone-screen-pulse"
+            )}
           >
             <p className="text-[6px] uppercase tracking-wide text-text-muted">
               {label}
@@ -118,8 +167,14 @@ function PhoneScreenApplication() {
           {[40, 55, 48, 70, 62, 85, 78].map((h, i) => (
             <div
               key={i}
-              className="flex-1 rounded-sm bg-gradient-to-t from-brand-purple to-brand-pink opacity-80"
-              style={{ height: `${h}%` }}
+              className={cn(
+                "flex-1 origin-bottom rounded-sm bg-gradient-to-t from-brand-purple to-brand-pink opacity-80",
+                live && "animate-phone-bar-rise"
+              )}
+              style={{
+                height: `${h}%`,
+                animationDelay: live ? `${i * 0.12}s` : undefined,
+              }}
             />
           ))}
         </div>
@@ -131,7 +186,7 @@ function PhoneScreenApplication() {
   );
 }
 
-function PhoneScreenAutomations() {
+function PhoneScreenAutomations({ live }: { live?: boolean }) {
   return (
     <div className="flex h-full flex-col bg-[#07070c] px-3 pb-3">
       <p className="text-[7px] font-semibold uppercase tracking-[0.14em] text-brand-pink">
@@ -146,7 +201,14 @@ function PhoneScreenAutomations() {
           { t: "AI agent", d: "Qualify + draft reply" },
           { t: "Action", d: "Push to Slack + CRM" },
         ].map((step, i) => (
-          <div key={step.t} className="flex items-start gap-1.5">
+          <div
+            key={step.t}
+            className={cn(
+              "flex items-start gap-1.5",
+              live && "animate-phone-screen-pulse"
+            )}
+            style={{ animationDelay: live ? `${i * 0.4}s` : undefined }}
+          >
             <span className="mt-1 size-1.5 shrink-0 rounded-full bg-brand-purple-light" />
             <div className="min-w-0 flex-1 rounded-soft border border-border-dark bg-bg-card/50 px-1.5 py-1">
               <p className="text-[6px] font-semibold uppercase tracking-wide text-brand-purple-light">
@@ -164,16 +226,20 @@ function PhoneScreenAutomations() {
   );
 }
 
-function PhoneScreenWebsite() {
+function PhoneScreenWebsite({ live }: { live?: boolean }) {
   return (
     <div className="flex h-full flex-col bg-bg-base px-3 pb-3">
       <p className="text-[7px] font-semibold uppercase tracking-[0.14em] text-brand-purple-light">
         Website
       </p>
-      <div className="mt-2 flex-1 overflow-hidden rounded-soft border border-border-dark bg-gradient-to-br from-[#1F1145] via-bg-base to-bg-card p-2.5">
+      <div
+        className={cn(
+          "mt-2 flex-1 overflow-hidden rounded-soft border border-border-dark bg-gradient-to-br from-[#1F1145] via-bg-base to-bg-card p-2.5",
+          live && "animate-phone-screen-pulse"
+        )}
+      >
         <p className="font-heading text-[12px] font-bold leading-tight text-text-heading">
-          Idea to{" "}
-          <span className="text-gradient-hero">revenue</span>
+          Idea to <span className="text-gradient-hero">revenue</span>
         </p>
         <p className="mt-1 text-[7px] leading-snug text-text-sub">
           Convert visitors with a clear story and craft that scales.

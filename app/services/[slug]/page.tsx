@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Section } from "@/components/layout/Section";
 import { DarkSectionBackdrop, SectionHeading } from "@/components/ui";
 import { CallToActionLink } from "@/components/ui/CallToActionLink";
+import { ProductDevicePreview } from "@/components/ui/HeroPhones";
 import { SecondaryCtaLink } from "@/components/ui/SecondaryCtaLink";
 import { ServiceIcon } from "@/components/ui/ServiceIcon";
 import { getServicePageContent, getAllServiceSlugs } from "@/lib/service-pages";
@@ -14,8 +15,15 @@ import {
   LAYOUT_INNER_CLASS,
   LAYOUT_OUTER_CLASS,
 } from "@/lib/layout-constants";
+import type { ProductId } from "@/lib/products";
 import { sectionBackdropPresets } from "@/lib/section-backdrops";
 import { cn } from "@/lib/utils";
+
+const productDeviceSlugs: ProductId[] = [
+  "application",
+  "automation",
+  "website",
+];
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -74,15 +82,21 @@ export default async function ServicePage({ params }: PageProps) {
                 subheading={page.hero.subheading}
                 titleMaxWidth="max-w-[640px]"
               />
-              <div className="flex shrink-0 flex-col items-start gap-3 lg:items-end">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-purple-light">
-                  {servicePhaseLabels[service.phase]}
-                </p>
-                <ServiceIcon
-                  icon={service.icon}
-                  highlight={service.iconHighlight}
-                  className="scale-125"
-                />
+              <div className="flex shrink-0 flex-col items-start gap-4 lg:items-end">
+                {productDeviceSlugs.includes(slug as ProductId) ? (
+                  <ProductDevicePreview
+                    variant={slug as ProductId}
+                    size="md"
+                    className="lg:mr-2"
+                  />
+                ) : (
+                  <>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-purple-light">
+                      {servicePhaseLabels[service.phase]}
+                    </p>
+                    <ServiceIcon icon={service.icon} />
+                  </>
+                )}
               </div>
             </div>
 

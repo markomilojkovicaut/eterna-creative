@@ -34,10 +34,7 @@ function ClutchStars({ className }: { className?: string }) {
   );
 }
 
-/**
- * Hero layout: left stack (pill → H1 → products rail → CTA),
- * right proof strip, phones bottom-left. No long subheading.
- */
+/** Centered hero: pill + Clutch, H1, product rail, CTA, looping phones. */
 export function Hero() {
   return (
     <section className="relative h-screen min-h-[840px] overflow-hidden bg-bg-base">
@@ -62,15 +59,26 @@ export function Hero() {
       >
         <div
           className={cn(
-            "grid h-full min-h-0 grid-rows-[auto_1fr_auto] gap-8 pt-[120px]",
-            "lg:grid-cols-12 lg:gap-x-8",
+            "flex h-full min-h-0 flex-col items-center justify-between gap-8 pt-[120px] pb-10 text-center",
             LAYOUT_INNER_CLASS
           )}
         >
-          <div className="flex flex-col items-center text-center lg:col-span-7 lg:row-start-1 lg:items-start lg:text-left">
-            <LabelPill>AI-native product studio</LabelPill>
+          <div className="flex w-full max-w-[720px] flex-col items-center">
+            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+              <LabelPill>AI-native product studio</LabelPill>
+              <span className="hidden h-4 w-px bg-border-strong sm:block" aria-hidden />
+              <span className="inline-flex items-center gap-2 text-[14px] sm:text-[15px]">
+                <span className="font-semibold text-text-heading">Clutch</span>
+                <ClutchStars />
+              </span>
+            </div>
 
-            <h1 className={cn("mt-6 overflow-visible", displayHeadingTypeClasses)}>
+            <h1
+              className={cn(
+                "mt-6 overflow-visible",
+                displayHeadingTypeClasses
+              )}
+            >
               <span className={cn(heroH1LineClasses, "text-text-heading")}>
                 Idea to revenue
               </span>
@@ -86,7 +94,7 @@ export function Hero() {
 
             <nav
               aria-label="Products"
-              className="mt-6 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-body-sm font-medium text-text-sub lg:justify-start sm:text-body-md"
+              className="mt-5 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-body-sm font-medium text-text-sub sm:text-body-md"
             >
               {heroProductRail.map((item, index) => (
                 <span key={item.id} className="inline-flex items-center gap-2">
@@ -110,23 +118,7 @@ export function Hero() {
             </CallToActionLink>
           </div>
 
-          <div className="flex flex-col items-center justify-start gap-3 text-center lg:col-span-5 lg:col-start-8 lg:row-start-1 lg:items-end lg:justify-center lg:text-right">
-            <div className="flex flex-wrap items-center justify-center gap-3 text-[16px] lg:justify-end">
-              <span className="inline-flex items-center gap-2 text-text-heading">
-                <span className="lowercase">bubble</span>
-                <span className="relative top-px text-[14px] font-semibold uppercase tracking-wide text-brand-purple-light">
-                  Partner
-                </span>
-              </span>
-              <span className="h-4 w-px bg-border-strong" aria-hidden />
-              <span className="flex items-center gap-2">
-                <span className="font-semibold text-text-heading">Clutch</span>
-                <ClutchStars />
-              </span>
-            </div>
-          </div>
-
-          <div className="flex w-full justify-center lg:col-span-7 lg:row-start-3 lg:justify-start lg:self-end">
+          <div className="flex w-full max-w-xl justify-center lg:max-w-2xl">
             <HeroPhones />
           </div>
         </div>
