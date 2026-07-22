@@ -1,5 +1,5 @@
 import { DarkSectionBackdrop, SectionHeading } from "@/components/ui";
-import { CallToActionLink } from "@/components/ui/CallToActionLink";
+import { SecondaryCtaLink } from "@/components/ui/SecondaryCtaLink";
 import { SolutionCard } from "@/components/ui/SolutionCard";
 import {
   LAYOUT_INNER_CLASS,
@@ -28,16 +28,11 @@ export function Solutions() {
             ]}
             titleMaxWidth="max-w-[560px]"
             subheadingMaxWidth="max-w-[420px]"
-            subheading={
-              <>
-                Different goals, different stages, same commitment. Tell us
-                where you are and we&apos;ll show you how we build with you.
-                <span className="mt-5 flex justify-start lg:justify-end">
-                  <CallToActionLink href="/book" size="sm">
-                    Book a strategy call
-                  </CallToActionLink>
-                </span>
-              </>
+            subheading="Different goals, different stages, same commitment. Tell us where you are and we'll show you how we build with you."
+            subheadingAction={
+              <SecondaryCtaLink href="/book" className="!px-4 !py-2 !text-[12px]">
+                Book a strategy call
+              </SecondaryCtaLink>
             }
           />
 

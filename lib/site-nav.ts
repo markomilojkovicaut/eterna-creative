@@ -98,7 +98,7 @@ export const headerNavItems: HeaderNavItem[] = [
     panelCols: 2,
     columns: [
       {
-        label: "For",
+        label: "Audience",
         items: [
           {
             label: "Founders & Startups",
