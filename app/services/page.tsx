@@ -6,6 +6,7 @@ import { CallToActionLink } from "@/components/ui/CallToActionLink";
 import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
 import { ProductDevicePreview } from "@/components/ui/HeroPhones";
 import { productOffers, type ProductId } from "@/lib/products";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Services | Eterna",
@@ -28,7 +29,7 @@ export default function ServicesHubPage() {
           {productOffers.map((product) => (
             <div
               key={product.id}
-              className="relative flex flex-col gap-6 p-6 sm:p-8 lg:min-h-[420px]"
+              className="group relative flex flex-col gap-6 p-6 sm:p-8 lg:min-h-[420px]"
             >
               <div className="min-w-0">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-purple-light">
@@ -36,7 +37,7 @@ export default function ServicesHubPage() {
                 </p>
                 <Link
                   href={product.href}
-                  className="group mt-3 inline-flex items-center gap-2 no-underline"
+                  className="mt-3 inline-flex items-center gap-2 no-underline"
                 >
                   <h2 className="font-heading text-[1.75rem] font-bold text-text-heading transition-colors group-hover:text-brand-purple-light">
                     {product.title}
@@ -60,7 +61,13 @@ export default function ServicesHubPage() {
                 <ProductDevicePreview
                   variant={product.id as ProductId}
                   size="sm"
-                  className="pointer-events-none hidden shrink-0 self-end sm:block"
+                  className={cn(
+                    "pointer-events-none hidden shrink-0 self-end sm:block",
+                    "opacity-0 translate-y-2 transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
+                    "group-hover:opacity-100 group-hover:translate-y-0",
+                    "group-focus-within:opacity-100 group-focus-within:translate-y-0",
+                    "motion-reduce:opacity-100 motion-reduce:translate-y-0"
+                  )}
                 />
               </div>
             </div>

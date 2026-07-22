@@ -1,8 +1,11 @@
+"use client";
+
 import Link from "next/link";
 
 import { DarkSectionBackdrop, SectionHeading } from "@/components/ui";
 import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
 import { PricingCard } from "@/components/ui/PricingCard";
+import { Reveal } from "@/components/ui/Reveal";
 import {
   investmentAlsoAvailable,
   investmentCalculatorCta,
@@ -30,19 +33,24 @@ export function Investment() {
 
       <div className={cn("relative z-10", LAYOUT_OUTER_CLASS)}>
         <div className={LAYOUT_INNER_CLASS}>
-          <SectionHeading
-            split
-            label="Investment"
-            lines={[
-              { text: "Transparent pricing.", variant: "default" },
-              { text: "No surprises.", variant: "gradient" },
-            ]}
-            titleMaxWidth="max-w-[520px]"
-            subheadingMaxWidth="max-w-[520px]"
-            subheading={investmentSubheading}
-          />
+          <Reveal>
+            <SectionHeading
+              split
+              label="Investment"
+              lines={[
+                { text: "Transparent pricing.", variant: "default" },
+                { text: "No surprises.", variant: "gradient" },
+              ]}
+              titleMaxWidth="max-w-[520px]"
+              subheadingMaxWidth="max-w-[520px]"
+              subheading={investmentSubheading}
+            />
+          </Reveal>
 
-          <div className="mt-14 overflow-hidden rounded-soft border border-border-dark lg:mt-16">
+          <Reveal
+            delay={100}
+            className="mt-14 overflow-hidden rounded-soft border border-border-dark lg:mt-16"
+          >
             <div className="grid divide-y divide-border-dark lg:grid-cols-3 lg:divide-x lg:divide-y-0">
               {pricingTiers.map((tier) => (
                 <PricingCard key={tier.id} tier={tier} />
@@ -82,7 +90,7 @@ export function Investment() {
                 <ArrowUpRight className="!text-brand-purple-light" />
               </Link>
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

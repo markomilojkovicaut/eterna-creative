@@ -1,6 +1,7 @@
 export { ArrowUpRight } from "./ArrowUpRight";
 export { Badge } from "./Badge";
 export { CalculatorPhonePreview } from "./CalculatorPhonePreview";
+export { Reveal, useReveal, type RevealProps } from "./Reveal";
 export { CaseStudyCard } from "./CaseStudyCard";
 export { BorderedDarkPanel } from "./BorderedDarkPanel";
 export { Button } from "./Button";

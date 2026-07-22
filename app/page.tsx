@@ -14,38 +14,64 @@ import { FinalCta } from "@/components/sections/FinalCta";
 import { HomeResourcesChapter } from "@/components/sections/HomeResourcesChapter";
 import { Investment } from "@/components/sections/Investment";
 import { Solutions } from "@/components/sections/Solutions";
+import { Reveal } from "@/components/ui/Reveal";
 
 /**
- * Homepage rhythm:
- * Intro → WHAT (products, start here) → HOW (challenges white, engines dark,
- * approach) → WHAT again (cases, proof, who we serve) → trust & close.
+ * Homepage with Fab-style scroll reveals.
+ * Sections that own internal Reveals are not double-wrapped.
  */
 export default function HomePage() {
   return (
     <main className="relative">
       <Hero />
-      <HomeLightChapter />
 
-      {/* WHAT — offer first */}
+      <Reveal>
+        <HomeLightChapter />
+      </Reveal>
+
       <Services />
       <EntryDoors />
-
-      {/* HOW — white challenges, then dark engines + approach */}
       <FounderJourney />
-      <EternaSystem />
-      <HomeApproachChapter />
 
-      {/* WHAT again — proof of work + who it's for */}
+      <Reveal>
+        <EternaSystem />
+      </Reveal>
+
+      <Reveal>
+        <HomeApproachChapter />
+      </Reveal>
+
       <CaseStudies />
-      <Proof />
+
+      <Reveal>
+        <Proof />
+      </Reveal>
+
       <Solutions />
 
-      <HomeClientStoriesChapter />
-      <FounderLedStudio />
-      <HomeResourcesChapter />
-      <Investment />
-      <Faq />
-      <FinalCta />
+      <Reveal>
+        <HomeClientStoriesChapter />
+      </Reveal>
+
+      <Reveal>
+        <FounderLedStudio />
+      </Reveal>
+
+      <Reveal>
+        <HomeResourcesChapter />
+      </Reveal>
+
+      <Reveal>
+        <Investment />
+      </Reveal>
+
+      <Reveal>
+        <Faq />
+      </Reveal>
+
+      <Reveal>
+        <FinalCta />
+      </Reveal>
     </main>
   );
 }

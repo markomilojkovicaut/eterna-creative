@@ -1,9 +1,12 @@
+"use client";
+
 import Link from "next/link";
 
 import { CallToActionLink } from "@/components/ui/CallToActionLink";
 import { DarkSectionBackdrop, SectionHeading } from "@/components/ui";
 import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
 import { ProductDevicePreview } from "@/components/ui/HeroPhones";
+import { Reveal } from "@/components/ui/Reveal";
 import { SectionPullQuote } from "@/components/ui/SectionPullQuote";
 import {
   LAYOUT_INNER_CLASS,
@@ -24,24 +27,26 @@ export function Services() {
 
       <div className={cn("relative z-10 pb-section", LAYOUT_OUTER_CLASS)}>
         <div className={LAYOUT_INNER_CLASS}>
-          <SectionHeading
-            split
-            label="Products"
-            lines={[
-              { text: "Ship products that", variant: "default" },
-              { text: "earn their keep", variant: "gradient" },
-            ]}
-            titleMaxWidth="max-w-[560px]"
-            subheading={
-              <>
-                Applications, automations, and websites built to launch, convert,
-                and scale - with the strategy, craft, and AI muscle behind every
-                release.
-              </>
-            }
-          />
+          <Reveal>
+            <SectionHeading
+              split
+              label="Products"
+              lines={[
+                { text: "Ship products that", variant: "default" },
+                { text: "earn their keep", variant: "gradient" },
+              ]}
+              titleMaxWidth="max-w-[560px]"
+              subheading={
+                <>
+                  Applications, automations, and websites built to launch, convert,
+                  and scale - with the strategy, craft, and AI muscle behind every
+                  release.
+                </>
+              }
+            />
+          </Reveal>
 
-          <div className="mt-14 overflow-hidden rounded-soft border border-border-dark lg:mt-16">
+          <Reveal delay={80} className="mt-14 overflow-hidden rounded-soft border border-border-dark lg:mt-16">
             <div className="grid divide-y divide-border-dark lg:grid-cols-3 lg:divide-x lg:divide-y-0">
               {productOffers.map((product) => (
                 <div
@@ -79,20 +84,28 @@ export function Services() {
                     <ProductDevicePreview
                       variant={product.id as ProductId}
                       size="sm"
-                      className="pointer-events-none hidden shrink-0 self-end sm:block"
+                      className={cn(
+                        "pointer-events-none hidden shrink-0 self-end sm:block",
+                        "opacity-0 translate-y-2 transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
+                        "group-hover:opacity-100 group-hover:translate-y-0",
+                        "group-focus-within:opacity-100 group-focus-within:translate-y-0",
+                        "motion-reduce:opacity-100 motion-reduce:translate-y-0"
+                      )}
                     />
                   </div>
                 </div>
               ))}
             </div>
-          </div>
+          </Reveal>
 
-          <SectionPullQuote
-            quote={quoteAfterWhatWeDo}
-            className="mt-10 lg:mt-14"
-          />
+          <Reveal delay={140}>
+            <SectionPullQuote
+              quote={quoteAfterWhatWeDo}
+              className="mt-10 lg:mt-14"
+            />
+          </Reveal>
 
-          <div className="mt-10 flex w-full max-w-[400px] flex-col gap-4 lg:mt-14">
+          <Reveal delay={180} className="mt-10 flex w-full max-w-[400px] flex-col gap-4 lg:mt-14">
             <h3 className="font-heading text-heading-md font-bold text-text-heading">
               Not sure which product fits?
             </h3>
@@ -103,7 +116,7 @@ export function Services() {
             <CallToActionLink href="/book" className="w-fit">
               Book a strategy call
             </CallToActionLink>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

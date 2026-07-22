@@ -1,5 +1,8 @@
+"use client";
+
 import { SectionHeading } from "@/components/ui";
 import { DarkRotateAccordion } from "@/components/ui/ChallengeAccordion";
+import { Reveal } from "@/components/ui/Reveal";
 import { founderJourneySteps } from "@/lib/founder-journey";
 import {
   LAYOUT_INNER_CLASS,
@@ -23,21 +26,23 @@ export function FounderJourney() {
     <section className="relative bg-bg-surface pt-section pb-section text-text-ink-sub">
       <div className={cn("relative z-10", LAYOUT_OUTER_CLASS)}>
         <div className={LAYOUT_INNER_CLASS}>
-          <SectionHeading
-            label="Challenges"
-            labelVariant="light"
-            lines={[
-              { text: "The typical", variant: "default" },
-              { text: "founder journey", variant: "gradient" },
-            ]}
-            titleMaxWidth="max-w-[640px]"
-            subheading="Six moments where most products lose the plot. Hover to pause, click to jump."
-            subheadingMaxWidth="max-w-[420px]"
-          />
+          <Reveal>
+            <SectionHeading
+              label="Challenges"
+              labelVariant="light"
+              lines={[
+                { text: "The typical", variant: "default" },
+                { text: "founder journey", variant: "gradient" },
+              ]}
+              titleMaxWidth="max-w-[640px]"
+              subheading="Six moments where most products lose the plot. Hover to pause, click to jump."
+              subheadingMaxWidth="max-w-[420px]"
+            />
+          </Reveal>
 
-          <div className="mt-14 max-w-[720px]">
+          <Reveal delay={100} className="mt-14 max-w-[720px]">
             <DarkRotateAccordion items={challengeItems} variant="light" />
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>
