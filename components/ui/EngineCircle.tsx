@@ -355,7 +355,7 @@ export function EngineCircle({ engines }: { engines: EternaEngine[] }) {
             viewBox={`0 0 ${size} ${size}`}
             className="h-full w-full overflow-visible"
             role="img"
-            aria-label="Six Eterna methodology engines"
+            aria-label="Six Eterna Method engines"
           >
             {engines.map((engine, index) => {
               const startAngle = index * SEGMENT_ANGLE + 1.2;

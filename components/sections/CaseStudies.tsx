@@ -33,7 +33,7 @@ export function CaseStudies() {
               subheading={
                 <>
                   Real products, real founders, real outcomes - measured in users,
-                  revenue, and speed to launch. Same methodology every time:
+                  revenue, and speed to launch. Same Eterna Method every time:
                   validated, designed, and built to scale.
                 </>
               }

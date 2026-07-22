@@ -162,7 +162,7 @@ export default async function ServicePage({ params }: PageProps) {
       {relatedEngines.length > 0 && (
         <Section background="surface" className="text-text-ink-sub">
           <SectionHeading
-            label="Eterna system"
+            label="Eterna Method"
             labelVariant="light"
             lines={[{ text: "Related engines", variant: "default" }]}
           />
