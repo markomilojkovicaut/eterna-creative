@@ -12,7 +12,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/blog",
     "/portfolio",
     "/book",
-    "/blueprint",
     "/services",
     "/services/application",
     "/services/automation",

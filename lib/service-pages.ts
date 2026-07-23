@@ -57,7 +57,7 @@ export const servicePageContent: Record<string, ServicePageContent> = {
     relatedEngineIds: ["architecture", "activation", "retention"],
     relatedLinks: [
       { label: "Bubble migration", href: "/migration" },
-      { label: "Blueprint", href: "/blueprint" },
+      { label: "Launch Plan", href: "/book" },
     ],
   },
   automation: {
@@ -135,7 +135,7 @@ export const servicePageContent: Record<string, ServicePageContent> = {
       },
     ],
     relatedEngineIds: ["research", "architecture"],
-    relatedLinks: [{ label: "Blueprint", href: "/blueprint" }],
+    relatedLinks: [{ label: "Launch Plan", href: "/book" }],
   },
   "product-strategy": {
     slug: "product-strategy",
@@ -174,7 +174,7 @@ export const servicePageContent: Record<string, ServicePageContent> = {
       },
     ],
     relatedEngineIds: ["research", "acquisition"],
-    relatedLinks: [{ label: "Blueprint", href: "/blueprint" }],
+    relatedLinks: [{ label: "Launch Plan", href: "/book" }],
   },
   website: {
     slug: "website",

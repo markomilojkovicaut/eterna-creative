@@ -48,6 +48,16 @@ const nextConfig: NextConfig = {
         destination: "/calculator",
         permanent: true,
       },
+      {
+        source: "/blueprint",
+        destination: "/book",
+        permanent: true,
+      },
+      {
+        source: "/launch-plan",
+        destination: "/book",
+        permanent: true,
+      },
     ];
   },
 };
