@@ -1,40 +1,59 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
-import { ContentHubShell } from "@/components/layout/ContentHubShell";
-import { Badge } from "@/components/ui/Badge";
-import { Card } from "@/components/ui/Card";
-import { blogPosts } from "@/lib/blog-posts";
+import { BlogIndexClient } from "@/components/blog/BlogIndexClient";
+import { DarkSectionBackdrop, SectionHeading } from "@/components/ui";
+import { getBlogCategories, getBlogIndex } from "@/lib/blog";
+import {
+  HEADER_OFFSET_CLASS,
+  LAYOUT_INNER_CLASS,
+  LAYOUT_OUTER_CLASS,
+} from "@/lib/layout-constants";
+import { sectionBackdropPresets } from "@/lib/section-backdrops";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Blog | Eterna",
   description:
-    "Practical insights for founders building and launching products - validation, custom code, and growth.",
+    "News, insights and tips for founders building products - validation, MVP, growth, and shipping what compounds.",
+  alternates: { canonical: "/blog" },
+  openGraph: {
+    title: "Eterna Blog",
+    description:
+      "Practical founder insights on validation, MVP, growth, and product building.",
+    type: "website",
+    url: "/blog",
+  },
 };
 
 export default function BlogPage() {
+  const posts = getBlogIndex();
+  const categories = getBlogCategories();
+
   return (
-    <ContentHubShell
-      label="Blog"
-      lines={[{ text: "Founder insights", variant: "default" }]}
-      subheading="Articles on product development, launch strategy, and scaling what you own."
-    >
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {blogPosts.map((post) => (
-          <Link key={post.slug} href={`/blog/${post.slug}`} className="no-underline">
-            <Card hover className="h-full p-6">
-              <Badge variant="muted">{post.category}</Badge>
-              <h2 className="mt-4 font-heading text-heading-sm font-bold text-text-heading">
-                {post.title}
-              </h2>
-              <p className="mt-3 text-body-md text-text-body">{post.excerpt}</p>
-              <p className="mt-4 text-body-sm text-text-muted">
-                {post.readTime} min read
-              </p>
-            </Card>
-          </Link>
-        ))}
-      </div>
-    </ContentHubShell>
+    <main className={HEADER_OFFSET_CLASS}>
+      <section className="relative overflow-hidden bg-bg-base pb-14 pt-section sm:pb-16">
+        <DarkSectionBackdrop {...sectionBackdropPresets.challenges} />
+        <div className={cn("relative z-10", LAYOUT_OUTER_CLASS)}>
+          <div className={LAYOUT_INNER_CLASS}>
+            <SectionHeading
+              label="Blog"
+              lines={[
+                { text: "Check latest articles", variant: "default" },
+                { text: "on Eterna blog", variant: "gradient" },
+              ]}
+              subheading="News, insights and tips to help you with your application journey."
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-bg-surface py-section text-text-ink-sub">
+        <div className={LAYOUT_OUTER_CLASS}>
+          <div className={LAYOUT_INNER_CLASS}>
+            <BlogIndexClient posts={posts} categories={categories} />
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }

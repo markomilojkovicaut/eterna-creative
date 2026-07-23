@@ -1,60 +1,17 @@
-import type { BlogPost } from "@/lib/types";
-
-export const blogPosts: BlogPost[] = [
-  {
-    slug: "no-code-mvp-timeline",
-    title: "MVP timeline: idea to launch",
-    excerpt:
-      "A realistic week-by-week plan from first call to live product - including validation and Launch Plan.",
-    content:
-      "Most founders underestimate discovery and overestimate build speed. A typical MVP path: Week 1 strategy call and Scope Session, Week 2 Launch Plan delivery, Weeks 3-8 build and launch. Complex platforms add scope, not just calendar time.",
-    publishedAt: "2026-01-15",
-    readTime: 6,
-    category: "Launch",
-    coverImage: "",
-  },
-  {
-    slug: "no-code-vs-full-code",
-    title: "Custom vs no-code: when each wins",
-    excerpt:
-      "We default to custom code you own - but no-code still wins when stage, speed, or an existing Bubble app makes it smarter.",
-    content:
-      "Choose custom when you need owned IP, complex logic, AI reliability, or investor diligence. Choose no-code when validating fast on Bubble or extending an app that still fits the platform. The craft layer stays the same.",
-    publishedAt: "2026-02-01",
-    readTime: 8,
-    category: "Strategy",
-    coverImage: "",
-  },
-  {
-    slug: "when-to-hire-dev-agency",
-    title: "When to hire a dev agency",
-    excerpt:
-      "Signals that DIY, freelancers, or offshore teams are costing you more than a focused studio engagement.",
-    content:
-      "Hire a studio when scope keeps shifting, quality bar matters for fundraising, or you need one accountable team from validation through launch. Skip agencies when you only need a landing page and have a clear spec.",
-    publishedAt: "2026-02-20",
-    readTime: 5,
-    category: "Founders",
-    coverImage: "",
-  },
-  {
-    slug: "best-use-of-ai-award",
-    title: "Best Use of AI: building products we run ourselves",
-    excerpt:
-      "Why shipping our own AI products sets the reliability bar we bring to every client engagement.",
-    content:
-      "Awards are nice. Production is the test. We build and operate AI products in-house so client work inherits the same eval discipline, cost control, and failure handling - not a demo that collapses under real traffic.",
-    publishedAt: "2026-03-10",
-    readTime: 4,
-    category: "AI",
-    coverImage: "",
-  },
-];
-
-export function getBlogPostBySlug(slug: string): BlogPost | undefined {
-  return blogPosts.find((post) => post.slug === slug);
-}
-
-export function getAllBlogSlugs(): string[] {
-  return blogPosts.map((post) => post.slug);
-}
+/**
+ * Blog content lives in /content/blog/*.json (migrated from Bubble).
+ * This module re-exports the CMS-ready API from lib/blog.ts.
+ */
+export {
+  blogPosts,
+  getAllBlogSlugs,
+  getBlogCategories,
+  getBlogIndex,
+  getBlogPostBySlug,
+  getOldPostRedirects,
+  getRelatedPosts,
+  type BlogCategory,
+  type BlogPost,
+  type BlogPostMeta,
+  type BlogTocItem,
+} from "@/lib/blog";

@@ -11,6 +11,9 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.eternacreative.com"
+  ),
   title: "Eterna | AI-native product studio",
   description:
     "Custom applications, websites, and AI automations - spec first, flat scope, from idea to revenue.",

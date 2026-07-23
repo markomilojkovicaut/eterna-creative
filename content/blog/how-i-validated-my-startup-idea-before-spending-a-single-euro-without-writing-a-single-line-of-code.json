@@ -1,0 +1,123 @@
+{
+  "slug": "how-i-validated-my-startup-idea-before-spending-a-single-euro-without-writing-a-single-line-of-code",
+  "title": "How I validated my startup idea (before spending a single euro on development)",
+  "subheading": "Real story. Real insights. How we avoided a €10K mistake and proved people actually wanted what we were building - without writing a single line of code.",
+  "excerpt": "Learn how one founder validated their marketplace idea for parents with surveys, research, and lean strategy before spending any money on development.",
+  "seoDescription": "Learn how one founder validated their marketplace idea for parents with surveys, research, and lean strategy before spending any money on development.",
+  "category": "Validation",
+  "tags": [
+    "startup idea validation",
+    "customer discovery",
+    "lean startup",
+    "marketplace validation",
+    "no-code validation",
+    "founder story",
+    "startup mistakes",
+    "user research"
+  ],
+  "publishedAt": "2025-07-08",
+  "coverImage": "/images/blog/how-i-validated-my-startup-idea-before-spending-a-single-euro-without-writing-a-.webp",
+  "coverAlt": "Startup founder validating marketplace idea for parents through surveys and research",
+  "views": 243,
+  "oldPath": "/post/how-i-validated-my-startup-idea-before-spending-a-single-euro-without-writing-a-single-line-of-code",
+  "readTime": 7,
+  "wordCount": 1305,
+  "toc": [
+    {
+      "id": "1-what-youll-learn-in-this-post-table-of-content",
+      "text": "1. What you’ll learn in this post (Table of content)",
+      "level": 2
+    },
+    {
+      "id": "2-the-real-story-how-we-avoided-a-10k-mistake",
+      "text": "2. The Real Story – How we avoided a €10K mistake",
+      "level": 2
+    },
+    {
+      "id": "the-150000-shock",
+      "text": "The €150,000 shock",
+      "level": 3
+    },
+    {
+      "id": "so-we-hit-pause",
+      "text": "So we hit pause",
+      "level": 3
+    },
+    {
+      "id": "we-took-that-data-and-got-specific",
+      "text": "We took that data and got specific",
+      "level": 3
+    },
+    {
+      "id": "but-we-still-had-no-devs",
+      "text": "But we still had no DEVs",
+      "level": 3
+    },
+    {
+      "id": "it-took-us-almost-2-years",
+      "text": "It took us almost 2 years…",
+      "level": 3
+    },
+    {
+      "id": "then-something-unexpected-happened",
+      "text": "Then something unexpected happened",
+      "level": 3
+    },
+    {
+      "id": "your-takeaway",
+      "text": "Your takeaway",
+      "level": 3
+    },
+    {
+      "id": "how-to-validate-an-idea-pre-building",
+      "text": "How to validate an idea pre-building",
+      "level": 2
+    },
+    {
+      "id": "3-how-to-validate-without-writing-a-single-line-of-code",
+      "text": "3. How to validate without writing a single line of code",
+      "level": 2
+    },
+    {
+      "id": "31-what-validation-actually-means",
+      "text": "3.1 What “Validation” actually means",
+      "level": 3
+    },
+    {
+      "id": "32-why-you-dont-really-need-code-to-validate",
+      "text": "3.2. Why you don’t really need code to validate",
+      "level": 3
+    },
+    {
+      "id": "33-the-fastest-validation-stack-we-use-this-all-the-time",
+      "text": "3.3. The fastest validation stack (we use this all the time)",
+      "level": 3
+    },
+    {
+      "id": "34-your-action-plan-you-can-do-this-in-1-week",
+      "text": "3.4 Your action plan (you can do this in 1 week)",
+      "level": 3
+    },
+    {
+      "id": "section",
+      "text": "",
+      "level": 3
+    },
+    {
+      "id": "35-bonus-the-10-person-interview-method",
+      "text": "3.5 Bonus: The 10-person interview method",
+      "level": 3
+    },
+    {
+      "id": "4-are-you-ready-test-with-6-point-idea-validation-checklist",
+      "text": "4. Are you ready? Test with 6-point idea validation checklist",
+      "level": 2
+    },
+    {
+      "id": "5-need-help-validating-your-idea",
+      "text": "5. Need help validating your Idea?",
+      "level": 2
+    }
+  ],
+  "bodyHtml": "<h2 id=\"1-what-youll-learn-in-this-post-table-of-content\" class=\"blog-h\"><strong>1. What you’ll learn in this post (Table of content)</strong></h2><ul><li>How we went from idea to proof without a dev team</li><li>What “validation” really means (and what it doesn’t)</li><li>The exact steps we used to test demand</li><li>The 6 key checks to validate any startup idea</li><li>Why building an app comes <em>after</em> users show interest</li><li>How you can test your idea this week</li></ul>\n<h2 id=\"2-the-real-story-how-we-avoided-a-10k-mistake\" class=\"blog-h\"><strong>2. The Real Story – How we avoided a €10K mistake</strong></h2><p>It was just an idea.\nA <strong>marketplace for parents</strong> to exchange baby and kid stuff their children had outgrown. Simple. Obvious.\nTons of unused things collecting dust in closets.</p><p>We thought:</p><blockquote class=\"blog-quote\">“How has no one built this in our country?”</blockquote><blockquote class=\"blog-quote\">“Let’s just build it ourselves.”</blockquote><p>So we started talking to agencies.\nAnd that’s when we hit the wall.</p><h3 id=\"the-150000-shock\" class=\"blog-h\"><strong>The €150,000 shock</strong></h3><p>The first quote we got was <strong>€150,000.</strong>\nWe laughed. Then panicked.</p><p>We kept going. €80K. €30K.\nEventually: €10,000 from a small local dev shop.</p><p>Even that felt like too much.\nWe were <strong>first-time founders</strong>, no tech background, no validation, no guarantee this thing would work.\nIt just didn’t feel right to drop €10K on a hunch.</p><h3 id=\"so-we-hit-pause\" class=\"blog-h\"><strong>So we hit pause</strong></h3><p>We asked ourselves the question that changed everything:</p><blockquote class=\"blog-quote\"><em>“What if we don’t build anything yet?”</em></blockquote><blockquote class=\"blog-quote\"><em>“What if we just ask people first?”</em></blockquote><p>So we created a <strong>survey</strong>.\nNo ads. No money spent.\nJust hustle: parents, friends, Facebook groups.</p><p>In 2 weeks, we had <strong>250 responses.</strong>\nAnd 67% said they’d use a platform like this.</p><p>So now we knew: ok, looks like there's real interest...</p><h3 id=\"we-took-that-data-and-got-specific\" class=\"blog-h\"><strong>We took that data and got specific</strong></h3><p>We asked what people <strong>loved</strong>, what they <strong>hated</strong> about second-hand groups, and what made them hesitate.</p><p>We used that data to define <strong>exactly what the platform needed</strong>:</p><ul><li>No fluff</li><li>Real user pain points</li><li>Just the features they cared about</li></ul><h3 id=\"but-we-still-had-no-devs\" class=\"blog-h\"><strong>But we still had no DEVs</strong></h3><p>We had no agency. No money to burn. Just time and belief.\nSo we found <strong>Bubble</strong>.</p><p>And we decided to build it ourselves.</p><h3 id=\"it-took-us-almost-2-years\" class=\"blog-h\"><strong>It took us almost 2 years…</strong></h3><p>Evenings. Weekends. Just Bubble, coffee, and stubbornness.</p><p>We tested. Iterated. Talked to users.\nTweaked again. And again.</p><p>Eventually — <strong>it worked.</strong>\nThe platform took off.</p><p>And then something unexpected happened…</p><h3 id=\"then-something-unexpected-happened\" class=\"blog-h\"><strong>Then something unexpected happened</strong></h3><p>Other founders started asking:</p><blockquote class=\"blog-quote\">“Can you build our app like that?”</blockquote><p>One project turned into two.\nTwo into five.\nAnd suddenly, we had a no-code agency.</p><p>From validating a parenting platform →\nTo building MVPs for founders →\nTo helping startups avoid the same <strong>expensive, time-sucking mistakes</strong>.</p><h3 id=\"your-takeaway\" class=\"blog-h\"><strong>Your takeaway</strong></h3><strong>Don’t build blindly</strong>. Don’t spend €10K just to “see what happens.”\nIf we hadn’t stopped to validate, we probably would’ve blown our budget, burned out, and never launched.\nBut now? We help founders skip that pain and get to market 10x faster.<strong>Start small. Talk to people. Then build something they’ll actually use.</strong>\nThen build smart.\n<h2 id=\"how-to-validate-an-idea-pre-building\" class=\"blog-h\">How to validate an idea pre-building</h2>\n<h2 id=\"3-how-to-validate-without-writing-a-single-line-of-code\" class=\"blog-h\"><strong>3. How to validate without writing a single line of code</strong></h2><p>You've heard my story. \nBut if you're the kind of founder who likes to go deeper and work from frameworks, not just gut - read bellow. \nWe did it, so we are sharing how we made it work.</p><strong>Where startups fail?</strong>\nAccording to CB Insights, <strong>42% of startups fail because there’s no market need.</strong>\nNot because of bad tech. Not because of marketing. Simply because <strong>no one actually wanted the thing.</strong><p>That’s avoidable.</p><h3 id=\"31-what-validation-actually-means\" class=\"blog-h\"><strong>3.1 What “Validation” actually means</strong></h3><blockquote class=\"blog-quote\"><strong>Validation = real-world signal that users care enough to act.</strong></blockquote><p>That action might be:</p><p>✅ Joining a waitlist\n ✅ Filling out a survey\n ✅ Booking a call\n ✅ Paying (even €1)\n ✅ Sharing it with a friend</p><p>Validation is NOT:</p><ul><li>Building a full product</li><li>Posting on social media and getting likes</li><li>Asking your mom if it’s a good idea</li></ul><h3 id=\"32-why-you-dont-really-need-code-to-validate\" class=\"blog-h\"><strong>3.2. Why you don’t really need code to validate</strong></h3><p>Here’s what founders need to know in order to validate idea - before any code is written:</p><p>✅ Who your user is\n ✅ What problem they care about\n ✅ What messaging resonates\n ✅ What features they’ll pay for\n ✅ Whether you’re even solving the right problem</p><p>What you want to achieve here:</p><ul><li>Talk to potential users</li><li>Ask them about their <strong>problems, not your product</strong></li><li>Look for patterns in how they’re solving it now</li><li>Offer your idea as a “What if?” and watch their response</li></ul><p>And how you should do it:</p><ul><li>Coming soon/ Waitlist / Landing page (Bubble)</li><li>UI Prototype (Bubble)</li><li>Survey (Typeform)</li><li>Email outreach</li><li>Social DMS</li></ul><h3 id=\"33-the-fastest-validation-stack-we-use-this-all-the-time\" class=\"blog-h\"><strong>3.3. The fastest validation stack (we use this all the time)</strong></h3><strong>1. Landing Page</strong><ul><li>Clear problem → value → CTA</li><li>Built in Bubble</li><li>Add email capture or Calendly</li></ul><strong>2. Survey Trigger</strong><ul><li>Simple 3–5 questions</li><li>Optional reward (“Early access”, “Founder’s deal”)</li></ul><strong>3. Targeted Promotion</strong><ul><li>Post in Reddit, LinkedIn, X...</li><li>Email or DM ideal users</li><li>Track clicks, signups, replies</li></ul><strong>If people take action? You’re onto something.</strong><p>❌ If they ghost? Good news - you just saved €10K and 3 months.\nTime to move to new idea - I bet you have at least 3 more...?</p><h3 id=\"34-your-action-plan-you-can-do-this-in-1-week\" class=\"blog-h\"><strong>3.4 Your action plan (you can do this in 1 week)</strong></h3><ol><li>Define your 1-sentence problem</li><li>Go to where your audience hangs out (online or offline)</li><li>Have 10 conversations using the interview method</li><li>Look for strong signals of pain + willingness to pay</li><li>Create a landing page with email capture</li><li>Promote it to 1–2 niche communities</li><li>See who signs up. Track everything.</li></ol><blockquote class=\"blog-quote\">“If you can’t find 10 people who care, you don’t have a business. You have a hobby.”</blockquote><blockquote class=\"blog-quote\">— <strong>Rob Fitzpatrick</strong>, <em>Author of The Mom Test</em></blockquote><h3 id=\"section\" class=\"blog-h\"></h3><h3 id=\"35-bonus-the-10-person-interview-method\" class=\"blog-h\"><strong>3.5 Bonus: The 10-person interview method</strong></h3><p>This is one of the leanest, most honest ways to actually test demand. \nIt’s how hundreds of successful founders are doing it.</p><strong>Here’s how it works:</strong><ol><li>Find where your target audience spends time and join them (Seminars, City spots, Facebook groups, Reddit, LinkedIn).</li><li>Ask: “Anyone here frustrated with [your problem]?”</li><li>Book <strong>10 quick 15-minute calls,</strong> and offer free value in return (like lifetime deal, or couple of units FOC)</li></ol><p>Ask questions like:</p><ul><li>What’s the hardest part about [your problem]?</li><li>How are you dealing with it today?</li><li>What sucks about that?</li><li>Would you pay for a better way?</li></ul><p>Pro Tip: Focus on <strong>past behavior</strong>. If they’ve tried to solve it before, the pain is real.</p><p>What to look for in their response:</p><ol><li>People complain about the problem in public (forums, reviews, social)</li><li>They’ve already paid for solutions (even if they suck)</li><li>They’ve created workarounds (spreadsheets, duct-taped tools)</li><li>When you present your idea casually, they say:</li></ol><blockquote class=\"blog-quote\">“That would actually help me.”</blockquote><blockquote class=\"blog-quote\">“Can you let me know when that’s live?”</blockquote><blockquote class=\"blog-quote\">“I’d pay for that.”</blockquote><p>If you’re getting reactions like this <strong>you’re on the right track.</strong>\nIf you're not... pause and go back to drawing board.</p>\n<h2 id=\"4-are-you-ready-test-with-6-point-idea-validation-checklist\" class=\"blog-h\"><strong>4. Are you ready? Test with 6-point idea validation checklist</strong></h2><p>Are you there yet? Let's double check how close to validation you are:</p><ol><li><strong>You can clearly define the problem</strong> in one sentence</li><li><strong>You've built landing page</strong> to test email opt-ins</li><li><strong>You’ve talked to 10+ potential users</strong> (not just friends)</li><li><strong>They’ve expressed real pain</strong> or hacked together solutions</li><li><strong>You’ve tested messaging or concepts online</strong> and tracked reactions</li><li><strong>You’ve collected at least 10 emails or DMs</strong> from interested users</li><li><strong>You’ve had someone say: “I’d pay for this” or “Tell me when it’s live”</strong></li></ol><p>✅ 5+ points = You’re ready to build\n⚠️ 2–5 points = Keep testing\n❌ 0–1 = Start over (or pivot fast)</p>\n<h2 id=\"5-need-help-validating-your-idea\" class=\"blog-h\"><strong>5. Need help validating your Idea?</strong></h2><p>We help founders design high-converting validation stacks.\n<strong>Landing pages, surveys, waitlists, and more </strong>- built in Bubble and customized to your idea.</p><p>👉 Use our <strong>Landing Page Template</strong> to launch in a day → <a href=\"https://landing-page-eterna.bubbleapps.io/\" class=\"text-brand-purple underline underline-offset-2\" target=\"_blank\" rel=\"noopener noreferrer\"><strong><u>Get the template here</u></strong></a>\n<strong><u>﻿</u></strong>\n👉 Or let us build it for you (takes < 1 week) → <a href=\"https://www.eternacreative.com/book-a-call\" class=\"text-brand-purple underline underline-offset-2\" target=\"_blank\" rel=\"noopener noreferrer\"><strong><u>Book a free call</u></strong></a></p>"
+}

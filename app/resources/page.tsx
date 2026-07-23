@@ -75,14 +75,16 @@ export default function ResourcesPage() {
           <SecondaryCtaLink href="/blog">All posts</SecondaryCtaLink>
         </div>
         <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {blogPosts.map((post) => (
+          {blogPosts.slice(0, 6).map((post) => (
             <Link key={post.slug} href={`/blog/${post.slug}`} className="no-underline">
               <Card hover className="h-full p-6">
                 <Badge variant="muted">{post.category}</Badge>
                 <h3 className="mt-4 font-heading text-heading-sm font-bold text-text-heading">
                   {post.title}
                 </h3>
-                <p className="mt-2 text-body-md text-text-body">{post.excerpt}</p>
+                <p className="mt-2 line-clamp-3 text-body-md text-text-body">
+                  {post.excerpt || post.subheading}
+                </p>
               </Card>
             </Link>
           ))}

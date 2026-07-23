@@ -1,11 +1,33 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { Badge } from "@/components/ui/Badge";
-import { getAllBlogSlugs, getBlogPostBySlug } from "@/lib/blog-posts";
-import { HEADER_OFFSET_CLASS } from "@/lib/layout-constants";
-import { Section } from "@/components/layout/Section";
+import { BlogReadingProgress } from "@/components/blog/BlogReadingProgress";
+import {
+  BlogRelatedGrid,
+  BlogShareLinks,
+} from "@/components/blog/BlogShareLinks";
+import { BlogStickyAside } from "@/components/blog/BlogStickyAside";
+import { BlogTableOfContents } from "@/components/blog/BlogTableOfContents";
+import { CallToActionLink } from "@/components/ui/CallToActionLink";
+import { DarkSectionBackdrop } from "@/components/ui/DarkSectionBackdrop";
+import { SecondaryCtaLink } from "@/components/ui/SecondaryCtaLink";
+import {
+  getAllBlogSlugs,
+  getBlogPostBySlug,
+  getRelatedPosts,
+} from "@/lib/blog";
+import {
+  LAYOUT_INNER_CLASS,
+  LAYOUT_OUTER_CLASS,
+  HEADER_OFFSET_CLASS,
+} from "@/lib/layout-constants";
+import { sectionBackdropPresets } from "@/lib/section-backdrops";
+import { cn } from "@/lib/utils";
+
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.eternacreative.com";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -21,17 +43,46 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = getBlogPostBySlug(slug);
 
-  if (post) {
-    return {
-      title: `${post.title} | Eterna Blog`,
-      description: post.excerpt,
-    };
+  if (!post) {
+    return { title: "Post | Eterna Blog" };
   }
 
+  const description = post.seoDescription || post.excerpt || post.subheading;
+  const url = `${SITE_URL}/blog/${post.slug}`;
+
   return {
-    title: "Post | Eterna Blog",
-    description: "Insights for startup founders building products.",
+    title: `${post.title} | Eterna Blog`,
+    description,
+    alternates: { canonical: `/blog/${post.slug}` },
+    openGraph: {
+      title: post.title,
+      description,
+      type: "article",
+      url,
+      publishedTime: post.publishedAt,
+      images: post.coverImage
+        ? [{ url: post.coverImage, alt: post.coverAlt || post.title }]
+        : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description,
+      images: post.coverImage ? [post.coverImage] : undefined,
+    },
   };
+}
+
+function formatDate(iso: string) {
+  try {
+    return new Intl.DateTimeFormat("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    }).format(new Date(iso));
+  } catch {
+    return iso;
+  }
 }
 
 export default async function BlogPostPage({ params }: PageProps) {
@@ -42,28 +93,208 @@ export default async function BlogPostPage({ params }: PageProps) {
     notFound();
   }
 
+  const related = getRelatedPosts(post.slug, 4);
+  const pageUrl = `${SITE_URL}/blog/${post.slug}`;
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.seoDescription || post.excerpt,
+    datePublished: post.publishedAt,
+    author: {
+      "@type": "Person",
+      name: "Marko Milojković",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Eterna Creative",
+      url: SITE_URL,
+    },
+    image: post.coverImage ? [`${SITE_URL}${post.coverImage}`] : undefined,
+    mainEntityOfPage: pageUrl,
+    wordCount: post.wordCount,
+    articleSection: post.category,
+  };
+
   return (
     <main className={HEADER_OFFSET_CLASS}>
-      <Section>
-        <Link
-          href="/blog"
-          className="text-body-sm text-brand-purple-light transition-colors hover:text-text-heading"
-        >
-          ← Back to Blog
-        </Link>
-        <div className="mt-8">
-          <Badge variant="purple">{post.category}</Badge>
-          <h1 className="mt-4 font-heading text-display-md text-text-heading">
-            {post.title}
-          </h1>
-          <p className="mt-4 text-body-md text-text-muted">
-            {post.readTime} min read
-          </p>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <BlogReadingProgress />
+
+      {/* Dark hero */}
+      <section className="relative overflow-hidden bg-bg-base pb-12 pt-10 sm:pb-16 sm:pt-14">
+        <DarkSectionBackdrop {...sectionBackdropPresets.challenges} />
+        <div className={cn("relative z-10", LAYOUT_OUTER_CLASS)}>
+          <div className={LAYOUT_INNER_CLASS}>
+            <nav
+              aria-label="Breadcrumb"
+              className="text-body-sm text-text-muted"
+            >
+              <Link
+                href="/"
+                className="text-text-muted no-underline hover:text-text-heading"
+              >
+                Home
+              </Link>
+              <span className="mx-2" aria-hidden>
+                /
+              </span>
+              <Link
+                href="/blog"
+                className="text-text-muted no-underline hover:text-text-heading"
+              >
+                Blog
+              </Link>
+            </nav>
+
+            <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-start lg:gap-12">
+              <div>
+                <h1 className="font-heading text-display-md font-bold leading-[1.1] text-text-heading sm:text-display-lg">
+                  {post.title}
+                </h1>
+                {post.subheading ? (
+                  <p className="mt-5 max-w-[720px] text-body-lg leading-relaxed text-text-sub">
+                    {post.subheading}
+                  </p>
+                ) : null}
+              </div>
+
+              <div className="space-y-3 rounded-soft border border-border-dark bg-bg-card/40 p-4 text-body-sm text-text-sub lg:mt-2">
+                <p>
+                  <span className="text-text-muted">Written by </span>
+                  <span className="font-semibold text-text-heading">
+                    Marko Milojković
+                  </span>
+                </p>
+                <p>
+                  <span className="text-text-muted">Category: </span>
+                  <span className="font-semibold text-text-heading">
+                    {post.category}
+                  </span>
+                </p>
+                <p>
+                  <span className="text-text-muted">Published: </span>
+                  <time
+                    dateTime={post.publishedAt}
+                    className="font-semibold text-text-heading"
+                  >
+                    {formatDate(post.publishedAt)}
+                  </time>
+                </p>
+                <p>
+                  <span className="text-text-muted">Read time: </span>
+                  <span className="font-semibold text-text-heading">
+                    {post.readTime} min
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-        <article className="prose-invert mt-12 max-w-2xl text-body-md leading-relaxed text-text-body">
-          <p>{post.content}</p>
-        </article>
-      </Section>
+      </section>
+
+      {/* Light article body */}
+      <section className="bg-bg-surface text-text-ink-sub">
+        <div className={LAYOUT_OUTER_CLASS}>
+          <div className={cn(LAYOUT_INNER_CLASS, "py-10 sm:py-14")}>
+            {post.coverImage ? (
+              <div className="relative mb-10 aspect-[16/9] overflow-hidden rounded-soft border border-border-muted sm:mb-12">
+                <Image
+                  src={post.coverImage}
+                  alt={post.coverAlt || post.title}
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 1100px"
+                  className="object-cover"
+                />
+              </div>
+            ) : null}
+
+            <div className="grid gap-10 lg:grid-cols-[240px_minmax(0,1fr)_240px] lg:gap-8 xl:gap-10">
+              {/* Left sticky: tools */}
+              <div className="order-2 lg:order-1">
+                <div className="lg:sticky lg:top-28">
+                  <BlogStickyAside />
+                </div>
+              </div>
+
+              {/* Article */}
+              <article
+                id="blog-article"
+                className="order-1 min-w-0 lg:order-2"
+              >
+                <div className="mb-8 lg:hidden">
+                  <BlogTableOfContents items={post.toc} />
+                </div>
+
+                <div
+                  className="blog-prose"
+                  dangerouslySetInnerHTML={{ __html: post.bodyHtml }}
+                />
+
+                <div className="mt-12 border-t border-border-muted pt-8">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-text-ink-muted">
+                    Share
+                  </p>
+                  <BlogShareLinks
+                    url={pageUrl}
+                    title={post.title}
+                    className="mt-3"
+                  />
+                </div>
+              </article>
+
+              {/* Right sticky: TOC + share */}
+              <div className="order-3 hidden lg:block">
+                <div className="sticky top-28 space-y-4">
+                  <BlogTableOfContents items={post.toc} />
+                  <div className="rounded-soft border border-border-muted bg-bg-muted/60 p-4">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-text-ink-muted">
+                      Share
+                    </p>
+                    <BlogShareLinks
+                      url={pageUrl}
+                      title={post.title}
+                      vertical
+                      className="mt-3"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="relative overflow-hidden bg-bg-base py-section">
+        <DarkSectionBackdrop {...sectionBackdropPresets.challenges} />
+        <div className={cn("relative z-10", LAYOUT_OUTER_CLASS)}>
+          <div className={cn(LAYOUT_INNER_CLASS, "text-center")}>
+            <h2 className="font-heading text-display-md font-bold text-text-heading sm:text-display-lg">
+              Ready to <span className="text-gradient-hero">start?</span>
+            </h2>
+            <p className="mx-auto mt-4 max-w-[520px] text-body-md text-text-sub">
+              Book a free 15-min strategy call - we look at where you are, tell
+              you honestly what makes sense, and give you a clear path forward.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+              <CallToActionLink href="/book">
+                Book strategy session
+              </CallToActionLink>
+              <SecondaryCtaLink href="/tools/app-cost-calculator">
+                Try app calculator
+              </SecondaryCtaLink>
+            </div>
+
+            <BlogRelatedGrid posts={related} />
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

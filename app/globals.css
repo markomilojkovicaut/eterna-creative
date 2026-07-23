@@ -85,4 +85,69 @@
       );
     }
   }
+
+  /** Migrated Bubble blog body (light surface). */
+  .blog-prose {
+    @apply text-body-md leading-relaxed text-text-ink-sub;
+  }
+
+  .blog-prose > * + * {
+    margin-top: 1.15rem;
+  }
+
+  .blog-prose h2.blog-h,
+  .blog-prose h2 {
+    @apply mt-10 scroll-mt-28 font-heading text-heading-lg font-bold text-text-ink sm:text-display-md;
+  }
+
+  .blog-prose h3.blog-h,
+  .blog-prose h3 {
+    @apply mt-8 scroll-mt-28 font-heading text-heading-md font-bold text-text-ink;
+  }
+
+  .blog-prose h4 {
+    @apply mt-6 scroll-mt-28 font-heading text-heading-sm font-bold text-text-ink;
+  }
+
+  .blog-prose p {
+    @apply leading-relaxed;
+  }
+
+  .blog-prose strong {
+    @apply font-semibold text-text-ink;
+  }
+
+  .blog-prose ul {
+    @apply list-disc space-y-2 pl-5;
+  }
+
+  .blog-prose ol {
+    @apply list-decimal space-y-2 pl-5;
+  }
+
+  .blog-prose li {
+    @apply leading-relaxed;
+  }
+
+  .blog-prose a {
+    @apply font-medium text-brand-purple underline underline-offset-2;
+  }
+
+  .blog-prose blockquote.blog-quote,
+  .blog-prose blockquote {
+    @apply border-l-2 border-brand-purple pl-4 italic text-text-ink;
+  }
+
+  .blog-prose pre.blog-code,
+  .blog-prose pre {
+    @apply overflow-x-auto rounded-soft border border-border-muted bg-bg-muted p-4 text-body-sm;
+  }
+
+  .blog-prose figure.blog-figure {
+    @apply my-8 overflow-hidden rounded-soft border border-border-muted;
+  }
+
+  .blog-prose figure.blog-figure img {
+    @apply h-auto w-full;
+  }
 }
