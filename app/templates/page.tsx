@@ -40,6 +40,15 @@ export default function TemplatesPage() {
               <p className="mt-3 text-body-md text-text-body">
                 {template.description}
               </p>
+              <p className="mt-4 text-body-sm font-semibold text-text-sub">
+                {template.isPaid
+                  ? new Intl.NumberFormat("en-EU", {
+                      style: "currency",
+                      currency: template.currency ?? "EUR",
+                      maximumFractionDigits: 0,
+                    }).format(template.price)
+                  : "Free"}
+              </p>
             </Card>
           </Link>
         ))}

@@ -36,10 +36,14 @@ export interface Template {
   title: string;
   description: string;
   price: number;
+  /** Display currency; defaults to EUR for paid templates. */
+  currency?: "EUR" | "USD";
   tags: string[];
   previewImage: string;
   downloadUrl: string;
   isPaid: boolean;
+  /** Optional live demo / product URL for paid app templates. */
+  demoUrl?: string;
 }
 
 export interface Job {

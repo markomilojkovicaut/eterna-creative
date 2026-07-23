@@ -49,6 +49,14 @@ export const resourceItems: ResourceItem[] = [
     gridClass: "lg:col-span-1 lg:row-span-1",
   },
   {
+    id: "razmeni-marketplace",
+    type: "template",
+    title: "Razmeni marketplace",
+    href: "/templates/razmeni-marketplace",
+    description: "Full marketplace app template — €10,000, ready to roll.",
+    gridClass: "lg:col-span-1 lg:row-span-1",
+  },
+  {
     id: "feature-matrix",
     type: "guide",
     title: "Feature prioritization matrix",
@@ -57,6 +65,20 @@ export const resourceItems: ResourceItem[] = [
       "Score ideas by impact and effort so you ship what matters first.",
     gridClass: "lg:col-span-1 lg:row-span-2",
     minHeightClass: "min-h-[200px] lg:min-h-0",
+  },
+  {
+    id: "ultimate-checklist",
+    type: "guide",
+    title: "Ultimate startup checklist",
+    href: "/guides/ultimate-startup-checklist",
+    gridClass: "lg:col-span-1 lg:row-span-1",
+  },
+  {
+    id: "tech-stack-matrix",
+    type: "guide",
+    title: "Tech stack decision matrix",
+    href: "/guides/tech-stack-decision-matrix",
+    gridClass: "lg:col-span-1 lg:row-span-1",
   },
   {
     id: "mvp-timeline",

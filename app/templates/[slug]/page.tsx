@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/Badge";
 import { CallToActionLink } from "@/components/ui/CallToActionLink";
 import { SecondaryCtaLink } from "@/components/ui/SecondaryCtaLink";
 import {
+  formatTemplatePrice,
   getAllTemplateSlugs,
   getTemplateBySlug,
 } from "@/lib/templates-content";
@@ -75,12 +76,14 @@ export default async function TemplatePage({ params }: PageProps) {
           </p>
           {template.isPaid ? (
             <p className="mt-4 text-heading-md text-text-sub">
-              ${template.price}
+              {formatTemplatePrice(template)}
             </p>
           ) : null}
           <div className="mt-6 flex flex-wrap gap-3">
             {template.isPaid ? (
-              <CallToActionLink href="/book">Purchase template</CallToActionLink>
+              <CallToActionLink href="/book">
+                Inquire to purchase
+              </CallToActionLink>
             ) : (
               <a
                 href={template.downloadUrl}
@@ -90,7 +93,13 @@ export default async function TemplatePage({ params }: PageProps) {
                 Download template
               </a>
             )}
-            <SecondaryCtaLink href="/book">Book a strategy call</SecondaryCtaLink>
+            {template.demoUrl ? (
+              <SecondaryCtaLink href={template.demoUrl}>
+                View live demo
+              </SecondaryCtaLink>
+            ) : (
+              <SecondaryCtaLink href="/book">Book a strategy call</SecondaryCtaLink>
+            )}
           </div>
         </div>
       </Section>

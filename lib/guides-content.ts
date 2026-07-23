@@ -2,6 +2,30 @@ import type { Guide } from "@/lib/types";
 
 export const guides: Guide[] = [
   {
+    slug: "ultimate-startup-checklist",
+    title: "Ultimate startup checklist",
+    excerpt:
+      "10 things to do before hiring an app developer - a must-have for founders who want to avoid expensive wrong turns.",
+    content:
+      "Before you hire: clarify the problem and ICP, validate demand with real conversations, map the MVP to one job-to-be-done, decide stack with eyes open, set a budget band and timeline, prepare content and brand basics, define success metrics, pick payment and legal basics, shortlist partners with proof, and walk into the strategy call knowing what you will not build yet.",
+    publishedAt: "2025-06-01",
+    difficulty: "Beginner",
+    readTime: 8,
+    category: "Startup",
+  },
+  {
+    slug: "tech-stack-decision-matrix",
+    title: "Tech stack decision matrix",
+    excerpt:
+      "No-code, hybrid, or full code? Use the decision matrix to choose the stack that fits stage, speed, and scale - without wasting months.",
+    content:
+      "Score your project on speed-to-MVP, expected complexity, team skills, budget, and 12-month scale needs. Prefer no-code when validating UX and demand fast. Prefer hybrid when data/integrations need a real backend. Prefer custom code when differentiation is in the product engine, multi-sided complexity, or you need full ownership from day one.",
+    publishedAt: "2025-08-15",
+    difficulty: "Intermediate",
+    readTime: 12,
+    category: "Architecture",
+  },
+  {
     slug: "feature-prioritization-matrix",
     title: "Feature prioritization matrix",
     excerpt:

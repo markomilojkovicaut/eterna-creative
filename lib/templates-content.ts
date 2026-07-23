@@ -2,6 +2,19 @@ import type { Template } from "@/lib/types";
 
 export const templates: Template[] = [
   {
+    slug: "razmeni-marketplace",
+    title: "Razmeni.rs — marketplace app",
+    description:
+      "Full parent marketplace ready to rebrand and launch - listings, messaging, profiles, and flows proven in production. Sellable as a complete app template.",
+    price: 10000,
+    currency: "EUR",
+    tags: ["Marketplace", "Full app", "Ready to roll"],
+    previewImage: "/images/partners/razmeni.png",
+    downloadUrl: "/book",
+    isPaid: true,
+    demoUrl: "https://www.eternacreative.com/version-live/www.razmeni.rs",
+  },
+  {
     slug: "animated-landing-page",
     title: "Animated landing page",
     description:
@@ -20,4 +33,14 @@ export function getTemplateBySlug(slug: string): Template | undefined {
 
 export function getAllTemplateSlugs(): string[] {
   return templates.map((template) => template.slug);
+}
+
+export function formatTemplatePrice(template: Template): string {
+  if (!template.isPaid || template.price <= 0) return "Free";
+  const currency = template.currency ?? "EUR";
+  return new Intl.NumberFormat("en-EU", {
+    style: "currency",
+    currency,
+    maximumFractionDigits: 0,
+  }).format(template.price);
 }
