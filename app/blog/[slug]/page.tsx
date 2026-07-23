@@ -94,7 +94,7 @@ export default async function BlogPostPage({ params }: PageProps) {
     notFound();
   }
 
-  const related = getRelatedPosts(post.slug, 4);
+  const related = getRelatedPosts(post.slug, 3);
   const pageUrl = `${SITE_URL}/blog/${post.slug}`;
   const tocItems =
     post.toc.filter((item) => item.level <= 2).length > 0
@@ -156,19 +156,17 @@ export default async function BlogPostPage({ params }: PageProps) {
               </Link>
             </nav>
 
-            <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-start lg:gap-12">
-              <div>
-                <h1 className="font-heading text-display-md font-bold leading-[1.1] text-text-heading sm:text-display-lg">
-                  {post.title}
-                </h1>
-                {post.subheading ? (
-                  <p className="mt-5 max-w-[720px] text-body-lg leading-relaxed text-text-sub">
-                    {post.subheading}
-                  </p>
-                ) : null}
-              </div>
+            <div className="mt-8 w-full max-w-[80%] text-left">
+              <h1 className="font-heading text-display-md font-bold leading-[1.1] text-text-heading sm:text-display-lg">
+                {post.title}
+              </h1>
+              {post.subheading ? (
+                <p className="mt-5 text-body-lg leading-relaxed text-text-sub">
+                  {post.subheading}
+                </p>
+              ) : null}
 
-              <div className="space-y-3 rounded-soft border border-border-dark bg-bg-card/40 p-4 text-body-sm text-text-sub lg:mt-2">
+              <div className="mt-8 space-y-3 rounded-soft border border-border-dark bg-bg-card/40 p-4 text-body-sm text-text-sub sm:max-w-md">
                 <p>
                   <span className="text-text-muted">Written by </span>
                   <span className="font-semibold text-text-heading">

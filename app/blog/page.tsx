@@ -14,12 +14,12 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Blog | Eterna",
   description:
-    "News, insights and tips for founders building products - validation, MVP, growth, and shipping what compounds.",
+    "News, insights and tips to help you with your product journey.",
   alternates: { canonical: "/blog" },
   openGraph: {
     title: "Eterna Blog",
     description:
-      "Practical founder insights on validation, MVP, growth, and product building.",
+      "News, insights and tips to help you with your product journey.",
     type: "website",
     url: "/blog",
   },
@@ -41,7 +41,7 @@ export default function BlogPage() {
                 { text: "Check latest articles", variant: "default" },
                 { text: "on Eterna blog", variant: "gradient" },
               ]}
-              subheading="News, insights and tips to help you with your application journey."
+              subheading="News, insights and tips to help you with your product journey."
             />
           </div>
         </div>

@@ -148,7 +148,7 @@ export const headerNavItems: HeaderNavItem[] = [
             label: "Product cost calculator",
             href: "/calculator",
             description:
-              "Get accurate development and timeline estimate in 3 minutes - no sales calls & 100% free.",
+              "Get accurate development and timeline estimate in 3 minutes - 100% free.",
             featuredCtaLabel: "Open calculator",
           },
         ],

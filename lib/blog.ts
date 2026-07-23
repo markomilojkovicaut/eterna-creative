@@ -102,7 +102,7 @@ export function getBlogCategories(): string[] {
   ];
 }
 
-export function getRelatedPosts(slug: string, limit = 4): BlogPostMeta[] {
+export function getRelatedPosts(slug: string, limit = 3): BlogPostMeta[] {
   const index = getBlogIndex();
   const current = index.find((p) => p.slug === slug);
   if (!current) return index.filter((p) => p.slug !== slug).slice(0, limit);

@@ -83,7 +83,7 @@ export function BlogRelatedGrid({
       <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-text-ink-muted">
         Similar articles
       </p>
-      <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {posts.map((post) => (
           <Link
             key={post.slug}
@@ -96,7 +96,7 @@ export function BlogRelatedGrid({
                   src={post.coverImage}
                   alt={post.coverAlt || post.title}
                   fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                 />
               ) : (

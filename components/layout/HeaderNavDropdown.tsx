@@ -168,17 +168,17 @@ function ResourcesDropdownPanel({
   if (!featured) return null;
 
   return (
-    <div className="grid grid-cols-1 items-stretch gap-3 sm:grid-cols-[1fr_1.05fr]">
+    <div className="grid grid-cols-1 items-start gap-3 sm:grid-cols-[1fr_1.05fr]">
       <Link
         href={featured.href}
         onClick={onNavigate}
         className={cn(
-          "flex h-full flex-col gap-2.5 rounded-soft border border-border-dark bg-bg-base/40 p-3 no-underline",
+          "flex flex-col gap-2.5 rounded-soft border border-border-dark bg-bg-base/40 p-3 no-underline",
           "transition-colors hover:border-border-strong hover:bg-bg-base/70"
         )}
       >
         <CalculatorPhonePreview />
-        <div className="min-w-0 flex-1">
+        <div className="min-w-0">
           <p className="text-[13px] font-semibold text-text-heading">
             {featured.label}
           </p>
@@ -193,14 +193,14 @@ function ResourcesDropdownPanel({
         </span>
       </Link>
 
-      <div className="flex h-full min-h-0 flex-col gap-1 sm:min-h-[200px]">
+      <div className="flex flex-col gap-1">
         {links.map((entry) => (
           <Link
             key={entry.href + entry.label}
             href={entry.href}
             onClick={onNavigate}
             className={cn(
-              "flex min-h-0 flex-1 items-center gap-3 rounded-soft border border-transparent px-3 py-2.5 no-underline",
+              "flex items-center gap-3 rounded-soft border border-transparent px-3 py-2.5 no-underline",
               "text-left transition-colors hover:border-border-dark hover:bg-bg-base/60"
             )}
           >
