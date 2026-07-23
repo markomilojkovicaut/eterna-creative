@@ -94,9 +94,14 @@ export default async function TemplatePage({ params }: PageProps) {
               </a>
             )}
             {template.demoUrl ? (
-              <SecondaryCtaLink href={template.demoUrl}>
+              <a
+                href={template.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-soft border border-border-dark bg-bg-card/60 px-6 py-[10px] text-body-md font-medium text-text-heading no-underline transition-colors hover:border-border-strong hover:bg-bg-card/80"
+              >
                 View live demo
-              </SecondaryCtaLink>
+              </a>
             ) : (
               <SecondaryCtaLink href="/book">Book a strategy call</SecondaryCtaLink>
             )}
