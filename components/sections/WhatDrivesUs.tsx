@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 
 const stats = [
   {
-    value: "15",
+    value: "20",
     suffix: statSuffixes.plus,
     label: "products shipped",
   },
