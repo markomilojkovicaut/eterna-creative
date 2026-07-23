@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useState } from "react";
+import { createPortal } from "react-dom";
 
 import { CallToActionLink } from "@/components/ui/CallToActionLink";
 import { DarkTagPill } from "@/components/ui/DarkTagPill";
@@ -54,8 +55,10 @@ function EnginePopup({
   onClose: () => void;
 }) {
   const titleId = useId();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
@@ -68,9 +71,11 @@ function EnginePopup({
     };
   }, [onClose]);
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <div
-      className="fixed inset-0 z-[80] flex items-center justify-center p-4 sm:p-6"
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6"
       role="dialog"
       aria-modal="true"
       aria-labelledby={titleId}
@@ -81,7 +86,10 @@ function EnginePopup({
         aria-label="Close engine details"
         onClick={onClose}
       />
-      <div className="relative z-10 flex max-h-[80vh] w-full max-w-lg flex-col overflow-hidden rounded-soft border border-border-dark bg-bg-card shadow-glow-purple">
+      <div
+        className="relative z-10 flex w-full max-w-lg flex-col overflow-hidden rounded-soft border border-border-dark bg-bg-card shadow-glow-purple"
+        style={{ maxHeight: "min(80vh, calc(100dvh - 5rem))" }}
+      >
         <div className="flex shrink-0 items-start justify-between gap-4 border-b border-border-dark px-6 py-5 sm:px-8">
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-purple-light">
@@ -154,7 +162,8 @@ function EnginePopup({
           </CallToActionLink>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
 

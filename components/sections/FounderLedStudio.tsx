@@ -7,6 +7,7 @@ import {
   TeamMemberCard,
 } from "@/components/ui";
 import { QuoteIcon } from "@/components/ui/QuoteIcon";
+import { HeroGradientLine } from "@/components/ui/HeroGradientLine";
 import { Reveal } from "@/components/ui/Reveal";
 import {
   founderBio,
@@ -23,14 +24,11 @@ import { cn } from "@/lib/utils";
 
 export function FounderLedStudio() {
   return (
-    <section
-      id="about"
-      className="relative overflow-hidden bg-bg-base pt-section pb-section"
-    >
+    <section id="about" className="relative overflow-hidden bg-bg-base pt-section">
       <DarkSectionBackdrop {...sectionBackdropPresets.challenges} />
 
       <div className={cn("relative z-10", LAYOUT_OUTER_CLASS)}>
-        <div className={LAYOUT_INNER_CLASS}>
+        <div className={cn(LAYOUT_INNER_CLASS, "pb-section")}>
           <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-12 xl:gap-16">
             <Reveal>
               <div className="min-w-0 max-w-[400px]">
@@ -101,10 +99,7 @@ export function FounderLedStudio() {
         </div>
       </div>
 
-      <div
-        className="relative z-20 h-1 w-full bg-hero-gradient"
-        aria-hidden
-      />
+      <HeroGradientLine />
     </section>
   );
 }

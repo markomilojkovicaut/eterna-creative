@@ -1,7 +1,5 @@
 "use client";
 
-import Link from "next/link";
-
 import { CallToActionLink } from "@/components/ui/CallToActionLink";
 import { DarkSectionBackdrop } from "@/components/ui/DarkSectionBackdrop";
 import { Reveal } from "@/components/ui/Reveal";
@@ -45,25 +43,14 @@ export function FinalCta() {
                   Ready to <span className="text-gradient-hero">start?</span>
                 </h2>
 
-                <p className="mt-5 max-w-[560px] text-body-md leading-relaxed text-text-sub sm:text-body-lg">
-                  Start with a free 15-min strategy call. If there&apos;s a fit,
-                  you get a Launch Plan before any build commitment - then we
-                  ship with the Eterna Method.
+                <p className="mt-5 max-w-[480px] text-body-md leading-relaxed text-text-sub sm:text-body-lg">
+                  Free 15-min strategy call. If there&apos;s a fit, you get a
+                  Launch Plan before any build commitment.
                 </p>
 
                 <CallToActionLink href="/book" className="mt-8">
                   Book a strategy call
                 </CallToActionLink>
-                <p className="mt-4 text-body-sm text-text-muted">
-                  Prefer the path first?{" "}
-                  <Link
-                    href="/book"
-                    className="font-medium text-brand-purple-light no-underline transition-colors hover:text-text-heading"
-                  >
-                    Book a free call — get your Launch Plan
-                  </Link>
-                  .
-                </p>
               </div>
             </div>
           </Reveal>

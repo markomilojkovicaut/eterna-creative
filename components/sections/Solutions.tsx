@@ -1,6 +1,7 @@
 "use client";
 
 import { DarkSectionBackdrop, SectionHeading } from "@/components/ui";
+import { HeroGradientLine } from "@/components/ui/HeroGradientLine";
 import { CallToActionLink } from "@/components/ui/CallToActionLink";
 import { Reveal } from "@/components/ui/Reveal";
 import { SolutionCard } from "@/components/ui/SolutionCard";
@@ -50,7 +51,7 @@ export function Solutions() {
         </div>
       </div>
 
-      <div className="relative z-20 h-1 w-full bg-hero-gradient" aria-hidden />
+      <HeroGradientLine />
     </section>
   );
 }

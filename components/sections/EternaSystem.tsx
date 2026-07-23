@@ -3,6 +3,7 @@
 import { BorderedDarkPanel, SectionHeading } from "@/components/ui";
 import { EngineCircle } from "@/components/ui/EngineCircle";
 import { Reveal } from "@/components/ui/Reveal";
+import { SectionLabel } from "@/components/ui/SectionLabel";
 import { eternaEngines } from "@/lib/eterna-engines";
 import {
   eternaMethodContrast,
@@ -119,13 +120,13 @@ export function EternaSystem() {
 
             <Reveal delay={160}>
               <div className="mt-12 sm:mt-14">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-purple-light">
-                  Six engines inside the method
-                </p>
-                <p className="mt-2 max-w-[520px] text-body-md text-text-body">
+                <SectionLabel tone="dark">Six engines inside the method</SectionLabel>
+                <h3 className="mt-4 max-w-[640px] font-heading text-heading-lg font-bold tracking-[-0.02em] text-text-heading sm:text-display-md">
+                  The failure points every product hits
+                </h3>
+                <p className="mt-3 max-w-[520px] text-body-md text-text-body">
                   Open an engine to see how we research, engineer, acquire,
-                  activate, retain, and measure - the failure points every product
-                  hits.
+                  activate, retain, and measure.
                 </p>
                 <div className="mt-8 sm:mt-10 lg:-mx-6 xl:-mx-10">
                   <EngineCircle engines={eternaEngines} />

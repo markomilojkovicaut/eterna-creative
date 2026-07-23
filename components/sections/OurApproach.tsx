@@ -14,7 +14,7 @@ import {
   LIGHT_SPREAD_LAYOUT_CLASS,
   LIGHT_STICKY_ASIDE_CLASS,
 } from "@/lib/layout-constants";
-import { toolStackSections, toolsByGroup } from "@/lib/tool-stack";
+import { toolStackSections, toolsForSection } from "@/lib/tool-stack";
 import { cn } from "@/lib/utils";
 
 export function OurApproach() {
@@ -35,50 +35,35 @@ export function OurApproach() {
         <ApproachCalloutAccordion />
 
         <div className="mt-section space-y-6">
-          {toolStackSections.map((section) => (
-            <div
-              key={section.id}
-              className="overflow-hidden rounded-soft border border-border-muted"
-            >
-              <p className="border-b border-border-muted bg-bg-surface px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-text-ink">
-                {section.label}
-              </p>
+          {toolStackSections.map((section) => {
+            const tools = toolsForSection(section.id);
+            if (tools.length === 0) return null;
 
-              {section.subgroups.map((group, groupIndex) => {
-                const tools = toolsByGroup(group.id);
-                if (tools.length === 0) return null;
-
-                return (
-                  <div
-                    key={group.id}
-                    className={cn(
-                      groupIndex > 0 && "border-t border-border-muted"
-                    )}
-                  >
-                    <p className="border-b border-border-muted bg-bg-muted/60 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-text-ink-muted">
-                      {group.label}
-                    </p>
-                    <div
-                      className={cn(
-                        "grid divide-x divide-y divide-border-muted",
-                        tools.length <= 2
-                          ? "grid-cols-2"
-                          : tools.length === 3
-                            ? "grid-cols-3"
-                            : tools.length === 4
-                              ? "grid-cols-2 sm:grid-cols-4"
-                              : "grid-cols-2 sm:grid-cols-3"
-                      )}
-                    >
-                      {tools.map((tool) => (
-                        <ToolStackCard key={tool.id} tool={tool} />
-                      ))}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          ))}
+            return (
+              <div
+                key={section.id}
+                className="overflow-hidden rounded-soft border border-border-muted"
+              >
+                <p className="border-b border-border-muted bg-bg-surface px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-text-ink">
+                  {section.label}
+                </p>
+                <div
+                  className={cn(
+                    "grid divide-x divide-y divide-border-muted",
+                    tools.length <= 2
+                      ? "grid-cols-2"
+                      : tools.length === 3
+                        ? "grid-cols-3"
+                        : "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4"
+                  )}
+                >
+                  {tools.map((tool) => (
+                    <ToolStackCard key={tool.id} tool={tool} />
+                  ))}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </Reveal>
     </div>

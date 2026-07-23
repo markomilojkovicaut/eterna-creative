@@ -1,6 +1,7 @@
 "use client";
 
 import { DarkSectionBackdrop, SectionHeading } from "@/components/ui";
+import { HeroGradientLine } from "@/components/ui/HeroGradientLine";
 import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
 import { Reveal } from "@/components/ui/Reveal";
 import {
@@ -83,7 +84,7 @@ export function EntryDoors() {
         </div>
       </div>
 
-      <div className="relative z-20 h-1 w-full bg-hero-gradient" aria-hidden />
+      <HeroGradientLine />
     </section>
   );
 }

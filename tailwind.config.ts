@@ -153,6 +153,10 @@ const config: Config = {
             transform: "rotateX(10deg) rotateY(8deg) translateZ(12px)",
           },
         },
+        "hero-gradient-flow": {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+        },
       },
       animation: {
         "approach-border-fill":
@@ -176,10 +180,12 @@ const config: Config = {
           "engine-ring-pulse 5.5s ease-in-out infinite",
         "phone-3d-drift":
           "phone-3d-drift 8s ease-in-out infinite",
+        "hero-gradient-flow":
+          "hero-gradient-flow 8s ease-in-out infinite",
       },
       backgroundImage: {
         "hero-gradient":
-          "linear-gradient(90deg, #b8b8ff 0%, #8585ff 45%, #cb80ff 100%)",
+          "linear-gradient(90deg, #b8b8ff 0%, #8585ff 45%, #cb80ff 100%, #8585ff 145%, #b8b8ff 200%)",
         "partners-panel":
           "linear-gradient(135deg, #0a0a12 0%, #1F1145 55%, #12082a 100%)",
         "engine-hover":

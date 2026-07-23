@@ -4,8 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { CallToActionLink } from "@/components/ui/CallToActionLink";
-import { HeroPhones, HeroPhones3D } from "@/components/ui/HeroPhones";
+import { HeroPhones } from "@/components/ui/HeroPhones";
 import { LabelPill } from "@/components/ui/LabelPill";
+import { HeroGradientLine } from "@/components/ui/HeroGradientLine";
 import { Reveal } from "@/components/ui/Reveal";
 import {
   displayHeadingTypeClasses,
@@ -137,10 +138,9 @@ export function Hero() {
           <Reveal
             immediate
             delay={320}
-            className="relative z-0 mt-[80px] flex w-full max-w-md flex-col items-center justify-end gap-10 lg:max-w-lg"
+            className="relative z-0 mt-[80px] flex w-full max-w-md flex-col items-center justify-end lg:max-w-lg"
           >
             <HeroPhones className="w-full" />
-            <HeroPhones3D className="w-full" />
           </Reveal>
         </div>
       </div>
@@ -154,10 +154,7 @@ export function Hero() {
         aria-hidden
       />
 
-      <div
-        className="absolute bottom-0 left-0 z-20 h-1 w-full bg-hero-gradient"
-        aria-hidden
-      />
+      <HeroGradientLine className="absolute bottom-0 left-0" />
     </section>
   );
 }

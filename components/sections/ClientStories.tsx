@@ -3,7 +3,7 @@
 import { FeaturedReviewCard } from "@/components/ui/FeaturedReviewCard";
 import { LightEditorialDisplay } from "@/components/ui/LightEditorialDisplay";
 import { Reveal } from "@/components/ui/Reveal";
-import { ReviewCardsCarousel } from "@/components/ui/ReviewCardsCarousel";
+import { ReviewCard } from "@/components/ui/ReviewCard";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { clientReviews, featuredClientReview } from "@/lib/client-stories";
 import {
@@ -23,13 +23,17 @@ export function ClientStories() {
         </LightEditorialDisplay>
       </Reveal>
 
-      <Reveal delay={80}>
-        <FeaturedReviewCard review={featuredClientReview} className="mt-10" />
-      </Reveal>
+      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
+        <Reveal delay={60} className="sm:col-span-2 lg:col-span-2 lg:row-span-2">
+          <FeaturedReviewCard review={featuredClientReview} className="h-full" />
+        </Reveal>
 
-      <Reveal delay={160}>
-        <ReviewCardsCarousel reviews={clientReviews} className="mt-6" />
-      </Reveal>
+        {clientReviews.map((review, index) => (
+          <Reveal key={review.id} delay={100 + index * 50}>
+            <ReviewCard review={review} />
+          </Reveal>
+        ))}
+      </div>
     </div>
   );
 }

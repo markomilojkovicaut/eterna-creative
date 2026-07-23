@@ -1,3 +1,4 @@
+import { Reveal } from "@/components/ui/Reveal";
 import {
   LAYOUT_INNER_CLASS,
   LAYOUT_OUTER_CLASS,
@@ -9,6 +10,8 @@ export interface SectionProps {
   className?: string;
   background?: "base" | "surface" | "purple-dark" | "none";
   id?: string;
+  /** Disable default scroll reveal (rare). */
+  reveal?: boolean;
 }
 
 const backgroundClasses: Record<
@@ -21,20 +24,28 @@ const backgroundClasses: Record<
   none: "bg-transparent",
 };
 
+/**
+ * Page section with default Reveal so non-homepage pages get the same motion language.
+ */
 export function Section({
   children,
   className,
   background = "base",
   id,
+  reveal = true,
 }: SectionProps) {
+  const inner = (
+    <div className={LAYOUT_OUTER_CLASS}>
+      <div className={LAYOUT_INNER_CLASS}>{children}</div>
+    </div>
+  );
+
   return (
     <section
       id={id}
       className={cn("py-section", backgroundClasses[background], className)}
     >
-      <div className={LAYOUT_OUTER_CLASS}>
-        <div className={LAYOUT_INNER_CLASS}>{children}</div>
-      </div>
+      {reveal ? <Reveal>{inner}</Reveal> : inner}
     </section>
   );
 }

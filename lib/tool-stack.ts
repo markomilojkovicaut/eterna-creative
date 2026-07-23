@@ -30,7 +30,7 @@ export interface ToolStackSection {
 export const toolStackSections: ToolStackSection[] = [
   {
     id: "product-building",
-    label: "Product building",
+    label: "Product building tech",
     subgroups: [
       { id: "ai-build", label: "AI & build" },
       { id: "platforms", label: "Platforms" },
@@ -39,7 +39,7 @@ export const toolStackSections: ToolStackSection[] = [
   },
   {
     id: "design-growth",
-    label: "Design & growth",
+    label: "Design and growth tech",
     subgroups: [
       { id: "design-product", label: "Design & product" },
       { id: "growth", label: "Growth" },

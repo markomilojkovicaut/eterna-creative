@@ -80,7 +80,7 @@ export function Footer() {
                   className="h-auto w-auto max-w-[120px]"
                 />
               </Link>
-              <p className="mt-5 max-w-[400px] text-body-sm leading-relaxed text-text-body sm:text-body-md">
+              <p className="mt-5 max-w-[280px] text-body-sm leading-relaxed text-text-body sm:text-body-md">
                 {footerTagline}
               </p>
               <p className="mt-auto pt-10 text-body-sm text-text-muted">
@@ -136,14 +136,18 @@ export function Footer() {
         aria-hidden
       >
         <div className="absolute inset-x-0 bottom-0 h-[180px] bg-gradient-to-t from-brand-purple-dark to-bg-base" />
-        <p
-          className={cn(
-            "relative translate-y-[40%] text-center font-heading text-[clamp(4rem,18vw,12rem)] font-black leading-none tracking-[-0.04em] text-text-heading/[0.06]",
-            "[clip-path:inset(0_0_40%_0)]"
-          )}
-        >
-          ETERNA
-        </p>
+        {/* Logo wordmark only (no E icon), ~80% width, split/clipped like before */}
+        <div className="relative mx-auto w-[80%] translate-y-[42%] overflow-hidden opacity-[0.07] [clip-path:inset(0_0_42%_0)]">
+          <div className="relative w-[118%] max-w-none -translate-x-[14%]">
+            <Image
+              src="/images/eterna-logo.png"
+              alt=""
+              width={1800}
+              height={280}
+              className="h-auto w-full"
+            />
+          </div>
+        </div>
       </div>
     </footer>
   );
