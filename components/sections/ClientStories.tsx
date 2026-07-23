@@ -23,11 +23,11 @@ export function ClientStories() {
         </LightEditorialDisplay>
       </Reveal>
 
-      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
-        <Reveal delay={60} className="sm:col-span-2 lg:col-span-2 lg:row-span-2">
-          <FeaturedReviewCard review={featuredClientReview} className="h-full" />
-        </Reveal>
+      <Reveal delay={60}>
+        <FeaturedReviewCard review={featuredClientReview} className="mt-10" />
+      </Reveal>
 
+      <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
         {clientReviews.map((review, index) => (
           <Reveal key={review.id} delay={100 + index * 50}>
             <ReviewCard review={review} />

@@ -177,7 +177,10 @@ function ResourcesDropdownPanel({
           "transition-colors hover:border-border-strong hover:bg-bg-base/70"
         )}
       >
-        <CalculatorPhonePreview />
+        <CalculatorPhonePreview
+          maxWidthClass="max-w-none"
+          className="aspect-[2/1] w-full"
+        />
         <div className="min-w-0">
           <p className="text-[13px] font-semibold text-text-heading">
             {featured.label}

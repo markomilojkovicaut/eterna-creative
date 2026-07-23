@@ -19,8 +19,8 @@ export function CalculatorPhonePreview({
       )}
     >
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#1F1145]/80 via-bg-base to-bg-card" />
-      <div className="relative flex h-full items-end justify-center px-5 pb-4 pt-5">
-        <div className="relative z-[1] h-full w-[72%] overflow-hidden rounded-[0.75rem] border border-border-dark bg-bg-card shadow-[0_10px_24px_rgba(31,17,69,0.5)]">
+      <div className="relative flex h-full items-end justify-center px-3 pb-3 pt-3 sm:px-4">
+        <div className="relative z-[1] h-full w-[min(72%,7.5rem)] overflow-hidden rounded-[0.75rem] border border-border-dark bg-bg-card shadow-[0_10px_24px_rgba(31,17,69,0.5)]">
           <div className="flex h-full flex-col bg-gradient-to-b from-bg-base via-[#12082a] to-[#1F1145] p-2 pt-2.5">
             <div className="mx-auto mb-1.5 h-1 w-[30%] rounded-full bg-black" />
             <p className="text-center text-[6px] font-semibold uppercase tracking-[0.12em] text-brand-purple-light">
