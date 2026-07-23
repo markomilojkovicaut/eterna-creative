@@ -36,7 +36,7 @@ Investment band: `investmentTopBandClass` + `investmentTopBandFadeClass`.
 - Dark borders: `border-border-dark`
 - Light borders: `border-border-muted`
 - Guide/Blog gradient: `lightResourceGradientClasses` from `lib/surface-styles.ts`
-  - 15+ stat (`StatCard variant="gradient"`), Build process step, gradient resource tiles, select reviews
+  - 20+ stat (`StatCard variant="gradient"`), Build process step, gradient resource tiles, select reviews
 
 ## Icons
 

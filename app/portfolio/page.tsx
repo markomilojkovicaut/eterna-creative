@@ -20,7 +20,7 @@ export default function PortfolioPage() {
       ]}
       subheading={
         <>
-          Real products, real founders, real outcomes - same methodology every
+          Real products, real founders, real outcomes - same Eterna Method every
           time: validated, designed, and built to scale.
         </>
       }

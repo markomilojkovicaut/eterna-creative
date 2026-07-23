@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 
+import { AccordionProgressRail } from "@/components/ui/AccordionProgressRail";
 import { cn } from "@/lib/utils";
 
 export type DarkRotateAccordionAccent = "purple" | "danger";
@@ -24,8 +25,7 @@ export interface DarkRotateAccordionProps {
 }
 
 /**
- * Auto-accordion: one open panel, left border fill, auto-advance.
- * Dark: Challenges (legacy), How we use AI. Light: Challenges on white.
+ * Auto-accordion: one open panel at a time, left-rail progress, auto-advance.
  */
 export function DarkRotateAccordion({
   items,
@@ -87,38 +87,31 @@ export function DarkRotateAccordion({
             className={cn(
               "relative flex",
               !isLast &&
-                (isLight ? "border-b border-border-muted" : "border-b border-border-dark")
+                (isLight
+                  ? "border-b border-border-muted"
+                  : "border-b border-border-dark")
             )}
           >
-            <div
-              className={cn(
-                "relative w-1 shrink-0",
+            <AccordionProgressRail
+              active={isActive}
+              cycle={progressCycle}
+              durationMs={intervalMs}
+              paused={paused}
+              trackClassName={
                 isDanger
                   ? "bg-brand-danger/20"
                   : isLight
-                    ? "bg-brand-purple/20"
-                    : "bg-brand-purple-light/15"
-              )}
-              aria-hidden
-            >
-              {isActive ? (
-                <div
-                  key={progressCycle}
-                  className={cn(
-                    "absolute inset-x-0 top-0 h-full origin-top animate-approach-border-fill",
-                    isDanger
-                      ? "bg-brand-danger"
-                      : isLight
-                        ? "bg-brand-purple"
-                        : "bg-brand-purple-light"
-                  )}
-                  style={{
-                    animationDuration: `${intervalMs}ms`,
-                    animationPlayState: paused ? "paused" : "running",
-                  }}
-                />
-              ) : null}
-            </div>
+                    ? "bg-brand-purple/25"
+                    : "bg-brand-purple-light/20"
+              }
+              fillClassName={
+                isDanger
+                  ? "bg-brand-danger"
+                  : isLight
+                    ? "bg-brand-purple"
+                    : "bg-brand-purple-light"
+              }
+            />
 
             <div
               className={cn(

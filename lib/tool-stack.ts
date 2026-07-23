@@ -13,6 +13,41 @@ export type ToolStackGroupId =
   | "ship"
   | "growth";
 
+export type ToolStackSectionId = "product-building" | "design-growth";
+
+export interface ToolStackSubgroup {
+  id: ToolStackGroupId;
+  label: string;
+}
+
+export interface ToolStackSection {
+  id: ToolStackSectionId;
+  label: string;
+  subgroups: ToolStackSubgroup[];
+}
+
+/** Two top-level sections for the homepage tool stack. */
+export const toolStackSections: ToolStackSection[] = [
+  {
+    id: "product-building",
+    label: "Product building",
+    subgroups: [
+      { id: "ai-build", label: "AI & build" },
+      { id: "platforms", label: "Platforms" },
+      { id: "ship", label: "Ship" },
+    ],
+  },
+  {
+    id: "design-growth",
+    label: "Design & growth",
+    subgroups: [
+      { id: "design-product", label: "Design & product" },
+      { id: "growth", label: "Growth" },
+    ],
+  },
+];
+
+/** @deprecated Prefer toolStackSections - kept for any leftover callers. */
 export const toolStackGroups: {
   id: ToolStackGroupId;
   label: string;
@@ -59,4 +94,11 @@ export const toolStackItems: ToolStackItem[] = [
 
 export function toolsByGroup(groupId: ToolStackGroupId): ToolStackItem[] {
   return toolStackItems.filter((tool) => tool.group === groupId);
+}
+
+export function toolsForSection(sectionId: ToolStackSectionId): ToolStackItem[] {
+  const section = toolStackSections.find((s) => s.id === sectionId);
+  if (!section) return [];
+  const ids = new Set(section.subgroups.map((g) => g.id));
+  return toolStackItems.filter((tool) => ids.has(tool.group));
 }

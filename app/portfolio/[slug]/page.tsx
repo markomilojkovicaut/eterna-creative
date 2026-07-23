@@ -9,6 +9,7 @@ import { CallToActionLink } from "@/components/ui/CallToActionLink";
 import { getAllCaseStudySlugs, getCaseStudyBySlug } from "@/lib/case-studies";
 import { HEADER_OFFSET_CLASS } from "@/lib/layout-constants";
 import { Section } from "@/components/layout/Section";
+import { cn } from "@/lib/utils";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -103,7 +104,33 @@ export default async function PortfolioCaseStudyPage({ params }: PageProps) {
           <h2 className="font-heading text-heading-lg text-text-heading">
             Results
           </h2>
-          <p className="mt-4 max-w-2xl text-body-md text-text-body">
+          {item.outcomes.length > 0 ? (
+            <dl
+              className={cn(
+                "mt-6 grid gap-4 sm:gap-6",
+                item.outcomes.length >= 3
+                  ? "grid-cols-2 sm:grid-cols-3"
+                  : item.outcomes.length === 2
+                    ? "grid-cols-2"
+                    : "grid-cols-1"
+              )}
+            >
+              {item.outcomes.map((outcome) => (
+                <div
+                  key={`${outcome.value}-${outcome.label}`}
+                  className="rounded-soft border border-border-dark bg-bg-card/40 px-4 py-4"
+                >
+                  <dt className="text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-purple-light">
+                    {outcome.label}
+                  </dt>
+                  <dd className="mt-2 font-heading text-display-md font-bold text-text-heading">
+                    {outcome.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          ) : null}
+          <p className="mt-6 max-w-2xl text-body-md text-text-body">
             {item.results}
           </p>
         </div>

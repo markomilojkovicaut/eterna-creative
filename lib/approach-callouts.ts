@@ -23,10 +23,17 @@ export const approachCallouts: ApproachCallout[] = [
       "We use Claude Code and Cursor in our build process, and we've shipped AI into our own products. AI doesn't replace craft - it amplifies it. We only use it where it adds real leverage, on top of deep product judgment.",
   },
   {
-    id: "owned",
+    id: "stage-right",
     accent: "black",
-    title: "Owned code, no lock-in",
+    title: "Architecture for your stage",
     description:
-      "You own what we build. If you're already on Bubble and hitting its ceiling, we migrate you cleanly to custom. If you're starting fresh, we build custom from day one so you never have to rebuild.",
+      "Pick the stack that matches where you are - and leave a clean path to the next one. Bubble when speed wins. Custom when you need ownership and scale. Either way: documented, handoff-ready, and never a dead end.",
+  },
+  {
+    id: "reliability",
+    accent: "purple",
+    title: "Reliable enough to run the business",
+    description:
+      "Demos are easy. Production is the bar. We design for edge cases, evals, monitoring, and failure modes - so the product keeps working when real users and real money show up.",
   },
 ];

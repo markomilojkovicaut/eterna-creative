@@ -134,7 +134,7 @@ flowchart LR
 
 ## 9. Segments and the niche question
 
-Wide today: founders (startups), creators (brands, professionals), businesses (SMB), hubs (accelerators). No niche locked yet (~15-20 varied products).
+Wide today: founders (startups), creators (brands, professionals), businesses (SMB), hubs (accelerators). No niche locked yet (20+ varied products).
 
 - **Founders / SMBs** - rising DIY-with-AI pressure at the low end; value moves to "prototype -> reliable production," rescue, and governed/maintained custom.
 - **Creators - reframed.** Fee-for-service creators are weak (AI eats the low end). BUT **creators/mentors/professionals with a real audience are strong as rev-share / co-build partners**, because they have already solved distribution (the #1 product killer).

@@ -122,7 +122,7 @@ import { lightResourceGradientClasses } from "@/lib/surface-styles";
 // border-border-muted bg-gradient-to-br from-brand-purple/10 via-bg-surface to-brand-pink/10
 ```
 
-Used on: Guide/Blog gradient tiles, featured review cards, **15+ products shipped** stat, Build process step panel.
+Used on: Guide/Blog gradient tiles, featured review cards, **20+ products shipped** stat, Build process step panel.
 
 ---
 

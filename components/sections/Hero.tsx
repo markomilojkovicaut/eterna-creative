@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { CallToActionLink } from "@/components/ui/CallToActionLink";
-import { HeroPhones } from "@/components/ui/HeroPhones";
+import { HeroPhones, HeroPhones3D } from "@/components/ui/HeroPhones";
 import { LabelPill } from "@/components/ui/LabelPill";
 import { Reveal } from "@/components/ui/Reveal";
 import {
@@ -74,6 +74,13 @@ export function Hero() {
                 <span className="font-semibold text-text-heading">Clutch</span>
                 <ClutchStars />
               </span>
+              <span className="hidden h-4 w-px bg-border-strong sm:block" aria-hidden />
+              <Link
+                href="/blog/best-use-of-ai-award"
+                className="text-[14px] font-semibold text-brand-purple-light no-underline transition-colors hover:text-text-heading sm:text-[15px]"
+              >
+                Best Use of AI
+              </Link>
             </Reveal>
 
             <Reveal immediate delay={90}>
@@ -130,9 +137,10 @@ export function Hero() {
           <Reveal
             immediate
             delay={320}
-            className="relative z-0 mt-[80px] flex w-full max-w-md flex-1 items-end justify-center lg:max-w-lg"
+            className="relative z-0 mt-[80px] flex w-full max-w-md flex-col items-center justify-end gap-10 lg:max-w-lg"
           >
             <HeroPhones className="w-full" />
+            <HeroPhones3D className="w-full" />
           </Reveal>
         </div>
       </div>
