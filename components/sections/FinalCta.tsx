@@ -47,7 +47,7 @@ export function FinalCta() {
 
                 <p className="mt-5 max-w-[560px] text-body-md leading-relaxed text-text-sub sm:text-body-lg">
                   Start with a free 15-min strategy call. If there&apos;s a fit,
-                  you get a Blueprint before any build commitment - then we
+                  you get a Launch Plan before any build commitment - then we
                   ship with the Eterna Method.
                 </p>
 
@@ -60,7 +60,7 @@ export function FinalCta() {
                     href="/blueprint"
                     className="font-medium text-brand-purple-light no-underline transition-colors hover:text-text-heading"
                   >
-                    See how the Blueprint works
+                    See how the Launch Plan works
                   </Link>
                   .
                 </p>

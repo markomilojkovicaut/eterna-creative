@@ -38,6 +38,16 @@ const nextConfig: NextConfig = {
         destination: "/book",
         permanent: true,
       },
+      {
+        source: "/tools/app-cost-calculator",
+        destination: "/calculator",
+        permanent: true,
+      },
+      {
+        source: "/tools/bubble-scope-estimator",
+        destination: "/calculator",
+        permanent: true,
+      },
     ];
   },
 };

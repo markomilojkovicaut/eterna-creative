@@ -1,7 +1,7 @@
 export const blueprintPageMeta = {
-  title: "Product Blueprint | Eterna",
+  title: "Launch Plan & Blueprint | Eterna",
   description:
-    "Free Blueprint or paid Validation Sprint / Product Spec - scope first, flat price, built to scale.",
+    "Free Launch Plan or paid Validation Sprint / Blueprint - scope first, flat price, built to scale.",
 };
 
 export interface BlueprintTier {
@@ -16,8 +16,8 @@ export interface BlueprintTier {
 
 export const blueprintTiers: BlueprintTier[] = [
   {
-    id: "blueprint",
-    name: "Blueprint",
+    id: "launch-plan",
+    name: "Launch Plan",
     priceLabel: "Free",
     tagline: "Scope Session deliverable - your CAC, our qualification filter.",
     includes: [
@@ -44,15 +44,15 @@ export const blueprintTiers: BlueprintTier[] = [
     highlight: true,
   },
   {
-    id: "product-spec",
-    name: "Product Spec",
+    id: "blueprint",
+    name: "Blueprint",
     priceLabel: "Paid - flat price",
-    tagline: "Build-ready plan that locks scope for a firm fixed-price build.",
+    tagline: "Build-ready strategy + spec that locks scope for a firm fixed price.",
     includes: [
       "2-hour deep-dive session + design moodboard",
       "Full user-flow maps and architecture",
       "Data model and integration plan",
-      "Investor-ready Product Spec document",
+      "Investor-ready Blueprint document",
       "Post-launch optimization roadmap",
     ],
     cta: "Book a strategy call",

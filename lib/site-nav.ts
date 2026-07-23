@@ -146,7 +146,7 @@ export const headerNavItems: HeaderNavItem[] = [
         items: [
           {
             label: "Product cost calculator",
-            href: "/tools/app-cost-calculator",
+            href: "/calculator",
             description:
               "Get accurate development and timeline estimate in 3 minutes - no sales calls & 100% free.",
             featuredCtaLabel: "Open calculator",
@@ -224,7 +224,7 @@ export const footerLinkGroups = [
     id: "resources",
     label: "Resources",
     links: [
-      { label: "App calculator", href: "/tools/app-cost-calculator" },
+      { label: "Product calculator", href: "/calculator" },
       { label: "Blog", href: "/blog" },
       { label: "Guides", href: "/guides" },
       { label: "Templates", href: "/templates" },

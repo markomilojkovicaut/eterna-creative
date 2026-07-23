@@ -276,7 +276,7 @@ export default async function BlogPostPage({ params }: PageProps) {
               <CallToActionLink href="/book">
                 Book strategy session
               </CallToActionLink>
-              <SecondaryCtaLink href="/tools/app-cost-calculator">
+              <SecondaryCtaLink href="/calculator">
                 Try product calculator
               </SecondaryCtaLink>
             </div>

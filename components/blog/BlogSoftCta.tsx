@@ -24,7 +24,7 @@ export function BlogSoftCta({ className }: { className?: string }) {
           href="/blueprint"
           className="font-semibold text-brand-purple no-underline underline-offset-2 hover:underline"
         >
-          Blueprint
+          Launch Plan
         </Link>
         .
       </p>

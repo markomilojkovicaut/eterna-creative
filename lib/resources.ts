@@ -32,7 +32,7 @@ export const resourceItems: ResourceItem[] = [
     id: "app-cost-calculator",
     type: "tool",
     title: "Product cost calculator",
-    href: "/tools/app-cost-calculator",
+    href: "/calculator",
     variant: "dark",
     imageSrc: "/images/resources/app-cost-calculator.png",
     imageAlt: "Product cost calculator preview",

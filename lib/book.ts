@@ -21,7 +21,7 @@ export const bookExpectations = [
     id: "next",
     title: "Book the Scope Session",
     description:
-      "If there is a fit, we schedule a free 1-hour Scope Session for another day - where we produce your Blueprint.",
+      "If there is a fit, we schedule a free 1-hour Scope Session for another day - where we produce your Launch Plan.",
   },
 ];
 

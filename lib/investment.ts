@@ -20,7 +20,7 @@ export interface EngagementPathStep {
 }
 
 export const investmentSubheading =
-  "Start small, then commit. Every custom product quote comes after a free strategy call and Blueprint - so you know exactly what you're paying for before you build.";
+  "Start small, then commit. Every custom product quote comes after a free strategy call and Launch Plan - so you know exactly what you're paying for before you build.";
 
 export const engagementPathSteps: EngagementPathStep[] = [
   {
@@ -35,11 +35,11 @@ export const engagementPathSteps: EngagementPathStep[] = [
   {
     id: "plan",
     number: "02",
-    title: "Blueprint",
+    title: "Launch Plan",
     description:
-      "Free Scope Session deliverable: app map, hero preview, flat price, timeline. Deeper Validation Sprint or Product Spec when the project needs it.",
+      "Free Scope Session deliverable: app map, hero preview, flat price, timeline. Deeper Validation Sprint or Blueprint when the project needs it.",
     href: "/blueprint",
-    ctaLabel: "See Blueprint",
+    ctaLabel: "See Launch Plan",
   },
   {
     id: "build",
@@ -83,6 +83,6 @@ export const investmentAlsoAvailable =
 
 export const investmentCalculatorCta = {
   text: "Want to see how much you need to invest in your app - before even booking a call?",
-  href: "/tools/app-cost-calculator",
+  href: "/calculator",
   label: "Try product calculator",
 };

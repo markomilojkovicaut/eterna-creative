@@ -9,7 +9,7 @@ export const faqItems: FaqItem[] = [
     id: "how-to-start",
     question: "How do we start if we're not ready for a full build?",
     answer:
-      "Start small. Book a free 15-minute strategy call. If there's a fit, we run a Scope Session and deliver a free Blueprint - app map, hero preview, flat price, and timeline - before any build commitment. Need deeper validation first? We offer a paid Validation Sprint or Product Spec. Websites and automations can often skip the full Blueprint and scope on the call alone.",
+      "Start small. Book a free 15-minute strategy call. If there's a fit, we run a Scope Session and deliver a free Launch Plan - app map, hero preview, flat price, and timeline - before any build commitment. Need deeper validation first? We offer a paid Validation Sprint or Blueprint. Websites and automations can often skip the full Launch Plan and scope on the call alone.",
   },
   {
     id: "nocode-vs-code",
@@ -25,16 +25,16 @@ export const faqItems: FaqItem[] = [
       "You do. On delivery and final payment, you own the product, codebase, designs, and documentation we produced for the engagement. We don't lock you into our tools or license. Handoff includes repo access, hosting setup, and enough docs for your team - or another partner - to keep shipping.",
   },
   {
-    id: "blueprint",
-    question: "What does the free Blueprint include?",
+    id: "launch-plan",
+    question: "What does the free Launch Plan include?",
     answer:
-      "After a short strategy call and a Scope Session, you get a clear plan before any build commitment: app/page map, hero screen preview, flat investment options, and timeline. No ambiguity on what you're buying. For deeper strategy work - full validation, architecture, and an investor-ready document - we offer a paid Validation Sprint or Product Spec when the project needs it.",
+      "After a short strategy call and a Scope Session, you get a clear plan before any build commitment: app/page map, hero screen preview, flat investment options, and timeline. No ambiguity on what you're buying. For deeper strategy work - full validation, architecture, and an investor-ready document - we offer a paid Validation Sprint or Blueprint when the project needs it.",
   },
   {
     id: "timeline",
     question: "How long does a project take, really?",
     answer:
-      "Our Scope 1 (core MVP) typically takes 4-6 weeks from kickoff to launch. Scope 2 (enhanced features) adds 3-4 weeks on top. Complex platforms run 12-20 weeks. These are realistic estimates built from actual delivery times, not optimistic pitches. We include buffer for feedback cycles and revisions in every proposal. The Blueprint phase (before kickoff) usually takes a week to collect info and produce. Discovery call to live product: typically 6-8 weeks for a standard MVP.",
+      "Our Scope 1 (core MVP) typically takes 4-6 weeks from kickoff to launch. Scope 2 (enhanced features) adds 3-4 weeks on top. Complex platforms run 12-20 weeks. These are realistic estimates built from actual delivery times, not optimistic pitches. We include buffer for feedback cycles and revisions in every proposal. The Launch Plan phase (before kickoff) usually takes a week to collect info and produce. Discovery call to live product: typically 6-8 weeks for a standard MVP.",
   },
   {
     id: "equity",
@@ -47,7 +47,7 @@ export const faqItems: FaqItem[] = [
     question:
       "What if I just need a website or an automation, not a full app?",
     answer:
-      "Absolutely - we handle those independently. Marketing and product websites are scoped on their own. Automation (n8n, AI agents, workflows) starts from a single workflow up. You don't need to buy a full product build to work with us. A 15-minute strategy call is enough to scope a smaller project - no full Blueprint needed for these.",
+      "Absolutely - we handle those independently. Marketing and product websites are scoped on their own. Automation (n8n, AI agents, workflows) starts from a single workflow up. You don't need to buy a full product build to work with us. A 15-minute strategy call is enough to scope a smaller project - no full Launch Plan needed for these.",
   },
   {
     id: "team",
@@ -59,7 +59,7 @@ export const faqItems: FaqItem[] = [
     id: "payment",
     question: "What are your payment terms?",
     answer:
-      "We offer flexible payment terms depending on the project value: 50/50 (half at kickoff, half at launch), or phased (pay per scope as each phase is completed and approved), which can be expanded into multiple months. For retainers, payment is monthly in advance. We don't ask for payment before a contract is signed and scope is agreed in the Blueprint.",
+      "We offer flexible payment terms depending on the project value: 50/50 (half at kickoff, half at launch), or phased (pay per scope as each phase is completed and approved), which can be expanded into multiple months. For retainers, payment is monthly in advance. We don't ask for payment before a contract is signed and scope is agreed in the Launch Plan.",
   },
   {
     id: "after-launch",

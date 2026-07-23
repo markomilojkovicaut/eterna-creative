@@ -21,7 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/resources",
     "/guides",
     "/templates",
-    "/tools/app-cost-calculator",
+    "/calculator",
     "/migration",
     "/careers",
   ].map((path) => ({

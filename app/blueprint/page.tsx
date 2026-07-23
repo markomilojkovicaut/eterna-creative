@@ -33,16 +33,16 @@ export default function BlueprintPage() {
         <div className={cn("relative z-10", LAYOUT_OUTER_CLASS)}>
           <div className={LAYOUT_INNER_CLASS}>
             <SectionHeading
-              label="Blueprint"
+              label="Plans"
               lines={[
-                { text: "Spec first.", variant: "default" },
-                { text: "Built fast.", variant: "gradient" },
+                { text: "Launch Plan.", variant: "default" },
+                { text: "Or Blueprint.", variant: "gradient" },
               ]}
               subheading={
                 <>
-                  Two tiers: a free Blueprint to close the deal with scope and
-                  price, and paid Validation Sprint / Product Spec when
-                  the judgment layer needs to be monetized.
+                  Free Launch Plan to close with scope and price. Paid Validation
+                  Sprint or Blueprint when the judgment layer needs to be
+                  monetized.
                 </>
               }
             />
@@ -97,7 +97,7 @@ export default function BlueprintPage() {
         <SectionHeading
           label="How it works"
           labelVariant="light"
-          lines={[{ text: "Rules of the Blueprint", variant: "default" }]}
+          lines={[{ text: "Rules of the model", variant: "default" }]}
         />
         <ul className="mt-8 max-w-3xl flex flex-col gap-4">
           {blueprintNotes.map((note) => (

@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 
-/** Scope estimator consolidated into product cost calculator for now. */
+/** Scope estimator consolidated into the product cost calculator. */
 export default function BubbleScopeEstimatorPage() {
-  redirect("/tools/app-cost-calculator");
+  redirect("/calculator");
 }

@@ -14,7 +14,7 @@ export function BlogStickyAside({ className }: { className?: string }) {
       )}
     >
       <Link
-        href="/tools/app-cost-calculator"
+        href="/calculator"
         className={cn(
           "group flex flex-col overflow-hidden rounded-soft border border-border-muted bg-bg-muted p-5 no-underline",
           "transition-colors hover:border-brand-purple/40"
