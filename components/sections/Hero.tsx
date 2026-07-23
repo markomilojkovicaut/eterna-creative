@@ -100,7 +100,7 @@ export function Hero() {
                     "mt-0.5 pb-1 text-gradient-hero"
                   )}
                 >
-                  Built to compound, not just launch.
+                  Products that grow with you.
                 </span>
               </h1>
             </Reveal>

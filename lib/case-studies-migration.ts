@@ -1,21 +1,16 @@
 /**
- * Case study template (Bubble → Next) — aligned Jul 2026.
+ * Case study system (modular, product-typed).
  *
- * Canonical layout = NEW Bubble studies (PublicLink, ProSafeNet, FacelessStar, TapGroup).
- * Razmeni / Pets Pilots / StretchWell content is reshaped into the same skeleton.
+ * Recipes: lib/case-study-recipes.ts
+ * Renderer: components/case-study/CaseStudyView.tsx
+ * Content: lib/case-studies.ts (productType + media helpers)
  *
- * Page zones:
- * 1. Dark hero — eyebrow, title, description, Client/Solution/Timeline, outcomes, cover + gallery
- * 2. Challenge → Overview → fact row (category/location/year)
- * 3. Solution → Features
- * 4. Soft calculator CTA
- * 5. Services used → Impact → Results
- * 6. Closing + Book CTA
- * 7. Technologies → founder quote
- * 8. FinalCta (sitewide)
- *
- * Redirects: /case-studies → /portfolio; long + short Bubble slugs → /portfolio/:slug
+ * application: hero → split → solutionBand → features → softCta → impactLight → …
+ * website:     hero → split → strategy+homepage → pages → seo → softCta → impactLight → …
+ * automation:  hero → split → workflow → beforeAfter → stack → softCta → impactLight → …
  */
+
+export { caseStudyRecipes } from "@/lib/case-study-recipes";
 
 export const bubbleCaseStudySlugs = [
   "publiclink",

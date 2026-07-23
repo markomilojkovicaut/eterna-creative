@@ -14,8 +14,12 @@ components/
   ui/                   Reusable primitives — import from @/components/ui
   layout/               Section, Header, Footer
   sections/             Page-specific compositions (thin — data + layout only)
+  case-study/           Modular portfolio detail blocks (Hero, Split, Band, Media…)
+  portfolio/            Portfolio index clients (filters)
 lib/
   *.ts                  Content data (CMS-ready), shared style constants
+  case-studies.ts       Case study content + productType helpers
+  case-study-recipes.ts Recipe contracts per Application / Website / Automation
   layout-constants.ts   Content rail widths
   heading-styles.ts     Display + editorial typography
   surface-styles.ts     Light gradient surfaces
@@ -23,6 +27,14 @@ lib/
   cta-styles.ts         CTA sizing
 public/images/          Static assets (hero-bg, logos, team, reviews, tools)
 ```
+
+### Case study pages
+
+- One study = one `productType` (`application` | `website` | `automation`). Dual-product clients → two studies + `siblingSlug`.
+- Compose via `CaseStudyView` recipes — never a single stacked column.
+- Media slots accept null `src` and render labeled placeholders.
+- Full-white impact band (`CaseStudyImpactLight`) is the contrast beat.
+- Homepage browser-frame media when `productType === "website"` or services include Website.
 
 **Adding a section (checklist)**
 

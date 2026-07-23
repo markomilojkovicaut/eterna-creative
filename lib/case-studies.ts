@@ -1,4 +1,7 @@
 import type { PortfolioItem } from "@/lib/types";
+import type { ProductId } from "@/lib/products";
+
+export type CaseStudyProductType = ProductId;
 
 export interface CaseStudyOutcome {
   value: string;
@@ -28,17 +31,37 @@ export interface CaseStudyClosing {
   body: string;
 }
 
+/** Media slot — null/missing src renders a labeled placeholder. */
+export interface CaseStudyMedia {
+  src?: string | null;
+  alt: string;
+  kind?: "cover" | "device" | "gallery" | "homepage" | "placeholder";
+  label?: string;
+}
+
+/** Website recipe: key marketing pages. */
+export interface CaseStudyPage {
+  title: string;
+  body: string;
+  media?: CaseStudyMedia;
+}
+
+/** Automation recipe: workflow steps. */
+export interface CaseStudyWorkflowStep {
+  title: string;
+  body: string;
+}
+
 /**
- * New Bubble case-study template fields (PublicLink / ProSafeNet / FacelessStar / TapGroup).
- * Older studies (Razmeni / Pets / StretchWell) are reshaped into the same skeleton.
+ * One case study = one product lane (application | website | automation).
+ * Dual-product clients get two studies linked via siblingSlug.
  */
 export interface CaseStudy extends PortfolioItem {
   id: string;
+  productType: CaseStudyProductType;
   imageGradient: string;
   outcomes: CaseStudyOutcome[];
-  /** Hero meta: e.g. MVP Application */
   solutionType: string;
-  /** Hero meta: e.g. 8 weeks */
   timeline: string;
   category: string;
   location: string;
@@ -47,20 +70,109 @@ export interface CaseStudy extends PortfolioItem {
   overview: CaseStudyBulletBlock;
   solution: CaseStudyBulletBlock;
   features: CaseStudyFeature[];
-  /** Short impact lines under Services */
   impact: string[];
   services: string[];
   technologies: string[];
   quote?: CaseStudyQuote;
   closing?: CaseStudyClosing;
+  /** Extra screens beyond cover (application / shared). */
   gallery?: string[];
+  heroMedia?: CaseStudyMedia | null;
+  homepageImage?: string | null;
+  solutionMedia?: CaseStudyMedia | null;
+  featuresMedia?: CaseStudyMedia[];
+  /** Cross-link when client has another product study. */
+  siblingSlug?: string;
+  siblingLabel?: string;
+  /** Website recipe extras */
+  pages?: CaseStudyPage[];
+  seoCro?: CaseStudyBulletBlock;
+  /** Automation recipe extras */
+  workflowSteps?: CaseStudyWorkflowStep[];
+  beforeAfter?: { before: string; after: string };
 }
+
+export function getHeroMedia(study: CaseStudy): CaseStudyMedia {
+  if (study.heroMedia) return study.heroMedia;
+  return {
+    src: study.coverImage || null,
+    alt: `${study.client} product`,
+    kind: "cover",
+    label: "Product UI",
+  };
+}
+
+export function getSolutionMedia(study: CaseStudy): CaseStudyMedia {
+  if (study.solutionMedia) return study.solutionMedia;
+  return {
+    src: study.gallery?.[0] ?? study.coverImage ?? null,
+    alt: `${study.client} solution`,
+    kind: "device",
+    label: "Solution preview",
+  };
+}
+
+export function getGalleryMedia(study: CaseStudy): CaseStudyMedia[] {
+  if (study.featuresMedia && study.featuresMedia.length > 0) {
+    return study.featuresMedia;
+  }
+  const fromGallery = (study.gallery ?? []).map((src, i) => ({
+    src,
+    alt: `${study.client} screen ${i + 1}`,
+    kind: "gallery" as const,
+    label: "Product screen",
+  }));
+  if (fromGallery.length > 0) return fromGallery;
+  return [
+    {
+      src: null,
+      alt: `${study.client} screen`,
+      kind: "placeholder",
+      label: "Product screen",
+    },
+    {
+      src: null,
+      alt: `${study.client} mobile`,
+      kind: "placeholder",
+      label: "Mobile",
+    },
+    {
+      src: null,
+      alt: `${study.client} desktop`,
+      kind: "placeholder",
+      label: "Desktop",
+    },
+  ];
+}
+
+export function studyShowsHomepage(study: CaseStudy): boolean {
+  return (
+    study.productType === "website" ||
+    study.services.some((s) => s.toLowerCase() === "website")
+  );
+}
+
+export function getHomepageMedia(study: CaseStudy): CaseStudyMedia {
+  return {
+    src: study.homepageImage ?? null,
+    alt: `${study.client} homepage`,
+    kind: "homepage",
+    label: "Homepage",
+  };
+}
+
+export const caseStudyProductLabels: Record<CaseStudyProductType, string> = {
+  application: "Application",
+  website: "Website",
+  automation: "Automation",
+};
 
 export const caseStudies: CaseStudy[] = [
   {
     id: "publiclink",
     slug: "publiclink",
     client: "PublicLink",
+    productType: "application",
     tags: ["MVP application", "Community", "8 weeks"],
     solutionType: "MVP Application",
     timeline: "8 weeks",
@@ -141,6 +253,7 @@ export const caseStudies: CaseStudy[] = [
     id: "prosafenet",
     slug: "prosafenet",
     client: "ProSafeNet",
+    productType: "application",
     tags: ["Full-app development", "Community", "8 weeks"],
     solutionType: "Full-app development",
     timeline: "8 weeks",
@@ -223,6 +336,7 @@ export const caseStudies: CaseStudy[] = [
     id: "tap-group",
     slug: "tap-group",
     client: "TapGroup",
+    productType: "application",
     tags: ["MVP development", "Dashboard", "3 weeks"],
     solutionType: "MVP development",
     timeline: "3 weeks",
@@ -298,6 +412,7 @@ export const caseStudies: CaseStudy[] = [
     id: "facelessstar",
     slug: "facelessstar",
     client: "FacelessStar",
+    productType: "application",
     tags: ["MVP development", "AI-powered tools", "3 weeks"],
     solutionType: "MVP Development",
     timeline: "3 weeks",
@@ -373,6 +488,7 @@ export const caseStudies: CaseStudy[] = [
     id: "razmeni",
     slug: "razmeni",
     client: "Razmeni",
+    productType: "application",
     tags: ["Marketplace", "MVP + Growth", "Community"],
     solutionType: "MVP + Growth",
     timeline: "Marketplace build",
@@ -447,6 +563,7 @@ export const caseStudies: CaseStudy[] = [
     id: "pets-pilots",
     slug: "pets-pilots",
     client: "Pets Pilots",
+    productType: "application",
     tags: ["Booking", "MVP", "Marketplace"],
     solutionType: "MVP development",
     timeline: "Booking MVP",
@@ -523,6 +640,7 @@ export const caseStudies: CaseStudy[] = [
     id: "stretchwell",
     slug: "stretchwell",
     client: "StretchWell",
+    productType: "application",
     tags: ["Courses", "Fitness", "Digital product"],
     solutionType: "Digital product",
     timeline: "App launch",
@@ -599,6 +717,13 @@ export function getCaseStudyBySlug(slug: string): CaseStudy | undefined {
 
 export function getAllCaseStudySlugs(): string[] {
   return caseStudies.map((study) => study.slug);
+}
+
+export function getCaseStudiesByProductType(
+  type: CaseStudyProductType | "all"
+): CaseStudy[] {
+  if (type === "all") return caseStudies;
+  return caseStudies.filter((s) => s.productType === type);
 }
 
 /** Bubble URL path → Next portfolio slug (for redirects). */

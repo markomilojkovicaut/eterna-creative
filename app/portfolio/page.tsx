@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 
 import { ContentHubShell } from "@/components/layout/ContentHubShell";
-import { CaseStudyCard } from "@/components/ui/CaseStudyCard";
-import { caseStudies } from "@/lib/case-studies";
+import { PortfolioFilterGrid } from "@/components/portfolio/PortfolioFilterGrid";
 
 export const metadata: Metadata = {
   title: "Portfolio | Eterna",
@@ -25,11 +24,7 @@ export default function PortfolioPage() {
         </>
       }
     >
-      <div className="grid gap-6 md:grid-cols-2 lg:gap-8">
-        {caseStudies.map((study) => (
-          <CaseStudyCard key={study.id} study={study} />
-        ))}
-      </div>
+      <PortfolioFilterGrid />
     </ContentHubShell>
   );
 }

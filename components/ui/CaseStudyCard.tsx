@@ -2,7 +2,10 @@ import Link from "next/link";
 
 import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
 import { DarkTagPill } from "@/components/ui/DarkTagPill";
-import type { CaseStudy } from "@/lib/case-studies";
+import {
+  caseStudyProductLabels,
+  type CaseStudy,
+} from "@/lib/case-studies";
 import { cn } from "@/lib/utils";
 
 /** White CTA — hover / focus only. */
@@ -64,7 +67,7 @@ export function CaseStudyCard({
               className="h-3.5 w-[3px] shrink-0 rounded-full bg-brand-purple-light"
               aria-hidden
             />
-            Case study
+            {caseStudyProductLabels[study.productType]}
           </span>
           <p className="font-heading text-heading-lg font-bold text-text-heading lg:text-display-md">
             {study.client}
