@@ -1,3 +1,4 @@
+import { CaseStudySiblingCard } from "@/components/case-study/CaseStudySibling";
 import { CallToActionLink } from "@/components/ui/CallToActionLink";
 import { Reveal } from "@/components/ui/Reveal";
 import type { CaseStudy } from "@/lib/case-studies";
@@ -31,6 +32,8 @@ export function CaseStudyClosing({ study }: { study: CaseStudy }) {
                 Book a strategy call
               </CallToActionLink>
             </div>
+
+            <CaseStudySiblingCard study={study} className="mt-10" />
           </Reveal>
         </div>
       </div>

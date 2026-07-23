@@ -32,11 +32,11 @@ export function CaseStudyTechStack({
       <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-purple-light">
         Technologies
       </p>
-      <ul className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+      <ul className="mt-4 grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
         {tools.map((tool) => (
           <li
             key={tool.id}
-            className="flex flex-col items-center justify-center gap-2 rounded-soft border border-border-dark bg-bg-card/40 px-3 py-4"
+            className="flex aspect-square flex-col items-center justify-center gap-2 rounded-soft border border-border-dark bg-bg-card/40 p-3"
           >
             <div className="flex size-10 items-center justify-center rounded-full bg-bg-base">
               {tool.logoSrc ? (
@@ -53,7 +53,7 @@ export function CaseStudyTechStack({
                 </span>
               )}
             </div>
-            <p className="text-center text-[12px] font-medium text-text-heading">
+            <p className="text-center text-[11px] font-medium leading-tight text-text-heading">
               {tool.name}
             </p>
           </li>

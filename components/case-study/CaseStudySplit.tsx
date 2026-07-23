@@ -87,16 +87,15 @@ export function CaseStudySplit({
   const linkedinUrl = study.linkedinUrl;
 
   return (
-    <section className="bg-bg-base py-section">
+    <section className="bg-bg-base pb-section pt-0">
       <div className={LAYOUT_OUTER_CLASS}>
         <div
           className={cn(
             LAYOUT_INNER_CLASS,
-            /* Aside ~40px narrower than prior ~38% column */
-            "grid gap-10 lg:grid-cols-[minmax(0,calc(38%-40px))_minmax(0,1fr)] lg:items-start lg:gap-12"
+            "grid gap-10 lg:grid-cols-[minmax(0,320px)_minmax(0,1fr)] lg:items-start lg:gap-12"
           )}
         >
-          <Reveal className="lg:sticky lg:top-24">
+          <Reveal className="w-full max-w-[320px] lg:sticky lg:top-24">
             <aside className="rounded-soft border border-border-dark bg-bg-card/35 p-5 sm:p-6">
               <MetaRow label="App category" value={study.category} />
               <MetaRow label="Location" value={study.location} />

@@ -30,7 +30,7 @@ export function CaseStudyHero({ study }: { study: CaseStudy }) {
   const heroMedia = getHeroMedia(study);
 
   return (
-    <section className="relative overflow-hidden bg-bg-base pb-section pt-section">
+    <section className="relative overflow-hidden bg-bg-base pb-[120px] pt-section">
       <DarkSectionBackdrop {...sectionBackdropPresets.challenges} />
       <div className={cn("relative z-10", LAYOUT_OUTER_CLASS)}>
         <div className={LAYOUT_INNER_CLASS}>

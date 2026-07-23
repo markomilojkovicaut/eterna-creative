@@ -25,7 +25,13 @@ export interface CaseStudyReviewSource {
 }
 
 export interface CaseStudyQuote {
+  /** Full testimonial (bottom quote block). */
   quote: string;
+  /**
+   * Shorter mid-page pull quote — must differ from `quote`.
+   * Omit to hide the pull quote (avoids duplication).
+   */
+  pullQuote?: string;
   name: string;
   role: string;
   avatarSrc?: string;
@@ -306,6 +312,8 @@ export const caseStudies: CaseStudy[] = [
       body: "PublicLink shows how deeply understanding one professional community can create outsized value, fast. If you're building for a niche that generic networks ignore, we'll help you scope the MVP that proves it.",
     },
     quote: {
+      pullQuote:
+        "Overall, the team has performed better than any other project I've worked on in the IT industry.",
       quote:
         "An amazing job done by Marko and the team, the quality and timeliness of delivery being absolutely spot-on. More than just delivery itself, I had a great time working with Marko, debating ideas and shaping the product.",
       name: "Radu Antohe",
@@ -400,6 +408,8 @@ export const caseStudies: CaseStudy[] = [
       body: "ProSafeNet proves strategic vision plus focused product craft can create category-defining communities fast. If you're connecting a specialized profession, we'll help you ship the version that earns trust.",
     },
     quote: {
+      pullQuote:
+        "They have a great team, and they were great! 1000 users in first 3 months, 20% conversion rate, 2 official sponsors inside first 2 months.",
       quote:
         "Working with Eterna transformed my vision into reality faster than I ever imagined possible. What started as an idea to connect safety professionals became a thriving global community.",
       name: "Dr. Vladimir M. Cvetkovic",
@@ -492,6 +502,8 @@ export const caseStudies: CaseStudy[] = [
     services: ["Website", "Web application", "UI/UX Design", "Product strategy"],
     technologies: ["Bubble", "Brevo"],
     quote: {
+      pullQuote:
+        "I'm not into apps, but we needed a solution - the TapAPP Marko made solved it easily and our inventory management is at least 50% faster now.",
       quote:
         "The paper tracking system was holding us back - I and colleagues were constantly dealing with missing records and couldn't track who sold or bought what. The TapAPP Marko made solved everything and now we have real-time view and complete history, and our inventory management is 50% faster at least.",
       name: "Boban Miljkovic",
@@ -580,6 +592,8 @@ export const caseStudies: CaseStudy[] = [
       body: "FacelessStar proves focus beats features. We built an AI MVP for one specific problem - and got traction because of that focus. We'll help you pick the few features that matter for validation.",
     },
     quote: {
+      pullQuote:
+        "Weekly Loom updates and the Notion portal were a game changer - all decisions, files, tasks in one place. These guys have good processes.",
       quote:
         "I was losing students who'd get stuck on basic setup questions like 'who should my audience be?' and never move forward with my course. The team built these AI tools in 3 weeks that let people get a logo and audience plan in 5 minutes, and suddenly they're excited to start instead of overwhelmed. The results speak for themselves - 40% of tool users convert to paid customers.",
       name: "Stefan Petricevic",
@@ -747,8 +761,10 @@ export const caseStudies: CaseStudy[] = [
       body: "We'll help you validate the marketplace loop - demand, supply, and trust - before you scale features.",
     },
     quote: {
+      pullQuote:
+        "They were amazing from day 1 - our partner not only in development but also helping us what to build next.",
       quote:
-        "Eterna built our app for pet transport, and they were amazing from day 1, and have been our partner not only in development but also helping us what to build next.",
+        "Eterna built our app for pet transport, and they were amazing from day 1, and have been our partner not only in development but also helping us what to build next. Highly recommend!",
       name: "Marko Savic",
       role: "Founder, PetsPilots",
       avatarSrc: "/images/reviews/marko-savic.png",
@@ -836,6 +852,15 @@ export const caseStudies: CaseStudy[] = [
       title: "Want to turn your physical service into a digital product?",
       body: "We'll help you productize what already works offline - without diluting the brand.",
     },
+    quote: {
+      pullQuote:
+        "The whole process was cool, and the team solved all the technical challenges we worried about, especially around video security.",
+      quote:
+        "This platform lets us help the thousands of followers who couldn't access our stretching services before - with our own app. The whole process was cool, and the team solved all the technical challenges we worried about, especially around video security.",
+      name: "Miloš Djordjevic",
+      role: "Founder & CEO, Stretch Well",
+      avatarSrc: "/images/reviews/milos-djordjevic.png",
+    },
   },
   {
     id: "publiclink-website",
@@ -916,6 +941,19 @@ export const caseStudies: CaseStudy[] = [
       "The site gave PublicLink a credible front door - visitors understood the niche before they created an account.",
     services: ["Website", "UI/UX Design", "E-mail marketing"],
     technologies: ["Bubble", "Notion"],
+    quote: {
+      pullQuote:
+        "Overall, the team has performed better than any other project I've worked on in the IT industry.",
+      quote:
+        "An amazing job done by Marko and the team, the quality and timeliness of delivery being absolutely spot-on. More than just delivery itself, I had a great time working with Marko, debating ideas and shaping the product.",
+      name: "Radu Antohe",
+      role: "Founder, PublicLink",
+      avatarSrc: "/images/reviews/radu-antohe.png",
+      reviewSource: {
+        label: "Clutch review",
+        href: "https://clutch.co",
+      },
+    },
     closing: {
       title: "Need a launch site that matches your MVP?",
       body: "We'll position the category and ship a site that converts the right early users - not everyone.",
@@ -999,6 +1037,19 @@ export const caseStudies: CaseStudy[] = [
       "Prospective members and sponsors could evaluate ProSafeNet before creating an account - reducing skepticism at the door.",
     services: ["Website", "UI/UX Design", "E-mail marketing", "Product strategy"],
     technologies: ["Bubble", "Notion", "Brevo"],
+    quote: {
+      pullQuote:
+        "They have a great team, and they were great!",
+      quote:
+        "Working with Eterna transformed my vision into reality faster than I ever imagined possible. What started as an idea to connect safety professionals became a thriving global community.",
+      name: "Dr. Vladimir M. Cvetkovic",
+      role: "Founder, ProSafeNet",
+      avatarSrc: "/images/reviews/vladimir-cvetkovic.png",
+      reviewSource: {
+        label: "Clutch review",
+        href: "https://clutch.co",
+      },
+    },
     closing: {
       title: "Building a professional community?",
       body: "We'll help you ship a site that earns expert trust - then convert into the product.",
@@ -1081,6 +1132,15 @@ export const caseStudies: CaseStudy[] = [
       "TapGroup presents as a digitally run event operator - matching the internal leap TapAPP delivered.",
     services: ["Website", "UI/UX Design", "Product strategy"],
     technologies: ["Bubble", "Brevo"],
+    quote: {
+      pullQuote:
+        "I'm not into apps, but we needed a solution - and our inventory management is at least 50% faster now.",
+      quote:
+        "The paper tracking system was holding us back - I and colleagues were constantly dealing with missing records and couldn't track who sold or bought what. The TapAPP Marko made solved everything and now we have real-time view and complete history, and our inventory management is 50% faster at least.",
+      name: "Boban Miljkovic",
+      role: "Owner, TapGroup",
+      avatarSrc: "/images/reviews/boban-miljkovic.png",
+    },
     closing: {
       title: "Ops app + website, same system",
       body: "We'll connect your public brand to the tools your team actually runs on.",
@@ -1163,6 +1223,15 @@ export const caseStudies: CaseStudy[] = [
       "The site and tools work as one system - visitors get a quick win, then a natural path into FacelessStar courses.",
     services: ["Website", "UI/UX Design", "Product strategy"],
     technologies: ["Bubble", "OpenAI", "Notion"],
+    quote: {
+      pullQuote:
+        "Weekly Loom updates and the Notion portal were a game changer - these guys have good processes.",
+      quote:
+        "I was losing students who'd get stuck on basic setup questions like 'who should my audience be?' and never move forward with my course. The team built these AI tools in 3 weeks that let people get a logo and audience plan in 5 minutes, and suddenly they're excited to start instead of overwhelmed. The results speak for themselves - 40% of tool users convert to paid customers.",
+      name: "Stefan Petricevic",
+      role: "CEO, FacelessStar",
+      avatarSrc: "/images/reviews/stefan-petricevic.png",
+    },
     closing: {
       title: "Want AI tools that feed your offer?",
       body: "We'll design the site and product as one conversion loop - not two disconnected builds.",

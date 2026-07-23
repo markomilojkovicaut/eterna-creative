@@ -1,4 +1,3 @@
-import { CaseStudyBand } from "@/components/case-study/CaseStudyBand";
 import { CaseStudyTechStack } from "@/components/case-study/CaseStudyExtras";
 import { CaseStudyMedia } from "@/components/case-study/CaseStudyMedia";
 import { Reveal } from "@/components/ui/Reveal";
@@ -14,80 +13,89 @@ import {
 } from "@/lib/layout-constants";
 import { cn } from "@/lib/utils";
 
+/**
+ * Application recipe: solution + vertical features (left), sticky image (right),
+ * then 3 gallery images 40px below — no divider line.
+ */
 export function CaseStudySolutionBand({ study }: { study: CaseStudy }) {
   const media = getSolutionMedia(study);
+  const gallery = getGalleryMedia(study).slice(0, 3);
 
   return (
-    <CaseStudyBand tone="elevated">
-      <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-14">
-        <div className="max-w-xl">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-purple-light">
-            Solution
-          </p>
-          {study.solution.title ? (
-            <h2 className="mt-3 font-heading text-heading-lg font-bold text-text-heading">
-              {study.solution.title}
-            </h2>
-          ) : null}
-          <p className="mt-4 text-body-md leading-relaxed text-text-body">
-            {study.solution.body}
-          </p>
-        </div>
-        <CaseStudyMedia media={media} aspectClass="aspect-[16/11]" />
-      </div>
-    </CaseStudyBand>
-  );
-}
-
-export function CaseStudyFeatures({ study }: { study: CaseStudy }) {
-  const gallery = getGalleryMedia(study);
-
-  return (
-    <section className="bg-bg-base py-section">
+    <section className="bg-bg-base pb-section pt-0">
       <div className={LAYOUT_OUTER_CLASS}>
         <div className={LAYOUT_INNER_CLASS}>
-          <Reveal>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-purple-light">
-              Features
-            </p>
-            <ul className="mt-8 grid gap-8 sm:grid-cols-2">
-              {study.features.map((feature) => (
-                <li key={feature.title}>
-                  <h3 className="font-heading text-heading-sm font-bold text-text-heading">
-                    {feature.title}
-                  </h3>
-                  <p className="mt-2 text-body-md leading-relaxed text-text-body">
-                    {feature.body}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-start lg:gap-14">
+            <Reveal className="min-w-0">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-purple-light">
+                Solution
+              </p>
+              {study.solution.title ? (
+                <h2 className="mt-3 font-heading text-heading-lg font-bold text-text-heading">
+                  {study.solution.title}
+                </h2>
+              ) : null}
+              <p className="mt-4 text-body-md leading-relaxed text-text-body">
+                {study.solution.body}
+              </p>
 
-          <Reveal delay={100}>
-            <div
-              className={cn(
-                "mt-12 grid gap-4",
-                gallery.length === 1
-                  ? "grid-cols-1"
-                  : gallery.length === 2
-                    ? "sm:grid-cols-2"
-                    : "sm:grid-cols-2 lg:grid-cols-3"
-              )}
-            >
-              {gallery.slice(0, 3).map((media) => (
-                <CaseStudyMedia
-                  key={`${media.alt}-${media.src ?? media.label}`}
-                  media={media}
-                  aspectClass="aspect-[16/10]"
-                />
-              ))}
-            </div>
-          </Reveal>
+              {study.features.length > 0 ? (
+                <div className="mt-10">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-purple-light">
+                    Features
+                  </p>
+                  <ul className="mt-6 space-y-6">
+                    {study.features.map((feature) => (
+                      <li key={feature.title}>
+                        <h3 className="font-heading text-heading-sm font-bold text-text-heading">
+                          {feature.title}
+                        </h3>
+                        <p className="mt-2 text-body-md leading-relaxed text-text-body">
+                          {feature.body}
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+            </Reveal>
+
+            <Reveal delay={80} className="lg:sticky lg:top-24">
+              <CaseStudyMedia media={media} aspectClass="aspect-[16/11]" />
+            </Reveal>
+          </div>
+
+          {gallery.length > 0 ? (
+            <Reveal delay={100}>
+              <div
+                className={cn(
+                  "mt-10 grid gap-4",
+                  gallery.length === 1
+                    ? "grid-cols-1"
+                    : gallery.length === 2
+                      ? "sm:grid-cols-2"
+                      : "sm:grid-cols-2 lg:grid-cols-3"
+                )}
+              >
+                {gallery.map((item) => (
+                  <CaseStudyMedia
+                    key={`${item.alt}-${item.src ?? item.label}`}
+                    media={item}
+                    aspectClass="aspect-[16/10]"
+                  />
+                ))}
+              </div>
+            </Reveal>
+          ) : null}
         </div>
       </div>
     </section>
   );
+}
+
+/** @deprecated Combined into CaseStudySolutionBand — kept for import safety. */
+export function CaseStudyFeatures({ study }: { study: CaseStudy }) {
+  return <CaseStudySolutionBand study={study} />;
 }
 
 export function CaseStudyResults({ study }: { study: CaseStudy }) {

@@ -9,8 +9,11 @@ import {
   LAYOUT_OUTER_CLASS,
 } from "@/lib/layout-constants";
 
-/** Compact left-aligned pull quote (~50% width) to break full-bleed rhythm. */
+/** Compact left-aligned pull quote (~50% width) — uses quote.pullQuote. */
 export function CaseStudyPullQuote({ quote }: { quote: Quote }) {
+  const text = quote.pullQuote?.trim();
+  if (!text) return null;
+
   return (
     <section className="bg-bg-base py-10 sm:py-14">
       <div className={LAYOUT_OUTER_CLASS}>
@@ -19,7 +22,7 @@ export function CaseStudyPullQuote({ quote }: { quote: Quote }) {
             <figure className="w-full max-w-xl border-l border-brand-purple-light/40 pl-5 lg:max-w-[50%] sm:pl-6">
               <QuoteIcon className="mb-3 !h-5 !w-5" />
               <blockquote className="font-heading text-[1.05rem] font-normal leading-[1.4] tracking-[-0.015em] text-text-heading sm:text-[1.2rem]">
-                &ldquo;{quote.quote}&rdquo;
+                &ldquo;{text}&rdquo;
               </blockquote>
               <figcaption className="mt-4 flex items-center gap-2.5">
                 <ReviewAvatar

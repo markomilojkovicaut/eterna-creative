@@ -9,19 +9,17 @@ export const caseStudyRecipes: Record<
   readonly string[]
 > = {
   application: [
-    "hero",
-    "split", // roles + company/LinkedIn CTAs when set
-    "solutionBand",
-    "features",
-    "beforeAfter?", // when set (ops-heavy apps)
-    "productVideo?", // when productVideoUrl set
-    "pullQuote?",
+    "hero", // 120px below main image to next section
+    "split", // aside max 320px; roles + company/LinkedIn
+    "solutionFeaturesSticky", // solution + vertical features | sticky image; gallery +40px, no divider
+    "beforeAfter?",
+    "productVideo?",
+    "pullQuote?", // quote.pullQuote — must differ from full quote
     "softCta",
     "impactLight",
-    "results", // tech stack logos
-    "closing",
-    "quote", // reviewSource link when set
-    "sibling?", // sister website/app study
+    "results", // square tech logos
+    "closing", // includes sibling card when set
+    "quote",
     "finalCta",
   ],
   website: [
@@ -35,16 +33,15 @@ export const caseStudyRecipes: Record<
     "softCta",
     "impactLight",
     "results",
-    "closing",
+    "closing", // includes sibling
     "quote",
-    "sibling?",
     "finalCta",
   ],
   automation: [
     "hero",
     "splitOps",
     "workflowBand",
-    "beforeAfter", // in automation middle when set
+    "beforeAfter",
     "stack",
     "productVideo?",
     "pullQuote?",
@@ -53,7 +50,6 @@ export const caseStudyRecipes: Record<
     "results",
     "closing",
     "quote",
-    "sibling?",
     "finalCta",
   ],
 } as const;

@@ -10,12 +10,10 @@ import {
 } from "@/components/case-study/CaseStudyExtras";
 import {
   CaseStudyAutomationMiddle,
-  CaseStudyFeatures,
   CaseStudyResults,
   CaseStudySolutionBand,
   CaseStudyWebsiteMiddle,
 } from "@/components/case-study/CaseStudySections";
-import { CaseStudySibling } from "@/components/case-study/CaseStudySibling";
 import { CaseStudySoftCta } from "@/components/case-study/CaseStudySoftCta";
 import { CaseStudySplit } from "@/components/case-study/CaseStudySplit";
 import { CaseStudyBand } from "@/components/case-study/CaseStudyBand";
@@ -28,9 +26,14 @@ import { HEADER_OFFSET_CLASS } from "@/lib/layout-constants";
 
 /**
  * Recipe renderer by productType.
- * Shared DNA: hero → split → band → middle → beforeAfter? → video? → pullQuote → softCta → impact → results → close → quote → sibling → FinalCta
+ * Shared DNA: hero → split → solution/features → … → closing (+ sibling) → quote → FinalCta
  */
 export function CaseStudyView({ study }: { study: CaseStudy }) {
+  const pullText = study.quote?.pullQuote?.trim();
+  const showPullQuote = Boolean(
+    pullText && pullText !== study.quote?.quote.trim()
+  );
+
   return (
     <main className={HEADER_OFFSET_CLASS}>
       <CaseStudyHero study={study} />
@@ -98,9 +101,7 @@ export function CaseStudyView({ study }: { study: CaseStudy }) {
         <CaseStudyWebsiteMiddle study={study} />
       ) : study.productType === "automation" ? (
         <CaseStudyAutomationMiddle study={study} />
-      ) : (
-        <CaseStudyFeatures study={study} />
-      )}
+      ) : null}
 
       {study.beforeAfter && study.productType !== "automation" ? (
         <CaseStudyBeforeAfter
@@ -113,14 +114,15 @@ export function CaseStudyView({ study }: { study: CaseStudy }) {
         <CaseStudyVideo url={study.productVideoUrl} />
       ) : null}
 
-      {study.quote ? <CaseStudyPullQuote quote={study.quote} /> : null}
+      {showPullQuote && study.quote ? (
+        <CaseStudyPullQuote quote={study.quote} />
+      ) : null}
 
       <CaseStudySoftCta />
       <CaseStudyImpactLight study={study} />
       <CaseStudyResults study={study} />
       <CaseStudyClosing study={study} />
       {study.quote ? <CaseStudyQuote quote={study.quote} /> : null}
-      <CaseStudySibling study={study} />
       <FinalCta />
     </main>
   );
