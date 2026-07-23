@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+import { bubbleCaseStudyRedirects } from "@/lib/case-studies";
+
 /**
  * Preserve Bubble SEO equity: old /post/:slug URLs redirect to /blog/:slug.
  * Full slug map is also emitted in sitemap via content/blog/index.json.
@@ -56,6 +58,21 @@ const nextConfig: NextConfig = {
       {
         source: "/launch-plan",
         destination: "/book",
+        permanent: true,
+      },
+      {
+        source: "/case-studies",
+        destination: "/portfolio",
+        permanent: true,
+      },
+      ...Object.entries(bubbleCaseStudyRedirects).map(([from, to]) => ({
+        source: `/case-study/${from}`,
+        destination: `/portfolio/${to}`,
+        permanent: true,
+      })),
+      {
+        source: "/case-study/:slug",
+        destination: "/portfolio",
         permanent: true,
       },
     ];

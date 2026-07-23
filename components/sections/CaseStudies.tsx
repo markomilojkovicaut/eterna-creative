@@ -41,7 +41,7 @@ export function CaseStudies() {
           </Reveal>
 
           <div className="mt-14 grid gap-6 md:grid-cols-2 lg:mt-16 lg:gap-8">
-            {caseStudies.map((study, index) => (
+            {caseStudies.slice(0, 4).map((study, index) => (
               <Reveal key={study.id} delay={80 + index * 90}>
                 <CaseStudyCard study={study} />
               </Reveal>

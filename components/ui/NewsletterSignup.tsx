@@ -1,7 +1,9 @@
 "use client";
 
+import { ArrowUpRight } from "@/components/ui/ArrowUpRight";
 import { DarkSectionBackdrop } from "@/components/ui/DarkSectionBackdrop";
 import { newsletterCopy } from "@/lib/footer";
+import { ctaSizeClasses } from "@/lib/cta-styles";
 import { sectionBackdropPresets } from "@/lib/section-backdrops";
 import { cn } from "@/lib/utils";
 
@@ -27,32 +29,40 @@ export function NewsletterSignup({ className }: { className?: string }) {
           {newsletterCopy.title}
         </h3>
 
-        <form className="mt-4 flex gap-2" onSubmit={(e) => e.preventDefault()}>
+        <form
+          className="mt-5 flex flex-col gap-2.5"
+          onSubmit={(e) => e.preventDefault()}
+        >
+          <label className="sr-only" htmlFor="newsletter-email">
+            Email address
+          </label>
           <input
+            id="newsletter-email"
             type="email"
             name="email"
             placeholder={newsletterCopy.placeholder}
             className={cn(
-              "min-w-0 flex-1 rounded-soft border border-border-dark bg-bg-base/60 px-4 py-2.5",
+              "min-h-[40px] w-full rounded-soft border border-border-dark bg-bg-base/70 px-4",
               "text-body-sm text-text-heading placeholder:text-text-muted",
-              "outline-none transition-colors focus:border-border-strong"
+              "outline-none transition-[border-color,box-shadow]",
+              "focus:border-brand-purple-light/50 focus:shadow-[0_0_0_3px_rgba(184,184,255,0.18)]"
             )}
-            aria-label="Email address"
+            autoComplete="email"
           />
           <button
             type="submit"
             className={cn(
-              "inline-flex size-10 shrink-0 items-center justify-center rounded-soft",
-              "border border-border-dark bg-bg-card/80 text-brand-purple-light",
-              "transition-colors hover:border-border-strong hover:bg-bg-card"
+              "inline-flex w-full items-center justify-center rounded-soft bg-text-heading font-semibold !text-bg-base",
+              "transition-opacity hover:opacity-90",
+              ctaSizeClasses.default
             )}
-            aria-label="Subscribe"
           >
-            <span aria-hidden>→</span>
+            Subscribe
+            <ArrowUpRight className="!text-bg-base" />
           </button>
         </form>
 
-        <p className="mt-2.5 text-[13px] leading-relaxed text-text-sub">
+        <p className="mt-3 text-[13px] leading-relaxed text-text-sub">
           {newsletterCopy.subline}
         </p>
       </div>

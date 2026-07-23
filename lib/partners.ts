@@ -40,6 +40,7 @@ export const partners: Partner[] = [
     id: "stretchwell",
     name: "StretchWell",
     logoSrc: "/images/partners/stretchwell.png",
+    caseStudySlug: "stretchwell",
   },
   {
     id: "slikaj-sa-psima",
@@ -50,6 +51,7 @@ export const partners: Partner[] = [
     id: "pets-pilots",
     name: "Pets Pilots",
     logoSrc: "/images/partners/pets-pilots.png",
+    caseStudySlug: "pets-pilots",
   },
   {
     id: "llm-bench",
@@ -60,5 +62,6 @@ export const partners: Partner[] = [
     id: "razmeni",
     name: "Razmeni",
     logoSrc: "/images/partners/razmeni.png",
+    caseStudySlug: "razmeni",
   },
 ];

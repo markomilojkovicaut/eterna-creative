@@ -5,6 +5,7 @@ import { ContentHubShell } from "@/components/layout/ContentHubShell";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { ResourceBentoCard } from "@/components/ui/ResourceBentoCard";
+import { NewsletterSignup } from "@/components/ui/NewsletterSignup";
 import { SecondaryCtaLink } from "@/components/ui/SecondaryCtaLink";
 import { blogPosts } from "@/lib/blog-posts";
 import { guides } from "@/lib/guides-content";
@@ -116,6 +117,21 @@ export default function ResourcesPage() {
               </Card>
             </Link>
           ))}
+        </div>
+      </div>
+
+      <div className="mt-section">
+        <div className="max-w-xl">
+          <h2 className="font-heading text-heading-md font-bold text-text-heading">
+            Newsletter
+          </h2>
+          <p className="mt-2 text-body-md text-text-body">
+            Founder notes on validating, scoping, and shipping — once a week,
+            no fluff.
+          </p>
+          <div className="mt-6">
+            <NewsletterSignup />
+          </div>
         </div>
       </div>
     </ContentHubShell>
