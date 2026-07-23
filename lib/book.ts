@@ -1,7 +1,7 @@
 export const bookPageMeta = {
   title: "Book a strategy call | Eterna",
   description:
-    "Free 15-minute strategy call with Eterna - qualify fit, scope, and next steps for your product.",
+    "Free 15-minute strategy call with Eterna - then a Launch Plan for your application, automation, or website before any build commitment.",
 };
 
 export const bookExpectations = [
@@ -15,15 +15,34 @@ export const bookExpectations = [
     id: "map",
     title: "Map the path",
     description:
-      "You leave with a clear sense of what to build first, what to defer, and whether custom code or no-code fits.",
+      "You leave with a clear sense of what to build first (application, automation, or website), what to defer, and the smartest stack for your stage.",
   },
   {
     id: "next",
-    title: "Book the Scope Session",
+    title: "Get your Launch Plan",
     description:
-      "If there is a fit, we schedule a free 1-hour Scope Session for another day - where we produce your Launch Plan.",
+      "If there is a fit, we book a free Scope Session and deliver your Launch Plan - map, preview, flat price, timeline - before any build commitment.",
   },
 ];
+
+/** Product-agnostic Launch Plan outcomes shown on the Book page. */
+export const bookLaunchPlanOutcomes = [
+  {
+    id: "application",
+    label: "Application",
+    description: "Screen map, hero preview, MVP scope, flat build options.",
+  },
+  {
+    id: "automation",
+    label: "Automation",
+    description: "Workflow map, systems to connect, timeline, flat price.",
+  },
+  {
+    id: "website",
+    label: "Website",
+    description: "IA / page map, key page direction, timeline, flat price.",
+  },
+] as const;
 
 export const calEmbed = {
   namespace: "15min",

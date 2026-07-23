@@ -55,12 +55,19 @@ export function FinalCta() {
                   Book a strategy call
                 </CallToActionLink>
                 <p className="mt-4 text-body-sm text-text-muted">
-                  Not ready to talk?{" "}
+                  Want the path first?{" "}
+                  <Link
+                    href="/book"
+                    className="font-medium text-brand-purple-light no-underline transition-colors hover:text-text-heading"
+                  >
+                    Book a free call
+                  </Link>
+                  {" · "}
                   <Link
                     href="/blueprint"
                     className="font-medium text-brand-purple-light no-underline transition-colors hover:text-text-heading"
                   >
-                    See how the Launch Plan works
+                    How the Launch Plan works
                   </Link>
                   .
                 </p>

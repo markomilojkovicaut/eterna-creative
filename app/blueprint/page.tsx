@@ -13,7 +13,11 @@ import {
   LAYOUT_INNER_CLASS,
   LAYOUT_OUTER_CLASS,
 } from "@/lib/layout-constants";
-import { sectionBackdropPresets, investmentTopBandClass, investmentTopBandFadeClass } from "@/lib/section-backdrops";
+import {
+  sectionBackdropPresets,
+  investmentTopBandClass,
+  investmentTopBandFadeClass,
+} from "@/lib/section-backdrops";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -33,19 +37,23 @@ export default function BlueprintPage() {
         <div className={cn("relative z-10", LAYOUT_OUTER_CLASS)}>
           <div className={LAYOUT_INNER_CLASS}>
             <SectionHeading
-              label="Plans"
+              label="Start here"
               lines={[
-                { text: "Launch Plan.", variant: "default" },
-                { text: "Or Blueprint.", variant: "gradient" },
+                { text: "Free Launch", variant: "default" },
+                { text: "Plan", variant: "gradient" },
               ]}
               subheading={
                 <>
-                  Free Launch Plan to close with scope and price. Paid Validation
-                  Sprint or Blueprint when the judgment layer needs to be
-                  monetized.
+                  Book a strategy call. If there&apos;s a fit, you get a Launch
+                  Plan for your application, automation, or website - scope,
+                  preview, flat price, timeline - before any build commitment.
+                  Paid Blueprint stays an upsell for complex builds.
                 </>
               }
             />
+            <CallToActionLink href="/book" className="mt-8 w-fit">
+              Book a strategy call
+            </CallToActionLink>
           </div>
         </div>
       </section>
@@ -58,14 +66,20 @@ export default function BlueprintPage() {
                 key={tier.id}
                 className={cn(
                   "relative flex flex-col p-6 sm:p-8",
-                  tier.highlight && "bg-bg-card/40"
+                  tier.highlight && "bg-bg-card/40",
+                  tier.upsell && "opacity-95"
                 )}
               >
-                {tier.highlight && (
+                {tier.highlight ? (
                   <span className="absolute right-4 top-4 rounded-soft border border-border-strong bg-bg-card px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-brand-pink">
-                    Popular path
+                    Early path
                   </span>
-                )}
+                ) : null}
+                {tier.upsell ? (
+                  <span className="absolute right-4 top-4 rounded-soft border border-border-dark bg-bg-base/60 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-text-muted">
+                    Upsell if needed
+                  </span>
+                ) : null}
                 <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-purple-light">
                   {tier.priceLabel}
                 </p>
@@ -99,7 +113,7 @@ export default function BlueprintPage() {
           labelVariant="light"
           lines={[{ text: "Rules of the model", variant: "default" }]}
         />
-        <ul className="mt-8 max-w-3xl flex flex-col gap-4">
+        <ul className="mt-8 flex max-w-3xl flex-col gap-4">
           {blueprintNotes.map((note) => (
             <li
               key={note}

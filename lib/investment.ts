@@ -37,16 +37,16 @@ export const engagementPathSteps: EngagementPathStep[] = [
     number: "02",
     title: "Launch Plan",
     description:
-      "Free Scope Session deliverable: app map, hero preview, flat price, timeline. Deeper Validation Sprint or Blueprint when the project needs it.",
-    href: "/blueprint",
-    ctaLabel: "See Launch Plan",
+      "Free Scope Session deliverable shaped to your product - map, preview, flat price, timeline. Websites and smaller automations can often scope on the call alone.",
+    href: "/book",
+    ctaLabel: "Book a call",
   },
   {
     id: "build",
     number: "03",
     title: "Build",
     description:
-      "You approve the plan, then we ship with the Eterna Method - owned code, senior team, full visibility. No surprises after kickoff.",
+      "You approve the Launch Plan, then we ship with the Eterna Method - owned code, senior team, full visibility. No surprises after kickoff.",
   },
 ];
 

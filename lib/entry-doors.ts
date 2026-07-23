@@ -11,9 +11,9 @@ export const entryDoors: EntryDoor[] = [
     id: "idea",
     title: "I have an idea",
     description:
-      "We validate it, plan it, and build it - from free Launch Plan to live product.",
-    ctaLabel: "See the Launch Plan",
-    href: "/blueprint",
+      "We validate it, plan it, and build it - from a free strategy call and Launch Plan to live product.",
+    ctaLabel: "Book a strategy call",
+    href: "/book",
   },
   {
     id: "rescue",

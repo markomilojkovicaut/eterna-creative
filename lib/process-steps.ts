@@ -37,7 +37,7 @@ export const processSteps: ProcessStep[] = [
     phase: "Launch Plan",
     title: "We deliver your Launch Plan",
     description:
-      "Before any build commitment, you get a clear plan: app/page map, hero preview, flat investment, and timeline. No ambiguity on what you're buying. No surprises.",
+      "Before any build commitment, you get a clear plan shaped to your product: application map, automation workflow map, or website IA - plus preview, flat investment, and timeline when the project needs it.",
     tags: [
       "Hero screen design",
       "Full app map",

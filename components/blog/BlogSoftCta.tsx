@@ -18,15 +18,10 @@ export function BlogSoftCta({ className }: { className?: string }) {
           className="font-semibold text-brand-purple no-underline underline-offset-2 hover:underline"
         >
           Book a free strategy call
-        </Link>{" "}
-        — or start with a free{" "}
-        <Link
-          href="/blueprint"
-          className="font-semibold text-brand-purple no-underline underline-offset-2 hover:underline"
-        >
-          Launch Plan
         </Link>
-        .
+        {" "}
+        - if there&apos;s a fit, you get a free Launch Plan before any build
+        commitment.
       </p>
     </aside>
   );

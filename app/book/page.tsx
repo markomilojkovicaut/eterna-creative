@@ -5,7 +5,12 @@ import { CalInlineEmbed } from "@/components/book/CalInlineEmbed";
 import { Section } from "@/components/layout/Section";
 import { DarkSectionBackdrop, SectionHeading } from "@/components/ui";
 import { DarkFaqAccordion } from "@/components/ui/DarkFaqAccordion";
-import { bookExpectations, bookPageMeta, calEmbed } from "@/lib/book";
+import {
+  bookExpectations,
+  bookLaunchPlanOutcomes,
+  bookPageMeta,
+  calEmbed,
+} from "@/lib/book";
 import { faqItems } from "@/lib/faq";
 import {
   HEADER_OFFSET_CLASS,
@@ -40,8 +45,9 @@ export default function BookPage() {
               ]}
               subheading={
                 <>
-                  Low friction, high signal. We qualify fit, map your next
-                  step, and tell you honestly if we are not the right match.
+                  Low friction, high signal. We qualify fit for your application,
+                  automation, or website - then, if there&apos;s a match, you get
+                  a free Launch Plan before any build commitment.
                 </>
               }
             />
@@ -111,6 +117,35 @@ export default function BookPage() {
       </section>
 
       <Section background="surface" className="text-text-ink-sub">
+        <SectionHeading
+          label="After the call"
+          labelVariant="light"
+          lines={[{ text: "Your free Launch Plan", variant: "default" }]}
+          subheading="Same offer across products - the shape of the plan matches what you're building. Websites and smaller automations can often scope on the call alone."
+        />
+        <div className="mt-10 grid gap-4 sm:grid-cols-3">
+          {bookLaunchPlanOutcomes.map((item) => (
+            <div
+              key={item.id}
+              className="rounded-soft border border-border-muted bg-bg-muted px-5 py-5"
+            >
+              <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-text-ink-muted">
+                {item.label}
+              </p>
+              <p className="mt-2 text-body-sm leading-relaxed text-text-ink-sub">
+                {item.description}
+              </p>
+            </div>
+          ))}
+        </div>
+        <p className="mt-8 max-w-2xl text-body-sm leading-relaxed text-text-ink-muted">
+          Complex applications may later need a paid Blueprint to lock scope -
+          we only suggest that on the call when it actually de-risks the build.
+          Day-to-day delivery still runs on the Eterna Method.
+        </p>
+      </Section>
+
+      <Section background="surface" className="border-t border-border-muted text-text-ink-sub">
         <SectionHeading
           label="FAQ"
           labelVariant="light"
