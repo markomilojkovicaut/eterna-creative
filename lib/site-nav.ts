@@ -121,7 +121,7 @@ export const headerNavItems: HeaderNavItem[] = [
         items: [
           {
             label: "I have an idea",
-            href: "/blueprint",
+            href: "/book",
           },
           {
             label: "Rescue no-code / vibecode",
