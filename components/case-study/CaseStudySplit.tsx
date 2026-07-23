@@ -2,7 +2,6 @@ import { CaseStudyMedia } from "@/components/case-study/CaseStudyMedia";
 import { Button } from "@/components/ui/Button";
 import { DarkTagPill } from "@/components/ui/DarkTagPill";
 import { Reveal } from "@/components/ui/Reveal";
-import { SecondaryCtaLink } from "@/components/ui/SecondaryCtaLink";
 import {
   getHomepageMedia,
   studyShowsHomepage,
@@ -83,6 +82,8 @@ export function CaseStudySplit({
   challengeLabel?: string;
 }) {
   const showHomepage = studyShowsHomepage(study);
+  const companyUrl = study.companyUrl || study.liveUrl;
+  const linkedinUrl = study.linkedinUrl;
 
   return (
     <section className="bg-bg-base py-section">
@@ -90,7 +91,8 @@ export function CaseStudySplit({
         <div
           className={cn(
             LAYOUT_INNER_CLASS,
-            "grid gap-10 lg:grid-cols-[minmax(0,0.38fr)_minmax(0,0.62fr)] lg:items-start lg:gap-14"
+            /* Aside ~40px narrower than prior ~38% column */
+            "grid gap-10 lg:grid-cols-[minmax(0,calc(38%-40px))_minmax(0,1fr)] lg:items-start lg:gap-12"
           )}
         >
           <Reveal className="lg:sticky lg:top-24">
@@ -99,19 +101,36 @@ export function CaseStudySplit({
               <MetaRow label="Location" value={study.location} />
               <MetaRow label="Year" value={study.year} />
 
-              {study.liveUrl ? (
-                <div className="mt-5">
-                  <a
-                    href={study.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Button variant="secondary" size="sm" type="button" className="w-full">
-                      Visit application
-                    </Button>
-                  </a>
+              {(companyUrl || linkedinUrl) && (
+                <div className="mt-5 flex flex-col gap-2">
+                  {companyUrl ? (
+                    <a
+                      href={companyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Button
+                        variant="secondary"
+                        size="sm"
+                        type="button"
+                        className="w-full"
+                      >
+                        Open company site
+                      </Button>
+                    </a>
+                  ) : null}
+                  {linkedinUrl ? (
+                    <a
+                      href={linkedinUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex w-full items-center justify-center rounded-soft border border-border-dark px-4 py-2 text-body-sm font-semibold text-brand-purple-light transition-colors hover:border-border-strong hover:text-text-heading"
+                    >
+                      Company LinkedIn
+                    </a>
+                  ) : null}
                 </div>
-              ) : null}
+              )}
 
               <div className="mt-6">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand-purple-light">
@@ -125,34 +144,24 @@ export function CaseStudySplit({
                   ))}
                 </ul>
               </div>
-
-              {showHomepage ? (
-                <div className="mt-6">
-                  <CaseStudyMedia
-                    media={getHomepageMedia(study)}
-                    browserFrame
-                    aspectClass="aspect-[16/11]"
-                  />
-                </div>
-              ) : null}
-
-              <div className="mt-6 rounded-soft border border-border-dark bg-bg-base/50 p-4">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand-purple-light">
-                  Free tool
-                </p>
-                <p className="mt-1.5 text-body-sm font-medium text-text-heading">
-                  App Cost calculator
-                </p>
-                <SecondaryCtaLink href="/calculator" className="mt-3 !px-4 !py-2 !text-body-sm">
-                  Open calculator
-                </SecondaryCtaLink>
-              </div>
             </aside>
           </Reveal>
 
-          <Reveal delay={80} className="space-y-12">
+          <Reveal delay={80} className="min-w-0 space-y-12">
             <StoryBlock eyebrow={overviewLabel} block={study.overview} />
             <StoryBlock eyebrow={challengeLabel} block={study.challenge} />
+            {showHomepage ? (
+              <div>
+                <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-purple-light">
+                  Homepage
+                </p>
+                <CaseStudyMedia
+                  media={getHomepageMedia(study)}
+                  browserFrame
+                  aspectClass="aspect-[16/10]"
+                />
+              </div>
+            ) : null}
           </Reveal>
         </div>
       </div>

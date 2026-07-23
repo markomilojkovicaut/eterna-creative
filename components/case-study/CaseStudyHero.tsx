@@ -1,7 +1,6 @@
 import Link from "next/link";
 
 import { CaseStudyMedia } from "@/components/case-study/CaseStudyMedia";
-import { Badge } from "@/components/ui/Badge";
 import { DarkSectionBackdrop } from "@/components/ui/DarkSectionBackdrop";
 import { Reveal } from "@/components/ui/Reveal";
 import {
@@ -52,71 +51,70 @@ export function CaseStudyHero({ study }: { study: CaseStudy }) {
             </nav>
           </Reveal>
 
-          <div className="mt-8 grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-end lg:gap-12">
-            <div className="min-w-0">
-              <Reveal immediate delay={60}>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-purple-light">
-                  Case study · {caseStudyProductLabels[study.productType]}
-                </p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {study.tags.map((tag) => (
-                    <Badge key={tag} variant="purple">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-                <h1 className="mt-5 font-heading text-display-md text-text-heading">
-                  {study.title}
-                </h1>
-                <p className="mt-4 max-w-xl text-body-md text-text-body">
-                  {study.description}
-                </p>
-                <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6">
-                  <MetaChip label="Client" value={study.client} />
-                  <MetaChip label="Solution" value={study.solutionType} />
-                  <MetaChip label="Time to launch" value={study.timeline} />
-                </div>
-              </Reveal>
-
-              {study.outcomes.length > 0 ? (
-                <Reveal immediate delay={140}>
-                  <dl
-                    className={cn(
-                      "mt-10 grid gap-3",
-                      study.outcomes.length >= 3
-                        ? "grid-cols-3"
-                        : study.outcomes.length === 2
-                          ? "grid-cols-2"
-                          : "grid-cols-1 max-w-xs"
-                    )}
-                  >
-                    {study.outcomes.map((outcome, i) => (
-                      <div
-                        key={`${outcome.value}-${outcome.label}`}
-                        className="rounded-soft border border-border-dark bg-bg-card/40 px-3 py-3 sm:px-4 sm:py-4"
-                        style={{ transitionDelay: `${i * 60}ms` }}
-                      >
-                        <dt className="text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-purple-light">
-                          {outcome.label}
-                        </dt>
-                        <dd className="mt-1.5 font-heading text-heading-lg font-bold text-text-heading sm:text-display-md">
-                          {outcome.value}
-                        </dd>
-                      </div>
-                    ))}
-                  </dl>
-                </Reveal>
-              ) : null}
+          <Reveal immediate delay={60}>
+            <p className="mt-8 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-purple-light">
+              Case study · {caseStudyProductLabels[study.productType]}
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {study.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="inline-flex items-center rounded-full border border-brand-purple/20 bg-brand-purple/10 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.06em] text-brand-purple-light"
+                >
+                  {tag}
+                </span>
+              ))}
             </div>
+            <h1 className="mt-5 max-w-3xl font-heading text-display-md text-text-heading">
+              {study.title}
+            </h1>
+            <p className="mt-4 max-w-2xl text-body-md text-text-body">
+              {study.description}
+            </p>
+            <div className="mt-8 grid max-w-2xl grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6">
+              <MetaChip label="Client" value={study.client} />
+              <MetaChip label="Solution" value={study.solutionType} />
+              <MetaChip label="Time to launch" value={study.timeline} />
+            </div>
+          </Reveal>
 
-            <Reveal immediate delay={180} className="min-w-0">
-              <CaseStudyMedia
-                media={heroMedia}
-                aspectClass="aspect-[16/11]"
-                priority
-              />
+          {study.outcomes.length > 0 ? (
+            <Reveal immediate delay={120}>
+              <dl
+                className={cn(
+                  "mt-10 grid max-w-3xl gap-3",
+                  study.outcomes.length >= 3
+                    ? "grid-cols-3"
+                    : study.outcomes.length === 2
+                      ? "grid-cols-2"
+                      : "grid-cols-1 max-w-xs"
+                )}
+              >
+                {study.outcomes.map((outcome) => (
+                  <div
+                    key={`${outcome.value}-${outcome.label}`}
+                    className="rounded-soft border border-border-dark bg-bg-card/40 px-3 py-3 sm:px-4 sm:py-4"
+                  >
+                    <dt className="text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-purple-light">
+                      {outcome.label}
+                    </dt>
+                    <dd className="mt-1.5 font-heading text-heading-lg font-bold text-text-heading sm:text-display-md">
+                      {outcome.value}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
             </Reveal>
-          </div>
+          ) : null}
+
+          <Reveal immediate delay={180} className="mt-12">
+            <CaseStudyMedia
+              media={heroMedia}
+              aspectClass="aspect-[16/9]"
+              priority
+              className="w-full"
+            />
+          </Reveal>
         </div>
       </div>
     </section>

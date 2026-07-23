@@ -4,6 +4,7 @@ import { DarkTagPill } from "@/components/ui/DarkTagPill";
 import { Reveal } from "@/components/ui/Reveal";
 import {
   getGalleryMedia,
+  getResultsMedia,
   getSolutionMedia,
   type CaseStudy,
 } from "@/lib/case-studies";
@@ -90,6 +91,8 @@ export function CaseStudyFeatures({ study }: { study: CaseStudy }) {
 }
 
 export function CaseStudyResults({ study }: { study: CaseStudy }) {
+  const resultsMedia = getResultsMedia(study);
+
   return (
     <section className="bg-bg-base py-section">
       <div className={LAYOUT_OUTER_CLASS}>
@@ -103,7 +106,21 @@ export function CaseStudyResults({ study }: { study: CaseStudy }) {
                 {study.results}
               </p>
             </div>
+          </Reveal>
 
+          <Reveal delay={80}>
+            <div className="mt-10 grid gap-4 sm:grid-cols-2">
+              {resultsMedia.map((media) => (
+                <CaseStudyMedia
+                  key={`${media.alt}-${media.label}`}
+                  media={media}
+                  aspectClass="aspect-[16/10]"
+                />
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal delay={120}>
             <div className="mt-12">
               <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-purple-light">
                 Technologies

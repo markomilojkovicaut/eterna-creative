@@ -84,6 +84,12 @@ export interface CaseStudy extends PortfolioItem {
   /** Cross-link when client has another product study. */
   siblingSlug?: string;
   siblingLabel?: string;
+  /** Public company / product site (aside CTA). Falls back to liveUrl. */
+  companyUrl?: string;
+  /** Company or founder LinkedIn. */
+  linkedinUrl?: string;
+  /** Extra screens for results/tech band. */
+  resultsMedia?: CaseStudyMedia[];
   /** Website recipe extras */
   pages?: CaseStudyPage[];
   seoCro?: CaseStudyBulletBlock;
@@ -159,6 +165,40 @@ export function getHomepageMedia(study: CaseStudy): CaseStudyMedia {
     kind: "homepage",
     label: "Homepage",
   };
+}
+
+export function getResultsMedia(study: CaseStudy): CaseStudyMedia[] {
+  if (study.resultsMedia && study.resultsMedia.length > 0) {
+    return study.resultsMedia;
+  }
+  const fromGallery = (study.gallery ?? []).slice(0, 2).map((src, i) => ({
+    src,
+    alt: `${study.client} result ${i + 1}`,
+    kind: "gallery" as const,
+    label: i === 0 ? "Live product" : "Detail",
+  }));
+  const placeholders: CaseStudyMedia[] = [
+    {
+      src: null,
+      alt: `${study.client} dashboard`,
+      kind: "placeholder",
+      label: "Dashboard",
+    },
+    {
+      src: null,
+      alt: `${study.client} mobile flow`,
+      kind: "placeholder",
+      label: "Mobile flow",
+    },
+    {
+      src: null,
+      alt: `${study.client} detail view`,
+      kind: "placeholder",
+      label: "Detail view",
+    },
+  ];
+  const merged = [...fromGallery, ...placeholders];
+  return merged.slice(0, 4);
 }
 
 export const caseStudyProductLabels: Record<CaseStudyProductType, string> = {
@@ -502,6 +542,7 @@ export const caseStudies: CaseStudy[] = [
       "linear-gradient(135deg, #1a0f2e 0%, #2d1b4e 50%, #b8b8ff 100%)",
     coverImage: "/images/case-studies/razmeni.png",
     liveUrl: "https://www.razmeni.rs",
+    companyUrl: "https://www.razmeni.rs",
     gallery: [
       "/images/case-studies/razmeni-1.jpg",
       "/images/case-studies/razmeni-2.jpg",

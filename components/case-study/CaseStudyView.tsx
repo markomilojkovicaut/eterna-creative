@@ -2,6 +2,7 @@ import { FinalCta } from "@/components/sections/FinalCta";
 import { CaseStudyClosing } from "@/components/case-study/CaseStudyClosing";
 import { CaseStudyHero } from "@/components/case-study/CaseStudyHero";
 import { CaseStudyImpactLight } from "@/components/case-study/CaseStudyImpactLight";
+import { CaseStudyPullQuote } from "@/components/case-study/CaseStudyPullQuote";
 import { CaseStudyQuote } from "@/components/case-study/CaseStudyQuote";
 import {
   CaseStudyAutomationMiddle,
@@ -23,7 +24,7 @@ import { HEADER_OFFSET_CLASS } from "@/lib/layout-constants";
 
 /**
  * Recipe renderer by productType.
- * Shared DNA: hero → split → band → middle → softCta → white impact → results → close → quote → sibling → FinalCta
+ * Shared DNA: hero → split → band → middle → pullQuote → softCta → impactLight → results → close → quote → sibling → FinalCta
  */
 export function CaseStudyView({ study }: { study: CaseStudy }) {
   return (
@@ -96,6 +97,8 @@ export function CaseStudyView({ study }: { study: CaseStudy }) {
       ) : (
         <CaseStudyFeatures study={study} />
       )}
+
+      {study.quote ? <CaseStudyPullQuote quote={study.quote} /> : null}
 
       <CaseStudySoftCta />
       <CaseStudyImpactLight study={study} />
