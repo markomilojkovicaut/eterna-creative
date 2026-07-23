@@ -1,6 +1,6 @@
 import { CaseStudyBand } from "@/components/case-study/CaseStudyBand";
+import { CaseStudyTechStack } from "@/components/case-study/CaseStudyExtras";
 import { CaseStudyMedia } from "@/components/case-study/CaseStudyMedia";
-import { DarkTagPill } from "@/components/ui/DarkTagPill";
 import { Reveal } from "@/components/ui/Reveal";
 import {
   getGalleryMedia,
@@ -121,18 +121,10 @@ export function CaseStudyResults({ study }: { study: CaseStudy }) {
           </Reveal>
 
           <Reveal delay={120}>
-            <div className="mt-12">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-purple-light">
-                Technologies
-              </p>
-              <ul className="mt-4 flex flex-wrap gap-2">
-                {study.technologies.map((tech) => (
-                  <li key={tech}>
-                    <DarkTagPill>{tech}</DarkTagPill>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <CaseStudyTechStack
+              technologies={study.technologies}
+              className="mt-12"
+            />
           </Reveal>
         </div>
       </div>

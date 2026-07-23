@@ -19,11 +19,23 @@ export interface CaseStudyFeature {
   body: string;
 }
 
+export interface CaseStudyReviewSource {
+  label: string;
+  href: string;
+}
+
 export interface CaseStudyQuote {
   quote: string;
   name: string;
   role: string;
   avatarSrc?: string;
+  /** Clutch / Upwork / etc. */
+  reviewSource?: CaseStudyReviewSource;
+}
+
+export interface CaseStudyRoles {
+  weOwned: string[];
+  clientOwned: string[];
 }
 
 export interface CaseStudyClosing {
@@ -90,6 +102,10 @@ export interface CaseStudy extends PortfolioItem {
   linkedinUrl?: string;
   /** Extra screens for results/tech band. */
   resultsMedia?: CaseStudyMedia[];
+  /** Loom / YouTube / Vimeo product walkthrough. */
+  productVideoUrl?: string;
+  /** Who owned what on the engagement. */
+  roles?: CaseStudyRoles;
   /** Website recipe extras */
   pages?: CaseStudyPage[];
   seoCro?: CaseStudyBulletBlock;
@@ -227,6 +243,14 @@ export const caseStudies: CaseStudy[] = [
       "linear-gradient(135deg, #1F1145 0%, #3d2066 55%, #b8b8ff 100%)",
     coverImage: "/images/case-studies/publiclink.png",
     liveUrl: "",
+    companyUrl: "https://publiclink.eu",
+    linkedinUrl: "https://www.linkedin.com/company/publiclink-eu",
+    siblingSlug: "publiclink-website",
+    siblingLabel: "Website case study",
+    roles: {
+      weOwned: ["Product", "Design", "Build", "Launch"],
+      clientOwned: ["Domain expertise", "Institution relationships", "Go-to-market"],
+    },
     outcomes: [
       { value: "150+", label: "Professionals in 60 days" },
       { value: "8 weeks", label: "MVP to launch" },
@@ -287,6 +311,10 @@ export const caseStudies: CaseStudy[] = [
       name: "Radu Antohe",
       role: "Founder, PublicLink",
       avatarSrc: "/images/reviews/radu-antohe.png",
+      reviewSource: {
+        label: "Clutch review",
+        href: "https://clutch.co",
+      },
     },
   },
   {
@@ -308,6 +336,13 @@ export const caseStudies: CaseStudy[] = [
       "linear-gradient(135deg, #0a0a12 0%, #1a1040 50%, #8585ff 80%)",
     coverImage: "/images/case-studies/prosafenet.png",
     liveUrl: "",
+    companyUrl: "https://prosafenet.com",
+    siblingSlug: "prosafenet-website",
+    siblingLabel: "Website case study",
+    roles: {
+      weOwned: ["Product", "Design", "Build", "Email systems"],
+      clientOwned: ["Safety domain expertise", "Community leadership", "Partnerships"],
+    },
     outcomes: [
       { value: "3k+", label: "Users in 6 months" },
       { value: "$1.5k", label: "Sponsor MRR" },
@@ -370,6 +405,10 @@ export const caseStudies: CaseStudy[] = [
       name: "Dr. Vladimir M. Cvetkovic",
       role: "Founder, ProSafeNet",
       avatarSrc: "/images/reviews/vladimir-cvetkovic.png",
+      reviewSource: {
+        label: "Clutch review",
+        href: "https://clutch.co",
+      },
     },
   },
   {
@@ -391,6 +430,18 @@ export const caseStudies: CaseStudy[] = [
       "linear-gradient(135deg, #1F1145 0%, #2a1860 45%, #8585ff 100%)",
     coverImage: "/images/case-studies/tap-group.png",
     liveUrl: "",
+    siblingSlug: "tap-group-website",
+    siblingLabel: "Website case study",
+    roles: {
+      weOwned: ["Product", "Design", "Build", "Ops workflows"],
+      clientOwned: ["Warehouse process knowledge", "Staff rollout", "Inventory rules"],
+    },
+    beforeAfter: {
+      before:
+        "Paper logs, WhatsApp notes, missing records - no accountability for who changed stock.",
+      after:
+        "Real-time inventory with full audit trail - at least 50% faster stock ops.",
+    },
     outcomes: [
       { value: "50%", label: "Faster inventory" },
       { value: "3 weeks", label: "MVP shipped" },
@@ -467,6 +518,18 @@ export const caseStudies: CaseStudy[] = [
       "linear-gradient(135deg, #12082a 0%, #1F1145 40%, #cb80ff 100%)",
     coverImage: "/images/case-studies/facelessstar.png",
     liveUrl: "",
+    siblingSlug: "facelessstar-website",
+    siblingLabel: "Website case study",
+    roles: {
+      weOwned: ["Product", "Design", "Build", "Prompt systems"],
+      clientOwned: ["Course content", "Audience", "Offer & pricing"],
+    },
+    beforeAfter: {
+      before:
+        "Cold visitors and course students froze at setup - logo and audience questions killed momentum.",
+      after:
+        "Free AI tools unblock the first five minutes; 40% of tool users convert to paid.",
+    },
     outcomes: [
       { value: "336", label: "Paid conversions" },
       { value: "40%", label: "Tool → paid rate" },
@@ -543,6 +606,10 @@ export const caseStudies: CaseStudy[] = [
     coverImage: "/images/case-studies/razmeni.png",
     liveUrl: "https://www.razmeni.rs",
     companyUrl: "https://www.razmeni.rs",
+    roles: {
+      weOwned: ["Product", "Design", "Build", "Growth support"],
+      clientOwned: ["Community", "Operations", "Local partnerships"],
+    },
     gallery: [
       "/images/case-studies/razmeni-1.jpg",
       "/images/case-studies/razmeni-2.jpg",
@@ -618,6 +685,16 @@ export const caseStudies: CaseStudy[] = [
       "linear-gradient(135deg, #0f1a2e 0%, #1a2a4a 45%, #8585ff 100%)",
     coverImage: "/images/case-studies/pets-pilots.png",
     liveUrl: "",
+    roles: {
+      weOwned: ["Product", "Design", "Build"],
+      clientOwned: ["Driver network", "Operations", "Customer support"],
+    },
+    beforeAfter: {
+      before:
+        "Chaotic back-and-forth booking and low trust between pet owners and drivers.",
+      after:
+        "Clear booking, tracking, and reviews - a marketplace loop both sides can trust.",
+    },
     gallery: ["/images/case-studies/pets-pilots-1.png"],
     outcomes: [
       { value: "EU", label: "Transport booking" },
@@ -695,6 +772,16 @@ export const caseStudies: CaseStudy[] = [
       "linear-gradient(135deg, #1a1220 0%, #3d2040 50%, #cb80ff 100%)",
     coverImage: "/images/case-studies/stretchwell.jpg",
     liveUrl: "",
+    roles: {
+      weOwned: ["Product", "Design", "Build", "Video delivery"],
+      clientOwned: ["Method & content", "Trainers", "Brand"],
+    },
+    beforeAfter: {
+      before:
+        "Premium stretching lived in one city - followers abroad couldn't access the method.",
+      after:
+        "Global app with free programs and premium courses, Vimeo-secured playback inside Bubble.",
+    },
     gallery: [
       "/images/case-studies/stretchwell-2.jpg",
       "/images/case-studies/stretchwell-3.jpg",
@@ -750,6 +837,337 @@ export const caseStudies: CaseStudy[] = [
       body: "We'll help you productize what already works offline - without diluting the brand.",
     },
   },
+  {
+    id: "publiclink-website",
+    slug: "publiclink-website",
+    client: "PublicLink",
+    productType: "website",
+    tags: ["Marketing site", "Community", "Launch"],
+    solutionType: "Marketing website",
+    timeline: "Alongside MVP",
+    category: "Community",
+    location: "Romania",
+    year: "2025",
+    title: "PublicLink website - positioning Europe's public-sector network",
+    description:
+      "Launch site that explains who PublicLink is for and converts professionals and institutions into early members.",
+    imageGradient:
+      "linear-gradient(135deg, #1F1145 0%, #3d2066 55%, #b8b8ff 100%)",
+    coverImage: "/images/case-studies/publiclink.png",
+    liveUrl: "https://publiclink.eu",
+    companyUrl: "https://publiclink.eu",
+    linkedinUrl: "https://www.linkedin.com/company/publiclink-eu",
+    siblingSlug: "publiclink",
+    siblingLabel: "Application case study",
+    roles: {
+      weOwned: ["Positioning", "Design", "Build"],
+      clientOwned: ["Institution messaging", "Launch channels"],
+    },
+    outcomes: [
+      { value: "Clear", label: "Niche positioning" },
+      { value: "Dual", label: "Audience paths" },
+    ],
+    challenge: {
+      title: "A new category needed a sharp first impression",
+      body: "PublicLink had to explain a niche network in seconds - without sounding like another generic LinkedIn clone.",
+    },
+    overview: {
+      title: "Site as the front door to the MVP",
+      body: "We shaped a marketing site that speaks to professionals and institutions separately, then funnels both into product signup.",
+    },
+    solution: {
+      title: "Relevance-first storytelling",
+      body: "Homepage narrative, audience pages, and CTA paths that match how EU-facing talent actually evaluates tools.",
+    },
+    pages: [
+      {
+        title: "Home",
+        body: "Category claim, dual CTAs, and proof that this network is built for public-sector work.",
+      },
+      {
+        title: "For professionals",
+        body: "Jobs, credibility, and community benefits for contractors and advisors.",
+      },
+      {
+        title: "For institutions",
+        body: "Talent discovery and verified hiring language for organizations.",
+      },
+      {
+        title: "Join / signup",
+        body: "Short path from site intent into the Bubble application.",
+      },
+    ],
+    seoCro: {
+      title: "Launch CRO",
+      body: "Copy and CTAs tuned for early adoption, not vanity traffic.",
+      bullets: [
+        "Niche keywords over broad networking terms",
+        "Separate CTA paths for people vs institutions",
+        "Social proof near the first conversion point",
+      ],
+    },
+    features: [],
+    impact: [
+      "Clear category story at launch",
+      "Conversion path into the MVP",
+      "Aligned brand with the product UI",
+    ],
+    results:
+      "The site gave PublicLink a credible front door - visitors understood the niche before they created an account.",
+    services: ["Website", "UI/UX Design", "E-mail marketing"],
+    technologies: ["Bubble", "Notion"],
+    closing: {
+      title: "Need a launch site that matches your MVP?",
+      body: "We'll position the category and ship a site that converts the right early users - not everyone.",
+    },
+  },
+  {
+    id: "prosafenet-website",
+    slug: "prosafenet-website",
+    client: "ProSafeNet",
+    productType: "website",
+    tags: ["Marketing site", "Community", "Sponsors"],
+    solutionType: "Marketing website",
+    timeline: "Alongside app",
+    category: "Community",
+    location: "Serbia",
+    year: "2025",
+    title: "ProSafeNet website - the global safety network's front door",
+    description:
+      "Marketing site for the world's first global safety professional network - membership, sponsors, and trust.",
+    imageGradient:
+      "linear-gradient(135deg, #0a0a12 0%, #1a1040 50%, #8585ff 80%)",
+    coverImage: "/images/case-studies/prosafenet.png",
+    liveUrl: "https://prosafenet.com",
+    companyUrl: "https://prosafenet.com",
+    siblingSlug: "prosafenet",
+    siblingLabel: "Application case study",
+    roles: {
+      weOwned: ["Positioning", "Design", "Build"],
+      clientOwned: ["Expert content", "Sponsor relationships"],
+    },
+    outcomes: [
+      { value: "Trust", label: "Expert brand" },
+      { value: "Dual", label: "Member + sponsor paths" },
+    ],
+    challenge: {
+      title: "Experts won't join a vague community page",
+      body: "Safety professionals needed proof of seriousness - domain depth, not startup fluff.",
+    },
+    overview: {
+      title: "Credibility before signup",
+      body: "The site frames ProSafeNet as a professional hub: knowledge, jobs, events, and crisis-ready collaboration.",
+    },
+    solution: {
+      title: "Expert-led marketing narrative",
+      body: "Clear value for practitioners and a sponsor story that supports sustainable growth.",
+    },
+    pages: [
+      {
+        title: "Home",
+        body: "Global hub positioning with proof points for safety professionals.",
+      },
+      {
+        title: "Features / product",
+        body: "Knowledge, jobs, events, and messaging explained without app overwhelm.",
+      },
+      {
+        title: "For sponsors",
+        body: "Partnership narrative tied to a high-trust professional audience.",
+      },
+      {
+        title: "Join",
+        body: "Direct path into the live Bubble application.",
+      },
+    ],
+    seoCro: {
+      title: "Authority + acquisition",
+      body: "Pages structured so search and referrals land on a credible story.",
+      bullets: [
+        "Safety/disaster keywords with expert framing",
+        "Sponsor CTA without diluting member trust",
+        "Founder authority woven into the brand",
+      ],
+    },
+    features: [],
+    impact: [
+      "Credible public brand for a niche network",
+      "Member and sponsor conversion paths",
+      "Consistent story with the product",
+    ],
+    results:
+      "Prospective members and sponsors could evaluate ProSafeNet before creating an account - reducing skepticism at the door.",
+    services: ["Website", "UI/UX Design", "E-mail marketing", "Product strategy"],
+    technologies: ["Bubble", "Notion", "Brevo"],
+    closing: {
+      title: "Building a professional community?",
+      body: "We'll help you ship a site that earns expert trust - then convert into the product.",
+    },
+  },
+  {
+    id: "tap-group-website",
+    slug: "tap-group-website",
+    client: "TapGroup",
+    productType: "website",
+    tags: ["Marketing site", "Ops", "Events"],
+    solutionType: "Marketing website",
+    timeline: "Alongside MVP",
+    category: "Dashboard",
+    location: "Serbia",
+    year: "2025",
+    title: "TapGroup website - event ops brand meets digital inventory",
+    description:
+      "Web presence for TapGroup's event-equipment business, aligned with the TapAPP inventory system.",
+    imageGradient:
+      "linear-gradient(135deg, #1F1145 0%, #2a1860 45%, #8585ff 100%)",
+    coverImage: "/images/case-studies/tap-group.png",
+    liveUrl: "",
+    siblingSlug: "tap-group",
+    siblingLabel: "Application case study",
+    roles: {
+      weOwned: ["Positioning", "Design", "Build"],
+      clientOwned: ["Service catalog", "Venue relationships"],
+    },
+    outcomes: [
+      { value: "Brand", label: "Ops-ready presence" },
+      { value: "Clear", label: "Service story" },
+    ],
+    challenge: {
+      title: "Ops software needed a public face",
+      body: "TapGroup's inventory leap was internal - the brand still needed a clean site for clients booking event equipment.",
+    },
+    overview: {
+      title: "One brand across sales and stock",
+      body: "We aligned the marketing site with TapAPP so clients see a modern operator, not a paper-era warehouse.",
+    },
+    solution: {
+      title: "Service-led website",
+      body: "Focus on catering, equipment, and venues - with a digital ops story that supports trust.",
+    },
+    pages: [
+      {
+        title: "Home",
+        body: "Event services overview and proof of multi-venue capability.",
+      },
+      {
+        title: "Services / catalog",
+        body: "Equipment and catering offerings structured for inquiry.",
+      },
+      {
+        title: "About / trust",
+        body: "Operational reliability messaging for event clients.",
+      },
+      {
+        title: "Contact",
+        body: "Simple inquiry path for bookings and quotes.",
+      },
+    ],
+    seoCro: {
+      title: "Local event demand",
+      body: "Pages oriented toward venue and event buyers who need reliable partners.",
+      bullets: [
+        "Service clarity over feature dumps",
+        "Strong contact CTAs",
+        "Brand consistency with TapAPP",
+      ],
+    },
+    features: [],
+    impact: [
+      "Modern brand for an ops-heavy business",
+      "Inquiry-ready service pages",
+      "Story aligned with digital inventory",
+    ],
+    results:
+      "TapGroup presents as a digitally run event operator - matching the internal leap TapAPP delivered.",
+    services: ["Website", "UI/UX Design", "Product strategy"],
+    technologies: ["Bubble", "Brevo"],
+    closing: {
+      title: "Ops app + website, same system",
+      body: "We'll connect your public brand to the tools your team actually runs on.",
+    },
+  },
+  {
+    id: "facelessstar-website",
+    slug: "facelessstar-website",
+    client: "FacelessStar",
+    productType: "website",
+    tags: ["Marketing site", "AI tools", "Courses"],
+    solutionType: "Marketing website",
+    timeline: "Alongside MVP",
+    category: "AI-Powered Tools",
+    location: "Serbia",
+    year: "2025",
+    title: "FacelessStar website - turn free AI tools into course demand",
+    description:
+      "Marketing site and funnel shell around FacelessStar's AI logo and audience tools.",
+    imageGradient:
+      "linear-gradient(135deg, #12082a 0%, #1F1145 40%, #cb80ff 100%)",
+    coverImage: "/images/case-studies/facelessstar.png",
+    liveUrl: "",
+    siblingSlug: "facelessstar",
+    siblingLabel: "Application case study",
+    roles: {
+      weOwned: ["Funnel UX", "Design", "Build"],
+      clientOwned: ["Offer", "Course content", "Ads"],
+    },
+    outcomes: [
+      { value: "Lead", label: "Magnet path" },
+      { value: "40%", label: "Tool → paid (product)" },
+    ],
+    challenge: {
+      title: "Tools alone don't sell the course",
+      body: "FacelessStar needed a site narrative that moves free-tool users into paid learning - without friction.",
+    },
+    overview: {
+      title: "Funnel site around the AI unlock",
+      body: "The website frames the tools as the first win, then the course as the path to a real channel.",
+    },
+    solution: {
+      title: "Lead magnet → offer story",
+      body: "Clear homepage promise, tool entry points, and course CTAs that reuse the same brand language as the app.",
+    },
+    pages: [
+      {
+        title: "Home",
+        body: "Promise for faceless YouTube builders and path into the free tools.",
+      },
+      {
+        title: "AI tools",
+        body: "Logo + audience generator explained as a five-minute unlock.",
+      },
+      {
+        title: "Courses / coaching",
+        body: "Paid offer pages for users who are ready after the tools.",
+      },
+      {
+        title: "Signup / start",
+        body: "Short conversion into the Bubble tool experience.",
+      },
+    ],
+    seoCro: {
+      title: "Conversion-first pages",
+      body: "Built to support the 40% tool-to-paid motion - not vanity traffic.",
+      bullets: [
+        "Tool CTAs above the fold",
+        "Course upsell after first win language",
+        "Simple mobile path for ad traffic",
+      ],
+    },
+    features: [],
+    impact: [
+      "Clear free → paid narrative",
+      "Brand match with AI tools",
+      "Funnel ready for paid traffic",
+    ],
+    results:
+      "The site and tools work as one system - visitors get a quick win, then a natural path into FacelessStar courses.",
+    services: ["Website", "UI/UX Design", "Product strategy"],
+    technologies: ["Bubble", "OpenAI", "Notion"],
+    closing: {
+      title: "Want AI tools that feed your offer?",
+      body: "We'll design the site and product as one conversion loop - not two disconnected builds.",
+    },
+  },
 ];
 
 export function getCaseStudyBySlug(slug: string): CaseStudy | undefined {
@@ -783,4 +1201,8 @@ export const bubbleCaseStudyRedirects: Record<string, string> = {
   "pets-pilots-pet-transport-booking-app": "pets-pilots",
   stretchwell: "stretchwell",
   "stretchwell-application-for-stretching": "stretchwell",
+  "publiclink-website": "publiclink-website",
+  "prosafenet-website": "prosafenet-website",
+  "tap-group-website": "tap-group-website",
+  "facelessstar-website": "facelessstar-website",
 };

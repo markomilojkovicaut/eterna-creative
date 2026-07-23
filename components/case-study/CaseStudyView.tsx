@@ -5,6 +5,10 @@ import { CaseStudyImpactLight } from "@/components/case-study/CaseStudyImpactLig
 import { CaseStudyPullQuote } from "@/components/case-study/CaseStudyPullQuote";
 import { CaseStudyQuote } from "@/components/case-study/CaseStudyQuote";
 import {
+  CaseStudyBeforeAfter,
+  CaseStudyVideo,
+} from "@/components/case-study/CaseStudyExtras";
+import {
   CaseStudyAutomationMiddle,
   CaseStudyFeatures,
   CaseStudyResults,
@@ -24,7 +28,7 @@ import { HEADER_OFFSET_CLASS } from "@/lib/layout-constants";
 
 /**
  * Recipe renderer by productType.
- * Shared DNA: hero → split → band → middle → pullQuote → softCta → impactLight → results → close → quote → sibling → FinalCta
+ * Shared DNA: hero → split → band → middle → beforeAfter? → video? → pullQuote → softCta → impact → results → close → quote → sibling → FinalCta
  */
 export function CaseStudyView({ study }: { study: CaseStudy }) {
   return (
@@ -97,6 +101,17 @@ export function CaseStudyView({ study }: { study: CaseStudy }) {
       ) : (
         <CaseStudyFeatures study={study} />
       )}
+
+      {study.beforeAfter && study.productType !== "automation" ? (
+        <CaseStudyBeforeAfter
+          before={study.beforeAfter.before}
+          after={study.beforeAfter.after}
+        />
+      ) : null}
+
+      {study.productVideoUrl ? (
+        <CaseStudyVideo url={study.productVideoUrl} />
+      ) : null}
 
       {study.quote ? <CaseStudyPullQuote quote={study.quote} /> : null}
 

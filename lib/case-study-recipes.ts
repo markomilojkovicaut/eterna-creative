@@ -10,15 +10,18 @@ export const caseStudyRecipes: Record<
 > = {
   application: [
     "hero",
-    "split",
+    "split", // roles + company/LinkedIn CTAs when set
     "solutionBand",
     "features",
+    "beforeAfter?", // when set (ops-heavy apps)
+    "productVideo?", // when productVideoUrl set
+    "pullQuote?",
     "softCta",
     "impactLight",
-    "results",
+    "results", // tech stack logos
     "closing",
-    "quote",
-    "sibling",
+    "quote", // reviewSource link when set
+    "sibling?", // sister website/app study
     "finalCta",
   ],
   website: [
@@ -27,26 +30,30 @@ export const caseStudyRecipes: Record<
     "strategyBandHomepage",
     "pagesGallery",
     "seoCro",
+    "productVideo?",
+    "pullQuote?",
     "softCta",
     "impactLight",
     "results",
     "closing",
     "quote",
-    "sibling",
+    "sibling?",
     "finalCta",
   ],
   automation: [
     "hero",
     "splitOps",
     "workflowBand",
-    "beforeAfter",
+    "beforeAfter", // in automation middle when set
     "stack",
+    "productVideo?",
+    "pullQuote?",
     "softCta",
     "impactLight",
     "results",
     "closing",
     "quote",
-    "sibling",
+    "sibling?",
     "finalCta",
   ],
 } as const;

@@ -35,6 +35,8 @@ public/images/          Static assets (hero-bg, logos, team, reviews, tools)
 - Media slots accept null `src` and render labeled placeholders.
 - Full-white impact band (`CaseStudyImpactLight`) is the contrast beat.
 - Homepage browser-frame media when `productType === "website"` or services include Website.
+- Optional enrichment (omit when unknown): `companyUrl` / `linkedinUrl`, `roles`, `beforeAfter`, `productVideoUrl`, quote `reviewSource`, tech logos via `lib/case-study-tech.ts`.
+- Optional enrichment (omit when unknown): `companyUrl` / `linkedinUrl`, `roles`, `beforeAfter`, `productVideoUrl`, quote `reviewSource`, tech logos via `lib/case-study-tech.ts`.
 
 **Adding a section (checklist)**
 

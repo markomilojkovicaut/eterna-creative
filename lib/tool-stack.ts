@@ -75,6 +75,8 @@ export const toolStackItems: ToolStackItem[] = [
   { id: "bubble", name: "Bubble", logoSrc: "/images/tools/bubble.png", group: "platforms" },
   { id: "xano", name: "Xano", group: "platforms" },
   { id: "n8n", name: "n8n", logoSrc: "/images/tools/n8n.png", group: "platforms" },
+  { id: "openai", name: "OpenAI", logoSrc: "/images/tools/openai.png", group: "platforms" },
+  { id: "vimeo", name: "Vimeo", logoSrc: "/images/tools/vimeo.png", group: "platforms" },
 
   // Design & product
   { id: "figma", name: "Figma", logoSrc: "/images/tools/figma.png", group: "design-product" },

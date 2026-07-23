@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { QuoteIcon } from "@/components/ui/QuoteIcon";
 import { Reveal } from "@/components/ui/Reveal";
 import { ReviewAvatar } from "@/components/ui/ReviewAvatar";
@@ -6,6 +8,20 @@ import {
   LAYOUT_INNER_CLASS,
   LAYOUT_OUTER_CLASS,
 } from "@/lib/layout-constants";
+
+function ReviewLink({ quote }: { quote: Quote }) {
+  if (!quote.reviewSource) return null;
+  return (
+    <Link
+      href={quote.reviewSource.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="mt-1 inline-block text-[10px] font-semibold uppercase tracking-[0.1em] text-brand-purple-light hover:text-text-heading"
+    >
+      {quote.reviewSource.label}
+    </Link>
+  );
+}
 
 export function CaseStudyQuote({ quote }: { quote: Quote }) {
   return (
@@ -36,6 +52,7 @@ export function CaseStudyQuote({ quote }: { quote: Quote }) {
                       {quote.name}
                     </p>
                     <p className="text-body-sm text-text-sub">{quote.role}</p>
+                    <ReviewLink quote={quote} />
                   </div>
                 </figcaption>
               </div>

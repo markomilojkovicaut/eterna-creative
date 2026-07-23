@@ -1,3 +1,4 @@
+import { CaseStudyRoles } from "@/components/case-study/CaseStudyExtras";
 import { CaseStudyMedia } from "@/components/case-study/CaseStudyMedia";
 import { Button } from "@/components/ui/Button";
 import { DarkTagPill } from "@/components/ui/DarkTagPill";
@@ -150,6 +151,12 @@ export function CaseStudySplit({
           <Reveal delay={80} className="min-w-0 space-y-12">
             <StoryBlock eyebrow={overviewLabel} block={study.overview} />
             <StoryBlock eyebrow={challengeLabel} block={study.challenge} />
+            {study.roles ? (
+              <CaseStudyRoles
+                weOwned={study.roles.weOwned}
+                clientOwned={study.roles.clientOwned}
+              />
+            ) : null}
             {showHomepage ? (
               <div>
                 <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-purple-light">

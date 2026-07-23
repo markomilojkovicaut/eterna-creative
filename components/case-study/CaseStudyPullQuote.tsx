@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { QuoteIcon } from "@/components/ui/QuoteIcon";
 import { Reveal } from "@/components/ui/Reveal";
 import { ReviewAvatar } from "@/components/ui/ReviewAvatar";
@@ -30,6 +32,16 @@ export function CaseStudyPullQuote({ quote }: { quote: Quote }) {
                     {quote.name}
                   </p>
                   <p className="text-[12px] text-text-sub">{quote.role}</p>
+                  {quote.reviewSource ? (
+                    <Link
+                      href={quote.reviewSource.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-0.5 inline-block text-[10px] font-semibold uppercase tracking-[0.1em] text-brand-purple-light hover:text-text-heading"
+                    >
+                      {quote.reviewSource.label}
+                    </Link>
+                  ) : null}
                 </div>
               </figcaption>
             </figure>
