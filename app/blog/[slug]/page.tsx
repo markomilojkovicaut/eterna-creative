@@ -74,18 +74,6 @@ export async function generateMetadata({
   };
 }
 
-function formatDate(iso: string) {
-  try {
-    return new Intl.DateTimeFormat("en-US", {
-      month: "long",
-      day: "numeric",
-      year: "numeric",
-    }).format(new Date(iso));
-  } catch {
-    return iso;
-  }
-}
-
 export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params;
   const post = getBlogPostBySlug(slug);
