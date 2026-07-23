@@ -166,35 +166,16 @@ export default async function BlogPostPage({ params }: PageProps) {
                 </p>
               ) : null}
 
-              <div className="mt-8 space-y-3 rounded-soft border border-border-dark bg-bg-card/40 p-4 text-body-sm text-text-sub sm:max-w-md">
-                <p>
-                  <span className="text-text-muted">Written by </span>
-                  <span className="font-semibold text-text-heading">
-                    Marko Milojković
-                  </span>
-                </p>
-                <p>
-                  <span className="text-text-muted">Category: </span>
-                  <span className="font-semibold text-text-heading">
-                    {post.category}
-                  </span>
-                </p>
-                <p>
-                  <span className="text-text-muted">Published: </span>
-                  <time
-                    dateTime={post.publishedAt}
-                    className="font-semibold text-text-heading"
-                  >
-                    {formatDate(post.publishedAt)}
-                  </time>
-                </p>
-                <p>
-                  <span className="text-text-muted">Read time: </span>
-                  <span className="font-semibold text-text-heading">
-                    {post.readTime} min
-                  </span>
-                </p>
-              </div>
+              <p className="mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-body-sm text-text-muted">
+                <span>
+                  by{" "}
+                  <span className="text-text-sub">Marko Milojković</span>
+                </span>
+                <span aria-hidden>·</span>
+                <span>{post.readTime} min read</span>
+                <span aria-hidden>·</span>
+                <span>{post.category}</span>
+              </p>
             </div>
           </div>
         </div>
