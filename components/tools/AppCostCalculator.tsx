@@ -150,7 +150,7 @@ export function AppCostCalculator() {
             {result.summary}
           </p>
           <p className="mt-4 text-body-sm text-text-muted">
-            Indicative only. Your free Launch Plan gives a firm flat price for
+            Indicative only. Your free Blueprint gives a firm flat price for
             your actual scope.
           </p>
         </div>

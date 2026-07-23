@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import type { BlogPostMeta } from "@/lib/blog";
@@ -67,29 +68,52 @@ export function BlogShareLinks({
   );
 }
 
-export function BlogRelatedGrid({ posts }: { posts: BlogPostMeta[] }) {
+/** Same card language as the blog list grid. */
+export function BlogRelatedGrid({
+  posts,
+  className,
+}: {
+  posts: BlogPostMeta[];
+  className?: string;
+}) {
   if (posts.length === 0) return null;
 
   return (
-    <section className="mt-section">
-      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-purple-light">
+    <section className={cn(className)}>
+      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-text-ink-muted">
         Similar articles
       </p>
-      <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {posts.map((post) => (
           <Link
             key={post.slug}
             href={`/blog/${post.slug}`}
-            className="group no-underline"
+            className="group flex flex-col no-underline"
           >
-            <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-purple-light">
+            <div className="relative aspect-[16/10] overflow-hidden rounded-soft border border-border-muted bg-bg-muted">
+              {post.coverImage ? (
+                <Image
+                  src={post.coverImage}
+                  alt={post.coverAlt || post.title}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+              ) : (
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-purple/20 to-brand-pink/20" />
+              )}
+            </div>
+            <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-text-ink-muted">
               {post.category}
             </p>
-            <h3 className="mt-2 font-heading text-body-md font-bold leading-snug text-text-heading transition-colors group-hover:text-brand-purple-light">
+            <h3 className="mt-1.5 font-heading text-heading-sm font-bold leading-snug text-text-ink transition-colors group-hover:text-brand-purple">
               {post.title}
             </h3>
-            <p className="mt-2 line-clamp-2 text-body-sm text-text-body">
+            <p className="mt-2 line-clamp-2 text-body-sm leading-relaxed text-text-ink-sub">
               {post.excerpt || post.subheading}
+            </p>
+            <p className="mt-3 text-[12px] text-text-ink-muted">
+              {post.readTime} min read
             </p>
           </Link>
         ))}

@@ -40,8 +40,8 @@ export default function BlueprintPage() {
               ]}
               subheading={
                 <>
-                  Two tiers: a free Launch Plan to close the deal with scope and
-                  price, and paid Validation Sprint / App Launch Blueprint when
+                  Two tiers: a free Blueprint to close the deal with scope and
+                  price, and paid Validation Sprint / Product Spec when
                   the judgment layer needs to be monetized.
                 </>
               }

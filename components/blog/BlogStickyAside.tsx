@@ -24,7 +24,7 @@ export function BlogStickyAside({ className }: { className?: string }) {
           Free tool
         </p>
         <p className="mt-2 font-heading text-heading-sm font-bold text-text-ink">
-          App cost calculator
+          Product cost calculator
         </p>
         <p className="mt-2 flex-1 text-body-sm leading-relaxed text-text-ink-sub">
           Ballpark your build investment in ~3 minutes - before you book a call.

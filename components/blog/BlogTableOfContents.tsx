@@ -1,21 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useId, useState } from "react";
 
 import type { BlogTocItem } from "@/lib/blog";
 import { cn } from "@/lib/utils";
 
-/** Numbered in-flow TOC (Adeel-style). */
+/**
+ * Sticky collapsed TOC — closed by default, expands to jump sections.
+ */
 export function BlogTableOfContents({
   items,
   className,
-  variant = "panel",
 }: {
   items: BlogTocItem[];
   className?: string;
-  variant?: "panel" | "inline";
 }) {
+  const [open, setOpen] = useState(false);
   const [activeId, setActiveId] = useState<string>("");
+  const panelId = useId();
 
   useEffect(() => {
     if (items.length === 0) return;
@@ -44,63 +46,75 @@ export function BlogTableOfContents({
 
   if (items.length === 0) return null;
 
-  const list = (
-    <ol
-      className={cn(
-        variant === "inline" ? "mt-4 space-y-2.5" : "mt-3 space-y-2"
-      )}
-    >
-      {items.map((item, index) => (
-        <li key={item.id} className={cn(item.level >= 3 && "pl-3")}>
-          <a
-            href={`#${item.id}`}
-            className={cn(
-              "group flex gap-3 text-body-sm leading-snug no-underline transition-colors",
-              activeId === item.id
-                ? "font-semibold text-brand-purple"
-                : "text-text-ink-sub hover:text-text-ink"
-            )}
-          >
-            <span
-              className={cn(
-                "w-6 shrink-0 tabular-nums",
-                activeId === item.id
-                  ? "text-brand-purple"
-                  : "text-text-ink-muted"
-              )}
-            >
-              {String(index + 1).padStart(2, "0")}
-            </span>
-            <span>{item.text}</span>
-          </a>
-        </li>
-      ))}
-    </ol>
-  );
-
-  if (variant === "inline") {
-    return (
-      <nav aria-label="Table of contents" className={cn("my-10", className)}>
-        <p className="font-heading text-heading-sm font-bold text-text-ink">
-          Table of contents
-        </p>
-        {list}
-      </nav>
-    );
-  }
+  const activeLabel =
+    items.find((item) => item.id === activeId)?.text ?? "On this page";
 
   return (
-    <nav
-      aria-label="Table of contents"
+    <div
       className={cn(
-        "rounded-soft border border-border-muted bg-bg-muted/60 p-4",
+        "sticky z-40 border-b border-border-muted bg-bg-surface/95 backdrop-blur-md",
         className
       )}
+      style={{ top: "var(--blog-header-offset, 48px)" }}
     >
-      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-text-ink-muted">
-        On this page
-      </p>
-      {list}
-    </nav>
+      <div className="mx-auto w-full max-w-[720px]">
+        <button
+          type="button"
+          aria-expanded={open}
+          aria-controls={panelId}
+          onClick={() => setOpen((v) => !v)}
+          className={cn(
+            "flex w-full items-center justify-between gap-3 py-3 text-left",
+            "text-body-sm transition-colors hover:text-brand-purple"
+          )}
+        >
+          <span className="min-w-0">
+            <span className="block text-[10px] font-semibold uppercase tracking-[0.12em] text-text-ink-muted">
+              Table of contents
+            </span>
+            <span className="mt-0.5 block truncate font-medium text-text-ink">
+              {open ? "Jump to a section" : activeLabel}
+            </span>
+          </span>
+          <span
+            className={cn(
+              "inline-flex size-8 shrink-0 items-center justify-center rounded-soft border border-border-muted text-text-ink-muted transition-transform",
+              open && "rotate-180"
+            )}
+            aria-hidden
+          >
+            ▾
+          </span>
+        </button>
+
+        <div
+          id={panelId}
+          hidden={!open}
+          className="border-t border-border-muted pb-4 pt-3"
+        >
+          <ol className="max-h-[min(50vh,360px)] space-y-2 overflow-y-auto pr-1">
+            {items.map((item, index) => (
+              <li key={item.id} className={cn(item.level >= 3 && "pl-3")}>
+                <a
+                  href={`#${item.id}`}
+                  onClick={() => setOpen(false)}
+                  className={cn(
+                    "flex gap-3 text-body-sm leading-snug no-underline transition-colors",
+                    activeId === item.id
+                      ? "font-semibold text-brand-purple"
+                      : "text-text-ink-sub hover:text-text-ink"
+                  )}
+                >
+                  <span className="w-6 shrink-0 tabular-nums text-text-ink-muted">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span>{item.text}</span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </div>
   );
 }

@@ -4,9 +4,11 @@ export const footerTagline =
 export const footerCopyright = "© 2026 Eterna Creative. All rights reserved.";
 
 export const newsletterCopy = {
-  title: "Subscribe to our PreTRACTION newsletter",
-  placeholder: "Type your email...",
-  subline: "Monthly insights on building better products.",
+  eyebrow: "Newsletter",
+  title: "PreTRACTION",
+  placeholder: "you@company.com",
+  subline:
+    "Founder notes on validating, scoping, and shipping — before you chase traction.",
 };
 
 export { footerLinkGroups } from "@/lib/site-nav";

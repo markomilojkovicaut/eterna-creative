@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 
 /**
- * Compact hero-style phone trio used for App cost calculator previews
+ * Compact hero-style phone trio used for Product cost calculator previews
  * (Resources nav dropdown + homepage resources bento).
  */
 export function CalculatorPhonePreview({

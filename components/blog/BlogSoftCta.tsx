@@ -19,12 +19,12 @@ export function BlogSoftCta({ className }: { className?: string }) {
         >
           Book a free strategy call
         </Link>{" "}
-        — or start with the{" "}
+        — or start with a free{" "}
         <Link
           href="/blueprint"
           className="font-semibold text-brand-purple no-underline underline-offset-2 hover:underline"
         >
-          Launch Plan / Blueprint
+          Blueprint
         </Link>
         .
       </p>

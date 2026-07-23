@@ -145,7 +145,7 @@ export const headerNavItems: HeaderNavItem[] = [
       {
         items: [
           {
-            label: "App cost calculator",
+            label: "Product cost calculator",
             href: "/tools/app-cost-calculator",
             description:
               "Get accurate development and timeline estimate in 3 minutes - no sales calls & 100% free.",

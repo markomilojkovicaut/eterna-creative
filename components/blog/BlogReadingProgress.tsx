@@ -13,9 +13,16 @@ export function BlogReadingProgress() {
     const measureHeader = () => {
       if (!header) {
         setHeaderHeight(0);
+        document.documentElement.style.setProperty("--blog-header-offset", "48px");
         return;
       }
-      setHeaderHeight(Math.round(header.getBoundingClientRect().height));
+      // Round up so the bar never sits a hair below the header edge (subpixel gap).
+      const h = Math.ceil(header.getBoundingClientRect().height);
+      setHeaderHeight(h);
+      document.documentElement.style.setProperty(
+        "--blog-header-offset",
+        `${h}px`
+      );
     };
 
     measureHeader();
@@ -57,12 +64,17 @@ export function BlogReadingProgress() {
 
   return (
     <div
-      className="pointer-events-none fixed left-0 right-0 z-[45] h-0.5 bg-border-dark/30 sm:h-1"
-      style={{ top: headerHeight }}
+      className="pointer-events-none fixed left-0 right-0 z-[55] h-[3px]"
+      style={{
+        // Overlap 1px into the header so no page gap shows under the bar.
+        top: Math.max(0, headerHeight - 1),
+        marginTop: 0,
+      }}
       aria-hidden
     >
+      <div className="absolute inset-0 bg-border-dark/25" />
       <div
-        className="h-full origin-left bg-hero-gradient transition-[width] duration-150 ease-out"
+        className="absolute inset-y-0 left-0 bg-hero-gradient transition-[width] duration-150 ease-out"
         style={{ width: `${progress * 100}%` }}
       />
     </div>

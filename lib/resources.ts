@@ -31,11 +31,11 @@ export const resourceItems: ResourceItem[] = [
   {
     id: "app-cost-calculator",
     type: "tool",
-    title: "App cost calculator",
+    title: "Product cost calculator",
     href: "/tools/app-cost-calculator",
     variant: "dark",
     imageSrc: "/images/resources/app-cost-calculator.png",
-    imageAlt: "App cost calculator preview",
+    imageAlt: "Product cost calculator preview",
     description:
       "Estimate build scope and budget before you commit to a full roadmap.",
     gridClass: "lg:col-span-2 lg:row-span-2",

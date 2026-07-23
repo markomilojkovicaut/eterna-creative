@@ -11,9 +11,9 @@ import { cn } from "@/lib/utils";
 import { sectionBackdropPresets } from "@/lib/section-backdrops";
 
 export const metadata: Metadata = {
-  title: "App cost calculator | Eterna",
+  title: "Product cost calculator | Eterna",
   description:
-    "Estimate app build scope and budget before you commit - then book a free Launch Plan for a firm flat price.",
+    "Estimate app build scope and budget before you commit - then book a free Blueprint for a firm flat price.",
 };
 
 export default function AppCostCalculatorPage() {
@@ -27,7 +27,7 @@ export default function AppCostCalculatorPage() {
             <SectionHeading
               label="Tool"
               lines={[
-                { text: "App cost", variant: "default" },
+                { text: "Product cost", variant: "default" },
                 { text: "calculator", variant: "gradient" },
               ]}
               subheading={

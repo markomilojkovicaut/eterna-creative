@@ -20,11 +20,14 @@ export function NewsletterSignup({ className }: { className?: string }) {
       />
 
       <div className="relative z-10 flex h-full flex-col justify-center p-5 sm:p-6">
-        <h3 className="font-heading text-body-sm font-bold text-text-heading">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-purple-light">
+          {newsletterCopy.eyebrow}
+        </p>
+        <h3 className="mt-1.5 font-heading text-heading-sm font-bold tracking-[-0.02em] text-text-heading">
           {newsletterCopy.title}
         </h3>
 
-        <form className="mt-3 flex gap-2" onSubmit={(e) => e.preventDefault()}>
+        <form className="mt-4 flex gap-2" onSubmit={(e) => e.preventDefault()}>
           <input
             type="email"
             name="email"

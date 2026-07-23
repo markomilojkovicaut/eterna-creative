@@ -34,8 +34,8 @@ export const processSteps: ProcessStep[] = [
   {
     id: "blueprint",
     number: "03",
-    phase: "Launch Plan",
-    title: "We deliver your Launch Plan",
+    phase: "Blueprint",
+    title: "We deliver your Blueprint",
     description:
       "Before any build commitment, you get a clear plan: app/page map, hero preview, flat investment, and timeline. No ambiguity on what you're buying. No surprises.",
     tags: [
@@ -52,7 +52,7 @@ export const processSteps: ProcessStep[] = [
     title: "Kickoff, design & engineering - with full visibility",
     gradientBackground: true,
     description:
-      "Once you approve the Launch Plan and sign the contract, we kick off with a deep session to collect content, visuals, and brand direction. Then we build. Design and development run in parallel on smaller projects, or with a clickable prototype on larger ones. Either way, you're never left guessing.",
+      "Once you approve the Blueprint and sign the contract, we kick off with a deep session to collect content, visuals, and brand direction. Then we build. Design and development run in parallel on smaller projects, or with a clickable prototype on larger ones. Either way, you're never left guessing.",
     tags: [
       "Notion client portal",
       "Weekly progress videos",

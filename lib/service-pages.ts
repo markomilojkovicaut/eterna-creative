@@ -42,7 +42,7 @@ export const servicePageContent: Record<string, ServicePageContent> = {
     ],
     process: [
       {
-        title: "Launch Plan",
+        title: "Blueprint",
         description: "Free Scope Session - app map, hero preview, flat price, timeline.",
       },
       {
@@ -57,7 +57,7 @@ export const servicePageContent: Record<string, ServicePageContent> = {
     relatedEngineIds: ["architecture", "activation", "retention"],
     relatedLinks: [
       { label: "Bubble migration", href: "/migration" },
-      { label: "App Launch Blueprint", href: "/blueprint" },
+      { label: "Product Spec", href: "/blueprint" },
     ],
   },
   automation: {
@@ -123,7 +123,7 @@ export const servicePageContent: Record<string, ServicePageContent> = {
     process: [
       {
         title: "Validation Sprint",
-        description: "Paid deep-dive when you need more than the free Launch Plan.",
+        description: "Paid deep-dive when you need more than the free Blueprint.",
       },
       {
         title: "Synthesis",
@@ -131,11 +131,11 @@ export const servicePageContent: Record<string, ServicePageContent> = {
       },
       {
         title: "Blueprint handoff",
-        description: "Graduate to App Launch Blueprint when the signal is a go.",
+        description: "Graduate to Product Spec when the signal is a go.",
       },
     ],
     relatedEngineIds: ["research", "architecture"],
-    relatedLinks: [{ label: "App Launch Blueprint", href: "/blueprint" }],
+    relatedLinks: [{ label: "Product Spec", href: "/blueprint" }],
   },
   "product-strategy": {
     slug: "product-strategy",
@@ -162,7 +162,7 @@ export const servicePageContent: Record<string, ServicePageContent> = {
     process: [
       {
         title: "Scope Session",
-        description: "Free Launch Plan covers high-level strategy for build-ready founders.",
+        description: "Free Blueprint covers high-level strategy for build-ready founders.",
       },
       {
         title: "Blueprint",
@@ -174,7 +174,7 @@ export const servicePageContent: Record<string, ServicePageContent> = {
       },
     ],
     relatedEngineIds: ["research", "acquisition"],
-    relatedLinks: [{ label: "App Launch Blueprint", href: "/blueprint" }],
+    relatedLinks: [{ label: "Product Spec", href: "/blueprint" }],
   },
   website: {
     slug: "website",
@@ -201,7 +201,7 @@ export const servicePageContent: Record<string, ServicePageContent> = {
     process: [
       {
         title: "Scope",
-        description: "Single call often enough - no full Launch Plan required for smaller sites.",
+        description: "Single call often enough - no full Blueprint required for smaller sites.",
       },
       {
         title: "Design + build",

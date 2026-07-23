@@ -34,7 +34,7 @@ export const migrationSteps = [
   {
     title: "Rescue plan",
     description:
-      "Phased cutover with flat price, timeline, and honest scope - included in your Launch Plan.",
+      "Phased cutover with flat price, timeline, and honest scope - included in your Blueprint.",
   },
   {
     title: "Build + migrate",

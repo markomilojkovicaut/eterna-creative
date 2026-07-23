@@ -96,7 +96,6 @@ export default async function BlogPostPage({ params }: PageProps) {
 
   const related = getRelatedPosts(post.slug, 4);
   const pageUrl = `${SITE_URL}/blog/${post.slug}`;
-  /** Prefer H2-level TOC entries for the inline essay nav. */
   const tocItems =
     post.toc.filter((item) => item.level <= 2).length > 0
       ? post.toc.filter((item) => item.level <= 2)
@@ -124,14 +123,86 @@ export default async function BlogPostPage({ params }: PageProps) {
   };
 
   return (
-    <main className={cn(HEADER_OFFSET_CLASS, "bg-bg-surface")}>
+    <main className={HEADER_OFFSET_CLASS}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <BlogReadingProgress />
 
-      {/* Continuous light essay surface */}
+      {/* Dark header + heading section */}
+      <section className="relative overflow-hidden bg-bg-base pb-12 pt-10 sm:pb-16 sm:pt-14">
+        <DarkSectionBackdrop {...sectionBackdropPresets.challenges} />
+        <div className={cn("relative z-10", LAYOUT_OUTER_CLASS)}>
+          <div className={LAYOUT_INNER_CLASS}>
+            <nav
+              aria-label="Breadcrumb"
+              className="text-body-sm text-text-muted"
+            >
+              <Link
+                href="/"
+                className="text-text-muted no-underline hover:text-text-heading"
+              >
+                Home
+              </Link>
+              <span className="mx-2" aria-hidden>
+                /
+              </span>
+              <Link
+                href="/blog"
+                className="text-text-muted no-underline hover:text-text-heading"
+              >
+                Blog
+              </Link>
+            </nav>
+
+            <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_280px] lg:items-start lg:gap-12">
+              <div>
+                <h1 className="font-heading text-display-md font-bold leading-[1.1] text-text-heading sm:text-display-lg">
+                  {post.title}
+                </h1>
+                {post.subheading ? (
+                  <p className="mt-5 max-w-[720px] text-body-lg leading-relaxed text-text-sub">
+                    {post.subheading}
+                  </p>
+                ) : null}
+              </div>
+
+              <div className="space-y-3 rounded-soft border border-border-dark bg-bg-card/40 p-4 text-body-sm text-text-sub lg:mt-2">
+                <p>
+                  <span className="text-text-muted">Written by </span>
+                  <span className="font-semibold text-text-heading">
+                    Marko Milojković
+                  </span>
+                </p>
+                <p>
+                  <span className="text-text-muted">Category: </span>
+                  <span className="font-semibold text-text-heading">
+                    {post.category}
+                  </span>
+                </p>
+                <p>
+                  <span className="text-text-muted">Published: </span>
+                  <time
+                    dateTime={post.publishedAt}
+                    className="font-semibold text-text-heading"
+                  >
+                    {formatDate(post.publishedAt)}
+                  </time>
+                </p>
+                <p>
+                  <span className="text-text-muted">Read time: </span>
+                  <span className="font-semibold text-text-heading">
+                    {post.readTime} min
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Light reading column */}
       <section className="bg-bg-surface text-text-ink-sub">
         <div className={LAYOUT_OUTER_CLASS}>
           <div className={cn(LAYOUT_INNER_CLASS, "pb-16 pt-10 sm:pb-20 sm:pt-14")}>
@@ -139,45 +210,8 @@ export default async function BlogPostPage({ params }: PageProps) {
               id="blog-article"
               className="mx-auto w-full max-w-[720px]"
             >
-              <Link
-                href="/blog"
-                className="text-body-sm font-medium text-text-ink-muted no-underline transition-colors hover:text-brand-purple"
-              >
-                ← All articles
-              </Link>
-
-              <p className="mt-8 text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-purple">
-                {post.category}
-              </p>
-
-              <h1 className="mt-3 font-heading text-[2rem] font-bold leading-[1.15] tracking-[-0.02em] text-text-ink sm:text-display-md lg:text-display-lg">
-                {post.title}
-              </h1>
-
-              <p className="mt-5 flex flex-wrap items-center gap-x-2 gap-y-1 text-body-sm text-text-ink-muted">
-                <span className="font-medium text-text-ink-sub">
-                  Marko Milojković
-                </span>
-                <span aria-hidden>·</span>
-                <time dateTime={post.publishedAt}>
-                  {formatDate(post.publishedAt)}
-                </time>
-                <span aria-hidden>·</span>
-                <span>{post.readTime} min read</span>
-              </p>
-
-              {post.subheading ? (
-                <p className="mt-8 text-body-lg leading-relaxed text-text-ink-sub sm:text-[1.2rem] sm:leading-[1.7]">
-                  {post.subheading}
-                </p>
-              ) : post.excerpt ? (
-                <p className="mt-8 text-body-lg leading-relaxed text-text-ink-sub sm:text-[1.2rem] sm:leading-[1.7]">
-                  {post.excerpt}
-                </p>
-              ) : null}
-
               {post.coverImage ? (
-                <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-soft border border-border-muted">
+                <div className="relative aspect-[16/9] overflow-hidden rounded-soft border border-border-muted">
                   <Image
                     src={post.coverImage}
                     alt={post.coverAlt || post.title}
@@ -189,14 +223,14 @@ export default async function BlogPostPage({ params }: PageProps) {
                 </div>
               ) : null}
 
-              <BlogSoftCta className="mt-10" />
+              <BlogSoftCta className={post.coverImage ? "mt-10" : undefined} />
 
-              <BlogTableOfContents items={tocItems} variant="inline" />
-
-              <hr className="my-10 border-border-muted" />
+              {tocItems.length > 0 ? (
+                <BlogTableOfContents items={tocItems} className="mt-8" />
+              ) : null}
 
               <div
-                className="blog-prose blog-prose-essay"
+                className="blog-prose blog-prose-essay mt-10"
                 dangerouslySetInnerHTML={{ __html: post.bodyHtml }}
               />
 
@@ -212,10 +246,16 @@ export default async function BlogPostPage({ params }: PageProps) {
               </div>
             </article>
 
-            {/* Tools after the essay — conversion without crowding reading */}
             <div className="mx-auto mt-14 w-full max-w-[720px]">
               <BlogStickyAside />
             </div>
+
+            {/* Similar articles on white — before the dark CTA */}
+            {related.length > 0 ? (
+              <div className="mx-auto mt-16 w-full max-w-[720px] border-t border-border-muted pt-12 sm:max-w-none">
+                <BlogRelatedGrid posts={related} />
+              </div>
+            ) : null}
           </div>
         </div>
       </section>
@@ -237,11 +277,9 @@ export default async function BlogPostPage({ params }: PageProps) {
                 Book strategy session
               </CallToActionLink>
               <SecondaryCtaLink href="/tools/app-cost-calculator">
-                Try app calculator
+                Try product calculator
               </SecondaryCtaLink>
             </div>
-
-            <BlogRelatedGrid posts={related} />
           </div>
         </div>
       </section>

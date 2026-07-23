@@ -117,6 +117,30 @@
     @apply font-semibold text-text-ink;
   }
 
+  /**
+   * Bubble HTML often drops topic labels between lists as bare <strong>:
+   * </ul><strong>Is this a growing market…</strong><ul>
+   * Treat those as block headings so list sections aren't cramped.
+   */
+  .blog-prose > strong,
+  .blog-prose > p > strong:only-child {
+    @apply mt-7 mb-2.5 block font-heading text-[1.05em] font-bold leading-snug text-text-ink;
+  }
+
+  .blog-prose ul + strong,
+  .blog-prose ol + strong,
+  .blog-prose ul + p:has(> strong:only-child),
+  .blog-prose ol + p:has(> strong:only-child) {
+    margin-top: 1.75rem;
+  }
+
+  .blog-prose strong + ul,
+  .blog-prose strong + ol,
+  .blog-prose p:has(> strong:only-child) + ul,
+  .blog-prose p:has(> strong:only-child) + ol {
+    margin-top: 0.75rem;
+  }
+
   .blog-prose ul {
     @apply list-disc space-y-2 pl-5;
   }
