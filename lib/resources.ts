@@ -44,8 +44,9 @@ export const resourceItems: ResourceItem[] = [
   {
     id: "animated-landing",
     type: "template",
-    title: "Animated landing page",
+    title: "Animated Landing Page 2025",
     href: "/templates/animated-landing-page",
+    description: "Bubble template — $14. Order on Bubble.",
     gridClass: "lg:col-span-1 lg:row-span-1",
   },
   {
@@ -53,7 +54,7 @@ export const resourceItems: ResourceItem[] = [
     type: "template",
     title: "Razmeni marketplace",
     href: "/templates/razmeni-marketplace",
-    description: "Full marketplace app template — €10,000, ready to roll.",
+    description: "Full marketplace app template — €10,000.",
     gridClass: "lg:col-span-1 lg:row-span-1",
   },
   {

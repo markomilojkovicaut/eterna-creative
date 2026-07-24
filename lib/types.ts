@@ -40,10 +40,25 @@ export interface Template {
   currency?: "EUR" | "USD";
   tags: string[];
   previewImage: string;
+  /** Legacy download / fallback path. */
   downloadUrl: string;
   isPaid: boolean;
   /** Optional live demo / product URL for paid app templates. */
   demoUrl?: string;
+  /** Primary purchase / order destination (Bubble marketplace, checkout, book). */
+  orderUrl?: string;
+  /** CTA label — defaults to "Order". */
+  orderLabel?: string;
+  /** Platform badge e.g. Bubble. */
+  platform?: string;
+  /** Short shop subtitle under title. */
+  subtitle?: string;
+  /** Feature bullets for product page. */
+  features?: { title: string; body: string }[];
+  /** Soft note (e.g. extended pack coming soon). */
+  note?: string;
+  /** Optional compare-at or upcoming price line. */
+  notePrice?: string;
 }
 
 export interface Job {

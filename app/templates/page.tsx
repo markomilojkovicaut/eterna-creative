@@ -1,56 +1,25 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
+import { TemplateShopCard } from "@/components/templates/TemplateShopCard";
 import { ContentHubShell } from "@/components/layout/ContentHubShell";
-import { Badge } from "@/components/ui/Badge";
-import { Card } from "@/components/ui/Card";
 import { templates } from "@/lib/templates-content";
 
 export const metadata: Metadata = {
   title: "Templates | Eterna",
   description:
-    "Starter templates to accelerate your MVP - customize and ship faster.",
+    "Premium Bubble templates from Eterna — order ready-made landing pages and full apps, customize, and ship faster.",
 };
 
 export default function TemplatesPage() {
   return (
     <ContentHubShell
-      label="Templates"
-      lines={[{ text: "Ship faster", variant: "default" }]}
-      subheading="Pre-built foundations for common startup use cases - customize and launch in days, not months."
+      label="Shop"
+      lines={[{ text: "Templates", variant: "default" }]}
+      subheading="Premium Bubble templates with an Order button — preview, buy, then customize with us if you want."
     >
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 sm:grid-cols-2">
         {templates.map((template) => (
-          <Link
-            key={template.slug}
-            href={`/templates/${template.slug}`}
-            className="no-underline"
-          >
-            <Card hover glow="pink" className="h-full p-6">
-              <div className="flex flex-wrap gap-2">
-                {template.tags.map((tag) => (
-                  <Badge key={tag} variant="pink">
-                    {tag}
-                  </Badge>
-                ))}
-              </div>
-              <h2 className="mt-4 font-heading text-heading-sm font-bold text-text-heading">
-                {template.title}
-              </h2>
-              <p className="mt-3 text-body-md text-text-body">
-                {template.description}
-              </p>
-              <p className="mt-4 text-body-sm font-semibold text-text-sub">
-                {template.isPaid
-                  ? new Intl.NumberFormat("en-EU", {
-                      style: "currency",
-                      currency: template.currency ?? "EUR",
-                      maximumFractionDigits: 0,
-                    }).format(template.price)
-                  : "Free"}
-              </p>
-            </Card>
-          </Link>
+          <TemplateShopCard key={template.slug} template={template} />
         ))}
       </div>
     </ContentHubShell>
