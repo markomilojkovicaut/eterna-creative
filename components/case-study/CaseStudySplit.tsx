@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { DarkTagPill } from "@/components/ui/DarkTagPill";
 import { Reveal } from "@/components/ui/Reveal";
 import {
+  caseStudyProductLabels,
   getHomepageMedia,
   studyShowsHomepage,
   type CaseStudy,
