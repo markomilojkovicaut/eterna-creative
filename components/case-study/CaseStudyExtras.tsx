@@ -32,28 +32,28 @@ export function CaseStudyTechStack({
       <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-purple-light">
         Technologies
       </p>
-      <ul className="mt-4 grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
+      <ul className="mt-4 flex flex-wrap gap-3">
         {tools.map((tool) => (
           <li
             key={tool.id}
-            className="flex aspect-square flex-col items-center justify-center gap-2 rounded-soft border border-border-dark bg-bg-card/40 p-6"
+            className="flex w-[104px] flex-col items-center rounded-soft border border-border-dark bg-bg-card/40 p-6"
           >
-            <div className="flex size-10 items-center justify-center rounded-full bg-bg-base">
+            <div className="flex size-7 items-center justify-center">
               {tool.logoSrc ? (
                 <Image
                   src={tool.logoSrc}
                   alt=""
                   width={28}
                   height={28}
-                  className="h-5 w-5 object-contain"
+                  className="h-7 w-7 object-contain"
                 />
               ) : (
-                <span className="font-heading text-[10px] font-bold uppercase tracking-wide text-brand-purple-light">
+                <span className="font-heading text-[11px] font-bold uppercase tracking-wide text-brand-purple-light">
                   {monogram(tool.name)}
                 </span>
               )}
             </div>
-            <p className="text-center text-[11px] font-medium leading-tight text-text-heading">
+            <p className="mt-1.5 max-w-full truncate text-center text-[11px] font-medium leading-tight text-text-heading">
               {tool.name}
             </p>
           </li>
