@@ -98,7 +98,11 @@ export function CaseStudySplit({
         >
           <Reveal className="w-full max-w-[320px] lg:sticky lg:top-24">
             <aside className="rounded-soft border border-border-dark bg-bg-card/35 p-5 sm:p-6">
-              <MetaRow label="App category" value={study.category} />
+              <MetaRow
+                label="Product"
+                value={caseStudyProductLabels[study.productType]}
+              />
+              <MetaRow label="Category" value={study.category} />
               <MetaRow label="Location" value={study.location} />
               <MetaRow label="Year" value={study.year} />
 
