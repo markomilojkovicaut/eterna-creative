@@ -36,7 +36,7 @@ export function CaseStudyTechStack({
         {tools.map((tool) => (
           <li
             key={tool.id}
-            className="flex aspect-square flex-col items-center justify-center gap-2 rounded-soft border border-border-dark bg-bg-card/40 p-3"
+            className="flex aspect-square flex-col items-center justify-center gap-2 rounded-soft border border-border-dark bg-bg-card/40 p-6"
           >
             <div className="flex size-10 items-center justify-center rounded-full bg-bg-base">
               {tool.logoSrc ? (
